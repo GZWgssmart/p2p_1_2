@@ -1,2 +1,6 @@
 /out
 /target
+src/main/java/top/zzh/service/impl/
+src/test/
+web/static/images/
+web/static/uploads/
