@@ -10,6 +10,7 @@ public interface BaseService {
     void removeById(Long id);
     void update(Object obj);
 
+
     Object getById(Long id);
     List<Object> listAll();
     Pager listPager(int pageNo, int pageSize);
