@@ -17,8 +17,9 @@ public class UserServiceImpl extends AbstractService implements UserService{
 
     private UserDAO userDAO;
 
-    @Autowired
+
     public void setBaseDAO(BaseDAO baseDAO) {
         super.setBaseDAO(baseDAO);
+        this.userDAO = userDAO;
     }
 }
