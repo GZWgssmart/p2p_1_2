@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.RecommendDAO">
+    <select id="countTzm" resultType="Integer">
+      select count(uid) t_user where tzm = #{tzm};
+    </select>
+    <!--用于前台判断推荐码是否存在-->
+    <select id="getTzm" resultType="String">
+        select uid,rname t_user where tzm = #{tzm};
+    </select>
+    <insert id="save" parameterType="recommend">
+
+        insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())
+    </insert>
+    <!--xxp:
+        前台注册用户者提供的推荐码，手机号，推荐链接
+        用于查询推荐人uid，rname 如果不存在提示不存在此推荐人，存在就用于新增recommend表
+        还差前台注册用户者的uid，rname
+        应该在用户注册成功后获取，故在userService中运用RecommendDAO的方法
+    -->
+</mapper>
