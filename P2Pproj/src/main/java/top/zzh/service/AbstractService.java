@@ -8,12 +8,11 @@ import java.util.List;
 /**
  * Created by 曾志湖 on 2017/12/21.
  */
-public class AbstractService implements BaseService {
+public abstract class AbstractService implements BaseService {
 
 
     private BaseDAO baseDAO;
 
-    @Autowired
     public void setBaseDAO(BaseDAO baseDAO) {
         this.baseDAO = baseDAO;
     }
