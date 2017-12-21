@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HUserController {
 
 
-
     //后台用户中心页面
     @RequestMapping("page")
     public String page(){
