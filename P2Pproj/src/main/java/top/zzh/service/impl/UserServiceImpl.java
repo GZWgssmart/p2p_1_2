@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.dao.UserDAO;
 import top.zzh.service.AbstractService;
@@ -16,6 +17,7 @@ public class UserServiceImpl extends AbstractService implements UserService{
 
     private UserDAO userDAO;
 
+    @Autowired
     public void setUserDAO(UserDAO userDAO) {
         super.setBaseDAO(userDAO);
         this.userDAO = userDAO;

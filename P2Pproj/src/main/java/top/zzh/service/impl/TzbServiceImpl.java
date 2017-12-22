@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import top.zzh.dao.TzbDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.TzbService;
@@ -12,6 +13,7 @@ public class TzbServiceImpl extends AbstractService implements TzbService{
 
     private TzbDAO tzbDAO;
 
+    @Autowired
     public void setTzbDAO(TzbDAO tzbDAO) {
         super.setBaseDAO(tzbDAO);
         this.tzbDAO = tzbDAO;

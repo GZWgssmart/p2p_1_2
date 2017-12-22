@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.dao.BorrowDetailDAO;
 import top.zzh.service.AbstractService;
@@ -14,6 +15,7 @@ public class BorrowDetailServiceImpl extends AbstractService implements BorrowDe
 
     private BorrowDetailDAO borrowDetailDAO;
 
+    @Autowired
     public void setBorrowDetailDAO(BorrowDetailDAO borrowDetailDAO) {
         super.setBaseDAO(borrowDetailDAO);
         this.borrowDetailDAO = borrowDetailDAO;

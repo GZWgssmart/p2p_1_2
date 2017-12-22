@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.bean.BankCard;
 import top.zzh.dao.BankCardDAO;
@@ -15,6 +16,7 @@ public class BankCardServiceImpl extends AbstractService implements BankCardServ
 
     private BankCardDAO bankCardDAO;
 
+    @Autowired
     public void setBankCardDAO(BankCardDAO bankCardDAO) {
         super.setBaseDAO(bankCardDAO);
         this.bankCardDAO = bankCardDAO;

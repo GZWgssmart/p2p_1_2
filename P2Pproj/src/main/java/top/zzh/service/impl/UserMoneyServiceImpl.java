@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.dao.UserMoneyDAO;
 import top.zzh.service.AbstractService;
@@ -14,6 +15,7 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
 
     private UserMoneyDAO userMoneyDAO;
 
+    @Autowired
     public void setUserMoneyDAO(UserMoneyDAO userMoneyDAO) {
         super.setBaseDAO(userMoneyDAO);
         this.userMoneyDAO = userMoneyDAO;

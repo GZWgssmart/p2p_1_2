@@ -1,5 +1,6 @@
 package top.zzh.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.dao.HkbDAO;
 import top.zzh.service.AbstractService;
@@ -14,6 +15,7 @@ public class HkbServiceImpl extends AbstractService implements HkbService {
 
     private HkbDAO hkbDAO;
 
+    @Autowired
     public void setHkbDAO(HkbDAO hkbDAO) {
         super.setBaseDAO(hkbDAO);
         this.hkbDAO = hkbDAO;
