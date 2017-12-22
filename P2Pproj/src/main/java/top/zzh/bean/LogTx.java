@@ -2,7 +2,10 @@ package top.zzh.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * @author 陈桢 update date/dateTime
+ * created time 2017-12-22 10:11
+ */
 //提现记录表
 public class LogTx {
     private Long id;
@@ -15,17 +18,17 @@ public class LogTx {
 
     private BigDecimal money;//提现金额
 
-    private Date date;//时间
+    private Date dateTime;//时间
 
     private Byte state;//状态，0提现成功，1未提现失败
 
-    public LogTx(Long id, Long uid, String bankcard, String banktype, BigDecimal money, Date date, Byte state) {
+    public LogTx(Long id, Long uid, String bankcard, String banktype, BigDecimal money, Date dateTime, Byte state) {
         this.id = id;
         this.uid = uid;
         this.bankcard = bankcard;
         this.banktype = banktype;
         this.money = money;
-        this.date = date;
+        this.dateTime = dateTime;
         this.state = state;
     }
 
@@ -73,12 +76,12 @@ public class LogTx {
         this.money = money;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Byte getState() {

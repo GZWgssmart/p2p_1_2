@@ -4,56 +4,33 @@
 
 <mapper namespace="top.zzh.dao.UserMoneyDAO">
 
-    <sql id="money">
-        <if test="zmoney!=null">
-            zmoney=#{zmoney},
-        </if>
-        <if test="kymoney!=null">
-            kymoney=#{kymoney},
-        </if>
-        <if test="symoney!=null">
-            symoney=#{symoney},
-        </if>
-        <if test="tzmoney!=null">
-            tzmoney=#{tzmoney},
-        </if>
-        <if test="djmoney!=null">
-            djmoney=#{djmoney},
-        </if>
-        <if test="dsmoney!=null">
-            dsmoney=#{dsmoney},
-        </if>
-        <if test="jlmoney!=null">
-            jlmoney=#{jlmoney},
-        </if>
-    </sql>
     <sql id="money_all">
-        <if test="zmoney !=null">
-            and zmoney=#{zmoney}
+        <if test="obj.zmoney !=null">
+            and zmoney=#{obj.zmoney}
         </if>
-        <if test="kymoney !=null">
-           and  kymoney=#{kymoney}
+        <if test="obj.kymoney !=null">
+           and  kymoney=#{obj.kymoney}
         </if>
-        <if test="symoney!=null">
-            and symoney=#{symoney}
+        <if test="obj.symoney!=null">
+            and symoney=#{obj.symoney}
         </if>
-        <if test="tzmoney !=null">
-           and tzmoney=#{tzmoney}
+        <if test="obj.tzmoney !=null">
+           and tzmoney=#{obj.tzmoney}
         </if>
-        <if test="djmoney !=null">
-            djmoney=#{djmoney}
+        <if test="obj.djmoney !=null">
+            djmoney=#{obj.djmoney}
         </if>
-        <if test="dsmoney !=null">
+        <if test="obj.dsmoney !=null">
            and dsmoney=#{dsmoney}
         </if>
-        <if test="jlmoney !=null">
-            and jlmoney=#{jlmoney}
+        <if test="obj.jlmoney !=null">
+            and jlmoney=#{obj.jlmoney}
         </if>
     </sql>
     <select id="save" parameterType="userMoney">
         <![CDATA[
           insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
-        values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
+        values(#{uid},#{zmoney},#{kymoney},#{symoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
    ]]>
     </select>
     <update id="update" parameterType="userMoney">
@@ -61,23 +38,45 @@
           update t_usermoney
            ]]>
         <set>
-          <include refid="money"/>
+            <if test="zmoney !=null">
+                zmoney=#{zmoney},
+            </if>
+            <if test="kymoney !=null">
+                kymoney=#{kymoney},
+            </if>
+            <if test="symoney !=null">
+                symoney=#{symoney},
+            </if>
+            <if test="tzmoney!=null">
+                tzmoney=#{tzmoney},
+            </if>
+            <if test="djmoney!=null">
+                djmoney=#{djmoney},
+            </if>
+            <if test="dsmoney !=null">
+                dsmoney=#{dsmoney},
+            </if>
+            <if test="jlmoney !=null">
+                jlmoney=#{jlmoney},
+            </if>
         </set>
+           where uid=#{uid}
     </update>
 
-    <select id="listPager" parameterType="top.zzh.bean.UserMoney">
+    <select id="listPager" resultType="top.zzh.bean.UserMoney">
         <![CDATA[
-        select * from t_usermoney limit #{pager.beginIndex}, #{pager.pageSize}
-    ]]]>
+        select * from t_usermoney limit #{beginIndex}, #{pageSize}
+    ]]>
     </select>
-    <select id="countCriteria" resultType="long">
+    <select id="count" resultType="long">
         select count(id) from t_usermoney
     </select>
 
-    <select id="listPagerCriteria" parameterType="top.zzh.bean.UserMoney">
+    <select id="listPagerCriteria" resultType="top.zzh.bean.UserMoney">
         select * from t_usermoney
         where 1=1
         <include refid="money_all"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="long">
