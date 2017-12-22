@@ -1,0 +1,28 @@
+package top.zzh.service.impl;
+
+import org.springframework.stereotype.Service;
+import top.zzh.bean.BankCard;
+import top.zzh.dao.BankCardDAO;
+import top.zzh.service.AbstractService;
+import top.zzh.service.BankCardService;
+
+/**
+ * Created by 曾志湖 on 2017/12/22.
+ * 绑定银行卡表
+ */
+@Service
+public class BankCardServiceImpl extends AbstractService implements BankCardService {
+
+    private BankCardDAO bankCardDAO;
+
+    public void setBankCardDAO(BankCardDAO bankCardDAO) {
+        super.setBaseDAO(bankCardDAO);
+        this.bankCardDAO = bankCardDAO;
+    }
+
+
+    @Override
+    public void updateState(BankCard bankCard) {
+        bankCardDAO.updateState(bankCard);
+    }
+}
