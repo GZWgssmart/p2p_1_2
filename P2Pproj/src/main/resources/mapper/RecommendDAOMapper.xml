@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--Created by 谢学培 on 2017/12/21.-->
+
+<mapper namespace="top.zzh.dao.RecommendDAO">
+    <select id="countTzm" resultType="Integer">
+      select count(uid) t_user where tzm = #{tzm};
+    </select>
+    <!--用于前台判断推荐码是否存在-->
+    <select id="getTzm" resultType="String">
+        select uid,rname t_user where tzm = #{tzm};
+    </select>
+    <insert id="save" parameterType="recommend">
+
+        insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())
+    </insert>
+    <!--xxp:
+        前台注册用户者提供的推荐码，手机号，推荐链接
+        用于查询推荐人uid，rname 如果不存在提示不存在此推荐人，存在就用于新增recommend表
+        还差前台注册用户者的uid，rname
+        应该在用户注册成功后获取，故在userService中运用RecommendDAO的方法
+    -->
+    <!--条件查询【推荐人姓名或被推荐人姓名】-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.tname != null">
+            and tname like concat('%', #{query.tname}, '%')
+        </if>
+        <if test="query != null and query.rname != null">
+            and tname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="recommend">
+        select tname,rname from t_recommend where 1=1
+        <include refid="cash_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(id) t_recommend where 1=1
+        <include refid="cash_query_criteria"/>
+    </select>
+    <delete id="remove" parameterType="recommend">
+        <![CDATA[
+          DELETE t_recommend where id=#{id}
+        ]]>
+    </delete>
+</mapper>
