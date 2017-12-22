@@ -3,6 +3,7 @@ package top.zzh.controller;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Recommend;
@@ -23,6 +24,10 @@ import java.io.OutputStream;
 public class RecommendController {
     @Autowired
     private RecommendService recommendService;
+    @RequestMapping("list")
+    public String list(){
+        return "recommend/recommend";
+    }
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int page, int rows, Recommend recommend) {

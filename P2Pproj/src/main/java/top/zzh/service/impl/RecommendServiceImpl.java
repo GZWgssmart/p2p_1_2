@@ -21,8 +21,14 @@ import java.util.List;
  */
 @Service
 public class RecommendServiceImpl extends AbstractService implements RecommendService {
-    @Autowired
+
     private RecommendDAO recommendDAO;
+
+    @Autowired
+    public void setRecommendDAO(RecommendDAO recommendDAO) {
+        super.setBaseDAO(recommendDAO);
+        this.recommendDAO = recommendDAO;
+    }
 
     @Override
     public void save(Object obj) {
