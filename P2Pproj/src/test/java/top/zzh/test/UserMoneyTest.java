@@ -9,6 +9,10 @@ import top.zzh.dao.UserMoneyDAO;
 import java.math.BigDecimal;
 import java.util.List;
 
+/***
+ * @Created by 陈桢
+ * 2017-12—22 10:39
+ */
 public class UserMoneyTest extends BaseTest {
     @Autowired
     private UserMoneyDAO userMoneyDAO;

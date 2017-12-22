@@ -1,14 +1,50 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!-- cander 陈桢 2017/12/22-->
 <mapper namespace="top.zzh.dao.LogTxDAO">
 
     <insert id="save" parameterType="logTx">
         <![CDATA[
           insert into t_logtx(uid,bankcard,banktype,money,date_time,state)
-
+          values(#{uid},#{bankcard},#{banktype},#{money},CURRENT_TIMESTAMP,#{state})
         ]]>
     </insert>
+
+    <update id="update" parameterType="logTx">
+        <![CDATA[
+            update t_logtx
+        ]]>
+        <set>
+            <if test="bankcard !=null">
+                bankcard=#{bankcard}
+            </if>
+            <if test="banktype !=null">
+                banktype=#{banktype}
+            </if>
+            <if test="money!=null">
+                money=#{money}
+            </if>
+            <if test="dateTime !=null">
+                date_time=#{dateTime}
+            </if>
+            <if test="state!=null">
+                state=#{state}
+            </if>
+        </set>
+        where uid =#{uid}
+    </update>
+        <select id="listPager" resultType="logTx">
+            select * from t_logtx limit #{pager.beginIndex}, #{pager.pageSize}
+        </select>
+        <select id="count" resultType="long">
+             select (id) from t_logtx
+          </select>
+        <delete id="removeById" parameterType="long">
+            <![CDATA[
+                delete from t_logtx where uid=#{id}
+            ]]>
+        </delete>
+
 
 </mapper>
