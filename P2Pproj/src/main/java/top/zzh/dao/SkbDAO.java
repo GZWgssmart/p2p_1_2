@@ -3,9 +3,10 @@ package top.zzh.dao;
 import org.springframework.stereotype.Repository;
 
 /**
- * 陈桢
+ * Created by 曾志湖 on 2017/12/22.
+ * 收款表DAO
  */
 @Repository
-public interface UserMoneyDAO extends BaseDAO {
+public interface SkbDAO extends BaseDAO{
 
 }
