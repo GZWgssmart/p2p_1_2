@@ -52,89 +52,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="p2p.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="p2p.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/document/p2p.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
               <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-              <folding>
-                <marker date="1513730995724" expanded="true" signature="0:281" ph="/* Navicat M... " />
-                <marker date="1513730995724" expanded="true" signature="283:307" ph="SET FOREIGN_... " />
-                <marker date="1513730995724" expanded="true" signature="415:448" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="450:948" ph="CREATE TABLE... t_bankcard" />
-                <marker date="1513730995724" expanded="true" signature="1062:1098" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="1100:1823" ph="CREATE TABLE... t_borrowapply" />
-                <marker date="1513730995724" expanded="true" signature="1938:1975" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="1977:2981" ph="CREATE TABLE... t_borrowdetail" />
-                <marker date="1513730995724" expanded="true" signature="3084:3111" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="3113:3368" ph="CREATE TABLE... t_bz" />
-                <marker date="1513730995724" expanded="true" signature="3477:3509" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="3511:3708" ph="CREATE TABLE... t_dxmodel" />
-                <marker date="1513730995724" expanded="true" signature="3817:3849" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="3851:4192" ph="CREATE TABLE... t_dynamic" />
-                <marker date="1513730995724" expanded="true" signature="4300:4331" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="4333:4572" ph="CREATE TABLE... t_friend" />
-                <marker date="1513730995724" expanded="true" signature="4676:4704" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="4706:6065" ph="CREATE TABLE... t_hkb" />
-                <marker date="1513730995724" expanded="true" signature="6172:6201" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="6203:6779" ph="CREATE TABLE... t_home" />
-                <marker date="1513730995724" expanded="true" signature="6886:6916" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="6918:7508" ph="CREATE TABLE... t_huser" />
-                <marker date="1513730995724" expanded="true" signature="7614:7643" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="7645:7921" ph="CREATE TABLE... t_jklx" />
-                <marker date="1513730995724" expanded="true" signature="8024:8052" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="8054:8299" ph="CREATE TABLE... t_jur" />
-                <marker date="1513730995724" expanded="true" signature="8406:8437" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="8439:8784" ph="CREATE TABLE... t_letter" />
-                <marker date="1513730995724" expanded="true" signature="8893:8924" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="8926:9374" ph="CREATE TABLE... t_logczz" />
-                <marker date="1513730995724" expanded="true" signature="9485:9518" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="9520:9923" ph="CREATE TABLE... t_logmoney" />
-                <marker date="1513730995724" expanded="true" signature="10030:10060" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="10062:10516" ph="CREATE TABLE... t_logtx" />
-                <marker date="1513730995724" expanded="true" signature="10624:10654" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="10656:11045" ph="CREATE TABLE... t_media" />
-                <marker date="1513730995724" expanded="true" signature="11153:11184" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="11186:11477" ph="CREATE TABLE... t_notice" />
-                <marker date="1513730995724" expanded="true" signature="11586:11617" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="11619:11905" ph="CREATE TABLE... t_option" />
-                <marker date="1513730995724" expanded="true" signature="12016:12050" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="12052:12447" ph="CREATE TABLE... t_recommend" />
-                <marker date="1513730995724" expanded="true" signature="12557:12588" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="12590:13013" ph="CREATE TABLE... t_reward" />
-                <marker date="1513730995724" expanded="true" signature="13130:13168" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="13170:13488" ph="CREATE TABLE... t_rewardsetting" />
-                <marker date="1513730995724" expanded="true" signature="13593:13622" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="13624:13870" ph="CREATE TABLE... t_role" />
-                <marker date="1513730995724" expanded="true" signature="13979:14011" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="14013:14276" ph="CREATE TABLE... t_rolejur" />
-                <marker date="1513730995724" expanded="true" signature="14387:14420" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="14422:14668" ph="CREATE TABLE... t_roleuser" />
-                <marker date="1513730995724" expanded="true" signature="14773:14803" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="14805:15387" ph="CREATE TABLE... t_rzvip" />
-                <marker date="1513730995724" expanded="true" signature="15499:15534" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="15536:15941" ph="CREATE TABLE... t_rzvipcheck" />
-                <marker date="1513730995724" expanded="true" signature="16052:16085" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="16087:16537" ph="CREATE TABLE... t_shborrow" />
-                <marker date="1513730995724" expanded="true" signature="16640:16668" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="16670:17601" ph="CREATE TABLE... t_skb" />
-                <marker date="1513730995724" expanded="true" signature="17707:17736" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="17738:18034" ph="CREATE TABLE... t_sway" />
-                <marker date="1513730995724" expanded="true" signature="18141:18172" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="18174:18481" ph="CREATE TABLE... t_ticket" />
-                <marker date="1513730995724" expanded="true" signature="18590:18622" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="18624:19026" ph="CREATE TABLE... t_txcheck" />
-                <marker date="1513730995724" expanded="true" signature="19129:19157" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="19159:19780" ph="CREATE TABLE... t_tzb" />
-                <marker date="1513730995724" expanded="true" signature="19886:19915" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="19917:20825" ph="CREATE TABLE... t_user" />
-                <marker date="1513730995724" expanded="true" signature="20936:20970" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="20972:21541" ph="CREATE TABLE... t_usermoney" />
-                <marker date="1513730995724" expanded="true" signature="21651:21686" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="21688:21983" ph="CREATE TABLE... t_userticket" />
-                <marker date="1513730995724" expanded="true" signature="22090:22120" ph="DROP TABLE I... " />
-                <marker date="1513730995724" expanded="true" signature="22122:22803" ph="CREATE TABLE... t_ydate" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/user.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="68" column="15" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
+              <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
               <folding>
                 <element signature="e#3588#3595#0#HTML" expanded="true" />
                 <element signature="e#5287#5294#0#HTML" expanded="true" />
@@ -440,10 +363,6 @@
               <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -503,7 +422,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.21149425" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/idea/SSMUeditor" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
@@ -1230,7 +1149,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25276000" />
+    <option name="totallyTimeSpent" value="26612000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1334,13 +1253,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/service/AbstractService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="56" column="23" lean-forward="false" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1386,7 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1447,9 +1357,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <marker date="1513910015623" expanded="true" signature="241:305" ph="insert into t_logtx... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1471,7 +1379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,7 +1386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1487,7 +1393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1495,7 +1400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
           <caret line="26" column="87" lean-forward="true" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="87" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,7 +1407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1511,7 +1414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1519,26 +1421,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/managerheader.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/managerfooter.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/managerheader.jsp" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/managerfooter.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2967">
@@ -1583,7 +1470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1591,7 +1477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1599,7 +1484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1607,7 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1615,7 +1498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1623,34 +1505,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/main.css" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/bootstrap/js/demo/flot-demo.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/bootstrap/js/pageJs/web.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/bootstrap/js/pageJs/web.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/bootstraptablejs.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -1663,20 +1529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="e#269#270#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document/1601分组及职责.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1756,7 +1608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1764,7 +1615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1772,7 +1622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" column="47" lean-forward="true" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1780,20 +1629,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/user.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="68" column="15" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
+          <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
           <folding>
             <element signature="e#3588#3595#0#HTML" expanded="true" />
             <element signature="e#5287#5294#0#HTML" expanded="true" />
             <element signature="e#7147#7154#0#HTML" expanded="true" />
             <element signature="e#9227#9234#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document/1601分组及职责.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="44" column="57" lean-forward="true" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document/p2p.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
