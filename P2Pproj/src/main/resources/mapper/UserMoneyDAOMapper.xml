@@ -70,7 +70,7 @@
         select * from t_usermoney limit #{pager.beginIndex}, #{pager.pageSize}
     ]]]>
     </select>
-    <select id="countCriteria" resultType="long">
+    <select id="count" resultType="long">
         select count(id) from t_usermoney
     </select>
 
