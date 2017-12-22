@@ -1,0 +1,95 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.UserMoneyDAO">
+
+    <sql id="money">
+        <if test="zmoney!=null">
+            zmoney=#{zmoney},
+        </if>
+        <if test="kymoney!=null">
+            kymoney=#{kymoney},
+        </if>
+        <if test="symoney!=null">
+            symoney=#{symoney},
+        </if>
+        <if test="tzmoney!=null">
+            tzmoney=#{tzmoney},
+        </if>
+        <if test="djmoney!=null">
+            djmoney=#{djmoney},
+        </if>
+        <if test="dsmoney!=null">
+            dsmoney=#{dsmoney},
+        </if>
+        <if test="jlmoney!=null">
+            jlmoney=#{jlmoney},
+        </if>
+    </sql>
+    <sql id="money_all">
+        <if test="zmoney !=null">
+            and zmoney=#{zmoney}
+        </if>
+        <if test="kymoney !=null">
+           and  kymoney=#{kymoney}
+        </if>
+        <if test="symoney!=null">
+            and symoney=#{symoney}
+        </if>
+        <if test="tzmoney !=null">
+           and tzmoney=#{tzmoney}
+        </if>
+        <if test="djmoney !=null">
+            djmoney=#{djmoney}
+        </if>
+        <if test="dsmoney !=null">
+           and dsmoney=#{dsmoney}
+        </if>
+        <if test="jlmoney !=null">
+            and jlmoney=#{jlmoney}
+        </if>
+    </sql>
+    <select id="save" parameterType="userMoney">
+        <![CDATA[
+          insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
+        values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
+   ]]>
+    </select>
+    <update id="update" parameterType="userMoney">
+        <![CDATA[
+          update t_usermoney
+           ]]>
+        <set>
+          <include refid="money"/>
+        </set>
+    </update>
+
+    <select id="listPager" parameterType="top.zzh.bean.UserMoney">
+        <![CDATA[
+        select * from t_usermoney limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]]>
+    </select>
+    <select id="count" resultType="long">
+        select count(id) from t_usermoney
+    </select>
+
+    <select id="listPagerCriteria" parameterType="top.zzh.bean.UserMoney">
+        select * from t_usermoney
+        where 1=1
+        <include refid="money_all"/>
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(id) from t_usermoney where 1=1
+        <include refid="money_all"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="getById" parameterType="top.zzh.bean.UserMoney">
+        <![CDATA[
+        select * from t_usermoney where uid=#{uid}
+    ]]]>
+    </select>
+
+</mapper>
