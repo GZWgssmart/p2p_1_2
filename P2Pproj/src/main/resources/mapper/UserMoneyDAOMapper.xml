@@ -50,12 +50,12 @@
             and jlmoney=#{jlmoney}
         </if>
     </sql>
-    <select id="save" parameterType="userMoney">
+    <insert id="save" parameterType="userMoney">
         <![CDATA[
           insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
         values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
    ]]>
-    </select>
+    </insert>
     <update id="update" parameterType="userMoney">
         <![CDATA[
           update t_usermoney

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="p2p_2@192.168.3.105">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
     <schema id="2" parent="1" name="p2p_2">
       <Current>1</Current>
@@ -1458,7 +1458,7 @@ type</ColNames>
       <Comment>审核理由</Comment>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="317" parent="44" name="date">
+    <column id="317" parent="44" name="date_time">
       <Position>6</Position>
       <Comment>审核时间</Comment>
       <DataType>datetime|0</DataType>
