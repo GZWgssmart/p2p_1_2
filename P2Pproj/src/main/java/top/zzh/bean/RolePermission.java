@@ -1,15 +1,12 @@
 package top.zzh.bean;
 
-import org.joda.time.DateTime;
+import java.util.Date;
 
-/**
- * Created by Administrator on 2017/12/21 0021.
- */
 public class RolePermission {
     private Integer id;
     private Integer roleId;
     private Integer permissionId;
-    private DateTime setTime;
+    private Date setTime;
 
     public Integer getId() {
         return id;
@@ -35,11 +32,11 @@ public class RolePermission {
         this.permissionId = permissionId;
     }
 
-    public DateTime getSetTime() {
+    public Date getSetTime() {
         return setTime;
     }
 
-    public void setSetTime(DateTime setTime) {
+    public void setSetTime(Date setTime) {
         this.setTime = setTime;
     }
 }
