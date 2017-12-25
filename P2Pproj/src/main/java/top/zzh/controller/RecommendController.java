@@ -24,8 +24,8 @@ import java.io.OutputStream;
 public class RecommendController {
     @Autowired
     private RecommendService recommendService;
-    @RequestMapping("list")
-    public String list(){
+    @RequestMapping("page")
+    public String page(){
         return "recommend/recommend";
     }
     @RequestMapping("pager_criteria")
@@ -35,14 +35,14 @@ public class RecommendController {
     }
     @RequestMapping("remove")
     @ResponseBody
-    public ControllerStatusVO update(Recommend recommend) {
+    public ControllerStatusVO update(long id) {
         ControllerStatusVO statusVO = null;
         try {
-            recommendService.remove(recommend);
+            recommendService.remove(id);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
         return statusVO;
     }
     @RequestMapping("export")
