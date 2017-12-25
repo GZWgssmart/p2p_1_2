@@ -20,7 +20,7 @@ import java.io.OutputStream;
  * Created by 谢学培 on 2017/12/21.
  */
 @Controller
-@RequestMapping("recommend")
+@RequestMapping("/recommend")
 public class RecommendController {
     @Autowired
     private RecommendService recommendService;
@@ -30,8 +30,8 @@ public class RecommendController {
     }
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, Recommend recommend) {
-        return recommendService.listPagerCriteria(page, rows, recommend);
+    public Pager pagerCriteria(int pageIndex,int pageSize,Recommend recommend) {
+        return recommendService.listPagerCriteria(pageIndex, pageSize, recommend);
     }
     @RequestMapping("remove")
     @ResponseBody
