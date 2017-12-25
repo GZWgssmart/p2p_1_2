@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class LogCheckTest extends BaseTest {
     @Autowired
-    private TxcheckDAO txcheckDAO;
+    private TxcheckDAO txCheckDAO;
     @Autowired
     private LogTxDAO logTxDAO;
 
@@ -27,7 +27,7 @@ public class LogCheckTest extends BaseTest {
         txCheck.setTxid(1L);
         txCheck.setIsok((byte)0);
         txCheck.setExcute("审核通过！");
-        txcheckDAO.save(txCheck);
+        txCheckDAO.save(txCheck);
         logTx.setId(1L);
         logTx.setState((byte)0);
         logTxDAO.update(logTx);
@@ -35,7 +35,7 @@ public class LogCheckTest extends BaseTest {
     }
     @Test
     public void listAll(){
-        List<Object> objectList= txcheckDAO.listAll();
+        List<Object> objectList=txCheckDAO.listAll();
         for(Object obj:objectList){
             TxCheckVO txCheck=(TxCheckVO)obj;
             System.out.println(txCheck.getExcute());
@@ -45,7 +45,7 @@ public class LogCheckTest extends BaseTest {
     @Test
     public void listPager(){
         Pager pager=new Pager(1,2);
-        List<Object> objectList= txcheckDAO.listPager(pager);
+        List<Object> objectList=txCheckDAO.listPager(pager);
         for(Object obj:objectList){
             TxCheckVO txCheck=(TxCheckVO)obj;
             System.out.println(txCheck.getExcute());

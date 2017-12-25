@@ -4,13 +4,13 @@ package top.zzh.bean;
 public class Sway {
     private Long sid;
 
-    private Byte way;//方式
+    private String way;//方式
 
     private String fw;//算法
 
     private Byte state;//还款方式状态（0不可用，1可用）
 
-    public Sway(Long sid, Byte way, String fw, Byte state) {
+    public Sway(Long sid, String way, String fw, Byte state) {
         this.sid = sid;
         this.way = way;
         this.fw = fw;
@@ -29,11 +29,11 @@ public class Sway {
         this.sid = sid;
     }
 
-    public Byte getWay() {
+    public String getWay() {
         return way;
     }
 
-    public void setWay(Byte way) {
+    public void setWay(String way) {
         this.way = way;
     }
 
