@@ -1,10 +1,11 @@
 package top.zzh.vo;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Created by 曾志 on 2017/12/25.
+ * Created by 曾志湖 on 2017/12/25.
  */
 public class BorrowDetailVO {
 
@@ -13,11 +14,11 @@ public class BorrowDetailVO {
     private BigDecimal money;//申请金额
     private Long uid;//借款人id
     private Long bzid;//标种id
-    private Date time;//审核时间
-    private Byte state;//审核状态（0表示为审核，1表示已审核）
-    private Byte type;//借款类型为标种的主键字段
+    private Timestamp time;//审核时间
+    private Integer state;//审核状态（0表示为审核，1表示已审核）
+    private Integer type;//借款类型为标种的主键字段
     private String term;//借款期限
-    private Date deadline;//截止时间
+    private Timestamp deadline;//截止时间
     private Long bdid;
     private String fpic;//法人身份证照片
     private String ypic;//营业执照副本照片
@@ -37,7 +38,7 @@ public class BorrowDetailVO {
     public BorrowDetailVO() {
     }
 
-    public BorrowDetailVO(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
+    public BorrowDetailVO(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, String term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
         this.baid = baid;
         this.rname = rname;
         this.money = money;
@@ -109,23 +110,23 @@ public class BorrowDetailVO {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
-    public Byte getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -141,7 +142,7 @@ public class BorrowDetailVO {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(Timestamp deadline) {
         this.deadline = deadline;
     }
 

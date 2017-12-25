@@ -7,31 +7,22 @@ import java.util.Date;
 public class BorrowApply {
 
     private Long baid;
-
     private String rname;//真实姓名
-
     private BigDecimal money;//申请金额
-
     private Long uid;//借款人id
-
     private Long bzid;//标种id
-
     private Date time;//审核时间
-
     private Byte state;//审核状态（0表示为审核，1表示已审核）
-
     private Byte type;//借款类型为标种的主键字段
-
     private String term;//借款期限
-
     private Date deadline;//截止时间
-
+    private String bzname;
     private Long int1;
-
     private String str1;
 
-    public BorrowApply(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline, Long int1, String str1) {
+    public BorrowApply(String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline,Long int1, String str1) {
         this.baid = baid;
+        this.bzname = bzname;
         this.rname = rname;
         this.money = money;
         this.uid = uid;
@@ -43,6 +34,14 @@ public class BorrowApply {
         this.deadline = deadline;
         this.int1 = int1;
         this.str1 = str1;
+    }
+
+    public void setBzname(String bzname) {
+        this.bzname = bzname;
+    }
+
+    public String getBzname() {
+        return bzname;
     }
 
     public BorrowApply() {
