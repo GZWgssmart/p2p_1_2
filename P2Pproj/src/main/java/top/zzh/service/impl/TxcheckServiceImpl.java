@@ -2,7 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.zzh.dao.TxCheckDAO;
+import top.zzh.dao.TxcheckDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.TxcheckService;
 
@@ -12,11 +12,11 @@ import top.zzh.service.TxcheckService;
 @Service
 public class TxcheckServiceImpl extends AbstractService implements TxcheckService {
 
-    private TxCheckDAO txCheckDAO;
+    private TxcheckDAO txcheckDAO;
 
     @Autowired
-    public void setTxCheckDAO(TxCheckDAO txCheckDAO) {
-        super.setBaseDAO(txCheckDAO);
-        this.txCheckDAO = txCheckDAO;
+    public void setTxcheckDAO(TxcheckDAO txcheckDAO) {
+        super.setBaseDAO(txcheckDAO);
+        this.txcheckDAO = txcheckDAO;
     }
 }

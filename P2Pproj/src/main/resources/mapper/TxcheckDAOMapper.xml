@@ -2,15 +2,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="top.zzh.dao.TxCheckDAO">
+<mapper namespace="top.zzh.dao.TxcheckDAO">
 
-    <insert id="save" parameterType="txCheck">
+    <insert id="save" parameterType="txcheck">
     <![CDATA[
           insert into t_txcheck(txid, huid, isok, excute, date_time)
           values(#{txid},#{huid},#{isok},#{excute},CURRENT_TIMESTAMP)
         ]]>
 </insert>
-    <update id="update" parameterType="txCheck">
+    <update id="update" parameterType="txcheck">
         <![CDATA[
         update t_txcheck
         ]]>

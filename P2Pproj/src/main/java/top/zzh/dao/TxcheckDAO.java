@@ -10,7 +10,7 @@ import java.util.List;
  * cander 陈桢 2017/12/22
  */
 @Repository
-public interface TxCheckDAO extends BaseDAO {
+public interface TxcheckDAO extends BaseDAO {
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 }
