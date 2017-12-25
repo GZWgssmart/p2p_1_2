@@ -2,6 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.dao.SwayDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.SwayService;
 
@@ -12,11 +13,11 @@ import top.zzh.service.SwayService;
  */
 @Service
 public class SwaySeriveImpl extends AbstractService implements SwayService {
-    private SwayService swayService;
+    private SwayDAO swayDAO;
 
     @Autowired
-    public void setSwayService(SwayService swayService) {
-        super.setBaseDAO(swayService);
-        this.swayService = swayService;
+    public void setSwayService(SwayDAO swayDAO) {
+        super.setBaseDAO(swayDAO);
+        this.swayDAO = swayDAO;
     }
 }

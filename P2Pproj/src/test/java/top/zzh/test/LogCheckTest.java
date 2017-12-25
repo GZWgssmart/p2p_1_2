@@ -6,7 +6,7 @@ import top.zzh.bean.LogTx;
 import top.zzh.bean.TxCheck;
 import top.zzh.common.Pager;
 import top.zzh.dao.LogTxDAO;
-import top.zzh.dao.TxCheckDAO;
+import top.zzh.dao.TxcheckDAO;
 import top.zzh.vo.TxCheckVO;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class LogCheckTest extends BaseTest {
     @Autowired
-    private TxCheckDAO txCheckDAO;
+    private TxcheckDAO txCheckDAO;
     @Autowired
     private LogTxDAO logTxDAO;
 
