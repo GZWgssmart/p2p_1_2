@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.BorrowApplyDAO">
+
+    <delete id="removeById" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+          delete from t_borrowapply where baid = #{baid}
+        ]]>
+    </delete>
+
+    <insert id="save" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+          insert into t_borrowapply(rname,money,uid,bzid,state,type,term,deadline) values(#{rname},#{money},#{uid},#{bzid},0,#{type},#{term},#{deadline})
+        values()
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+            update t_borrowapply set rname = #{rname},money = #{money},bzid = #{bzid},type = #{type},
+            term = #{term},deadline = #{deadline} where baid = #{baid}
+        ]]>
+    </update>
+
+
+    <select id="listPager" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="getById" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply where baid=#{baid}
+    ]]]>
+    </select>
+
+</mapper>
