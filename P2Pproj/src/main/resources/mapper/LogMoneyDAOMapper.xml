@@ -4,6 +4,23 @@
 
 <mapper namespace="top.zzh.dao.LogMoneyDAO">
 
+    <insert id="save" parameterType="logMoney">
+        <![CDATA[
+          insert into t_logmoney(uid, type, `in`,`out`, `date`)
+          values(#{uid},#{type},#{in},#{out},CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+    <update id="update" parameterType="logMoney">
+      <![CDATA[
+
+        ]]>
+    </update>
+
+    <select id="listPager" resultType="top.zzh.vo.LogMoneyVO">
+      select u.rname,u.face,lm.type,lm.`in`,lm.out,lm.`date` from
+      t_logmoney as lm,t_user as u where lm.uid=u.uid
+       limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
 
 
 </mapper>

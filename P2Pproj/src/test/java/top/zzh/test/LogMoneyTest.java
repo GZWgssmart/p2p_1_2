@@ -22,7 +22,7 @@ public class LogMoneyTest extends  BaseTest {
     public void  save(){
         LogMoney logMoney =new LogMoney();
         logMoney.setUid(1L);
-        logMoney.setIn(BigDecimal.valueOf(5200));
+        logMoney.setIn(BigDecimal.valueOf(6200));
         logMoney.setType((byte)0);
         logMoneyDAO.save(logMoney);
     }
