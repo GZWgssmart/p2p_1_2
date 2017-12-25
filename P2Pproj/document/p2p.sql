@@ -46,7 +46,7 @@ CREATE TABLE `t_borrowapply` (
   `bzid` bigint(20) DEFAULT NULL COMMENT '标种',
   `time` datetime DEFAULT NULL COMMENT '审核时间',
   `state` tinyint(4) DEFAULT NULL COMMENT '审核状态（0表示为审核，1表示已审核）',
-  `type` tinyint(4) DEFAULT NULL COMMENT '借款类型为标种的主键字段',
+  `type` tinyint(4) DEFAULT NULL COMMENT '借款类型为标种的主键字段，比如普金包，多金宝',
   `term` varchar(20) DEFAULT NULL COMMENT '借款期限',
   `deadline` datetime NOT NULL  COMMENT '截止时间',
   `int1` bigint(20) DEFAULT NULL COMMENT '预留字段',

@@ -24,11 +24,45 @@
         ]]>
     </update>
 
+    <!-- 真实姓名，申请借款金额，借款期限，借款类型，截止时间-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.rname != null">
+            and rname like concat('%', #{query.rname}, '%')
+        </if>
+        <if test="query != null and query.money != null">
+            and money like concat('%', #{query.money}, '%')
+        </if>
+        <if test="query != null and query.term != null">
+            and term like concat('%', #{query.term}, '%')
+        </if>
+        <if test="query != null and query.type != null">
+            and type like concat('%', #{query.type}, '%')
+        </if>
+        <if test="query != null and query.deadline != null">
+            and c.deadline <![CDATA[<=]]> #{query.deadline}
+        </if>
+    </sql>
 
     <select id="listPager" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-        select * from t_borrowapply limit #{pager.beginIndex}, #{pager.pageSize}
+        select ba.rname,ba.money,b.bzname,b.bzid,ba.term,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid and ba.type = b.bzname
+         limit #{pager.pageNo}, #{pager.pageSize}
     ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="java.lang.Long">
+        select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid and ba.type = b.bzname
+        <include refid="cash_query_criteria"/>
+        limit #{pager.pageNo}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+       <![CDATA[
+            select count(baid) from t_borrowapply where 1=1
+            limit #{pager.pageNo}, #{pager.pageSize}
+        ]]>
     </select>
 
     <select id="getById" parameterType="top.zzh.bean.BorrowApply">

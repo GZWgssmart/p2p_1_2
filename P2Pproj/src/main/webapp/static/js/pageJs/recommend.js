@@ -91,7 +91,7 @@ $('#mytab').bootstrapTable({
                     g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
                 }
                 var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',\'' + '/recommend/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',' + row.isActive + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
                 if (row.isActive == 0) {
                     f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 0 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
@@ -132,25 +132,21 @@ function queryParams(params) {
         searchVal: title
     }
 }
-//查询按钮事件
-function doSearch(url) {
-    $('#mytab').bootstrapTable('refresh', {url: url});
-}
-//刷新表格
-function refush() {
-    $('#mytab').bootstrapTable('refresh');
-}
-function del(id,url) {
+function del(leaveid, status) {
+    if (status == 0) {
+        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
+        return;
+    }
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: url+'?id=' + id,
+            url: '/leave/deleteManyLeave/' + leaveid,
             dataType: 'json',
             success: function (data) {
                 if (data.message == '删除成功!') {
-                    layer.msg(data.message, {icon: 2, time: 1000});
-                } else {
                     layer.msg(data.message, {icon: 1, time: 1000});
+                } else {
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
                 refush();
             },
@@ -194,7 +190,13 @@ function updatestatus(id, status) {
         "json"
     );
 }
-
+//查询按钮事件
+$('#search_btn').click(function () {
+    $('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria'});
+})
+function refush() {
+    $('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria'});
+}
 $("#update").click(function () {
     $.post(
         "/leave/leaveUpdateSave",
@@ -275,8 +277,12 @@ $('#formadd').bootstrapValidator({
         }, "json"
     );
 });
-function deleteMany(url) {
+function deleteMany() {
+    var isactivity = "";
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        if (row.isActive == 0) {
+            isactivity += row.isActive;
+        }
         return row.id;
     });
     if (row == "") {
@@ -286,12 +292,20 @@ function deleteMany(url) {
         });
         return;
     }
+    if (isactivity != "") {
+        layer.msg('删除失败，已经激活的不允许删除!', {
+            icon: 2,
+            time: 2000
+        });
+        return;
+
+    }
     $("#deleteId").val(row);
     layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
         $.post(
-            url,
+            "/leave/deleteManyLeave",
             {
-                "id": $("#deleteId").val()
+                "manyId": $("#deleteId").val()
             },
             function (data) {
                 if (data.message == "删除成功!") {

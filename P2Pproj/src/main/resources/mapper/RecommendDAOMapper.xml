@@ -27,7 +27,7 @@
             and tname like concat('%', #{query.tname}, '%')
         </if>
         <if test="query != null and query.rname != null">
-            and tname like concat('%', #{query.rname}, '%')
+            and rname like concat('%', #{query.rname}, '%')
         </if>
     </sql>
     <select id="listPagerCriteria" resultType="recommend">

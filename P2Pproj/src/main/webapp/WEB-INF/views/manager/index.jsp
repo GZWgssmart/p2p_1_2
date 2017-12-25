@@ -4,16 +4,15 @@
 %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <title>亿人宝后台管理系统</title>
     <jsp:include page="../common/css.jsp"/>
-
 </head>
+
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->
@@ -25,7 +24,7 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element" style="text-align: center">
                         <span>
-                              <img alt="image" class="img-circle" src="<%=path%>/static/images/profile_small.jpg" />
+                              <img alt="image" class="img-circle" src="<%=path%>/static/images/profile_small.jpg"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">小美</strong>
@@ -52,7 +51,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<%=path%>/page/users">前台用户列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="">主页示例二</a>
+                        <li><a class="J_menuItem" href="">推荐人管理</a>
                         </li>
                         <li><a class="J_menuItem" href="">主页示例三</a>
                         </li>
@@ -61,7 +60,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa fa-globe"></i> <span class="nav-label">v2.0新增</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="fa fa fa-globe"></i> <span
+                            class="nav-label">v2.0新增</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="">Toastr通知</a>
                         </li>
@@ -85,7 +85,8 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i> <span
+                            class="nav-label">图表</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="">百度ECharts</a>
                         </li>
@@ -102,7 +103,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="">基本表单</a>
                         </li>
@@ -173,7 +175,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="">基本表格</a>
                         </li>
@@ -183,7 +186,6 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -192,26 +194,30 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                        class="fa fa-bars"></i> </a>
                     <form role="search" class="navbar-form-custom" method="post" action="">
                         <div class="form-group">
-                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                   id="top-search">
                         </div>
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message"><a href="" title="返回首页"><i class="fa fa-home"></i></a>欢迎使用H+后台主题</span>
+                        <span class="m-r-sm text-muted welcome-message"><a href="" title="返回首页"><i
+                                class="fa fa-home"></i></a>欢迎进入亿人宝管理员中心</span>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
                         </a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="" class="pull-left">
-                                        <img alt="image" class="img-circle" src="<%=path%>/static/plugin/bootstrap/img/a7.jpg">
+                                        <img alt="image" class="img-circle"
+                                             src="<%=path%>/static/plugin/bootstrap/img/a7.jpg">
                                     </a>
                                     <div class="media-body">
                                         <small class="pull-right">46小时前</small>
@@ -225,7 +231,8 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="" class="pull-left">
-                                        <img alt="image" class="img-circle" src="<%=path%>/static/plugin/bootstrap/img/a4.jpg">
+                                        <img alt="image" class="img-circle"
+                                             src="<%=path%>/static/plugin/bootstrap/img/a4.jpg">
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">25小时前</small>
@@ -239,7 +246,7 @@
                             <li>
                                 <div class="text-center link-block">
                                     <a href="">
-                                        <i class="fa fa-envelope"></i>  <strong> 查看所有消息</strong>
+                                        <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
                                     </a>
                                 </div>
                             </li>
@@ -247,7 +254,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="">
-                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li>
@@ -315,14 +322,15 @@
             <a href="<%=path%>/Huser/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<%=path%>/page/managerindex" frameborder="0" data-id=""></iframe>
-        <div class="footer">
-            <div class="pull-right">&copy; 2017-2018 <a href="" target="_blank">亿人宝理财平台</a>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<%=path%>/page/managerindex"
+                    frameborder="0" data-id=""></iframe>
+            <div class="footer">
+                <div class="pull-right">&copy; 2017-2018 <a href="" target="_blank">亿人宝理财平台</a>
+                </div>
             </div>
         </div>
     </div>
 
-</div>
-<jsp:include page="../common/js.jsp"/>
+    <jsp:include page="../common/js.jsp"/>
 </body>
 </html>

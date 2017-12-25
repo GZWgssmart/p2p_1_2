@@ -48,11 +48,11 @@ public class BankCardController {
 
     @RequestMapping("remove")
     @ResponseBody
-    public ControllerStatusVO remove(@PathVariable("bcid") Long id){
+    public ControllerStatusVO remove(@PathVariable("bcid") Long bcid){
         logger.info("删除绑定的银行卡");
         ControllerStatusVO statusVO = null;
         try{
-            bankCardService.removeById(id);
+            bankCardService.removeById(bcid);
         }catch (RuntimeException e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
         }
