@@ -22,5 +22,30 @@
        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
+    <select id="count" resultType="long">
+        select count(id) from
+        t_logmoney as lm,t_user as u where lm.uid=u.uid
+    </select>
+
+    <sql id="query_criteria">
+        <if test="query != null and query.date != null">
+            and lm.date<![CDATA[<=]]> #{query.date}
+        </if>
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and u.rname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="top.zzh.vo.LogMoneyVO">
+        select u.rname,u.face,lm.type,lm.`in`,lm.out,lm.`date` from
+        t_logmoney as lm,t_user as u where lm.uid=u.uid
+        <include refid="query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(*) from
+        t_logmoney as lm,t_user as u where  lm.uid=u.uid
+        <include refid="query_criteria"/>
+    </select>
 
 </mapper>

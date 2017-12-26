@@ -40,11 +40,11 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">姓名：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="userName" id="search_name"/>
+                        <input type="text" class="form-control" id="rname" id="search_name"/>
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">时间：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="create_time" id="search_time"/>
+                        <input type="text" class="form-control" id="date" id="search_time"/>
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
                         <button class="btn btn-primary" id="search_btn">查询</button>
