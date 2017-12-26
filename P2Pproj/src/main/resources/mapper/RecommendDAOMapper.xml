@@ -23,11 +23,17 @@
     -->
     <!--条件查询【推荐人姓名或被推荐人姓名】-->
     <sql id="cash_query_criteria">
-        <if test="query != null and query.tname != null">
+        <if test="query != null and query.tname != null and query.tname!=''">
             and tname like concat('%', #{query.tname}, '%')
         </if>
-        <if test="query != null and query.rname != null">
+        <if test="query != null and query.rname != null and query.rname!=''">
             and rname like concat('%', #{query.rname}, '%')
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and `date` <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and `date`<![CDATA[<=]]> #{query.endTime}
         </if>
     </sql>
     <select id="listPagerCriteria" resultType="recommend">
