@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.MediaDAO">
+    <!--媒体报道的新增-->
+    <insert id="save" parameterType="media">
+        <![CDATA[
+          insert into t_media(mid,title,content,pic,date,url)
+          values(#{mid},#{title},#{content},#{pic},#{date},#{url})
+        ]]>
+    </insert>
+
+    <!--媒体报道的修改-->
+    <update id="update" parameterType="media">
+        <![CDATA[
+          update t_media
+        ]]>
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="pic != null and pic != ''">
+                pic = #{pic},
+            </if>
+            <if test="date != null and date != '' ">
+                date = #{date},
+            </if>
+            <if test="url != null and url !=''">
+                url = #{url},
+            </if>
+        </set>
+        where mid = #{mid}
+    </update>
+
+    <!--媒体报道的分页查询-->
+    <sql id="media_query_criteria">
+        <where>
+            <if test="query != null and query.title != null">
+              and title = #{query.title}
+            </if>
+            <if test="content != null and query.content != null">
+              and content = #{query.content},
+            </if>
+            <if test="date != null and query.date != null">
+              and date <![CDATA[<=]]> = #{query.date},
+            </if>
+            <if test="url != null and qury.url != null">
+              and url = #{query.url}
+            </if>
+        </where>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="media">
+        select * from t_media
+        <include refid="media_query_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(mid) from t_media
+        <include refid="media_query_criteria"/>
+    </select>
+    
+</mapper>
