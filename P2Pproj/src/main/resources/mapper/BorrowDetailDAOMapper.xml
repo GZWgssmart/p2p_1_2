@@ -12,6 +12,14 @@
         ]]>
     </insert>
 
+    <update id="update" parameterType="top.zzh.bean.BorrowDetail">
+        <![CDATA[
+          update t_borrowdetail set fpic = #{fpic},ypic = #{ypic},qpic = #{qpic},tpic = #{tpic},mpurpose = #{mpurpose},
+          hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},guarantee = #{guarantee},
+          money = #{money},nprofit = #{nprofit},way = #{way} where bdid = #{bdid}
+        ]]>
+    </update>
+
     <delete id="removeById" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
             delete from t_borrowdetail where bdid = #{bdid}

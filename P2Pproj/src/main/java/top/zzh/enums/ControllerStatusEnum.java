@@ -18,7 +18,9 @@ public enum ControllerStatusEnum {
     CHECK_PASSWORD_SUCCESS(112,"ok","检查原密码成功"),
     CHECK_PASSWORD_FAIL(113,"error","检查原密码失败"),
     CASH_ACTIVE_SUCCESS(112,"ok","激活成功"),
-    CASH_ACTIVE_FAIL(113,"error","激活失败，请稍候再试")
+    CASH_ACTIVE_FAIL(113,"error","激活失败，请稍候再试"),
+    CHECK_USER_SUCCESS(114,"ok","审核用户成功"),
+    CHECK_USER_FAIL(115,"error","审核用户失败，请稍候再试")
     ;
 
     private Integer code;

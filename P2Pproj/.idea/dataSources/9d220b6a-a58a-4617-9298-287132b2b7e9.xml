@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="p2p_2@192.168.3.105">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
     <root id="1"/>
     <schema id="2" parent="1" name="p2p_2">
       <Current>1</Current>
@@ -115,7 +115,6 @@
       <Position>2</Position>
       <Comment>真实姓名</Comment>
       <DataType>varchar(20)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="62" parent="10" name="money">
       <Position>3</Position>
@@ -146,19 +145,16 @@
       <Position>8</Position>
       <Comment>借款类型为标种的主键字段</Comment>
       <DataType>tinyint(4)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="68" parent="10" name="term">
       <Position>9</Position>
       <Comment>借款期限</Comment>
       <DataType>varchar(20)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="69" parent="10" name="deadline">
       <Position>10</Position>
       <Comment>截止时间</Comment>
       <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="70" parent="10" name="int1">
       <Position>11</Position>
@@ -172,8 +168,7 @@
     </column>
     <key id="72" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>baid
-type</ColNames>
+      <ColNames>baid</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="73" parent="11" name="bdid">
@@ -202,13 +197,11 @@ type</ColNames>
       <Position>5</Position>
       <Comment>其他资料</Comment>
       <DataType>varchar(50)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="78" parent="11" name="mpurpose">
       <Position>6</Position>
       <Comment>资金用途</Comment>
       <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="79" parent="11" name="hksource">
       <Position>7</Position>
@@ -1387,7 +1380,7 @@ type</ColNames>
     <column id="303" parent="42" name="way">
       <Position>2</Position>
       <Comment>方式</Comment>
-      <DataType>tinyint(4)|0</DataType>
+      <DataType>varchar(100)|0</DataType>
     </column>
     <column id="304" parent="42" name="fw">
       <Position>3</Position>

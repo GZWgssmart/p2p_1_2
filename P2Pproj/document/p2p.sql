@@ -458,7 +458,7 @@ DROP TABLE IF EXISTS `t_shborrow`;
 CREATE TABLE `t_shborrow` (
   `shid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `huid` bigint(20) DEFAULT NULL COMMENT '审核人id，t_huser后台用户主键id',
-  `isok` tinyint(4) DEFAULT NULL COMMENT '审核是否通过（0未通过，1已通过）',
+  `isok` tinyint(4) DEFAULT NULL COMMENT '审核是否通过（0未审核，1已审核）',
   `excute` varchar(200) DEFAULT NULL COMMENT '审核理由',
   `date` datetime DEFAULT NULL COMMENT '审核时间',
   `baid` bigint(20) DEFAULT NULL COMMENT '借款人id，t_borrowapply申请借款表主键id字段',
