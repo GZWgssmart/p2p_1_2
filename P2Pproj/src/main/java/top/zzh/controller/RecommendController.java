@@ -8,20 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Recommend;
 import top.zzh.common.Pager;
+import top.zzh.common.StrToDate;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.RecommendService;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.RecommendVO;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by 谢学培 on 2017/12/21.
  */
 @Controller
 @RequestMapping("/recommend")
-public class RecommendController {
+public class RecommendController{
     @Autowired
     private RecommendService recommendService;
     @RequestMapping("page")
@@ -30,9 +35,7 @@ public class RecommendController {
     }
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int pageIndex,int pageSize,Recommend recommend) {
-        System.out.println(recommend.getRname());
-        System.out.println(recommend.getTname());
+    public Pager pagerCriteria(int pageIndex,int pageSize,RecommendVO recommend) {
         return recommendService.listPagerCriteria(pageIndex, pageSize, recommend);
     }
     @RequestMapping("remove")
@@ -47,18 +50,5 @@ public class RecommendController {
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
         return statusVO;
     }
-    @RequestMapping("export")
-    public void exportExcel(HttpServletResponse response, Recommend recommend) {
-        Workbook workbook = recommendService.export(recommend);
-        response.setCharacterEncoding("utf-8");
-        response.setHeader("Content-disposition", "attachment; filename=recommend.xlsx");
-        response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        try {
-            OutputStream out = response.getOutputStream();
-            workbook.write(out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

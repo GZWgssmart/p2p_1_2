@@ -6,14 +6,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>推荐人列表</title>
+    <title>推荐管理</title>
     <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
+    <link href="<%=path%>/static/css/jquery.datetimepicker.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>推荐人列表</h5>
+            <h5>推荐管理</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up"></i>
@@ -35,223 +36,83 @@
         <div class="ibox-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    查询条件
+                    搜索条件
                 </div>
                 <div class="panel-body form-group" style="margin-bottom:0px;">
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">推荐人姓名：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">推荐人：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="tname" id="tname"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">被推荐人姓名：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:3px">被推荐人：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="rname" id="rname"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">时间</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">时间：从</label>
                     <div class="col-sm-2">
-                        <input id="tdate" name="tdate">
+                        <input type="text" class="form-control" id="startTime" name="startTime">
                     </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">至</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="endTime" name="endTime">
+                    </div>
+
                     <div class="col-sm-1 col-sm-offset-4">
-                        <button class="btn btn-primary" onclick="doSearch();">查询</button>
+                        <button class="btn btn-primary" onclick="doSearch();">搜索</button>
                     </div>
                 </div>
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-                <button id="btn_shenhe" type="button" onclick="return getAccounts();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#manyShenhe">
-                    <span class="glyphicon glyphicon-import" aria-hidden="true" ></span>批量审核
+                <button id="btn_delete" onclick="deleteMany();" type="button" class="btn btn-primary"
+                        style="margin-left:5px">
+                    <i class="glyphicon glyphicon-remove"></i>批量删除
                 </button>
-                <button id="btn_delete" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>批量删除
-                </button>
-                <button type="button" class="btn btn-default" onclick="exportExcel('/recommend/export', 'searchForm')">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>导出Excel
+                <button type="button" id="download" style="margin-left:5px" class="btn btn-primary"
+                        onClick="$('#mytab').tableExport({ type: 'excel', escape: 'false' })"><i
+                        class="glyphicon glyphicon-import"></i>数据导出
                 </button>
             </div>
         </div>
     </div>
 </div>
-<%--网站数据的新增--%>
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="webAdd" tabindex="-1" role="dialog" aria-labelledby="webAddLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="webAddTitle">
-                    我要请假
-                </h4>
-            </div>
-            <form class="form-horizontal" method="post" id="formadd">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">请假理由：</label>
-                    <div class="col-sm-8">
-                        <textarea  name="reason" class="form-control" required="" aria-required="true"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">请假天数：</label>
-                    <div class="col-sm-8">
-                        <input type="text"  name="totalDays" class="form-control" required="" aria-required="true"/>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" id="add" class="btn btn-primary">
-                        确认请假
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-<input type="hidden" value=""  id="deleteId"/>
-<%--网站新增结束--%>
-<%--网站信息的修改--%>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    请假员工的修改
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal"  id="updateForm">
-                    <input type="hidden" name="id" id="id"/>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">请假天数：</label>
-                        <div class="col-sm-8">
-                            <input type="text"  name="totalDays" class="form-control" required="" aria-required="true"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">请假理由：</label>
-                        <div class="col-sm-8">
-                            <textarea  name="reason" class="form-control" required="" aria-required="true"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" id="update" class="btn btn-success">
-                            确认修改
-                        </button>
-                    </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-    <!-- 请假员工的审核-->
-    <div class="modal fade" id="shenheModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="shenheModalLabel">
-                        请假员工的审核
-                    </h4>
-                </div>
-                <form class="form-horizontal" id="shenheform" >
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">审核操作：</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" required name="isCheck">
-                                    <option value="0">审核不通过</option>
-                                    <option value="1">审核通过</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">审核备注：</label>
-                            <div class="col-sm-8">
-                                <textarea  name="remark" id="remark" class="form-control" required="" aria-required="true"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" id="shenhe" class="btn btn-primary" data-dismiss="modal">
-                            确认审核
-                        </button>
-                    </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-    <!-- 请假员工的批量审核-->
-    <div class="modal fade" id="manyShenhe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="manyShenheModalLabel">
-                        请假员工的批量审核
-                    </h4>
-                </div>
-                <form class="form-horizontal" id="manyshenheform" >
-                    <input  id="manyId" type="hidden" name="manyId" />
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">审核操作：</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" required name="isCheck">
-                                    <option value="0">审核不通过</option>
-                                    <option value="1">审核通过</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">审核备注：</label>
-                            <div class="col-sm-8">
-                                <textarea  name="remark" class="form-control" id="remarks" required="" aria-required="true"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" id="accountsshenhe" class="btn btn-primary" data-dismiss="modal">
-                            确认批量审核
-                        </button>
-                    </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
+
 </div>
 <%--网站信息的修改--%>
 <jsp:include page="../common/bootstraptablejs.jsp"></jsp:include>
-<script>
-function exportExcel(url, formId) {
-var form = $("#" + formId);
-form.attr('action', contextPath + url);
-form.submit();
-}
-$("#tdate").datetimepicker({
-    format: "yyyy-mm-dd",
-    autoclose: true,
-    todayBtn: true,
-    todayHighlight: true,
-    showMeridian: true,
-    pickerPosition: "bottom-left",
-    language: 'zh-CN',//中文，需要引用zh-CN.js包
-    startView: 2,//月视图
-    minView: 2//日期时间选择器所能够提供的最精确的时间选择视图
-});
+<script type="text/javascript">
+    <%--bootstrap时间插件--%>
+    $("#startTime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        language: 'zh-CN',
+        autoclose: true,
+    }).on("click", function () {
+        $("#startTime").datetimepicker("setStartDate", $("#startTime").val())
+    });
+    $("#endTime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: 'month',
+        language: 'zh-CN',
+        autoclose: true,
+    }).on("click", function () {
+        $("#endTime").datetimepicker("setEndTime", $("#endTime").val())
+    });
+    <%--条件查询--%>
+
+    function doSearch() {
+        var tname = $("#tname").val();
+        var rname = $("#rname").val();
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var options = $("#mytab").bootstrapTable('refresh', {
+            url: '/recommend/pager_criteria',
+            query: {tname: tname, rname: rname, startTime: startTime, endTime: endTime}
+        });
+    }
 </script>
+<script src="<%=path%>/static/js/jquery.datetimepicker.js"></script>
 <script src="<%=path%>/static/js/pageJs/recommend.js"></script>
+<script src="<%=path%>/static/js/tableExport.min.js"></script>
 
 </body>
 </html>
