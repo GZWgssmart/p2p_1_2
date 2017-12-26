@@ -55,10 +55,9 @@
                     <div class="col-sm-2">
                         <input type="text" class="form-control" id="endTime" name="endTime">
                     </div>
-
-                    <div class="col-sm-1 col-sm-offset-4">
-                        <button class="btn btn-primary" onclick="doSearch();">搜索</button>
-                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-primary" onclick="doSearch();">搜索</button>
                 </div>
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
