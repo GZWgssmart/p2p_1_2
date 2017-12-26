@@ -4,6 +4,69 @@
 
 <mapper namespace="top.zzh.dao.ShBorrowDAO">
 
+    <insert id="save" parameterType="top.zzh.bean.ShBorrow">
+        <![CDATA[
+          insert into t_shborrow(huid,isok,excute,`date`,baid)
+          values(#{huid},#{isok},#{excute},CURRENT_TIME,#{baid})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="top.zzh.bean.ShBorrow">
+        <![CDATA[
+          update t_shborrow set isok = #{isok},excute = #{excute},
+          `date` = CURRENT_TIME where shid = #{shid}
+        ]]>
+    </update>
+
+
+    <delete id="removeById" parameterType="top.zzh.bean.ShBorrow">
+        <![CDATA[
+          delete from t_shborrow where shid = #{shid}
+        ]]>
+    </delete>
+
+    <!-- 审核时间，审核理由，借款人-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.date != null">
+            and s.date like concat('%', #{query.date}, '%')
+        </if>
+        <if test="query != null and query.excute != null">
+            and s.excute like concat('%', #{query.excute}, '%')
+        </if>
+    </sql>
+
+    <select id="listPager" resultType="top.zzh.vo.ShBorrowVO">
+        <![CDATA[
+            select s.shid,h.rname,s.isok,s.excute,s.date,b.rname from t_shborrow s,t_huser h,t_borrowapply b
+            where s.huid = h.huid and s.baid = b.baid
+            limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="top.zzh.bean.ShBorrow">
+        select s.shid,h.rname,s.isok,s.excute,s.date,b.rname from t_shborrow s,t_huser h,t_borrowapply b
+        where s.huid = h.huid and s.baid = b.baid
+        <include refid="cash_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="listAll" resultType="top.zzh.vo.ShBorrowVO">
+        <![CDATA[
+           select s.shid,h.rname,s.isok,s.excute,s.date,b.rname from t_shborrow s,t_huser h,t_borrowapply b
+        where s.huid = h.huid and s.baid = b.baid
+        ]]>
+    </select>
+
+    <select id="countCriteria" resultType="top.zzh.vo.ShBorrowVO">
+        <![CDATA[
+            select count(shid) from t_shborrow where 1=1
+            limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="top.zzh.vo.ShBorrowVO">
+        select count(shid) from t_shborrow
+    </select>
 
 
 </mapper>

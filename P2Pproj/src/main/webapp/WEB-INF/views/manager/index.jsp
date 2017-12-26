@@ -53,7 +53,7 @@
                         </li>
                         <li><a class="J_menuItem" href="">推荐人管理</a>
                         </li>
-                        <li><a class="J_menuItem" href="">主页示例三</a>
+                        <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
                         <li><a class="J_menuItem" href="">主页示例四</a>
                         </li>

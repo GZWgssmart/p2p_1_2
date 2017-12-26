@@ -55,9 +55,9 @@
                                     <i class="fa fa-wrench"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="form_editors.html#">选项1</a>
+                                    <li><a href="">选项1</a>
                                     </li>
-                                    <li><a href="form_editors.html#">选项2</a>
+                                    <li><a href="">选项2</a>
                                     </li>
                                 </ul>
                                 <a class="close-link">

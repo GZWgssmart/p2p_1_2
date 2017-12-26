@@ -22,6 +22,7 @@ import java.io.OutputStream;
 
 /**
  * Created by 曾志湖 on 2017/12/24.
+ * 借款详情
  */
 @Controller
 @RequestMapping("/borrowdetail")
@@ -45,17 +46,17 @@ public class BorrowDetailController {
         return statusVO;
     }
 
-    @RequestMapping("remove")
+    @RequestMapping("update")
     @ResponseBody
-    public ControllerStatusVO remove(@PathVariable("bdid") Long bdid){
-        logger.info("删除借款详情信息");
+    public ControllerStatusVO update(BorrowDetail borrowDetail){
+        logger.info("修改借款详情信息");
         ControllerStatusVO statusVO = null;
-        try{
-            borrowDetailService.removeById(bdid);
+        try {
+            borrowDetailService.update(borrowDetail);
         }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
         return statusVO;
     }
 

@@ -13,6 +13,12 @@ import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BorrowApplyService;
 import top.zzh.vo.ControllerStatusVO;
 
+/**
+ * @author 曾志湖
+ * @time 12.25
+ * @version 1.0
+ * 申请借款表
+ */
 @Controller
 @RequestMapping("/borrowapply")
 public class BorrowApplyController {
@@ -47,20 +53,6 @@ public class BorrowApplyController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
-        return statusVO;
-    }
-
-    @RequestMapping("remove")
-    @ResponseBody
-    public ControllerStatusVO remove(@PathVariable("baid") Long baid){
-        logger.info("删除申请借款人基本信息");
-        ControllerStatusVO statusVO = null;
-        try {
-            borrowApplyService.removeById(baid);
-        }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
         return statusVO;
     }
 

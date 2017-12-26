@@ -2,6 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.ShBorrow;
 import top.zzh.dao.ShBorrowDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.ShBorrowService;
@@ -20,4 +21,5 @@ public class ShBorrowServiceImpl extends AbstractService implements ShBorrowServ
         super.setBaseDAO(shBorrowDAO);
         this.shBorrowDAO = shBorrowDAO;
     }
+
 }
