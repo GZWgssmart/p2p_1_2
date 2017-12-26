@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
+    String name= (String) session.getAttribute("uname");
 %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +29,7 @@
         </div>
         <div class="registerCont">
             <ul>
-                <li class="scses"> zhuchaoyou， 恭喜您注册成功！<a class="blue" href="#" target="_blank">请立即开通--双乾支付账户,即可投资！</a></li>
+                <li class="scses"><%=name%>，恭喜您注册成功！<a class="blue" href="#" target="_blank">请立即开通--双乾支付账户,即可投资！</a></li>
                 <li class="rz"><a href="#" class="btn">立即开通</a><a href="#" class="blue">进入我的账户</a></li>
             </ul>
         </div>

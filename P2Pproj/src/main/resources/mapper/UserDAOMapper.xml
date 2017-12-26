@@ -4,6 +4,32 @@
 
 <mapper namespace="top.zzh.dao.UserDAO">
 
+    <resultMap id="userMap" type="user">
+
+    </resultMap>
+
+    <select id="getByNamePwd" resultMap="userMap">
+        select uid,uname,state from t_user
+        where uname=#{name}
+        and upwd =#{pwd}
+    </select>
+
+    <select id="getByPhone" resultMap="userMap">
+        select uid,uname,state from t_user
+        where phone=#{phone}
+    </select>
+
+
+
+    <insert id="register" parameterType="user">
+
+        <selectKey keyColumn="uid" keyProperty="uid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <![CDATA[
+           insert into t_user (uname,upwd,phone,tzm,tid,state)  VALUES(#{uname},#{upwd},#{phone},#{tzm},#{tid},1)
+        ]]>
+    </insert>
 
 
 </mapper>

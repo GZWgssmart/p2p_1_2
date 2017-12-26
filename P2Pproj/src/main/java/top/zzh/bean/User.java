@@ -30,32 +30,9 @@ public class User {
 
     private Byte isvip;//是否为VIP用户0是，1否
 
-    private Long int1;
+    private Long state;
 
     private String str1;
-
-    public User(Long uid, String uname, String upwd, String phone, String tzm, String zpwd, String idtype, String idno, String email, String rname, Long tid, String face, Byte sex, Byte isvip, Long int1, String str1) {
-        this.uid = uid;
-        this.uname = uname;
-        this.upwd = upwd;
-        this.phone = phone;
-        this.tzm = tzm;
-        this.zpwd = zpwd;
-        this.idtype = idtype;
-        this.idno = idno;
-        this.email = email;
-        this.rname = rname;
-        this.tid = tid;
-        this.face = face;
-        this.sex = sex;
-        this.isvip = isvip;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
-
-    public User() {
-        super();
-    }
 
     public Long getUid() {
         return uid;
@@ -70,7 +47,7 @@ public class User {
     }
 
     public void setUname(String uname) {
-        this.uname = uname == null ? null : uname.trim();
+        this.uname = uname;
     }
 
     public String getUpwd() {
@@ -78,7 +55,7 @@ public class User {
     }
 
     public void setUpwd(String upwd) {
-        this.upwd = upwd == null ? null : upwd.trim();
+        this.upwd = upwd;
     }
 
     public String getPhone() {
@@ -86,7 +63,7 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public String getTzm() {
@@ -94,7 +71,7 @@ public class User {
     }
 
     public void setTzm(String tzm) {
-        this.tzm = tzm == null ? null : tzm.trim();
+        this.tzm = tzm;
     }
 
     public String getZpwd() {
@@ -102,7 +79,7 @@ public class User {
     }
 
     public void setZpwd(String zpwd) {
-        this.zpwd = zpwd == null ? null : zpwd.trim();
+        this.zpwd = zpwd;
     }
 
     public String getIdtype() {
@@ -110,7 +87,7 @@ public class User {
     }
 
     public void setIdtype(String idtype) {
-        this.idtype = idtype == null ? null : idtype.trim();
+        this.idtype = idtype;
     }
 
     public String getIdno() {
@@ -118,7 +95,7 @@ public class User {
     }
 
     public void setIdno(String idno) {
-        this.idno = idno == null ? null : idno.trim();
+        this.idno = idno;
     }
 
     public String getEmail() {
@@ -126,7 +103,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getRname() {
@@ -134,7 +111,7 @@ public class User {
     }
 
     public void setRname(String rname) {
-        this.rname = rname == null ? null : rname.trim();
+        this.rname = rname;
     }
 
     public Long getTid() {
@@ -150,7 +127,7 @@ public class User {
     }
 
     public void setFace(String face) {
-        this.face = face == null ? null : face.trim();
+        this.face = face;
     }
 
     public Byte getSex() {
@@ -169,12 +146,12 @@ public class User {
         this.isvip = isvip;
     }
 
-    public Long getInt1() {
-        return int1;
+    public Long getState() {
+        return state;
     }
 
-    public void setInt1(Long int1) {
-        this.int1 = int1;
+    public void setState(Long state) {
+        this.state = state;
     }
 
     public String getStr1() {
@@ -182,6 +159,6 @@ public class User {
     }
 
     public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+        this.str1 = str1;
     }
 }

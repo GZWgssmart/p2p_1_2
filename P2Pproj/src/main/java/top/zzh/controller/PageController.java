@@ -2,6 +2,9 @@ package top.zzh.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import top.zzh.common.Constants;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/page")
@@ -22,7 +25,14 @@ public class PageController {
     }
 
     @RequestMapping("user")
-    public String user(){
+    public String user(HttpSession session){
+
+        if(session.getAttribute(Constants.USER_IN_SESSION)==null || session.getAttribute(Constants.USER_IN_SESSION)==""){
+
+            return "user/nopower";
+        }
+
+
         return "user/userindex";
     }
     @RequestMapping("chongzhi")
