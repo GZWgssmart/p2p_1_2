@@ -7,7 +7,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>请假员工列表</title>
-    <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -228,7 +228,7 @@
     </div>
 </div>
 <%--网站信息的修改--%>
-<jsp:include page="../common/bootstraptablejs.jsp"></jsp:include>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
 <script src="<%=path%>/static/js/pageJs/user.js"></script>
 
 </body>

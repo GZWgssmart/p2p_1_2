@@ -467,7 +467,7 @@ CREATE TABLE `t_shborrow` (
 
 -- ----------------------------
 -- Table structure for t_skb
--- 还款表
+-- 收款表
 -- ----------------------------
 DROP TABLE IF EXISTS `t_skb`;
 CREATE TABLE `t_skb` (
@@ -540,7 +540,7 @@ CREATE TABLE `t_tzb` (
   `tzid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `uid` bigint(20) DEFAULT NULL COMMENT '前台用户t_user表id字段',
   `juid` bigint(20) DEFAULT NULL COMMENT '借款人id，t_borrowapply表主键id',
-  `money` decimal(2,0) NOT NULL COMMENT '投资金额',
+  `money` decimal(10,2) NOT NULL COMMENT '投资金额',
   `time` datetime NOT NULL COMMENT '投资时间',
   `nprofit` float(3,2) NOT NULL COMMENT '利率',
   `cpname` varchar(20) NOT NULL COMMENT '产品名称',

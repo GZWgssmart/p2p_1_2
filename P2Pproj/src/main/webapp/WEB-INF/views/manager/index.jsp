@@ -45,7 +45,7 @@
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-th-large"></i>
-                        <span class="nav-label">用户</span>
+                        <span class="nav-label">用户管理</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -60,78 +60,90 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa fa-globe"></i> <span
-                            class="nav-label">v2.0新增</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa fa-globe"></i>
+                        <span class="nav-label">审核管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="">Toastr通知</a>
+                        <li><a class="J_menuItem" href="<%=path%>/shborrow/page">借款审核</a>
                         </li>
-                        <li><a href="">嵌套列表</a>
+                        <li><a a class="J_menuItem" href="">认证审核</a>
                         </li>
-                        <li><a href="">时间轴</a>
+                        <li><a a class="J_menuItem" href="">提现审核</a>
                         </li>
-                        <li><a href="">论坛</a>
+                        <li><a a class="J_menuItem" href="">论坛</a>
                         </li>
-                        <li><a href="">代码编辑器</a>
+                        <li><a a class="J_menuItem" href="">代码编辑器</a>
                         </li>
-                        <li><a href="">模态窗口</a>
+                        <li><a a class="J_menuItem" href="">模态窗口</a>
                         </li>
-                        <li><a href="">表单验证</a>
+                        <li><a a class="J_menuItem" href="">表单验证</a>
                         </li>
-                        <li><a href="">树形视图</a>
+                        <li><a a class="J_menuItem" href="">树形视图</a>
                         </li>
-                        <li><a href="">聊天窗口</a>
+                        <li><a a class="J_menuItem" href="">聊天窗口</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i> <span
-                            class="nav-label">图表</span><span class="fa arrow"></span></a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span class="nav-label">图表</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">百度ECharts</a>
+                        <li><a a class="J_menuItem" href="">百度ECharts</a>
                         </li>
-                        <li><a href="">Flot</a>
+                        <li><a a class="J_menuItem" href="">Flot</a>
                         </li>
-                        <li><a href="">Morris.js</a>
+                        <li><a a class="J_menuItem" href="">Morris.js</a>
                         </li>
-                        <li><a href="">Rickshaw</a>
+                        <li><a a class="J_menuItem" href="">Rickshaw</a>
                         </li>
-                        <li><a href="">Peity</a>
+                        <li><a a class="J_menuItem" href="">Peity</a>
                         </li>
-                        <li><a href="">Sparkline</a>
+                        <li><a a class="J_menuItem" href="">Sparkline</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span
-                            class="fa arrow"></span></a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-label">表单</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">基本表单</a>
+                        <li><a a class="J_menuItem" href="">基本表单</a>
                         </li>
-                        <li><a href="">表单验证</a>
+                        <li><a a class="J_menuItem" href="">表单验证</a>
                         </li>
-                        <li><a href="">高级插件</a>
+                        <li><a a class="J_menuItem" href="">高级插件</a>
                         </li>
-                        <li><a href="">步骤条</a>
+                        <li><a a class="J_menuItem" href="">步骤条</a>
                         </li>
-                        <li><a href="">百度WebUploader</a>
+                        <li><a a class="J_menuItem" href="">百度WebUploader</a>
                         </li>
-                        <li><a href="">文件上传</a>
+                        <li><a a class="J_menuItem" href="">文件上传</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-desktop"></i> <span class="nav-label">页面</span></a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-desktop"></i>
+                        <span class="nav-label">页面</span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">联系人</a>
+                        <li><a a class="J_menuItem" href="">联系人</a>
                         </li>
-                        <li><a href="">个人资料</a>
+                        <li><a a class="J_menuItem" href="">个人资料</a>
                         </li>
-                        <li><a href="">项目</a>
+                        <li><a a class="J_menuItem" href="">项目</a>
                         </li>
-                        <li><a href="">项目详情</a>
+                        <li><a a class="J_menuItem" href="">项目详情</a>
                         </li>
-                        <li><a href="">文件管理器</a>
+                        <li><a a class="J_menuItem" href="">文件管理器</a>
                         </li>
                     </ul>
                 </li>
@@ -142,15 +154,15 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">搜索结果</a>
+                        <li><a a class="J_menuItem" href="">搜索结果</a>
                         </li>
-                        <li><a href="">登录超时</a>
+                        <li><a a class="J_menuItem" href="">登录超时</a>
                         </li>
-                        <li><a href="">404页面</a>
+                        <li><a a class="J_menuItem" href="">404页面</a>
                         </li>
-                        <li><a href="">500页面</a>
+                        <li><a a class="J_menuItem" href="">500页面</a>
                         </li>
-                        <li><a href="">空白页</a>
+                        <li><a a class="J_menuItem" href="">空白页</a>
                         </li>
                     </ul>
                 </li>
@@ -162,27 +174,30 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">排版</a>
+                        <li><a a class="J_menuItem" href="">排版</a>
                         </li>
-                        <li><a href="">字体图标</a>
+                        <li><a a class="J_menuItem" href="">字体图标</a>
                         </li>
-                        <li><a href="">阿里巴巴矢量图标库</a>
+                        <li><a a class="J_menuItem" href="">阿里巴巴矢量图标库</a>
                         </li>
-                        <li><a href="">拖动面板</a>
+                        <li><a a class="J_menuItem" href="">拖动面板</a>
                         </li>
-                        <li><a href="">按钮</a>
+                        <li><a a class="J_menuItem" href="">按钮</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span
-                            class="fa arrow"></span></a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-table"></i>
+                        <span class="nav-label">表格</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a href="">基本表格</a>
+                        <li><a a class="J_menuItem" href="">基本表格</a>
                         </li>
-                        <li><a href="">数据表格(DataTables)</a>
+                        <li><a a class="J_menuItem" href="">数据表格(DataTables)</a>
                         </li>
-                        <li><a href="">jqGrid</a>
+                        <li><a a class="J_menuItem" href="">jqGrid</a>
                         </li>
                     </ul>
                 </li>

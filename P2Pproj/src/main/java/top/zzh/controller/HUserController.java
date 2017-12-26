@@ -1,12 +1,9 @@
 package top.zzh.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -19,9 +16,7 @@ public class HUserController {
     @RequestMapping("logout")
     public String logout(HttpSession session){
         logger.info("安全退出");
-        Subject subject = SecurityUtils.getSubject();
-        subject.logout();
-        subject.getSession().removeAttribute("user");
+        session.invalidate();
         return "manager/login";
     }
     //后台用户中心页面
