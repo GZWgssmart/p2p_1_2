@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.BorrowApply;
+import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BorrowApplyService;
 import top.zzh.vo.ControllerStatusVO;
@@ -63,5 +64,11 @@ public class BorrowApplyController {
         return statusVO;
     }
 
+    @RequestMapping("pager_criteria")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int rows, BorrowApply borrowApply) {
+        logger.info("借款基本信息分页+条件查询");
+        return borrowApplyService.listPagerCriteria(page, rows, borrowApply);
+    }
 
 }

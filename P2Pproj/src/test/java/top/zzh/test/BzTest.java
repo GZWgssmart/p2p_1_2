@@ -7,6 +7,8 @@ import top.zzh.bean.Sway;
 import top.zzh.common.Pager;
 import top.zzh.dao.BzDAO;
 import top.zzh.dao.SwayDAO;
+import top.zzh.service.BzService;
+import top.zzh.vo.TxCheckVO;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  */
 public class BzTest extends BaseTest {
     @Autowired
-    private BzDAO BzDAO;
+    private BzService bzService;
 
 
     @Test
@@ -23,7 +25,7 @@ public class BzTest extends BaseTest {
        Bz bz =new Bz();
        bz.setBzname("zz");
        bz.setState((byte)0);
-        BzDAO.save(bz);
+        bzService.save(bz);
     }
 
     @Test
@@ -32,7 +34,7 @@ public class BzTest extends BaseTest {
         bz.setBzname("zzz");
         bz.setState((byte)0);
         bz.setBzid(1L);
-        BzDAO.update(bz);
+        bzService.update(bz);
     }
 
     @Test
@@ -40,23 +42,20 @@ public class BzTest extends BaseTest {
         Bz bz = new Bz();
         bz.setState((byte)1);
         bz.setBzid(1L);
-        BzDAO.updateState(bz);
+        bzService.updateState(bz);
     }
 
     @Test
     public void removeById(){
         Long bzid = 1L;
-        BzDAO.removeById(bzid);
+        bzService.removeById(bzid);
     }
+
     @Test
     public void listPager(){
         Pager pager=new Pager(1,2);
-        List<Object> objectList=BzDAO.listPager(pager);
-        for(Object obj:objectList){
-            Bz bz = (Bz)obj;
-            System.out.println(bz.getBzname());
-        }
+        pager  =bzService.listPager(1,2);
+        System.out.println(pager.getRows());
     }
-
 
 }

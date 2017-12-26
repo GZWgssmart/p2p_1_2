@@ -1,9 +1,11 @@
-package top.zzh.bean;
+package top.zzh.vo;
 
 import java.math.BigDecimal;
 
-//借款详情表
-public class BorrowDetail {
+/**
+ * Created by 曾志湖 on 2017/12/25.
+ */
+public class BorrowApplyVO {
     private Long bdid;
 
     private String fpic;//法人身份证照片
@@ -34,16 +36,14 @@ public class BorrowDetail {
 
     private Long baid;//借款人id，baid为t_borrowapply表id
 
+    private String rname;
 
-    private Long int1;
-
-    private String str1;
-
-    public BorrowDetail(Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
+    public BorrowApplyVO(String rname,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid) {
         this.bdid = bdid;
         this.fpic = fpic;
         this.ypic = ypic;
         this.qpic = qpic;
+        this.rname = rname;
         this.tpic = tpic;
         this.mpurpose = mpurpose;
         this.hksource = hksource;
@@ -55,11 +55,18 @@ public class BorrowDetail {
         this.way = way;
         this.cpname = cpname;
         this.baid = baid;
-        this.int1 = int1;
-        this.str1 = str1;
+
     }
 
-    public BorrowDetail() {
+    public void setRname(String rname) {
+        this.rname = rname;
+    }
+
+    public String getRname() {
+        return rname;
+    }
+
+    public BorrowApplyVO() {
         super();
     }
 
@@ -183,19 +190,4 @@ public class BorrowDetail {
         this.baid = baid;
     }
 
-    public Long getInt1() {
-        return int1;
-    }
-
-    public void setInt1(Long int1) {
-        this.int1 = int1;
-    }
-
-    public String getStr1() {
-        return str1;
-    }
-
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
-    }
 }

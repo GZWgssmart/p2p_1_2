@@ -2,6 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.Bz;
 import top.zzh.dao.BzDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.BzService;
@@ -20,5 +21,10 @@ public class BzServiceImpl extends AbstractService implements BzService {
     public void setBzDAO(BzDAO bzDAO) {
         super.setBaseDAO(bzDAO);
         this.bzDAO = bzDAO;
+    }
+
+    @Override
+    public void updateState(Bz bz) {
+        bzDAO.updateState(bz);
     }
 }

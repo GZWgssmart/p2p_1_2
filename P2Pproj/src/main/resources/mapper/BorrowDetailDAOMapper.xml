@@ -7,7 +7,7 @@
     <insert id="save" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
           insert into t_borrowdetail(fpic,ypic,qpic,tpic,mpurpose,hksource,suggest,
-          xmdescrip,guarantee,money,nprofit,way,cpname,baid) values(#{fpic},#{ypic},#{qpic},#{tpic},#{mpurpose}
+          xmdescrip,guarantee,money,nprofit,way,cpname,baid) values(#{fpic},#{ypic},#{qpic},#{tpic},#{mpurpose},
             #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{way},#{cpname},#{baid})
         ]]>
     </insert>
@@ -21,36 +21,49 @@
     <!-- 还款来源，产品名称，借款人，借款金额-->
     <sql id="cash_query_criteria">
         <if test="query != null and query.money != null">
-            and money like concat('%', #{query.money}, '%')
+            and bd.money like concat('%', #{query.money}, '%')
         </if>
         <if test="query != null and query.cpname != null">
-            and cpname like concat('%', #{query.cpname}, '%')
+            and bd.cpname like concat('%', #{query.cpname}, '%')
         </if>
         <if test="query != null and query.rname != null">
-            and rname like concat('%', #{query.rname}, '%')
+            and bd.rname like concat('%', #{query.rname}, '%')
         </if>
         <if test="query != null and query.hksource != null">
-            and hksource like concat('%', #{query.hksource}, '%')
+            and bd.hksource like concat('%', #{query.hksource}, '%')
         </if>
     </sql>
 
-    <select id="listPagerCriteria" resultType="java.lang.Long">
+    <select id="listPagerCriteria" resultType="top.zzh.vo.BorrowApplyVO">
         select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
         from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
         <include refid="cash_query_criteria"/>
-        limit #{pager.pageNo}, #{pager.pageSize}
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
-    <select id="listPager" parameterType="top.zzh.bean.BorrowDetail">
-        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
-        from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
-        limit #{pager.pageNo}, #{pager.pageSize}
+    <select id="listPager" resultType="top.zzh.vo.BorrowApplyVO">
+       <![CDATA[
+            select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
+            from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
+            limit #{pager.beginIndex}, #{pager.pageSize}
+         ]]>
     </select>
 
-    <select id="countCriteria" resultType="long">
+    <select id="countCriteria" resultType="top.zzh.bean.BorrowDetail">
         <![CDATA[
             select count(bdid) from t_borrowdetail where 1=1
-            limit #{pager.pageNo}, #{pager.pageSize}
+            limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
+    </select>
+
+    <select id="count" resultType="top.zzh.bean.BorrowDetail">
+        <![CDATA[
+            select count(bdid) from t_borrowdetail
+        ]]>
+    </select>
+
+    <select id="listAll" resultType="top.zzh.bean.BorrowDetail">
+       select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
+        from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
     </select>
 </mapper>

@@ -50,7 +50,7 @@ public class UserMoneyTest extends BaseTest {
         UserMoney userMoney =new UserMoney();
         BigDecimal bigDecimal=new BigDecimal(10000);
         userMoney.setTzmoney(bigDecimal);
-        Pager pager=new Pager(1,2);
+        Pager pager=new Pager(0,2);
         List<Object> objectList=userMoneyDAO.listPagerCriteria(pager,userMoney);
         for(Object obj:objectList){
             UserMoney userMone=(UserMoney)obj;
