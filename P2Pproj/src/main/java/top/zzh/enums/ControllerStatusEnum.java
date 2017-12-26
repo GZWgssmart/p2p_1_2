@@ -3,6 +3,10 @@ package top.zzh.enums;
 
 public enum ControllerStatusEnum {
 
+    UPLOAD_EXCEL_BUSY(97,"BUSY","服务器繁忙，请稍后再试哦！"),
+    UPLOAD_EXCEL_ERROR(98,"error","文件上传错误，请上传excel文件！"),
+    UPLOAD_EXCEL_SUCCESS(99,"success","文件上传成功,已成功导入数据库！"),
+
     USER_LOGIN_SUCCESS(100, "ok", "登录成功"),
     USER_LOGIN_ERROR_CODE(101, "error", "验证码错误"),
     USER_LOGIN_FAIL(102, "error", "用户名或密码错误"),

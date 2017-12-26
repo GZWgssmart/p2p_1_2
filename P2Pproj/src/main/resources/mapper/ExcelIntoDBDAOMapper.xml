@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--谢山林-->
+<mapper namespace="top.zzh.dao.ExcelIntoDAO">
+
+    <insert id="intoDB" parameterType="java.util.List">
+        <![CDATA[
+          insert into t_jur(jid, jurl, content) values
+        ]]>
+        <foreach collection ="list" item="jur" separator =",">
+           (#{jur.id},#{jur.jurl},#{jur.content})
+        </foreach >
+    </insert>
+
+    <insert id="saveJur" parameterType="top.zzh.bean.Jur">
+        <![CDATA[
+          insert into t_jur(jid, jurl, content) values (#{jid},#{jurl},#{content});
+        ]]>
+    </insert>
+</mapper>
