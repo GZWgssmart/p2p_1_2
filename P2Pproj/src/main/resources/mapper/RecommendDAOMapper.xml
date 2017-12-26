@@ -27,21 +27,21 @@
             and tname like concat('%', #{query.tname}, '%')
         </if>
         <if test="query != null and query.rname != null">
-            and tname like concat('%', #{query.rname}, '%')
+            and rname like concat('%', #{query.rname}, '%')
         </if>
     </sql>
     <select id="listPagerCriteria" resultType="recommend">
-        select tname,rname from t_recommend where 1=1
+        select id,tid,tname,uid,rname,`date` from t_recommend where 1=1
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long">
-        select count(id) t_recommend where 1=1
+        select count(id) from t_recommend where 1=1
         <include refid="cash_query_criteria"/>
     </select>
     <delete id="remove" parameterType="recommend">
         <![CDATA[
-          DELETE t_recommend where id=#{id}
+          delete from t_recommend where id=#{id}
         ]]>
     </delete>
 </mapper>

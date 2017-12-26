@@ -14,15 +14,15 @@ public class TxCheck {
 
     private String excute;//审核理由
 
-    private Date date;//审核时间
+    private Date dateTime;//审核时间
 
-    public TxCheck(Long id, Long txid, Long huid, Byte isok, String excute, Date date) {
+    public TxCheck(Long id, Long txid, Long huid, Byte isok, String excute, Date dateTime) {
         this.id = id;
         this.txid = txid;
         this.huid = huid;
         this.isok = isok;
         this.excute = excute;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     public TxCheck() {
@@ -69,11 +69,11 @@ public class TxCheck {
         this.excute = excute == null ? null : excute.trim();
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }

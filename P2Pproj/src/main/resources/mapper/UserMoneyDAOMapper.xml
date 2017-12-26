@@ -28,34 +28,34 @@
         </if>
     </sql>
     <sql id="money_all">
-        <if test="zmoney !=null">
-            and zmoney=#{zmoney}
+        <if test="query.zmoney !=null">
+            and zmoney=#{query.zmoney}
         </if>
-        <if test="kymoney !=null">
-           and  kymoney=#{kymoney}
+        <if test="query.kymoney !=null">
+           and  kymoney=#{query.kymoney}
         </if>
-        <if test="symoney!=null">
-            and symoney=#{symoney}
+        <if test="query.symoney!=null">
+            and symoney=#{query.symoney}
         </if>
-        <if test="tzmoney !=null">
-           and tzmoney=#{tzmoney}
+        <if test="query.tzmoney !=null">
+           and tzmoney=#{query.tzmoney}
         </if>
-        <if test="djmoney !=null">
-            djmoney=#{djmoney}
+        <if test="query.djmoney !=null">
+            and djmoney=#{query.djmoney}
         </if>
-        <if test="dsmoney !=null">
-           and dsmoney=#{dsmoney}
+        <if test="query.dsmoney !=null">
+           and dsmoney=#{query.dsmoney}
         </if>
-        <if test="jlmoney !=null">
-            and jlmoney=#{jlmoney}
+        <if test="query.jlmoney !=null">
+            and jlmoney=#{query.jlmoney}
         </if>
     </sql>
-    <select id="save" parameterType="userMoney">
+    <insert id="save" parameterType="userMoney">
         <![CDATA[
           insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
         values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
    ]]>
-    </select>
+    </insert>
     <update id="update" parameterType="userMoney">
         <![CDATA[
           update t_usermoney
@@ -65,16 +65,16 @@
         </set>
     </update>
 
-    <select id="listPager" parameterType="top.zzh.bean.UserMoney">
+    <select id="listPager" resultType="userMoney">
         <![CDATA[
         select * from t_usermoney limit #{pager.beginIndex}, #{pager.pageSize}
-    ]]]>
+        ]]>
     </select>
     <select id="count" resultType="long">
         select count(id) from t_usermoney
     </select>
 
-    <select id="listPagerCriteria" parameterType="top.zzh.bean.UserMoney">
+    <select id="listPagerCriteria" resultType="top.zzh.bean.UserMoney">
         select * from t_usermoney
         where 1=1
         <include refid="money_all"/>

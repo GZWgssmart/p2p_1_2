@@ -1,0 +1,83 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.BorrowApplyDAO">
+
+    <delete id="removeById" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+          delete from t_borrowapply where baid = #{baid}
+        ]]>
+    </delete>
+
+    <insert id="save" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+          insert into t_borrowapply(rname,money,uid,bzid,time,state,type,term,deadline)
+          values(#{rname},#{money},#{uid},#{bzid},null,0,#{type},#{term},#{deadline})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+            update t_borrowapply set rname = #{rname},money = #{money},bzid = #{bzid},type = #{type},
+            term = #{term},deadline = #{deadline} where baid = #{baid}
+        ]]>
+    </update>
+
+    <!-- 真实姓名，申请借款金额，借款期限，借款类型，截止时间-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.rname != null">
+            and ba.rname like concat('%', #{query.rname}, '%')
+        </if>
+        <if test="query != null and query.money != null">
+            and ba.money like concat('%', #{query.money}, '%')
+        </if>
+        <if test="query != null and query.term != null">
+            and ba.term like concat('%', #{query.term}, '%')
+        </if>
+        <if test="query != null and query.type != null">
+            and ba.type like concat('%', #{query.type}, '%')
+        </if>
+        <if test="query != null and query.deadline != null">
+            and ba.deadline like concat('%', #{query.deadline}, '%')
+        </if>
+    </sql>
+
+    <select id="listPager" resultType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+       select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid
+         limit #{pager.beginIndex}, #{pager.pageSize}
+         ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
+        select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid
+        <include refid="cash_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="listAll" resultType="top.zzh.bean.BorrowApply">
+        select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid
+    </select>
+
+    <select id="countCriteria" resultType="top.zzh.bean.BorrowApply">
+       <![CDATA[
+            select count(baid) from t_borrowapply where 1=1
+            limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="top.zzh.bean.BorrowApply">
+        select count(baid) from t_borrowapply
+    </select>
+
+    <select id="getById" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply where baid=#{baid}
+    ]]]>
+    </select>
+
+</mapper>

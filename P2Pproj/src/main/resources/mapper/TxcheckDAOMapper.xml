@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.TxcheckDAO">
+
+    <insert id="save" parameterType="txcheck">
+    <![CDATA[
+          insert into t_txcheck(txid, huid, isok, excute, date_time)
+          values(#{txid},#{huid},#{isok},#{excute},CURRENT_TIMESTAMP)
+        ]]>
+</insert>
+    <update id="update" parameterType="txcheck">
+        <![CDATA[
+        update t_txcheck
+        ]]>
+        <set>
+            <if test="isok!=null">
+                isok=#{isok}
+            </if>
+            <if test="excute!=null">
+                excute=#{excute}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="listPager" resultType="top.zzh.vo.TxCheckVO">
+        select u.rname,lg.bankcard,lg.banktype,lg.money,tx.isok,tx.excute,tx.date_time from t_txcheck as tx ,t_logtx as lg,t_huser as u
+        where u.huid=tx.huid and tx.txid=lg.id
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+
+</mapper>

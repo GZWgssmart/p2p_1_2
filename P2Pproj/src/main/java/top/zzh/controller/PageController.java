@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page")
 public class PageController {
 
-    @RequestMapping("welcome")
+   @RequestMapping("welcome")
     public String welcome(){
         return "manager/welcome";
     }
+    @RequestMapping("managerindex")
+    public String managerindex(){
+        return "common/managerindex";
+    }
+
     @RequestMapping("users")
     public String users(){
         return "manager/user";

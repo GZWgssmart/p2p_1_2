@@ -3,6 +3,7 @@ package top.zzh.controller;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Recommend;
@@ -19,25 +20,31 @@ import java.io.OutputStream;
  * Created by 谢学培 on 2017/12/21.
  */
 @Controller
-@RequestMapping("recommend")
+@RequestMapping("/recommend")
 public class RecommendController {
     @Autowired
     private RecommendService recommendService;
+    @RequestMapping("page")
+    public String page(){
+        return "recommend/recommend";
+    }
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, Recommend recommend) {
-        return recommendService.listPagerCriteria(page, rows, recommend);
+    public Pager pagerCriteria(int pageIndex,int pageSize,Recommend recommend) {
+        System.out.println(recommend.getRname());
+        System.out.println(recommend.getTname());
+        return recommendService.listPagerCriteria(pageIndex, pageSize, recommend);
     }
     @RequestMapping("remove")
     @ResponseBody
-    public ControllerStatusVO update(Recommend recommend) {
+    public ControllerStatusVO update(long id) {
         ControllerStatusVO statusVO = null;
         try {
-            recommendService.remove(recommend);
+            recommendService.remove(id);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
         return statusVO;
     }
     @RequestMapping("export")

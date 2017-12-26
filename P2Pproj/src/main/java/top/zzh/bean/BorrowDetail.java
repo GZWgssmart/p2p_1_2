@@ -34,6 +34,7 @@ public class BorrowDetail {
 
     private Long baid;//借款人id，baid为t_borrowapply表id
 
+
     private Long int1;
 
     private String str1;
