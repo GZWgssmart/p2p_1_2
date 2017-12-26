@@ -31,6 +31,8 @@ public class RecommendController {
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex,int pageSize,Recommend recommend) {
+        System.out.println(recommend.getRname());
+        System.out.println(recommend.getTname());
         return recommendService.listPagerCriteria(pageIndex, pageSize, recommend);
     }
     @RequestMapping("remove")

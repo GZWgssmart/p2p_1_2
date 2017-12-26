@@ -40,14 +40,18 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">推荐人姓名：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="userName" id="search_name"/>
+                        <input type="text" class="form-control" name="tname" id="tname"/>
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">被推荐人姓名：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="create_time" id="search_time"/>
+                        <input type="text" class="form-control" name="rname" id="rname"/>
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">时间</label>
+                    <div class="col-sm-2">
+                        <input id="tdate" name="tdate">
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
-                        <button class="btn btn-primary" id="search_btn">查询</button>
+                        <button class="btn btn-primary" onclick="doSearch();">查询</button>
                     </div>
                 </div>
             </div>
@@ -59,8 +63,8 @@
                 <button id="btn_delete" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>批量删除
                 </button>
-                <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#webAdd">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>我要请假
+                <button type="button" class="btn btn-default" onclick="exportExcel('/recommend/export', 'searchForm')">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>导出Excel
                 </button>
             </div>
         </div>
@@ -229,6 +233,24 @@
 </div>
 <%--网站信息的修改--%>
 <jsp:include page="../common/bootstraptablejs.jsp"></jsp:include>
+<script>
+function exportExcel(url, formId) {
+var form = $("#" + formId);
+form.attr('action', contextPath + url);
+form.submit();
+}
+$("#tdate").datetimepicker({
+    format: "yyyy-mm-dd",
+    autoclose: true,
+    todayBtn: true,
+    todayHighlight: true,
+    showMeridian: true,
+    pickerPosition: "bottom-left",
+    language: 'zh-CN',//中文，需要引用zh-CN.js包
+    startView: 2,//月视图
+    minView: 2//日期时间选择器所能够提供的最精确的时间选择视图
+});
+</script>
 <script src="<%=path%>/static/js/pageJs/recommend.js"></script>
 
 </body>

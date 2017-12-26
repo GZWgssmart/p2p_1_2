@@ -91,7 +91,7 @@ $('#mytab').bootstrapTable({
                     g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
                 }
                 var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',' + row.isActive + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',\'' + '/recommend/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
                 if (row.isActive == 0) {
                     f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 0 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
@@ -132,21 +132,27 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function del(leaveid, status) {
-    if (status == 0) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
-        return;
-    }
+function doSearch () {
+    var tname=$('#tname').val();
+    var rname=$('#rname').val();
+    var date=$('#rdate').val();
+    var options=$('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria',query:{tname:tname,rname:rname}});
+}
+//刷新表格
+function refush() {
+    $('#mytab').bootstrapTable('refresh');
+}
+function del(id,url) {
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: '/leave/deleteManyLeave/' + leaveid,
+            url: url+'?id=' + id,
             dataType: 'json',
             success: function (data) {
                 if (data.message == '删除成功!') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                } else {
                     layer.msg(data.message, {icon: 2, time: 1000});
+                } else {
+                    layer.msg(data.message, {icon: 1, time: 1000});
                 }
                 refush();
             },
@@ -165,124 +171,9 @@ function edit(name) {
         "json"
     );
 }
-function shenhe(name) {
-    $("#leaveid").val(name);
-}
 
-function updatestatus(id, status) {
-    $.post("/leave/updateStatus/" + id + "/" + status,
-        function (data) {
-            if (status == 0) {
-                if (data.message == "ok") {
-                    layer.msg("已激活", {icon: 1, time: 1000});
-                } else {
-                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
-                }
-            } else {
-                if (data.message == "ok") {
-                    layer.msg("已冻结", {icon: 2, time: 1000});
-                } else {
-                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
-                }
-            }
-            refush();
-        },
-        "json"
-    );
-}
-//查询按钮事件
-$('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria'});
-})
-function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria'});
-}
-$("#update").click(function () {
-    $.post(
-        "/leave/leaveUpdateSave",
-        $("#updateForm").serialize(),
-        function (data) {
-            if (data.message == "修改成功!") {
-                layer.msg(data.message, {icon: 1, time: 1000});
-            } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
-            }
-            refush();
-            $("#myModal").modal('hide');
-        }, "json"
-    );
-});
-$("#shenhe").click(function () {
-    $.post(
-        "/leave/leaveShenHe",
-        $("#shenheform").serialize(),
-        function (data) {
-            if (data.message == "审核成功!") {
-                layer.msg(data.message, {icon: 1, time: 1000});
-                refush();
-            } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
-                refush();
-            }
-        }, "json"
-    );
-});
-
-$('#formadd').bootstrapValidator({
-    message: 'This value is not valid',
-    feedbackIcons: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },
-    fields: {
-        reason: {
-            message: '请假理由验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请假理由不能为空'
-                },
-
-            }
-        },
-        totalDays: {
-            message: '请假天数验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请假天数不能为空'
-                }
-
-            }
-        },
-    }
-}).on('success.form.bv', function(e) {//点击提交之后
-    e.preventDefault();
-    var $form = $(e.target);
-    var bv = $form.data('bootstrapValidator');
-    $.post(
-        "/leave/leaveAddSave",
-        $("#formadd").serialize(),
-        function (data) {
-            if (data.message == "新增成功!") {
-                layer.msg(data.message, {icon: 1, time: 1000});
-            } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
-
-            }
-            refush();
-            $("#webAdd").modal('hide');
-            $("#reason").val("");
-            $("#createTime").val("");
-            $("#totalDays").val("");
-        }, "json"
-    );
-});
-function deleteMany() {
-    var isactivity = "";
+function deleteMany(url) {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        if (row.isActive == 0) {
-            isactivity += row.isActive;
-        }
         return row.id;
     });
     if (row == "") {
@@ -292,20 +183,12 @@ function deleteMany() {
         });
         return;
     }
-    if (isactivity != "") {
-        layer.msg('删除失败，已经激活的不允许删除!', {
-            icon: 2,
-            time: 2000
-        });
-        return;
-
-    }
     $("#deleteId").val(row);
     layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
         $.post(
-            "/leave/deleteManyLeave",
+            url,
             {
-                "manyId": $("#deleteId").val()
+                "id": $("#deleteId").val()
             },
             function (data) {
                 if (data.message == "删除成功!") {
@@ -318,48 +201,4 @@ function deleteMany() {
             }, "json"
         );
     });
-}
-function getAccounts(){
-    $("#accountsshenhe").click(function () {
-        var isActives = "";
-        var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-            if (row.isActive == 1) {
-                isActives += row.isActive;
-            }
-            return row.id;
-        });
-        if (row == "") {
-            layer.msg('审核失败，请勾选数据!', {
-                icon: 2,
-                time: 2000
-            });
-            return;
-        }
-        if (isActives != "") {
-            layer.msg('审核失败，已经审核通过的的不允许再次审核!', {
-                icon: 2,
-                time: 2000
-            });
-            return;
-
-        }
-        $("#manyId").val(row);
-        layer.confirm('确认要执行批量审核请假员工吗？', function (index) {
-            $.post(
-                "/leave/checkerLeave",
-                $("#manyshenheform").serialize(),
-                function (data) {
-                    if (data.message == "批量审核成功!") {
-                        layer.msg(data.message, {icon: 1, time: 1000});
-                    } else {
-                        layer.msg(data.message, {icon: 2, time: 1000});
-                    }
-                    refush();
-                    $("#manyId").val("");
-                    $("#remarks").val("");
-                }, "json"
-            );
-        });
-    });
-
 }
