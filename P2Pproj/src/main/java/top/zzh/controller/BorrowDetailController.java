@@ -12,6 +12,7 @@ import top.zzh.bean.BorrowDetail;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BorrowDetailService;
+import top.zzh.vo.BorrowApplyVO;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
 
@@ -61,7 +62,7 @@ public class BorrowDetailController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, BorrowDetail borrowDetail) {
+    public Pager pagerCriteria(int page, int rows, BorrowApplyVO borrowDetail) {
         logger.info("借款详情信息分页+条件查询");
         return borrowDetailService.listPagerCriteria(page, rows, borrowDetail);
     }

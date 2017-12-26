@@ -21,16 +21,16 @@
     <!-- 还款来源，产品名称，借款人，借款金额-->
     <sql id="cash_query_criteria">
         <if test="query != null and query.money != null">
-            and money like concat('%', #{query.money}, '%')
+            and bd.money like concat('%', #{query.money}, '%')
         </if>
         <if test="query != null and query.cpname != null">
-            and cpname like concat('%', #{query.cpname}, '%')
+            and bd.cpname like concat('%', #{query.cpname}, '%')
         </if>
         <if test="query != null and query.rname != null">
-            and rname like concat('%', #{query.rname}, '%')
+            and bd.rname like concat('%', #{query.rname}, '%')
         </if>
         <if test="query != null and query.hksource != null">
-            and hksource like concat('%', #{query.hksource}, '%')
+            and bd.hksource like concat('%', #{query.hksource}, '%')
         </if>
     </sql>
 
@@ -59,7 +59,6 @@
     <select id="count" resultType="top.zzh.bean.BorrowDetail">
         <![CDATA[
             select count(bdid) from t_borrowdetail
-
         ]]>
     </select>
 
