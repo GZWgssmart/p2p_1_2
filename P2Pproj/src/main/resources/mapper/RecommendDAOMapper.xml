@@ -39,7 +39,7 @@
     <select id="listPagerCriteria" resultType="recommend">
         select id,tid,tname,uid,rname,`date` from t_recommend where 1=1
         <include refid="cash_query_criteria"/>
-        limit #{pager.beginIndex}, #{pager.pageSize}
+        order by `date` desc limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long">
         select count(id) from t_recommend where 1=1
@@ -50,4 +50,11 @@
           delete from t_recommend where id=#{id}
         ]]>
     </delete>
+    <!--推荐排行榜-->
+    <select id="recommendRanking" resultType="top.zzh.vo.RecommendVO">
+     select tid,tname,count(tid) as ci from t_recommend
+     where DateDiff(`date`,now())=0
+     group by tid having count(tid)>=1
+     order by ci desc limit 0,10
+    </select>
 </mapper>

@@ -5,7 +5,18 @@ public class RecommendVO {
     private String tname;
     private String rname;
     private String startTime;
+
     private String endTime;
+    private long ci;
+
+    public long getCi() {
+        return ci;
+    }
+
+    public void setCi(long ci) {
+        this.ci = ci;
+    }
+
 
     public long getId() {
         return id;

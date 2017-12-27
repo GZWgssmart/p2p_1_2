@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/Huser")
-public class HuserController {
+class HuserController {
 
     @Autowired
     private HuserService huserService;
