@@ -86,19 +86,8 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var g = '';
-                if (row.isCheck == 0) {
-                    g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-                }
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
                 var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',\'' + '/recommend/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
-                var f = '';
-                if (row.isActive == 0) {
-                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 0 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
-                } else if (row.isActive == 1) {
-                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 1 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
-                }
-                return g + e + d + f;
+                return d;
             }
         }
     ],

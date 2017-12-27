@@ -19,4 +19,6 @@ public interface RecommendDAO extends BaseDAO {
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    Object recommendRanking();
 }
