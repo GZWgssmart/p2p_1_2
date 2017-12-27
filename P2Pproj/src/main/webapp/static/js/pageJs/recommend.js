@@ -134,10 +134,10 @@ function del(id, url) {
             url: url + '?id=' + id,
             dataType: 'json',
             success: function (data) {
-                if (data.message == '删除成功!') {
-                    layer.msg(data.message, {icon: 2, time: 1000});
-                } else {
+                if (data.message == '删除成功') {
                     layer.msg(data.message, {icon: 1, time: 1000});
+                } else {
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
                 refush();
             },
@@ -148,17 +148,7 @@ function del(id, url) {
     });
 }
 
-function edit(name) {
-    $.post("/leave/findLeave/" + name,
-        function (data) {
-            $("#updateForm").autofill(data);
-
-        },
-        "json"
-    );
-}
-
-function deleteMany(url) {
+function delMany(url) {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
         return row.id;
     });
@@ -169,15 +159,16 @@ function deleteMany(url) {
         });
         return;
     }
+
     $("#deleteId").val(row);
     layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
         $.post(
             url,
             {
-                "id": $("#deleteId").val()
+                "ids": $("#deleteId").val()
             },
             function (data) {
-                if (data.message == "删除成功!") {
+                if (data.message == "删除成功") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                     refush();
                 } else {
@@ -188,3 +179,4 @@ function deleteMany(url) {
         );
     });
 }
+

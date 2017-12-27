@@ -25,6 +25,10 @@ public class RecommendServiceImpl extends AbstractService implements RecommendSe
     public void save(Object obj) {
         recommendDAO.save(obj);
     }
+    @Override
+    public void remove(Object obj) {
+        recommendDAO.remove(obj);
+    }
 
     @Override
     public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {

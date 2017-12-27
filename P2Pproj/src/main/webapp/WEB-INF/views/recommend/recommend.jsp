@@ -58,11 +58,13 @@
                 </div>
                 <div class="panel-footer">
                     <button class="btn btn-primary" onclick="doSearch();">搜索</button>
+                    <button class="btn btn-primary" onclick="doSearchAll();" style="margin-left:5px">搜索所有</button>
                 </div>
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
+            <input type="hidden" value=""  id="deleteId"/>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-                <button id="btn_delete" onclick="deleteMany();" type="button" class="btn btn-primary"
+                <button id="btn_delete" onclick="delMany('recommend/delMany');" type="button" class="btn btn-primary"
                         style="margin-left:5px">
                     <i class="glyphicon glyphicon-remove"></i>批量删除
                 </button>
@@ -107,6 +109,14 @@
             url: '/recommend/pager_criteria',
             query: {tname: tname, rname: rname, startTime: startTime, endTime: endTime}
         });
+    }
+    function doSearchAll() {
+        $("#tname").val("");
+        $("#rname").val("");
+        $("#startTime").val("");
+        $("#endTime").val("");
+        $("#endTime").val("");
+        doSearch();
     }
 </script>
 <script src="<%=path%>/static/js/jquery.datetimepicker.js"></script>
