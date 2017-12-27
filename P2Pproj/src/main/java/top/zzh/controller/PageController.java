@@ -21,18 +21,15 @@ public class PageController {
 
     @RequestMapping("users")
     public String users(){
-        return "manager/user";
+        return "manager/borrowapply";
     }
 
     @RequestMapping("user")
     public String user(HttpSession session){
-
         if(session.getAttribute(Constants.USER_IN_SESSION)==null || session.getAttribute(Constants.USER_IN_SESSION)==""){
 
             return "user/nopower";
         }
-
-
         return "user/userindex";
     }
     @RequestMapping("chongzhi")

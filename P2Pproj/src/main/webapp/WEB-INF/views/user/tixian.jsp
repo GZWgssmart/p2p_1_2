@@ -35,6 +35,7 @@
                 <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;" href="<%=path%>/page/history">兑换历史</a></span></li>
                 <li style="position:relative;"> <span> <a href="<%=path%>/page/xitong"><i class="dot dot08"></i>系统信息 </a> </span> </li>
                 <li><span><a href="<%=path%>/page/zhanghu"><i class="dot dot09"></i>账户设置</a></span></li>
+                <li><span><a href="<%=path%>/luser/logout"><i class="dot dot10"></i>安全退出</a></span></li>
             </ul>
         </div>
         <label id="typeValue" style="display:none;"> </label>
@@ -202,8 +203,7 @@
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
 </body>
-</html>
 <script src="<%=path%>/static/js/jquery.datetimepicker.js" type="text/javascript"></script>
 <script src="<%=path%>/static/js/datepicker.js" type="text/javascript"></script>
-</body>
 </html>
+

@@ -3,6 +3,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.BorrowApply;
 import top.zzh.common.Pager;
 import top.zzh.dao.RoleDAO;
 import top.zzh.service.RoleService;
@@ -44,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Object getById(Long id) {
+    public BorrowApply getById(Long id) {
         return null;
     }
 

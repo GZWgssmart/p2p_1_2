@@ -7,7 +7,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>推荐管理</title>
-    <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
     <link href="<%=path%>/static/css/jquery.datetimepicker.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
@@ -77,9 +77,8 @@
     </div>
 </div>
 
-</div>
 <%--网站信息的修改--%>
-<jsp:include page="../common/bootstraptablejs.jsp"></jsp:include>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
 <script type="text/javascript">
     <%--bootstrap时间插件--%>
     $("#startTime").datetimepicker({

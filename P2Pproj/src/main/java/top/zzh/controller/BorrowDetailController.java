@@ -4,7 +4,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +22,9 @@ import top.zzh.vo.ControllerStatusVO;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by 曾志湖 on 2017/12/24.
@@ -31,6 +37,8 @@ public class BorrowDetailController {
     private Logger logger = LoggerFactory.getLogger(BorrowDetailController.class);
     @Autowired
     private BorrowDetailService borrowDetailService;
+
+    private BorrowDetailVO borrowDetail;
 
     @RequestMapping("save")
     @ResponseBody
@@ -63,24 +71,16 @@ public class BorrowDetailController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, BorrowApplyVO borrowDetail) {
+    public Pager pagerCriteria(int pageIndex, int pageSize) {
         logger.info("借款详情信息分页+条件查询");
-        return borrowDetailService.listPagerCriteria(page, rows, borrowDetail);
+        return borrowDetailService.listPagerCriteria(pageIndex, pageSize, borrowDetail);
     }
 
-    @RequestMapping("export")
-    public void exportExcel(HttpServletResponse response, BorrowDetailVO borrowDetail) {
-        logger.info("导出借款详情Excel表格");
-        Workbook workbook = borrowDetailService.export(borrowDetail);
-        response.setCharacterEncoding("utf-8");
-        response.setHeader("Content-disposition", "attachment; filename=recommend.xlsx");
-        response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        try {
-            OutputStream out = response.getOutputStream();
-            workbook.write(out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    public void setBorrowDetail(BorrowDetailVO borrowDetail) {
+        this.borrowDetail = borrowDetail;
+    }
+    public BorrowDetailVO getBorrowDetail() {
+        return borrowDetail;
     }
 }

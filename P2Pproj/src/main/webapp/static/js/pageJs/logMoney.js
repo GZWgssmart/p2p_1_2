@@ -20,7 +20,6 @@ $('#mytab').bootstrapTable({
     clickToSelect: true,//是否启用点击选中行
     toolbarAlign: 'right',//工具栏对齐方式
     buttonsAlign: 'right',//按钮对齐方式
-    toolbar: '#toolbar',
     search: true,
     uniqueId: "id",                     //每一行的唯一标识，一般为主键列
     showExport: true,

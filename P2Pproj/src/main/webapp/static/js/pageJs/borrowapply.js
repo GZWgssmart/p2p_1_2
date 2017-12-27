@@ -2,14 +2,14 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/recommend/pager_criteria",//要请求数据的文件路径
+    url: "/borrowapply/pager_criteria",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
     sortable: true, //是否启用排序 sortOrder: "ID asc",
     sortOrder: "ID asc",
     pagination: true,//是否分页
-    //queryParamsType: 'limit',//查询参数组织方式
+    queryParamsType: 'limit',//查询参数组织方式
     queryParams: queryParams,//请求服务器时所传的参数
     sidePagination: 'server',//指定服务器端分页
     pageNumber: 1, //初始化加载第一页，默认第一页
@@ -21,7 +21,7 @@ $('#mytab').bootstrapTable({
     toolbarAlign: 'right',//工具栏对齐方式
     buttonsAlign: 'right',//按钮对齐方式
     search: true,
-    uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+    uniqueId: "baid",                     //每一行的唯一标识，一般为主键列
     showExport: true,
     exportDataType: 'all',
     columns: [
@@ -36,36 +36,65 @@ $('#mytab').bootstrapTable({
         },
 
         {
-            title: '推荐人编号',
-            field: 'tid',
+            title: '真实姓名',
+            field: 'rname',
             align: 'center',
             sortable: true
         },
 
         {
-            title: '推荐人姓名',
-            field: 'tname',
+            title: '申请金额',
+            field: 'money',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '被推荐人编号',
-            field: 'uid',
+            title: '借款人',
+            field: 'uname',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '被推荐人姓名',
-            field: 'rname',
+            title: '借款类型',
+            field: 'bzname',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '创建时间',
-            field: 'date',
+            title: '标种',
+            field: 'bzid',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '审核状态',
+            field: 'state',
+            align: 'center',
+            formatter: function (value, row, index) {
+                if (value == 0) {
+                    //表示激活状态
+                    return '<span style="color:green" >已审核</span>';
+                } else if(value==1){
+                    //表示激活状态
+                    return '<span style="color:red">未审核</span>';
+                }
+            }
+        }
+        ,
+        {
+            title: '借款期限',
+            field: 'term',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '截止时间',
+            field: 'deadline',
             align: 'center',
             sortable: true,
             formatter: function (value) {
@@ -76,7 +105,7 @@ $('#mytab').bootstrapTable({
                 var h = date.getHours();
                 var mi = date.getMinutes();
                 var ss = date.getSeconds();
-                return y + '-' + m + '-' + d;
+                return y + '-' + m + '-' + d ;
             }
         }
         ,
@@ -85,8 +114,9 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',\'' + '/recommend/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
-                return d;
+                var g='';
+                g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+','+row.state+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                return g;
             }
         }
     ],
@@ -104,7 +134,7 @@ $('#mytab').bootstrapTable({
             };
         }
     }
-});
+})
 
 //请求服务数据时所传参数
 function queryParams(params) {
@@ -121,61 +151,32 @@ function queryParams(params) {
     }
 }
 
-//刷新表格
-function refush() {
-    $('#mytab').bootstrapTable('refresh');
-}
 
-function del(id, url) {
-    layer.confirm('确认要删除吗？', function (index) {
-        $.ajax({
-            type: 'POST',
-            url: url + '?id=' + id,
-            dataType: 'json',
-            success: function (data) {
-                if (data.message == '删除成功') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
-                }
-                refush();
-            },
-            error: function (data) {
-                console.log(data.msg);
-            },
-        });
-    });
-}
-
-function delMany(url) {
-    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        return row.id;
-    });
-    if (row == "") {
-        layer.msg('删除失败，请勾选数据!', {
-            icon: 2,
-            time: 2000
-        });
-        return;
-    }
-
-    $("#deleteId").val(row);
-    layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
+function shenhe(id,state) {
+    $("#shenhe").click(function () {
         $.post(
-            url,
-            {
-                "ids": $("#deleteId").val()
-            },
+            "/borrowapply/updateState/"+id+"/"+state,
+            $("#shenheform").serialize(),
             function (data) {
-                if (data.message == "删除成功") {
+                if (data.result == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                     refush();
                 } else {
                     layer.msg(data.message, {icon: 2, time: 1000});
+                    refush();
                 }
-                refush();
             }, "json"
         );
     });
 }
+
+
+//查询按钮事件
+$('#search_btn').click(function () {
+    $('#mytab').bootstrapTable('refresh', {url: '/borrowapply/pager_criteria'});
+})
+function refush() {
+    $('#mytab').bootstrapTable('refresh', {url: '/borrowapply/pager_criteria'});
+}
+
 
