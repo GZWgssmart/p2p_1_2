@@ -35,14 +35,14 @@
         where uid =#{uid}
     </update>
     <sql id="query_criteria">
-        <if test="query != null and query.dateTime != null">
-            and  #{query.date}<![CDATA[<=]]> lg.dateTime<![CDATA[<=]]> #{query.dateTime}
+        <if test="query != null and query.dateTime != null and query.dateTime !='' ">
+            and  #{query.date}<![CDATA[<]]> lg.date_time <![CDATA[<=]]> #{query.dateTime}
         </if>
         <if test="query != null and query.rname != null and query.rname != ''">
             and u.rname like concat('%', #{query.rname}, '%')
         </if>
     </sql>
-    <select id="listPagerCriteria" resultType="logTx">
+    <select id="listPagerCriteria" resultType="top.zzh.vo.LogTxVO">
        select u.rname,lg.banktype,lg.bankcard,lg.money,lg.date_time,lg.state
        from t_logtx as lg ,t_user as u where lg.uid=u.uid
        <include refid="query_criteria"/>

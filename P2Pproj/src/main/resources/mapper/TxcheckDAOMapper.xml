@@ -25,10 +25,27 @@
         where id=#{id}
     </update>
 
-    <select id="listPager" resultType="top.zzh.vo.TxCheckVO">
-        select u.rname,lg.bankcard,lg.banktype,lg.money,tx.isok,tx.excute,tx.date_time from t_txcheck as tx ,t_logtx as lg,t_huser as u
+    <sql id="query_criteria">
+        <if test="query != null and query.money != null and query.money !='' ">
+            and  lg.money <![CDATA[<=]]> #{query.money}
+        </if>
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and u.rname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="top.zzh.vo.TxCheckVO">
+        select u.rname,lg.bankcard,lg.banktype,lg.money,tx.id,tx.isok,tx.excute,tx.date_time
+        from t_txcheck as tx ,t_logtx as lg,t_huser as u
         where u.huid=tx.huid and tx.txid=lg.id
+        <include refid="query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(lg.id) from t_txcheck as tx ,t_logtx as lg,t_huser as u
+        where u.huid=tx.huid and tx.txid=lg.id
+        <include refid="query_criteria"/>
     </select>
 
 

@@ -11,6 +11,10 @@ import java.util.List;
  */
 @Repository
 public interface TxcheckDAO extends BaseDAO {
+
     @Override
-    List<Object> listPager(@Param("pager") Pager pager);
+    List<Object> listPagerCriteria(@Param("pager") Pager pager,@Param("query") Object obj);
+
+    @Override
+    Long countCriteria(@Param("query") Object obj);
 }

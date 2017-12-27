@@ -14,8 +14,12 @@ public class TxCheckVO {
     private Integer isok;//审核是否通过，0通过，1未通过
     private String excute;//审核理由
     private Timestamp dateTime;//审核时间
+    private  Long id;
 
-    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, Integer isok, String excute, Timestamp dateTime) {
+    public TxCheckVO() {
+    }
+
+    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, Integer isok, String excute, Timestamp dateTime,Long id) {
         this.rname = rname;
         this.bankcard = bankcard;
         this.banktype = banktype;
@@ -23,6 +27,7 @@ public class TxCheckVO {
         this.isok = isok;
         this.excute = excute;
         this.dateTime = dateTime;
+        this.id=id;
     }
 
     public String getRname() {
@@ -79,5 +84,13 @@ public class TxCheckVO {
 
     public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

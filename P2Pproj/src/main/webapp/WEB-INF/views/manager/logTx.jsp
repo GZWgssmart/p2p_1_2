@@ -6,14 +6,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资金流向管理</title>
+    <title>提现记录</title>
     <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>资金流向管理</h5>
+            <h5>提现记录</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up"></i>
@@ -40,11 +40,15 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">姓名：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="rname" />
+                        <input type="text" class="form-control" id="rname" id="search_name"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">时间：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">开始时间：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" id="date"/>
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">终止时间：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="dateTime"/>
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
                         <button class="btn btn-primary" id="search_btn">查询</button>
@@ -61,7 +65,7 @@
 
 <%--网站信息的修改--%>
 <jsp:include page="../common/bootstraptablejs.jsp"></jsp:include>
-<script src="<%=path%>/static/js/pageJs/logMoney.js"></script>
+<script src="<%=path%>/static/js/pageJs/logTx.js"></script>
 
 </body>
 </html>
