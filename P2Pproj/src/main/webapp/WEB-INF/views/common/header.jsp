@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <header>
     <div class="header-top min-width">
         <div class="container fn-clear"> <strong class="fn-left">咨询热线：400-668-6698<span class="s-time">服务时间：9:00 - 18:00</span></strong>
@@ -17,7 +18,9 @@
                     <div class=""><a href="<%=path%>/page/register" class="c-orange" title="免费注册">免费注册</a></div>
                 </li>
                 <li>
-                    <div class=""><a href="<%=path%>/page/login" class="js-login" title="登录">登录</a></div>
+                    <div>
+                        <a href="<%=path%>/page/login" class="js-login" title="登录">登录</a>
+                    </div>
                 </li>
             </ul>
         </div>

@@ -2,9 +2,10 @@ package top.zzh.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.zzh.bean.ShBorrow;
 import top.zzh.common.Pager;
+import top.zzh.vo.ShBorrowVO;
 
+import java.util.*;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public interface ShBorrowDAO extends BaseDAO{
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
     @Override
-    Long countCriteria(@Param("pager") Object obj);
+    Long countCriteria(@Param("query") Object obj);
+
 
 }

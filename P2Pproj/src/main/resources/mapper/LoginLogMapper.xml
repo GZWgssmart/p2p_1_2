@@ -11,10 +11,43 @@
         ]]>
     </insert>
 
+    <delete id="removeById" parameterType="top.zzh.bean.LoginLog">
+        <![CDATA[
+          delete from t_login_log where id = #{id}
+        ]]>
+    </delete>
     <select id="getByName" resultType="long">
         <![CDATA[
           select uid from t_user  where uname=#{name}
         ]]>
     </select>
 
+    <update id="updateByUserId" parameterType="top.zzh.bean.LoginLog">
+        <![CDATA[
+          update t_login_log set logout_time = CURRENT_TIME,is_online = 0 where user_id = #{userId} and is_online = 1
+        ]]>
+    </update>
+
+    <!-- 状态，退出时间-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.is_online != null and query.is_online !=''">
+            and ll.is_online like concat('%', #{query.is_online}, '%')
+        </if>
+        <if test="query != null and query.logout_time != null and query.logout_time !=''">
+            and ll.logout_time <![CDATA[<=]]> #{query.logout_time}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="top.zzh.query.LoginLogQuery">
+        select u.uname,ll.login_time,ll.login_ip,ll.is_online,ll.logout_time
+        from t_login_log ll,t_user u where ll.user_id = u.uid
+        <include refid="cash_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+            select count(id) from t_login_log ll,t_user u where ll.user_id = u.uid
+        ]]>
+    </select>
 </mapper>

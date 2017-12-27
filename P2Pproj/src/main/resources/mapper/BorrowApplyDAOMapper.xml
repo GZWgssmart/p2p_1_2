@@ -19,54 +19,53 @@
 
     <update id="update" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-            update t_borrowapply set rname = #{rname},money = #{money},bzid = #{bzid},type = #{type},
-            term = #{term},deadline = #{deadline} where baid = #{baid}
+            update t_borrowapply set money = #{money},bzid = #{bzid},type = #{type},
+            term = #{term},deadline = #{deadline} ,state = 1 where baid = #{baid}
         ]]>
     </update>
 
-    <!-- 真实姓名，申请借款金额，借款期限，借款类型，截止时间-->
+    <update id="updateState" parameterType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+           update t_borrowapply set state = 1,time = CURRENT_TIME where baid = #{baid}
+        ]]>
+    </update>
+
+    <!-- 真实姓名，申请借款金额-->
     <sql id="cash_query_criteria">
-        <if test="query != null and query.rname != null">
+        <if test="query != null and query.rname != null and query.rname!=''">
             and ba.rname like concat('%', #{query.rname}, '%')
         </if>
-        <if test="query != null and query.money != null">
+        <if test="query != null and query.money != null and query.money!=''">
             and ba.money like concat('%', #{query.money}, '%')
-        </if>
-        <if test="query != null and query.term != null">
-            and ba.term like concat('%', #{query.term}, '%')
-        </if>
-        <if test="query != null and query.type != null">
-            and ba.type like concat('%', #{query.type}, '%')
-        </if>
-        <if test="query != null and query.deadline != null">
-            and ba.deadline like concat('%', #{query.deadline}, '%')
         </if>
     </sql>
 
     <select id="listPager" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-       select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
-        where ba.uid = u.uid and ba.bzid = b.bzid
+       select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,ba.type,ba.deadline from
+      t_borrowapply ba,t_user u,t_bz b
+      where ba.uid = u.uid and ba.bzid = b.bzid
          limit #{pager.beginIndex}, #{pager.pageSize}
          ]]>
     </select>
 
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,ba.type,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b
         where ba.uid = u.uid and ba.bzid = b.bzid
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
+        select ba.baid,ba.bzid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
         where ba.uid = u.uid and ba.bzid = b.bzid
     </select>
 
-    <select id="countCriteria" resultType="top.zzh.bean.BorrowApply">
+    <select id="countCriteria" resultType="long">
        <![CDATA[
-            select count(baid) from t_borrowapply where 1=1
-            limit #{pager.beginIndex}, #{pager.pageSize}
+            select count(baid) from t_borrowapply ba,t_user u,t_bz b
+        where ba.uid = u.uid and ba.bzid = b.bzid
         ]]>
     </select>
 

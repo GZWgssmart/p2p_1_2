@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import top.zzh.bean.ShBorrow;
 import top.zzh.common.Pager;
 import top.zzh.dao.ShBorrowDAO;
+import top.zzh.service.ShBorrowService;
 import top.zzh.vo.ShBorrowVO;
 import java.util.List;
 /**
@@ -14,7 +15,8 @@ import java.util.List;
 public class ShBorrowTest extends BaseTest {
 
     @Autowired
-    private ShBorrowDAO shBorrowDAO;
+    private ShBorrowService shBorrowDAO;
+
 
     @Test
     public void save(){
@@ -36,29 +38,36 @@ public class ShBorrowTest extends BaseTest {
     }
 
     @Test
+    public void updateState(){
+        ShBorrow borrow = new ShBorrow();
+        borrow.setShid(6L);
+        borrow.setIsok((byte)1);
+        borrow.setExcute("审核通过");
+        shBorrowDAO.update(borrow);
+    }
+    @Test
     public void removeById(){
         shBorrowDAO.removeById(2L);
     }
 
     @Test
     public void listPager(){
-        Pager pager=new Pager(1,2);
-        List<Object> objectList=shBorrowDAO.listPager(pager);
-        for(Object obj:objectList){
+        Pager pager = shBorrowDAO.listPager(1,2);
+        for(Object obj:pager.getRows()){
             ShBorrowVO borrowVO=(ShBorrowVO) obj;
             System.out.println(borrowVO.getExcute());
         }
     }
 
-    @Test
-    public void  listPagerCriteria(){
-        ShBorrow shBorrowVO = new ShBorrow();
-        shBorrowVO.setExcute("审核通过");
-        Pager pager=new Pager(1,2);
-        List<Object> objectList=shBorrowDAO.listPagerCriteria(pager,shBorrowVO);
-        for(Object obj:objectList){
-            ShBorrow borrowVO=(ShBorrow) obj;
-            System.out.println(borrowVO.getExcute());
-        }
-    }
+//    @Test
+//    public void  listPagerCriteria(){
+//        ShBorrow shBorrowVO = new ShBorrow();
+//        shBorrowVO.setExcute("审核通过");
+//        Pager pager=new Pager(1,2);
+//        List<Object> objectList=shBorrowDAO.listPagerCriteria(pager,shBorrowVO);
+//        for(Object obj:objectList){
+//            ShBorrow borrowVO=(ShBorrow) obj;
+//            System.out.println(borrowVO.getExcute());
+//        }
+//    }
 }

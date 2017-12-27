@@ -17,11 +17,13 @@ public class BorrowApply {
     private String term;//借款期限
     private Date deadline;//截止时间
     private String bzname;
+    private String uname;
     private Long int1;
     private String str1;
 
-    public BorrowApply(String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline,Long int1, String str1) {
+    public BorrowApply(String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline,Long int1, String str1) {
         this.baid = baid;
+        this.uname = uname;
         this.bzname = bzname;
         this.rname = rname;
         this.money = money;
@@ -34,6 +36,14 @@ public class BorrowApply {
         this.deadline = deadline;
         this.int1 = int1;
         this.str1 = str1;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUname() {
+        return uname;
     }
 
     public void setBzname(String bzname) {

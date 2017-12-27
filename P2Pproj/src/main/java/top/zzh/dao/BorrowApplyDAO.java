@@ -2,6 +2,7 @@ package top.zzh.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import top.zzh.bean.BorrowApply;
 import top.zzh.common.Pager;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface BorrowApplyDAO extends BaseDAO{
 
     @Override
     Long countCriteria(@Param("pager") Object obj);
+
+    //修改审核状态
+    void updateState(BorrowApply borrowApply);
 }

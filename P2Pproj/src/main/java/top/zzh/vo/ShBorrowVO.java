@@ -13,14 +13,14 @@ public class ShBorrowVO {
     private String rname;//审核人姓名
     private Integer isok;//审核是否通过（0未通过，1已通过）
     private String excute;//审核理由
-    private Timestamp date;//审核时间
+    private String date;//审核时间
     private Long baid;//借款人id
-    private String rname1;//借款人姓名
+    private String nickname;//借款人姓名
 
     public ShBorrowVO() {
     }
 
-    public ShBorrowVO(Long shid, Long huid, String rname, Integer isok, String excute, Timestamp date, Long baid, String rname1) {
+    public ShBorrowVO(Long shid, Long huid, String rname, Integer isok, String excute, String date, Long baid, String nickname) {
         this.shid = shid;
         this.huid = huid;
         this.rname = rname;
@@ -28,7 +28,7 @@ public class ShBorrowVO {
         this.excute = excute;
         this.date = date;
         this.baid = baid;
-        this.rname1 = rname1;
+        this.nickname = nickname;
     }
 
     public Long getShid() {
@@ -71,11 +71,11 @@ public class ShBorrowVO {
         this.excute = excute;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -87,11 +87,11 @@ public class ShBorrowVO {
         this.baid = baid;
     }
 
-    public String getRname1() {
-        return rname1;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setRname1(String rname1) {
-        this.rname1 = rname1;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

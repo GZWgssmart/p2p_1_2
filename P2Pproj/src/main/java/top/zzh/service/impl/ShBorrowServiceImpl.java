@@ -6,6 +6,9 @@ import top.zzh.bean.ShBorrow;
 import top.zzh.dao.ShBorrowDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.ShBorrowService;
+import top.zzh.vo.ShBorrowVO;
+
+import java.util.List;
 
 /**
  * Created by 曾志湖 on 2017/12/22.
@@ -21,5 +24,6 @@ public class ShBorrowServiceImpl extends AbstractService implements ShBorrowServ
         super.setBaseDAO(shBorrowDAO);
         this.shBorrowDAO = shBorrowDAO;
     }
+
 
 }

@@ -13,6 +13,8 @@ import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BorrowApplyService;
 import top.zzh.vo.ControllerStatusVO;
 
+import java.util.Date;
+
 /**
  * @author 曾志湖
  * @time 12.25
@@ -56,11 +58,43 @@ public class BorrowApplyController {
         return statusVO;
     }
 
+    @RequestMapping("getById")
+    @ResponseBody
+    public ControllerStatusVO getById(@PathVariable("baid") Long baid){
+        ControllerStatusVO statusVO = null;
+        try {
+            borrowApplyService.getById(baid);
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
+        }
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
+        return statusVO;
+    }
+
+    @RequestMapping("updateState/{id}/{state}")
+    @ResponseBody
+    public ControllerStatusVO updateState(@PathVariable("id") Long id,@PathVariable("state") int state ,BorrowApply borrowApply){
+       logger.info("审核借款人");
+       borrowApply.setBaid(id);
+       borrowApply.setState((byte)state);
+        ControllerStatusVO statusVO = null;
+        try {
+            borrowApplyService.updateState(borrowApply);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_FAIL);
+        }
+        return statusVO;
+    }
+
+
+
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, BorrowApply borrowApply) {
+    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowApply borrowApply) {
         logger.info("借款基本信息分页+条件查询");
-        return borrowApplyService.listPagerCriteria(page, rows, borrowApply);
+        return borrowApplyService.listPagerCriteria(pageIndex, pageSize, borrowApply);
     }
+
 
 }

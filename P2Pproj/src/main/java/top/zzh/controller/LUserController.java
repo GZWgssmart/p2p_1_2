@@ -1,23 +1,26 @@
 package top.zzh.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import top.zzh.bean.BorrowApply;
 import top.zzh.bean.LoginLog;
 import top.zzh.bean.User;
 import top.zzh.bean.UserRole;
 import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
+import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
+import top.zzh.query.LoginLogQuery;
 import top.zzh.service.LoginLogService;
 import top.zzh.service.RoleService;
 import top.zzh.service.UserService;
@@ -28,12 +31,13 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/12/21 0021.
+ * Created by 赖勇建 on 2017/12/21 0021.
  */
 @Controller
 @RequestMapping("/luser")
 public class LUserController {
 
+    private Logger logger = LoggerFactory.getLogger(LUserController.class);
     @Autowired
     private LoginLogService loginLogService;
 
@@ -43,6 +47,8 @@ public class LUserController {
     @Autowired
     private RoleService roleService;
 
+    private  LoginLogQuery loginLogQuery;
+
     @GetMapping("login_page")
     public String showLogin(){
         return "/user/login";
@@ -51,6 +57,7 @@ public class LUserController {
     @PostMapping("login")
     @ResponseBody
     public ControllerStatusVO login(HttpSession session, String name, HttpServletRequest request, String password, String code){
+        logger.info("登录用户");
         Object obj = session.getAttribute(Constants.CODE_IN_SESSION);
         ControllerStatusVO statusVO = null;
         if (obj != null) {
@@ -97,7 +104,7 @@ public class LUserController {
     @PostMapping("gainCode")
     @ResponseBody
     public Integer gainCode(String phone, HttpServletRequest request){
-        System.out.println(phone);
+        logger.info("获取手机验证码");
         String result = GetPhoneMessage.getResult(phone);
         return Integer.parseInt(result);
     }
@@ -105,6 +112,7 @@ public class LUserController {
     @RequestMapping("forgetPassword")
     @ResponseBody
     public ControllerStatusVO forgetPassword(HttpServletRequest request,String phone,HttpSession session){
+        logger.info("忘记密码");
         System.out.println(phone);
         ControllerStatusVO statusVO=null;
         User user=userService.getByPhone(phone);
@@ -150,14 +158,15 @@ public class LUserController {
     @RequestMapping("checkPhone")
     @ResponseBody
     public ControllerStatusVO checkPhone(String phone){
+        logger.info("验证手机号是否正确");
         ControllerStatusVO statusVO=null;
         User user=userService.getByPhone(phone);
         if(user!=null){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_ERROR_ALREADYEXIST);
         }
-
         return  statusVO;
     }
+
 
     @PostMapping("registerSave")
     @ResponseBody
@@ -177,10 +186,38 @@ public class LUserController {
         return statusVO;
     }
 
-
     @GetMapping("registerSuccess")
     public String registerSuccess(){
 
         return "/user/registerSuccess";
+    }
+
+    @RequestMapping("loginlog")
+    public String loginlogpage(){
+        return "manager/loginlog";
+    }
+
+
+
+    @RequestMapping("pager_criteria")
+    @ResponseBody
+    public Pager pagerCriteria(int pageIndex, int pageSize) {
+        logger.info("登录日志+条件查询");
+        return loginLogService.listPagerCriteria(pageIndex, pageSize,loginLogQuery);
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpSession session){
+        logger.info("安全退出+退出日志");
+        session.invalidate();
+        return "user/login";
+    }
+
+    public LoginLogQuery getLoginLogQuery() {
+        return loginLogQuery;
+    }
+
+    public void setLoginLogQuery(LoginLogQuery loginLogQuery) {
+        this.loginLogQuery = loginLogQuery;
     }
 }

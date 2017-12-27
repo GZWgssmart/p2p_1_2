@@ -12,14 +12,6 @@
         ]]>
     </insert>
 
-    <update id="update" parameterType="top.zzh.bean.BorrowDetail">
-        <![CDATA[
-          update t_borrowdetail set fpic = #{fpic},ypic = #{ypic},qpic = #{qpic},tpic = #{tpic},mpurpose = #{mpurpose},
-          hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},guarantee = #{guarantee},
-          money = #{money},nprofit = #{nprofit},way = #{way} where bdid = #{bdid}
-        ]]>
-    </update>
-
     <delete id="removeById" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
             delete from t_borrowdetail where bdid = #{bdid}
@@ -29,16 +21,16 @@
     <!-- 还款来源，产品名称，借款人，借款金额-->
     <sql id="cash_query_criteria">
         <if test="query != null and query.money != null">
-            and bd.money like concat('%', #{query.money}, '%')
+            and money like concat('%', #{query.money}, '%')
         </if>
         <if test="query != null and query.cpname != null">
-            and bd.cpname like concat('%', #{query.cpname}, '%')
+            and cpname like concat('%', #{query.cpname}, '%')
         </if>
         <if test="query != null and query.rname != null">
-            and bd.rname like concat('%', #{query.rname}, '%')
+            and rname like concat('%', #{query.rname}, '%')
         </if>
         <if test="query != null and query.hksource != null">
-            and bd.hksource like concat('%', #{query.hksource}, '%')
+            and hksource like concat('%', #{query.hksource}, '%')
         </if>
     </sql>
 
@@ -57,16 +49,18 @@
          ]]>
     </select>
 
-    <select id="countCriteria" resultType="top.zzh.bean.BorrowDetail">
+    <select id="countCriteria" resultType="long">
         <![CDATA[
-            select count(bdid) from t_borrowdetail where 1=1
-            limit #{pager.beginIndex}, #{pager.pageSize}
+            select count(bdid) from t_borrowdetail bd,t_borrowapply ba
+            where ba.baid = bd.baid and ba.money = bd.money
+
         ]]>
     </select>
 
     <select id="count" resultType="top.zzh.bean.BorrowDetail">
         <![CDATA[
             select count(bdid) from t_borrowdetail
+
         ]]>
     </select>
 

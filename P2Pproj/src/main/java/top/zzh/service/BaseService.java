@@ -1,6 +1,7 @@
 package top.zzh.service;
 
 import java.util.*;
+
 import top.zzh.common.Pager;
 
 public interface BaseService {
@@ -9,7 +10,6 @@ public interface BaseService {
     void remove(Object obj);
     void removeById(Long id);
     void update(Object obj);
-
 
     Object getById(Long id);
     List<Object> listAll();

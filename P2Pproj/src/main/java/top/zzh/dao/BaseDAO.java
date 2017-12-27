@@ -20,4 +20,5 @@ public interface BaseDAO {
     List<Object> listPagerCriteria(Pager pager, Object obj);
     Long countCriteria(Object obj);
 
+
 }

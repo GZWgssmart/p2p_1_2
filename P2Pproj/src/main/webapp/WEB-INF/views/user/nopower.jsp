@@ -17,15 +17,9 @@
     <!--弹出框样式-->
     <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
     <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
+
 </head>
 <body>
-<script type="text/javascript">
-    $(function(){
-        swal("没有权限，请先登录！","","error");
-    });
-
-</script>
-
 <!-- 网站头部-->
 <%@include file="../common/header.jsp"%>
 <!--注册-->
@@ -50,6 +44,7 @@
                     <li>
                         <span class="dis">验证码：</span><input type="text" onkeyup="verify(this)" id="jpgVerify" style="width:166px;" class="input" name="code" data-msg="验证码" maxlength="5" tabindex="1" autocomplete="off"/>
                         <img src="<%=path%>/code" style="cursor:pointer;" class="valign" title="点击更换验证码"  onclick="this.src='<%=path%>/code?r=' + Math.random();"/>
+                        <%--<img src="<%=path%>/static/images/code.jpg" id="yanzheng" alt="点击更换验证码" title="点击更换验证码" style="cursor:pointer;" class="valign">--%>
                         <a href="javascript:void(0);" onclick="changge();" class="blue">看不清？换一张</a>
                     </li>
                     <li class="btn">
@@ -63,7 +58,7 @@
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
 </body>
+
 <!--引用登录js-->
 <script type="text/javascript" src="<%=path%>/static/js/lyj/userlogin.js"></script>
-
 </html>
