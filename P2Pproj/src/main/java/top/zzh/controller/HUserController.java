@@ -17,16 +17,18 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/Huser")
-public class HuserController {
+public class HUserController {
 
     @Autowired
     private HuserService huserService;
 
 
-    private Logger logger = LoggerFactory.getLogger(HuserController.class);
+    private Logger logger = LoggerFactory.getLogger(HUserController.class);
 
     @RequestMapping("logout")
     public String logout(HttpSession session){
+        System.out.println("123");
+
         logger.info("安全退出");
         session.invalidate();
         return "manager/login";
