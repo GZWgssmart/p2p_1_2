@@ -2,7 +2,7 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/logMoney/listPager",//要请求数据的文件路径
+    url: "/logMoney/pager_criteria",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -191,10 +191,12 @@ function updatestatus(id, status) {
 }
 //查询按钮事件
 $('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/leave/leaveList'});
+    var rname=$('#rname').val();
+    var date=$('#date').val();
+ $('#mytab').bootstrapTable('refresh', {url: '/logMoney/pager_criteria',query:{date:date,rname:rname}});
 })
 function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/leave/leaveList'});
+    $('#mytab').bootstrapTable('refresh', {url: '/logMoney/pager_criteria'});
 }
 $("#update").click(function () {
     $.post(

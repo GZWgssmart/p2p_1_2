@@ -77,7 +77,7 @@ $('#mytab').bootstrapTable({
                 var h = date.getHours();
                 var mi = date.getMinutes();
                 var ss = date.getSeconds();
-                return y + '-' + m + '-' + d ;
+                return y + '-' + m + '-' + d;
             }
         }
         ,
@@ -86,8 +86,8 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var g='';
-                if(row.isCheck==0){
+                var g = '';
+                if (row.isCheck == 0) {
                     g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
                 }
                 var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
@@ -98,7 +98,7 @@ $('#mytab').bootstrapTable({
                 } else if (row.isActive == 1) {
                     f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 1 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
                 }
-                return g+e + d + f;
+                return g + e + d + f;
             }
         }
     ],
@@ -116,7 +116,7 @@ $('#mytab').bootstrapTable({
             };
         }
     }
-})
+});
 
 //请求服务数据时所传参数
 function queryParams(params) {
@@ -132,21 +132,17 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function doSearch () {
-    var tname=$('#tname').val();
-    var rname=$('#rname').val();
-    var date=$('#rdate').val();
-    var options=$('#mytab').bootstrapTable('refresh', {url: '/recommend/pager_criteria',query:{tname:tname,rname:rname}});
-}
+
 //刷新表格
 function refush() {
     $('#mytab').bootstrapTable('refresh');
 }
-function del(id,url) {
+
+function del(id, url) {
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: url+'?id=' + id,
+            url: url + '?id=' + id,
             dataType: 'json',
             success: function (data) {
                 if (data.message == '删除成功!') {
@@ -162,6 +158,7 @@ function del(id,url) {
         });
     });
 }
+
 function edit(name) {
     $.post("/leave/findLeave/" + name,
         function (data) {

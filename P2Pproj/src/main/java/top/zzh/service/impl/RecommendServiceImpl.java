@@ -12,6 +12,7 @@ import top.zzh.common.Pager;
 import top.zzh.dao.RecommendDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.RecommendService;
+import top.zzh.vo.RecommendVO;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -56,40 +57,4 @@ public class RecommendServiceImpl extends AbstractService implements RecommendSe
         return pager;
     }
 
-    @Override
-    public Workbook export(Recommend recommend) {
-        Pager pager = new Pager(1, recommendDAO.countCriteria(recommend).intValue());
-        List<Object> objectList = recommendDAO.listPagerCriteria(pager, recommend);
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("recommend");
-        createHeadRow(sheet);
-        createContentRows(sheet, objectList);
-        return workbook;
-    }
-
-    private void createHeadRow(Sheet sheet) {
-        Row headRow = sheet.createRow(0);
-        headRow.createCell(0).setCellValue("编号");
-        headRow.createCell(1).setCellValue("推荐人id");
-        headRow.createCell(2).setCellValue("推荐人");
-        headRow.createCell(3).setCellValue("被推荐人id");
-        headRow.createCell(4).setCellValue("被推荐人姓名");
-        headRow.createCell(5).setCellValue("时间");
-    }
-
-    private void createContentRows(Sheet sheet, List<Object> objectList) {
-        int i = 1;
-        for (Object obj : objectList) {
-            Recommend recommend = (Recommend) obj;
-            Row row = sheet.createRow(i);
-            row.createCell(0).setCellValue(recommend.getId());
-            row.createCell(1).setCellValue(recommend.getTid());
-            row.createCell(2).setCellValue(recommend.getTname());
-            row.createCell(3).setCellValue(recommend.getUid());
-            row.createCell(4).setCellValue(recommend.getRname());
-            row.createCell(5).setCellValue(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                    .format(recommend.getDate()));
-            i++;
-        }
-    }
 }

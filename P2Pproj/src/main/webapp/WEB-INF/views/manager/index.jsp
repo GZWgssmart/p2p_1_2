@@ -51,7 +51,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<%=path%>/page/users">前台用户列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="">推荐人管理</a>
+                        <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>

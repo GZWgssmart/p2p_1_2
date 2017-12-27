@@ -14,6 +14,7 @@ import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BankCardService;
 import top.zzh.service.LogMoneyService;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.LogMoneyVO;
 
 /**
  * Created by 陈桢 on 2017/12/26.
@@ -42,9 +43,9 @@ public class LogMoneyController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int rows, LogMoney logMoney) {
+    public Pager pagerCriteria(int pageIndex, int pageSize,LogMoneyVO logMoneyVO) {
         logger.info("资金流向记录分页+条件查询");
-        return LogMoneyService.listPagerCriteria(page, rows, logMoney);
+        return LogMoneyService.listPagerCriteria(pageIndex, pageSize, logMoneyVO);
     }
 
     @RequestMapping("save")

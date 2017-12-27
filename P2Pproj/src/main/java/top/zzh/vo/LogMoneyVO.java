@@ -14,9 +14,12 @@ public class LogMoneyVO {
     private Integer type;//类型，0充值，1提现，2回款，3系统金额（公司奖励等）
     private BigDecimal in;//收入
     private BigDecimal out;//支出
-    private Timestamp date;//时间
+    private String date;//时间
 
-    public LogMoneyVO(String rname, String face, Integer type, BigDecimal in, BigDecimal out, Timestamp date) {
+    public LogMoneyVO() {
+    }
+
+    public LogMoneyVO(String rname, String face, Integer type, BigDecimal in, BigDecimal out, String date) {
         this.rname = rname;
         this.face = face;
         this.type = type;
@@ -65,11 +68,11 @@ public class LogMoneyVO {
         this.out = out;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
