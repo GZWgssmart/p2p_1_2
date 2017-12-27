@@ -17,4 +17,6 @@ public interface LogTxDAO extends BaseDAO{
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+
 }

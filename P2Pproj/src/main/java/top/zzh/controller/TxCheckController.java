@@ -49,6 +49,8 @@ public class TxCheckController {
     public ControllerStatusVO leaveShenHe(TxCheck txCheck){
         logger.info("新增提现记录！");
         System.out.println(txCheck.getExcute());
+        System.out.println(txCheck.getIsok());
+        System.out.println(txCheck.getId());
         try {
             txcheckService.update(txCheck);
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);

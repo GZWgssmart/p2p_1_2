@@ -15,14 +15,14 @@
         update t_txcheck
         ]]>
         <set>
-            <if test="isok!=null">
-                isok=#{isok}
+            <if test="query.isok!=null">
+                isok=#{query.isok},
             </if>
-            <if test="excute!=null">
-                excute=#{excute}
+            <if test="query.excute!=null">
+                excute=#{query.excute},
             </if>
         </set>
-        where id=#{id}
+        where id=#{query.id}
     </update>
 
     <sql id="query_criteria">

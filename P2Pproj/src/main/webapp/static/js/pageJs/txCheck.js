@@ -178,10 +178,30 @@ function edit(name) {
     );
 }
 function shenhe(name) {
-    $("#id").val(name);
+    $("#leaveid").val(name);
 }
 
-
+function updatestatus(id, status) {
+    $.post("/leave/updateStatus/" + id + "/" + status,
+        function (data) {
+            if (status == 0) {
+                if (data.message == "ok") {
+                    layer.msg("已激活", {icon: 1, time: 1000});
+                } else {
+                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
+                }
+            } else {
+                if (data.message == "ok") {
+                    layer.msg("已冻结", {icon: 2, time: 1000});
+                } else {
+                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
+                }
+            }
+            refush();
+        },
+        "json"
+    );
+}
 //查询按钮事件
 $('#search_btn').click(function () {
     var rname=$('#rname').val();
@@ -211,7 +231,7 @@ $("#shenhe").click(function () {
         "/txCheck/leaveShenHe",
         $("#shenheform").serialize(),
         function (data) {
-            if (data.message == "ok!") {
+            if (data.result == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
                 refush();
             } else {

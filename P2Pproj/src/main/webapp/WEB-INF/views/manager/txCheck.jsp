@@ -71,12 +71,12 @@
                 </h4>
             </div>
             <form class="form-horizontal" id="shenheform" >
-                <input class="hidden" id="id" name="id">
+                <input class="hidden" id="leaveid" name="id" aria-required="true">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">审核操作：</label>
                         <div class="col-sm-8">
-                            <select class="form-control" required name="isok">
+                            <select class="form-control"  name="isok" aria-required="true">
                                 <option value="0">审核通过</option>
                                 <option value="1">审核不通过</option>
                             </select>

@@ -17,4 +17,7 @@ public interface TxcheckDAO extends BaseDAO {
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    @Override
+    void update(@Param("query") Object obj);
 }

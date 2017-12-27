@@ -11,15 +11,15 @@ public class TxCheckVO {
     private String bankcard;//银行卡号
     private String banktype;//所属银行
     private BigDecimal money;//提现金额
-    private Integer isok;//审核是否通过，0通过，1未通过
+    private String isok;//审核是否通过，0通过，1未通过
     private String excute;//审核理由
     private Timestamp dateTime;//审核时间
-    private  Long id;
+    private  String id;
 
     public TxCheckVO() {
     }
 
-    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, Integer isok, String excute, Timestamp dateTime,Long id) {
+    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, String isok, String excute, Timestamp dateTime,String id) {
         this.rname = rname;
         this.bankcard = bankcard;
         this.banktype = banktype;
@@ -62,11 +62,11 @@ public class TxCheckVO {
         this.money = money;
     }
 
-    public Integer getIsok() {
+    public String getIsok() {
         return isok;
     }
 
-    public void setIsok(Integer isok) {
+    public void setIsok(String isok) {
         this.isok = isok;
     }
 
@@ -86,11 +86,11 @@ public class TxCheckVO {
         this.dateTime = dateTime;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
