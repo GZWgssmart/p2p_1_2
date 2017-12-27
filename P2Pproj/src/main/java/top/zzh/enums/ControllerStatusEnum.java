@@ -10,6 +10,7 @@ public enum ControllerStatusEnum {
     USER_LOGIN_SUCCESS(100, "ok", "登录成功"),
     USER_LOGIN_ERROR_CODE(101, "error", "验证码错误"),
     USER_LOGIN_FAIL(102, "error", "用户名或密码错误"),
+    USER_LOGIN_PHONEFAIL(102, "error", "手机号或密码错误"),
     USER_ALREADY_LOGIN(111, "logined", "已登录"),
     USER_LOGIN_ERROR_EXIST_POWER(114, "error", "账户不存在或者权限不足！"),
     USER_LOGIN_ERROR_EXIST(115, "error", "账户不存在！"),

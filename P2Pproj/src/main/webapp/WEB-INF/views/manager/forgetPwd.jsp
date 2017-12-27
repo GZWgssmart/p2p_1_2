@@ -29,12 +29,17 @@
 
         <form id="longinForm" name="longinForm" class="m-t" role="form" action="">
             <div class="form-group">
-                <input type="text" name="phone" id="phone" class="form-control" placeholder="手机号" required="">
+                <input type="text" name="phone" id="phone" onblur="husercheckPhone()" class="form-control" placeholder="手机号" required="">
             </div>
             <div class="form-group">
-                <input type="password" name="pwd" id="pwd" class="form-control" placeholder="密码" required="">
+
+                <input type="password" name="code" id="code"  onblur="checkyzm()" style="width: 170px;height: 32px;float: left" placeholder="验证码" required="">
+
+                <input type="button" value="获取手机验证码" id="vcode" onclick="getPhoneCode()"   class="form-control"  style="width: 128px;height: 28px; color:black;" >
+                <br>
             </div>
-            <button type="button" onclick="login();" class="btn btn-primary block full-width m-b">登 录</button>
+            <br>
+            <button type="button" onclick="huserlogin();" class="btn btn-primary block full-width m-b">登 录</button>
             <p class="text-muted text-center"> <a href="<%=path%>/Huser/forgerView"><small>忘记密码了？</small></a> | <a href="<%=path%>/Huser/register">注册一个新账号</a>
             </p>
         </form>
@@ -44,7 +49,7 @@
 <script src="<%=path%>/static/js/bootstrap.min.js?v=3.4.0"></script>
 </body>
 
-<!--引用登录js-->
-<script type="text/javascript" src="<%=path%>/static/js/lyj/huserlogin.js"></script>
 
+<!--手机验证码-->
+<script type="text/javascript" src="<%=path%>/static/js/lyj/husersms.js"></script>
 </html>

@@ -97,7 +97,7 @@ public class LUserController {
     @PostMapping("gainCode")
     @ResponseBody
     public Integer gainCode(String phone, HttpServletRequest request){
-
+        System.out.println(phone);
         String result = GetPhoneMessage.getResult(phone);
         return Integer.parseInt(result);
     }
@@ -159,7 +159,6 @@ public class LUserController {
         return  statusVO;
     }
 
-
     @PostMapping("registerSave")
     @ResponseBody
     public ControllerStatusVO  registerSave(HttpSession session,User user){
@@ -177,6 +176,7 @@ public class LUserController {
         statusVO=ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
         return statusVO;
     }
+
 
     @GetMapping("registerSuccess")
     public String registerSuccess(){

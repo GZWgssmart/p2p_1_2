@@ -37,7 +37,7 @@
                     </li>
                     <li>
                         <span class="dis">手机号码：</span><input class="input" type="text" name="phone" id="phone" onblur="checkPhone();" maxlength="11" tabindex="1" autocomplete="off">
-                        <a id="sssdfasdfas" href="#" class="blue">注册用户</a>
+                        <a id="sssdfasdfas" href="<%=path%>/page/register" class="blue">注册用户</a>
                     </li>
 
                     <li>

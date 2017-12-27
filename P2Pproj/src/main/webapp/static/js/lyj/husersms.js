@@ -45,7 +45,7 @@
 			var phone = $('#phone').val();
 
             $.post(path + '/luser/gainCode',
-                $('#loginForm').serialize(),
+                $('#longinForm').serialize(),
                 function (data) {
 
                     mobile_code=data;
@@ -70,21 +70,19 @@
 			
 		 }
 
+        function husercheckPhone() {
 
-
-        function checkPhone() {
-
-            $.post(path + '/luser/forgetPassword',
-                $('#loginForm').serialize(),
+            $.post(path + '/Huser/husercheckPhone',
+                $('#longinForm').serialize(),
                 function (data) {
-                    if (data.result === 'ok' || data.result==='logined') {
-                        window.location.href = path + "/luser/userindex";
+                    if (data.result === 'ok') {
+                        // window.location.href = path + "/luser/userindex";
                     } else {
                         swal(data.message,"","error");
 
                         if(data.message!=null){
-                        	check=data.message;
-						}
+                            check=data.message;
+                        }
                     }
                 },
                 'json'
@@ -92,13 +90,8 @@
         }
 
 
+        function huserlogin() {
 
-        function login() {
-
-		 	if(check!=null){
-                swal(check,"","error");
-                return;
-			}
 
             var yzm =  $('#code').val();
             if(yzm!=mobile_code){
@@ -107,11 +100,11 @@
                 return;
             }
 
-            $.post(path + '/luser/forgetPassword',
-                $('#loginForm').serialize(),
+            $.post(path + '/Huser/huserLogin',
+                $('#longinForm').serialize(),
                 function (data) {
-                    if (data.result === 'ok' || data.result==='logined') {
-                        window.location.href = path + "/luser/userindex";
+                    if (data.result === 'ok') {
+                        window.location.href = path + "/Huser/index";
                     } else {
                         swal(data.message,"","error");
                     }
@@ -119,5 +112,3 @@
                 'json'
             );
         }
-
-

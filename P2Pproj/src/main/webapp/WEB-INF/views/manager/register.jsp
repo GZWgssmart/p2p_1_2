@@ -16,6 +16,11 @@
     <link href="<%=path%>/static/css/custom.css" rel="stylesheet">
     <link href="<%=path%>/static/css/animate.css" rel="stylesheet">
     <link href="<%=path%>/static/css/style.css?v=2.2.0" rel="stylesheet">
+
+    <!--弹出框样式-->
+    <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
+    <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
+
 </head>
 <body class="gray-bg">
 <div class="middle-box text-center loginscreen   animated fadeInDown">
@@ -25,15 +30,18 @@
         </div>
         <h3>欢迎注册 亿人宝</h3>
         <p>创建一个亿人宝新账户</p>
-        <form class="m-t" role="form" action="">
+        <form id="registerForm" name="registerForm"  class="m-t" role="form" action="">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="请输入用户名" required="">
+                <input type="text" class="form-control" id="huname" name="huname" placeholder="请输入用户名" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请输入密码" required="">
+                <input type="text" class="form-control" id="phone" name="phone" onblur="checkPhone()" placeholder="请输入手机号码" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请再次输入密码" required="">
+                <input type="password" class="form-control" id="hpwd" name="hpwd" placeholder="请输入密码" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control"  id="pwd" name="pwd"  placeholder="请再次输入密码" required="">
             </div>
             <div class="form-group text-left">
                 <div class="checkbox i-checks">
@@ -41,7 +49,7 @@
                         <input type="checkbox"><i></i> 我同意注册协议</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+            <button type="button" onclick="register()" class="btn btn-primary block full-width m-b">注 册</button>
 
             <p class="text-muted text-center"><small>已经有账户了？</small><a href="<%=path%>/Huser/login">点此登录</a>
             </p>
@@ -61,4 +69,7 @@
     });
 </script>
 </body>
+<!--引用登录js-->
+<script type="text/javascript" src="<%=path%>/static/js/lyj/huserregister.js"></script>
+
 </html>

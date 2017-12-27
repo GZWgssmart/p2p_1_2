@@ -18,26 +18,10 @@ public class HUser {
 
     private String email;//电子邮箱
 
-    private Long int1;
+    private Long state;
 
-    private String str1;
+    private String hpwd;
 
-    public HUser(Long huid, String rname, Byte sex, String phone, String huname, Integer oid, String oname, String email, Long int1, String str1) {
-        this.huid = huid;
-        this.rname = rname;
-        this.sex = sex;
-        this.phone = phone;
-        this.huname = huname;
-        this.oid = oid;
-        this.oname = oname;
-        this.email = email;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
-
-    public HUser() {
-        super();
-    }
 
     public Long getHuid() {
         return huid;
@@ -52,7 +36,7 @@ public class HUser {
     }
 
     public void setRname(String rname) {
-        this.rname = rname == null ? null : rname.trim();
+        this.rname = rname;
     }
 
     public Byte getSex() {
@@ -68,7 +52,7 @@ public class HUser {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
     public String getHuname() {
@@ -76,7 +60,7 @@ public class HUser {
     }
 
     public void setHuname(String huname) {
-        this.huname = huname == null ? null : huname.trim();
+        this.huname = huname;
     }
 
     public Integer getOid() {
@@ -92,7 +76,7 @@ public class HUser {
     }
 
     public void setOname(String oname) {
-        this.oname = oname == null ? null : oname.trim();
+        this.oname = oname;
     }
 
     public String getEmail() {
@@ -100,22 +84,22 @@ public class HUser {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
-    public Long getInt1() {
-        return int1;
+    public Long getState() {
+        return state;
     }
 
-    public void setInt1(Long int1) {
-        this.int1 = int1;
+    public void setState(Long state) {
+        this.state = state;
     }
 
-    public String getStr1() {
-        return str1;
+    public String getHpwd() {
+        return hpwd;
     }
 
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+    public void setHpwd(String hpwd) {
+        this.hpwd = hpwd;
     }
 }
