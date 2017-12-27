@@ -34,17 +34,29 @@
         </set>
         where uid =#{uid}
     </update>
-        <select id="listPager" resultType="logTx">
-            select * from t_logtx limit #{pager.beginIndex}, #{pager.pageSize}
-        </select>
-        <select id="count" resultType="long">
-             select (id) from t_logtx
-          </select>
-        <delete id="removeById" parameterType="long">
-            <![CDATA[
-                delete from t_logtx where uid=#{id}
-            ]]>
-        </delete>
+    <sql id="query_criteria">
+        <if test="query != null and query.dateTime != null">
+            and  #{query.date}<![CDATA[<=]]> lg.dateTime<![CDATA[<=]]> #{query.dateTime}
+        </if>
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and u.rname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="logTx">
+       select u.rname,lg.banktype,lg.bankcard,lg.money,lg.date_time,lg.state
+       from t_logtx as lg ,t_user as u where lg.uid=u.uid
+       <include refid="query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+         select count(id)  from t_logtx as lg ,t_user as u where lg.uid=u.uid
+        <include refid="query_criteria"/>
+      </select>
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+            delete from t_logtx where uid=#{id}
+        ]]>
+    </delete>
 
 
 </mapper>
