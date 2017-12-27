@@ -30,32 +30,23 @@ public class MediaController {
         return "media/mediaAdd";
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
-
     @RequestMapping("save")
     @ResponseBody
-    public String save(){
-//        Media media = new Media();
-//        mediaService.save(media);
+    public String save(Media media){
+       mediaService.save(media);
        return "media/mediaAdd";
     }
 
     @RequestMapping("update")
     @ResponseBody
-    public Media update(){
-        Media media = new Media();
-        mediaService.update(media);
-        return media;
+    public String update(Media media){
+          mediaService.update(media);
+        return "";
     }
 
     @RequestMapping("page")
     public String page(){
-        return "media/media";
+        return "media/mediaList";
     }
 
     @RequestMapping("pager_criteria")
@@ -64,6 +55,10 @@ public class MediaController {
         return mediaService.listPagerCriteria(page,rows,media);
     }
 
-
-
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
 }
