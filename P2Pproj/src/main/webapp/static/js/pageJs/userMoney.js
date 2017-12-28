@@ -2,7 +2,7 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/txCheck/pager_criteria",//要请求数据的文件路径
+    url: "/userMoney/pager_criteria",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -20,7 +20,6 @@ $('#mytab').bootstrapTable({
     clickToSelect: true,//是否启用点击选中行
     toolbarAlign: 'right',//工具栏对齐方式
     buttonsAlign: 'right',//按钮对齐方式
-    toolbar: '#toolbar',
     search: true,
     uniqueId: "id",                     //每一行的唯一标识，一般为主键列
     showExport: true,
@@ -44,75 +43,51 @@ $('#mytab').bootstrapTable({
         },
 
         {
-            title: '银行卡号',
-            field: 'bankcard',
+            title: '总资产',
+            field: 'zmoney',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '所属银行',
-            field: 'banktype',
-            align: 'center',
-            formatter: function (value, row, index) {
-                return '<span style="color:green" >'+value+'</span>';
-            }
-        }
-        ,
-        {
-            title: '提现金额',
-            field: 'money',
+            title: '可用余额',
+            field: 'kymoney',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '状态',
-            field: 'isok',
-            align: 'center',
-            formatter: function (value, row, index) {
-                if(value==0) {
-                    return '<span style="color:green" >通过</span>';
-                }else if(value==1){
-                    return '<span style="color:crimson" >未通过</span>';
-                }else{
-                    return '<span style="color:#c8a732" >未审核</span>';
-                }
-            }
-        }
-        ,
-        {
-            title: '审核理由',
-            field: 'excute',
+            title: '收益总额',
+            field: 'symoney',
             align: 'center',
             sortable: true
         }
         ,
         {
-            title: '创建时间',
-            field: 'dateTime',
+            title: '投资总额',
+            field: 'tzmoney',
             align: 'center',
-            sortable: true,
-            formatter: function (value) {
-                var date = new Date(value);
-                var y = date.getFullYear();
-                var m = date.getMonth() + 1;
-                var d = date.getDate();
-                var h = date.getHours();
-                var mi = date.getMinutes();
-                var ss = date.getSeconds();
-                return y + '-' + m + '-' + d ;
-            }
+            sortable: true
         },
         {
-            title: '操作',
+            title: '冻结金额',
+            field: 'djmoney',
             align: 'center',
-            field: '',
-            formatter: function (value, row, index) {
-                var g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-                return g;
-            }
+            sortable: true
+        },
+        {
+            title: '待收金额',
+            field: 'dsmoney',
+            align: 'center',
+            sortable: true
+        },
+        {
+            title: '奖励金额',
+            field: 'jlmoney',
+            align: 'center',
+            sortable: true
         }
+
     ],
     locale: 'zh-CN',//中文支持,
     responseHandler: function (res) {
@@ -205,11 +180,12 @@ function updatestatus(id, status) {
 //查询按钮事件
 $('#search_btn').click(function () {
     var rname=$('#rname').val();
-    var money=$('#money').val();
- $('#mytab').bootstrapTable('refresh', {url: '/txCheck/pager_criteria',query:{money:money,rname:rname}});
+    var zmoney=$('#zmoney').val();
+    var tzmoney=$('#tzmoney').val();
+ $('#mytab').bootstrapTable('refresh', {url: '/userMoney/pager_criteria',query:{tzmoney:tzmoney,rname:rname,zmoney:zmoney}});
 })
 function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/txCheck/pager_criteria'});
+    $('#mytab').bootstrapTable('refresh', {url: '/userMoney/pager_criteria'});
 }
 $("#update").click(function () {
     $.post(
@@ -228,10 +204,10 @@ $("#update").click(function () {
 });
 $("#shenhe").click(function () {
     $.post(
-        "/txCheck/leaveShenHe",
+        "/leave/leaveShenHe",
         $("#shenheform").serialize(),
         function (data) {
-            if (data.result == "ok") {
+            if (data.message == "审核成功!") {
                 layer.msg(data.message, {icon: 1, time: 1000});
                 refush();
             } else {
