@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Sway">
         <![CDATA[
-          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},1)
+          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},0)
         ]]>
     </insert>
 

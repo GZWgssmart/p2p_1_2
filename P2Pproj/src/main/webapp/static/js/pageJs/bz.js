@@ -3,7 +3,7 @@ var modal;
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/sway/pager",//要请求数据的文件路径
+    url: "/bz/pager",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -38,25 +38,18 @@ $('#mytab').bootstrapTable({
         },
 
         {
-            title: '还款方式',
-            field: 'way',
+            title: '标种名称',
+            field: 'bzname',
             align: 'center',
             sortable: true
         },
 
         {
-            title: '算法',
-            field: 'fw',
-            align: 'center',
-            sortable: true
-        }
-        ,
-        {
             title: '状态',
             field: 'state',
             align: 'center',
             formatter: function (value, row, index) {
-                if (value == 0) {
+                if (value == 1) {
                     //表示激活状态
                     return '<span style="color:red" >冻结</span>';
                 } else {
@@ -72,13 +65,13 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.sid + '\'" data-target="#myModal" onclick="return edit(\'' + row.sid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.sid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.bzid + '\'" data-target="#myModal" onclick="return edit(\'' + row.bzid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.bzid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
                 if (row.state == 0) {
-                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.sid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
+                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.bzid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
                 } else if (row.state == 1) {
-                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.sid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
+                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.bzid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
                 }
                 return e + d + f;
             }
@@ -114,15 +107,15 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function del(sid, state) {
-    if (state == 1) {
+function del(bzid, state) {
+    if (state == 0) {
         layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
         return;
     }
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: '/sway/delete/' + sid,
+            url: '/bz/delete/' + bzid,
             dataType: 'json',
             success: function (data) {
                 if (data.message == 'ok') {
@@ -145,7 +138,7 @@ function deleteMany() {
         if (row.state == 0) {
             state += row.state;
         }
-        return row.sid;
+        return row.bzid;
     });
     if (row == "") {
         layer.msg('删除失败，请勾选数据!', {
@@ -156,10 +149,10 @@ function deleteMany() {
     }
 
 
-    $("#sid").val(row);
+    $("#bzid").val(row);
     layer.confirm('确认要删除数据吗？', function (index) {
         $.post(
-            "/sway/delete/" +$("#sid").val(),
+            "/bz/delete/" +$("#bzid").val(),
             function (data) {
                 if (data.message == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
@@ -174,8 +167,8 @@ function deleteMany() {
 
 }
 
-function edit(sid) {
-    $.post("/sway/findSway/" + sid,
+function edit(bzid) {
+    $.post("/bz/findBz/" + bzid,
         function (data) {
             $("#updateForm").autofill(data);
 
@@ -186,7 +179,7 @@ function edit(sid) {
 
 function update() {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        return row.sid;
+        return row.bzid;
     });
     if (row == "") {
         layer.msg('修改失败，请勾选数据!', {
@@ -196,7 +189,7 @@ function update() {
         return ;
 
     }else {
-            $.post("/sway/findSway/" + $("#sid").val(),
+            $.post("/bz/findBz/" + $("#bzid").val(),
                 function (data) {
                     if (data == "ok") {
                         $("#updateForm").autofill(data);
@@ -210,9 +203,9 @@ function update() {
     }
 }
 
-function updatestatus(sid, state) {
+function updatestatus(bzid, state) {
 
-    $.post("/sway/updateState/" + sid + "/" + state,
+    $.post("/bz/updateState/" + bzid + "/" + state,
         function (data) {
             if (state == 1) {
                 if (data.message == "ok") {
@@ -234,10 +227,10 @@ function updatestatus(sid, state) {
 }
 //查询按钮事件
 $('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/sway/pager'});
+    $('#mytab').bootstrapTable('refresh', {url: '/bz/pager'});
 })
 function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/sway/pager'});
+    $('#mytab').bootstrapTable('refresh', {url: '/bz/pager'});
 }
 
 $('#updateForm').bootstrapValidator({
@@ -248,31 +241,23 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        way: {
+        bzname: {
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假理由不能为空'
+                    message: '标种名称不能为空'
                 },
 
             }
         },
-        fw: {
-            message: '请假天数验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请假天数不能为空'
-                }
 
-            }
-        },
     }
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/sway/update",
+        "/bz/update",
         $("#updateForm").serialize(),
         function (data) {
             if (data.message == "ok") {
@@ -283,8 +268,7 @@ $('#updateForm').bootstrapValidator({
             }
             refush();
             $("#myModal").modal('hide');
-            $("#way").val("");
-            $("#fw").val("");
+            $("#bzname").val("");
         }, "json"
     );
 });
@@ -302,27 +286,19 @@ $('#formadd').bootstrapValidator({
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假理由不能为空'
+                    message: '标种名称不能为空'
                 },
 
             }
         },
-        fw: {
-            message: '请假天数验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请假天数不能为空'
-                }
 
-            }
-        },
     }
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/sway/save",
+        "/bz/save",
         $("#formadd").serialize(),
         function (data) {
             if (data.message == "ok") {
@@ -334,8 +310,7 @@ $('#formadd').bootstrapValidator({
 
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
-            $("#way").val("");
-            $("#fw").val("");
+            $("#bzname").val("");
             refush();
         }, "json"
     );

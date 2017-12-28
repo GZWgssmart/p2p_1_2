@@ -38,7 +38,23 @@ public enum ControllerStatusEnum {
     SWAY_DELETE_SUCCESS(505,"ok","删除成功"),
     SWAY_DELETE_FAIL(506,"error","删除失败"),
     SWAY_UPDATE_STATE_SUCCESS(507,"ok","修改状态成功"),
-    SWAY_UPDATE_STATE_FAIL(508,"error","修改状态失败")
+    SWAY_UPDATE_STATE_FAIL(508,"error","修改状态失败"),
+    BZ_SAVE_SUCCESS(509,"ok","添加成功"),
+    BZ_SAVE_FAIL(510,"error","添加失败"),
+    BZ_UPDATE_SUCCESS(511,"ok","修改成功"),
+    BZ_UPDATE_FAIL(512,"error","修改失败"),
+    BZ_DELETE_SUCCESS(513,"ok","删除成功"),
+    BZ_DELETE_FAIL(514,"error","删除失败"),
+    BZ_UPDATE_STATE_SUCCESS(515,"ok","修改状态成功"),
+    BZ_UPDATE_STATE_FAIL(516,"error","修改状态失败"),
+    JKLX_SAVE_SUCCESS(517,"ok","添加成功"),
+    JKLX_SAVE_FAIL(518,"error","添加失败"),
+    JKLX_UPDATE_SUCCESS(519,"ok","修改成功"),
+    JKLX_UPDATE_FAIL(520,"error","修改失败"),
+    JKLX_DELETE_SUCCESS(521,"ok","删除成功"),
+    JKLX_DELETE_FAIL(522,"error","删除失败"),
+    JKLX_UPDATE_STATE_SUCCESS(523,"ok","修改状态成功"),
+    JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败")
     ;
 
     private Integer code;

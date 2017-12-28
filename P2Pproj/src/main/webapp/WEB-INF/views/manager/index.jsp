@@ -138,6 +138,25 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);">
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">类型管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/sway/sway">还款方式类型管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/bz/bz">标种类型管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="#">最新公告管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
                         <i class="fa fa-desktop"></i>
                         <span class="nav-label">媒体报道</span>
                         <span class="fa arrow"></span>

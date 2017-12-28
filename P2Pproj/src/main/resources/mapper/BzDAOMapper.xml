@@ -4,7 +4,7 @@
 
 <mapper namespace="top.zzh.dao.BzDAO">
 
-    <select id="countCriteria" resultType="long">
+    <select id="count" resultType="long">
         <![CDATA[
 		select count(*) from t_bz
 		]]>
@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Bz">
         <![CDATA[
-          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
+          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},0)
         ]]>
     </insert>
 
@@ -37,6 +37,12 @@
     <select id="listPager" resultType="top.zzh.bean.Bz">
         <![CDATA[
         select * from t_bz limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="getById" resultType="top.zzh.bean.Bz" >
+        <![CDATA[
+        select * from t_bz where bzid = #{bzid}
     ]]>
     </select>
 </mapper>
