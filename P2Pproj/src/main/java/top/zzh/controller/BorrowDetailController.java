@@ -38,7 +38,6 @@ public class BorrowDetailController {
     @Autowired
     private BorrowDetailService borrowDetailService;
 
-    private BorrowDetailVO borrowDetail;
 
     @RequestMapping("save")
     @ResponseBody
@@ -71,16 +70,13 @@ public class BorrowDetailController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int pageIndex, int pageSize) {
+    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowApplyVO borrowDetail) {
         logger.info("借款详情信息分页+条件查询");
         return borrowDetailService.listPagerCriteria(pageIndex, pageSize, borrowDetail);
     }
 
-
-    public void setBorrowDetail(BorrowDetailVO borrowDetail) {
-        this.borrowDetail = borrowDetail;
-    }
-    public BorrowDetailVO getBorrowDetail() {
-        return borrowDetail;
+    @RequestMapping("detail_page")
+    public String page(){
+        return "manager/borrowdetail";
     }
 }

@@ -40,8 +40,8 @@ $('#mytab').bootstrapTable({
             field: 'rname',
             align: 'center',
             sortable: true
-        },
-
+        }
+        ,
         {
             title: '借款人',
             field: 'nickname',

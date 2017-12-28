@@ -422,9 +422,9 @@ CREATE TABLE `t_roleuser` (
 DROP TABLE IF EXISTS `t_rzvip`;
 CREATE TABLE `t_rzvip` (
   `rid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `uid` bigint(20) NOT NULL  COMMENT '用户id',
+  `uid` bigint(20) NOT NULL  COMMENT '用户id t_user表uid',
   `xl` varchar(40) DEFAULT NULL COMMENT '学历',
-  `ism` tinyint(4) DEFAULT NULL COMMENT '婚否（0已婚，1未婚，2单身）',
+  `ism` tinyint(4) DEFAULT NULL COMMENT '婚否（0已婚，1未婚）',
   `bschool` varchar(30) DEFAULT NULL COMMENT '毕业学校',
   `addr` varchar(40) NOT NULL COMMENT '居住地址',
   `work` varchar(30) DEFAULT NULL COMMENT '现工作',
