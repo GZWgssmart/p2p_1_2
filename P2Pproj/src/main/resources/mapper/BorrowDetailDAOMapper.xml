@@ -6,17 +6,17 @@
 
     <insert id="save" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
-          insert into t_borrowdetail(fpic,ypic,qpic,tpic,mpurpose,hksource,suggest,
-          xmdescrip,guarantee,money,nprofit,way,cpname,baid) values(#{fpic},#{ypic},#{qpic},#{tpic},#{mpurpose},
+          insert into t_borrowdetail(mpurpose,hksource,suggest,
+          xmdescrip,guarantee,money,nprofit,way,cpname,baid) values(#{mpurpose},
             #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{way},#{cpname},#{baid})
         ]]>
     </insert>
 
-    <delete id="removeById" parameterType="top.zzh.bean.BorrowDetail">
+    <update id="updateTupian" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
-            delete from t_borrowdetail where bdid = #{bdid}
+           update t_borrowdetail set fpic = #{fpic}, ypic = #{ypic},tpic = #{tpic},qpic = #{qpic}  where bdid = #{bdid}
         ]]>
-    </delete>
+    </update>
 
     <!-- 还款来源，产品名称，借款人，借款金额-->
     <sql id="cash_query_criteria">

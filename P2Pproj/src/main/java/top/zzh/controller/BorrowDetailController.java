@@ -39,34 +39,6 @@ public class BorrowDetailController {
     private BorrowDetailService borrowDetailService;
 
 
-    @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(BorrowDetail borrowDetail){
-        logger.info("添加借款详情信息");
-        ControllerStatusVO statusVO = null;
-        try {
-            borrowDetailService.save(borrowDetail);
-        }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
-        return statusVO;
-    }
-
-    @RequestMapping("update")
-    @ResponseBody
-    public ControllerStatusVO update(BorrowDetail borrowDetail){
-        logger.info("修改借款详情信息");
-        ControllerStatusVO statusVO = null;
-        try {
-            borrowDetailService.update(borrowDetail);
-        }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_UPDATE_SUCCESS);
-        return statusVO;
-    }
-
 
     @RequestMapping("pager_criteria")
     @ResponseBody

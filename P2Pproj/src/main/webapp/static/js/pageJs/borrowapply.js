@@ -58,14 +58,14 @@ $('#mytab').bootstrapTable({
         ,
         {
             title: '借款类型',
-            field: 'bzname',
+            field: 'lxname',
             align: 'center',
             sortable: true
         }
         ,
         {
             title: '标种',
-            field: 'bzid',
+            field: 'bzname',
             align: 'center',
             sortable: true
         }
@@ -86,7 +86,7 @@ $('#mytab').bootstrapTable({
         }
         ,
         {
-            title: '借款期限',
+            title: '借款期限(月)',
             field: 'term',
             align: 'center',
             sortable: true

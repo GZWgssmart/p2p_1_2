@@ -211,7 +211,7 @@ CREATE TABLE `t_huser` (
 DROP TABLE IF EXISTS `t_jklx`;
 CREATE TABLE `t_jklx` (
   `lxid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `lxname` varchar(20) DEFAULT NULL COMMENT '借款名称，如（先本后息，先息后本，等额本息，等额本金）',
+  `lxname` varchar(20) DEFAULT NULL COMMENT '借款类型，如（先本后息，先息后本，等额本息，等额本金）',
   `state` tinyint(4) DEFAULT NULL COMMENT '状态（0可用，1不可用）',
   PRIMARY KEY (`lxid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

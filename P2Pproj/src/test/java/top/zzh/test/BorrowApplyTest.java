@@ -27,7 +27,7 @@ public class BorrowApplyTest extends BaseTest {
         borrowApply.setUid(4L);
         borrowApply.setBzid(1L);
         borrowApply.setState((byte)0);
-        borrowApply.setTerm("5个月");
+        borrowApply.setTerm(5);
         borrowApply.setType((byte)1);
         borrowApply.setDeadline(new Date());
         borrowApplyDAO.save(borrowApply);

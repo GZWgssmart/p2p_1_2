@@ -32,4 +32,8 @@ public class BorrowDetailServiceImpl extends AbstractService implements BorrowDe
         this.borrowDetailDAO = borrowDetailDAO;
     }
 
+    @Override
+    public void updateTupian(Object obj) {
+        borrowDetailDAO.updateTupian(obj);
+    }
 }

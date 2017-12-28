@@ -4,7 +4,7 @@
 
 <mapper namespace="top.zzh.dao.JklxDAO">
 
-    <select id="count" resultType="long">
+    <select id="countCriteria" resultType="long">
         <![CDATA[
 		select count(*) from t_jklx
 		]]>
@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Jklx">
         <![CDATA[
-          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},0)
+          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},#{state})
         ]]>
     </insert>
 
@@ -40,9 +40,9 @@
     ]]>
     </select>
 
-    <select id="getById" resultType="top.zzh.bean.Jklx" >
+    <select id="listAll" resultType="top.zzh.bean.Jklx">
         <![CDATA[
-        select * from t_jklx where lxid = #{lxid}
-    ]]>
+          select * from t_jklx;
+        ]]>
     </select>
 </mapper>

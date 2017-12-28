@@ -14,17 +14,21 @@ public class BorrowApply {
     private Date time;//审核时间
     private Byte state;//审核状态（0表示为审核，1表示已审核）
     private Byte type;//借款类型为标种的主键字段
-    private String term;//借款期限
+    private Integer term;//借款期限
     private Date deadline;//截止时间
     private String bzname;
     private String uname;
+    private String lxname;
+    private Long lxid;
     private Long int1;
     private String str1;
 
-    public BorrowApply(String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, String term, Date deadline,Long int1, String str1) {
+    public BorrowApply(Long lxid,String lxname,String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, Integer term, Date deadline,Long int1, String str1) {
         this.baid = baid;
         this.uname = uname;
+        this.lxname = lxname;
         this.bzname = bzname;
+        this.lxid = lxid;
         this.rname = rname;
         this.money = money;
         this.uid = uid;
@@ -36,6 +40,22 @@ public class BorrowApply {
         this.deadline = deadline;
         this.int1 = int1;
         this.str1 = str1;
+    }
+
+    public void setLxid(Long lxid) {
+        this.lxid = lxid;
+    }
+
+    public Long getLxid() {
+        return lxid;
+    }
+
+    public void setLxname(String lxname) {
+        this.lxname = lxname;
+    }
+
+    public String getLxname() {
+        return lxname;
     }
 
     public void setUname(String uname) {
@@ -122,12 +142,12 @@ public class BorrowApply {
         this.type = type;
     }
 
-    public String getTerm() {
+    public Integer getTerm() {
         return term;
     }
 
-    public void setTerm(String term) {
-        this.term = term == null ? null : term.trim();
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 
     public Date getDeadline() {

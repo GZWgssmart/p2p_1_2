@@ -66,7 +66,7 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/shborrow/page">借审核</a>
+                        <li><a class="J_menuItem" href="<%=path%>/shborrow/page">借款审核</a>
                         </li>
                         <li><a a class="J_menuItem" href="">认证审核</a>
                         </li>
@@ -75,7 +75,6 @@
                         <li><a a class="J_menuItem" href="">论坛</a>
                         </li>
                         <li><a a class="J_menuItem" href="">代码编辑器</a>
-                        </li>
                         </li>
                     </ul>
                 </li>

@@ -43,24 +43,25 @@
 
     <select id="listPager" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-       select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,ba.type,ba.deadline from
-      t_borrowapply ba,t_user u,t_bz b
-      where ba.uid = u.uid and ba.bzid = b.bzid
+       select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type
          limit #{pager.beginIndex}, #{pager.pageSize}
          ]]>
     </select>
 
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,ba.type,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b
-        where ba.uid = u.uid and ba.bzid = b.bzid
+        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,u.uid,ba.time,ba.state,b.bzname,b.bzid,ba.term,ba.type,ba.deadline from t_borrowapply ba,t_user u,t_bz b
-        where ba.uid = u.uid and ba.bzid = b.bzid
+        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.state=0
     </select>
 
     <select id="countCriteria" resultType="long">

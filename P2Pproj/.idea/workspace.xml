@@ -41,8 +41,8 @@
       <file leaf-file-name="p2p.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/document/p2p.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state relative-caret-position="-286">
+              <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -51,47 +51,101 @@
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+            <state relative-caret-position="547">
+              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#16004#16010#0#HTML" expanded="true" />
+                <element signature="e#17665#17671#0#HTML" expanded="true" />
+                <marker date="1514449309976" expanded="true" signature="7638:8032" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="7667:7759" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="7788:7883" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="7912:8006" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8075:8918" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8126:8320" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8374:8896" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8403:8473" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8502:8572" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8601:8672" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8701:8772" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8801:8870" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="8991:9183" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9237:9759" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9266:9334" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9363:9433" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9462:9537" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9566:9636" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9665:9733" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9802:10480" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="9853:10045" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10099:10458" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10128:10220" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10249:10331" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10360:10432" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10615:17787" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10655:16114" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10732:10748" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10749:16099" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10793:11310" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10866:10921" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="10869:10916" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11013:11287" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11062:11259" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11177:11228" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11373:16080" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11398:11602" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11471:11576" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11495:11557" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11498:11553" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11644:14144" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11738:11870" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11939:14118" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="11972:12778" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12040:12744" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12106:12320" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12183:12279" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12381:12705" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12865:13674" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12933:13640" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="12999:13213" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="13076:13172" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="13275:13601" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="13761:14088" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="13830:14054" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="13878:14015" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14186:15858" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14280:14407" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14474:15832" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14507:14888" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14551:14854" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14593:14817" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="14975:15347" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15019:15313" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15061:15276" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15434:15802" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15503:15768" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15551:15729" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15883:16058" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="15941:16032" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16155:17362" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16213:16265" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16312:16495" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16360:16476" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16555:16606" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16662:17223" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16738:16796" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16871:17204" ph="..." />
+                <marker date="1514449309976" expanded="true" signature="16920:16960" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp">
+      <file leaf-file-name="BorrowApplyController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowApplyController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="464" column="18" lean-forward="true" selection-start-line="464" selection-start-column="18" selection-end-line="464" selection-end-column="18" />
+            <state relative-caret-position="262">
+              <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
               <folding>
-                <marker date="1514442062050" expanded="false" signature="22993:23005" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwayController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/SwayController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="borrowapply.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowapply.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-              <folding>
-                <marker date="1514442389054" expanded="true" signature="2059:2070" ph="..." />
-                <marker date="1514442389054" expanded="true" signature="2193:2202" ph="..." />
-                <marker date="1514442389054" expanded="true" signature="3377:3388" ph="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,8 +157,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -134,8 +188,9 @@
       <find>投资表</find>
       <find>还款表</find>
       <find>t_tzb</find>
-      <find>t_borrowapply</find>
       <find>cal</find>
+      <find>借款表</find>
+      <find>t_borrowapply</find>
     </findStrings>
     <replaceStrings>
       <replace>javascript:void(0);</replace>
@@ -150,23 +205,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/bean/BorrowApply.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/dao/BorrowApplyDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/BorrowApplyService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/dao/BaseDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/impl/BorrowApplyServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/AbstractService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/BaseService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/borrowapply.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/pageJs/loginlog.js" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/LUserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowApplyController.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/impl/ShBorrowServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/top/zzh/test/ShBorrowTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/ShBorrowController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowdetail.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/borrowdetail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowDetailController.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/vo/ShBorrowVO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/pageJs/shBorrow.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/shenhe/shborrowShenhe.jsp" />
@@ -189,18 +233,29 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/js.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/404.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/404.jsp" />
-        <option value="$PROJECT_DIR$/document/p2p.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/TzbDAOMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/tz.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/vo/TzbVO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/loginlog.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/LoginLogMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/query/LoginLogQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/dao/BorrowDetailDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/BorrowDetailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/service/impl/BorrowDetailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/BorrowDetailDAOMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/common/PathUtils.java" />
+        <option value="$PROJECT_DIR$/document/p2p.sql" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/JklxDAOMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/BzDAOMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/bean/BorrowApply.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/zzh/enums/ControllerStatusEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowapply.js" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowDetailController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/BorrowApplyDAOMapper.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/top/zzh/test/BorrowApplyTest.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowapply.js" />
+        <option value="$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowApplyController.java" />
       </list>
     </option>
   </component>
@@ -1236,7 +1291,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121758000" />
+    <option name="totallyTimeSpent" value="128451000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1249,7 +1304,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1272,11 +1326,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.582906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46324787" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="BPMNPalette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1344,129 +1398,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/top/zzh/test/TzbTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="48" column="28" lean-forward="true" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/dao/RecommendDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/service/impl/TzbServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/dao/TzbDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/bootstraptablecss.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/css.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="2" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/js.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/footer.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-686">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/404.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/404.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/excel/uploadExcel.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-916">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/bootstraptablejs.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/TzbDAOMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <marker date="1514428405423" expanded="true" signature="250:387" ph="insert into t_tzb... " />
-            <marker date="1514428405423" expanded="true" signature="884:1086" ph="select u.una... t_tzb" />
-            <marker date="1514428405423" expanded="true" signature="1188:1432" ph="select u.una... t_tzb" />
-            <marker date="1514428405423" expanded="true" signature="1528:1634" ph="select count... t_tzb" />
-            <marker date="1514428405423" expanded="true" signature="1744:1773" ph="select count... t_tzb" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/springmvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-690">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/spring-mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-230">
@@ -1486,13 +1417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/TzbController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="41" column="31" lean-forward="false" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1620,6 +1544,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1610">
           <caret line="79" column="41" lean-forward="true" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1657,6 +1582,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1664,14 +1590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document/1601分组及职责.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1686,23 +1604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-598">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/enums/ControllerStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <marker date="1514442130381" expanded="false" signature="1579:1590" ph=" { " />
-            <marker date="1514442130381" expanded="false" signature="1602:1608" ph=" }" />
-            <marker date="1514442130381" expanded="false" signature="1647:1658" ph=" { " />
-            <marker date="1514442130381" expanded="false" signature="1675:1681" ph=" }" />
-            <marker date="1514442130381" expanded="false" signature="1712:1723" ph=" { " />
-            <marker date="1514442130381" expanded="false" signature="1737:1743" ph=" }" />
-            <marker date="1514442130381" expanded="false" signature="1785:1796" ph=" { " />
-            <marker date="1514442130381" expanded="false" signature="1817:1823" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1726,72 +1627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#16004#16010#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowApplyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="77" column="31" lean-forward="true" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document/p2p.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BorrowApplyDAOMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <marker date="1514442467989" expanded="true" signature="272:318" ph="delete from " />
-            <marker date="1514442467989" expanded="true" signature="438:601" ph="insert into t_borrowapply... " />
-            <marker date="1514442467989" expanded="true" signature="725:879" ph="update t_bor... " />
-            <marker date="1514442467989" expanded="true" signature="1007:1082" ph="update t_bor... " />
-            <marker date="1514442467989" expanded="true" signature="1582:1830" ph="select ba.ba... t_borrowapply" />
-            <marker date="1514442467989" expanded="true" signature="1941:2239" ph="select ba.ba... t_borrowapply" />
-            <marker date="1514442467989" expanded="true" signature="2327:2522" ph="select ba.ba... t_borrowapply" />
-            <marker date="1514442467989" expanded="true" signature="2617:2723" ph="select count... t_borrowapply" />
-            <marker date="1514442467989" expanded="true" signature="2821:2858" ph="select count... t_borrowapply" />
-            <marker date="1514442467989" expanded="true" signature="2967:3019" ph="select * fro... t_borrowapply" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowapply.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding>
-            <marker date="1514442389054" expanded="true" signature="2059:2070" ph="..." />
-            <marker date="1514442389054" expanded="true" signature="2193:2202" ph="..." />
-            <marker date="1514442389054" expanded="true" signature="3377:3388" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/borrowapply.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/calculator.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -1808,6 +1643,160 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/SwayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document/小组github账号.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document/1601分组及职责.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/dao/BorrowDetailDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/service/BorrowDetailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/service/impl/BorrowDetailServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="36" column="40" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/TzbController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-113">
+          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/common/PathUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/common/PathUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/borrowapply.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/dao/JklxDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BorrowDetailDAOMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="69" column="3" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+          <folding>
+            <marker date="1514449309562" expanded="true" signature="268:509" ph="insert into t_borrowdetail... " />
+            <marker date="1514449309562" expanded="true" signature="639:747" ph="update t_bor... " />
+            <marker date="1514449309562" expanded="true" signature="1475:1816" ph="select bd.fp... t_borrowdetail" />
+            <marker date="1514449309562" expanded="true" signature="1927:2229" ph="select bd.fp... t_borrowdetail" />
+            <marker date="1514449309562" expanded="true" signature="2338:2456" ph="select count... t_borrowdetail" />
+            <marker date="1514449309562" expanded="true" signature="2578:2616" ph="select count... t_borrowdetail" />
+            <marker date="1514449309562" expanded="true" signature="2717:2958" ph="select bd.fp... t_borrowdetail" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/enums/ControllerStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/BankCardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1238">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowDetailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/RecommendController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/DynamicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document/p2p.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-286">
+          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1818,11 +1807,182 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/SwayController.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/top/zzh/test/BorrowApplyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+        <state relative-caret-position="84">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/bean/BorrowApply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="763">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BorrowApplyDAOMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <marker date="1514449309561" expanded="true" signature="272:318" ph="delete from " />
+            <marker date="1514449309561" expanded="true" signature="438:601" ph="insert into t_borrowapply... " />
+            <marker date="1514449309561" expanded="true" signature="725:879" ph="update t_bor... " />
+            <marker date="1514449309561" expanded="true" signature="1022:1097" ph="update t_bor... " />
+            <marker date="1514449309561" expanded="true" signature="1597:1880" ph="select ba.ba... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="1991:2320" ph="select ba.ba... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="2408:2637" ph="select ba.ba... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="2408:2652" ph="select ba.ba... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="2747:2853" ph="select count... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="2951:2988" ph="select count... t_borrowapply" />
+            <marker date="1514449309561" expanded="true" signature="3097:3149" ph="select * fro... t_borrowapply" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/pageJs/borrowapply.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="67" column="26" lean-forward="false" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+          <folding>
+            <marker date="1514449309566" expanded="true" signature="2061:2072" ph="..." />
+            <marker date="1514449309566" expanded="true" signature="2195:2204" ph="..." />
+            <marker date="1514449309566" expanded="true" signature="3382:3393" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <element signature="e#17665#17671#0#HTML" expanded="true" />
+            <marker date="1514449309976" expanded="true" signature="7638:8032" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="7667:7759" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="7788:7883" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="7912:8006" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8075:8918" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8126:8320" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8374:8896" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8403:8473" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8502:8572" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8601:8672" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8701:8772" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8801:8870" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="8991:9183" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9237:9759" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9266:9334" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9363:9433" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9462:9537" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9566:9636" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9665:9733" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9802:10480" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="9853:10045" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10099:10458" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10128:10220" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10249:10331" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10360:10432" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10615:17787" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10655:16114" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10732:10748" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10749:16099" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10793:11310" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10866:10921" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="10869:10916" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11013:11287" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11062:11259" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11177:11228" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11373:16080" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11398:11602" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11471:11576" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11495:11557" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11498:11553" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11644:14144" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11738:11870" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11939:14118" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="11972:12778" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12040:12744" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12106:12320" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12183:12279" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12381:12705" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12865:13674" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12933:13640" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="12999:13213" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="13076:13172" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="13275:13601" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="13761:14088" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="13830:14054" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="13878:14015" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14186:15858" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14280:14407" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14474:15832" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14507:14888" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14551:14854" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14593:14817" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="14975:15347" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15019:15313" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15061:15276" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15434:15802" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15503:15768" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15551:15729" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15883:16058" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="15941:16032" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16155:17362" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16213:16265" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16312:16495" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16360:16476" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16555:16606" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16662:17223" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16738:16796" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16871:17204" ph="..." />
+            <marker date="1514449309976" expanded="true" signature="16920:16960" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BzDAOMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="44" column="28" lean-forward="false" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+          <folding>
+            <marker date="1514449328414" expanded="true" signature="235:260" ph="select count... t_bz" />
+            <marker date="1514449328414" expanded="true" signature="365:435" ph="insert into t_bz... " />
+            <marker date="1514449328414" expanded="true" signature="550:622" ph="update t_bz " />
+            <marker date="1514449328414" expanded="true" signature="742:795" ph="update t_bz " />
+            <marker date="1514449328414" expanded="true" signature="913:950" ph="delete from " />
+            <marker date="1514449328414" expanded="true" signature="1061:1124" ph="select * fro... t_bz" />
+            <marker date="1514449328414" expanded="true" signature="1231:1249" ph="select * fro... t_bz" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/JklxDAOMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="44" column="31" lean-forward="false" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+          <folding>
+            <marker date="1514449325731" expanded="true" signature="237:264" ph="select count... t_jklx" />
+            <marker date="1514449325731" expanded="true" signature="371:443" ph="insert into t_jklx... " />
+            <marker date="1514449325731" expanded="true" signature="560:634" ph="update t_jkl... " />
+            <marker date="1514449325731" expanded="true" signature="756:811" ph="update t_jkl... " />
+            <marker date="1514449325731" expanded="true" signature="929:968" ph="delete from " />
+            <marker date="1514449325731" expanded="true" signature="1081:1146" ph="select * fro... t_jklx" />
+            <marker date="1514449325731" expanded="true" signature="1255:1275" ph="select * fro... t_jklx" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/zzh/controller/BorrowApplyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

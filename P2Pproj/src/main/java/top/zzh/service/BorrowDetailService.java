@@ -5,4 +5,6 @@ package top.zzh.service;
  */
 public interface BorrowDetailService extends BaseService {
 
+    //修改图片
+    void updateTupian(Object obj);
 }

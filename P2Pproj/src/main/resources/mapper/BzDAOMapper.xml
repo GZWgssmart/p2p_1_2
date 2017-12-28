@@ -4,7 +4,7 @@
 
 <mapper namespace="top.zzh.dao.BzDAO">
 
-    <select id="count" resultType="long">
+    <select id="countCriteria" resultType="long">
         <![CDATA[
 		select count(*) from t_bz
 		]]>
@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Bz">
         <![CDATA[
-          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},0)
+          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
         ]]>
     </insert>
 
@@ -40,9 +40,9 @@
     ]]>
     </select>
 
-    <select id="getById" resultType="top.zzh.bean.Bz" >
+    <select id="listAll" resultType="top.zzh.bean.Bz">
         <![CDATA[
-        select * from t_bz where bzid = #{bzid}
-    ]]>
+          select * from t_bz
+        ]]>
     </select>
 </mapper>
