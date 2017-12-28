@@ -1,5 +1,7 @@
 package top.zzh.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import top.zzh.vo.RecommendVO;
 @Controller
 @RequestMapping("/recommend")
 public class RecommendController {
+    private Logger logger = LoggerFactory.getLogger(RecommendController.class);
 
     @Autowired
     private RecommendService recommendService;
@@ -28,12 +31,14 @@ public class RecommendController {
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex, int pageSize, RecommendVO recommend) {
+        logger.info("推进管理条件查询");
         return recommendService.listPagerCriteria(pageIndex, pageSize, recommend);
     }
 
     @RequestMapping("remove")
     @ResponseBody
     public ControllerStatusVO remove(long id) {
+        logger.info("推进记录删除");
         ControllerStatusVO statusVO = null;
         try {
             recommendService.remove(id);
@@ -47,6 +52,7 @@ public class RecommendController {
     @RequestMapping("/delMany")
     @ResponseBody
     public ControllerStatusVO delEduList(Long[] ids) {
+        logger.info("推进记录批量删除");
         ControllerStatusVO statusVO = null;
         try {
             for (Long id : ids) {
