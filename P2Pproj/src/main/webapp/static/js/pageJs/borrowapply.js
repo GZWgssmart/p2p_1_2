@@ -155,7 +155,7 @@ function queryParams(params) {
 function shenhe(id,state) {
     $("#shenhe").click(function () {
         $.post(
-            "/borrowapply/updateState/"+id+"/"+state,
+            "/borrowapply/updateState/" + id + "/" + state,
             $("#shenheform").serialize(),
             function (data) {
                 if (data.result == "ok") {

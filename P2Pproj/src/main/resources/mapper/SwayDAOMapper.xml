@@ -4,7 +4,7 @@
 
 <mapper namespace="top.zzh.dao.SwayDAO">
 
-    <select id="countCriteria" resultType="long">
+    <select id="count" resultType="long">
         <![CDATA[
 		select count(*) from t_sway
 		]]>
@@ -12,13 +12,13 @@
 
     <insert id="save" parameterType="top.zzh.bean.Sway">
         <![CDATA[
-          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},#{state})
+          insert into t_sway(sid,way,fw,state) values(#{sid},#{way},#{fw},1)
         ]]>
     </insert>
 
     <update id="update" parameterType="top.zzh.bean.Sway">
         <![CDATA[
-            update t_sway set way = #{way},fw = #{fw} and state = #{state} where sid = #{sid}
+            update t_sway set way = #{way} , fw = #{fw} ,state = #{state} where sid = #{sid}
         ]]>
     </update>
 
@@ -37,6 +37,12 @@
     <select id="listPager" resultType="top.zzh.bean.Sway">
         <![CDATA[
         select * from t_sway limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="getById" resultType="top.zzh.bean.Sway" >
+        <![CDATA[
+        select * from t_sway where sid = #{sid}
     ]]>
     </select>
 </mapper>
