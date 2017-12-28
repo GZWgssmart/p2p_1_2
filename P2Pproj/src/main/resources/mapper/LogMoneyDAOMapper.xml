@@ -43,7 +43,7 @@
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long">
-        select count(*) from
+        select count(lm.id) from
         t_logmoney as lm,t_user as u where  lm.uid=u.uid
         <include refid="query_criteria"/>
     </select>

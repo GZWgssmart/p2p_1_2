@@ -16,6 +16,9 @@ public class LogMoneyVO {
     private BigDecimal out;//支出
     private String date;//时间
 
+    public LogMoneyVO() {
+    }
+
     public LogMoneyVO(String rname, String face, Integer type, BigDecimal in, BigDecimal out, String date) {
         this.rname = rname;
         this.face = face;

@@ -8,26 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.HUser;
-import top.zzh.bean.User;
-import top.zzh.bean.UserRole;
 import top.zzh.common.EncryptUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.HuserService;
-import top.zzh.service.RoleService;
-import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/Huser")
-class HuserController {
+class HUserController {
 
     @Autowired
     private HuserService huserService;
 
 
-    private Logger logger = LoggerFactory.getLogger(HuserController.class);
+    private Logger logger = LoggerFactory.getLogger(HUserController.class);
 
     @RequestMapping("logout")
     public String logout(HttpSession session){

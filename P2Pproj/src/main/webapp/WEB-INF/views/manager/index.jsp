@@ -55,6 +55,8 @@
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
+                        <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
+                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
@@ -70,7 +72,7 @@
                         </li>
                         <li><a a class="J_menuItem" href="">认证审核</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">提现审核</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
                         </li>
                         <li><a a class="J_menuItem" href="">论坛</a>
                         </li>
