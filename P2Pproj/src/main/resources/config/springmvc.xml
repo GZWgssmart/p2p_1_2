@@ -11,7 +11,7 @@
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <bean id="multipartResolver" class="top.zzh.common.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8" />
         <property name="maxUploadSize" value="209715200" />
         <property name="maxInMemorySize" value="40960" />
@@ -41,11 +41,12 @@
     </bean>
 
     <mvc:resources location="/static/" mapping="/static/**"/>
-    <mvc:resources location="/uploads/" mapping="/uploads/**" />
+    <mvc:resources location="/upload/" mapping="/upload/**"/>
+    <mvc:resources  location="/ueditor/" mapping="/ueditor/**"/>
 
 
     <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
-        <!--<property name="defaultErrorView" value="common/error" />-->
+    <!--<property name="defaultErrorView" value="common/error" />-->
     <!--</bean>-->
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

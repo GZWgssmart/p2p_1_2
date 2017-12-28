@@ -133,19 +133,31 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);">
-                        <i class="fa fa-desktop"></i>
-                        <span class="nav-label">页面</span>
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">公司动态</span>
+                        <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">联系人</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">个人资料</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">项目</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/update">更改公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">项目详情</a>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-desktop"></i>
+                        <span class="nav-label">媒体报道</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">文件管理器</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/media/update">更改媒体报道</a>
                         </li>
                     </ul>
                 </li>
