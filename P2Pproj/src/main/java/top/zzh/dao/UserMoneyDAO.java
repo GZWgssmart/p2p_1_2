@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface UserMoneyDAO extends BaseDAO {
     @Override
-    List<Object> listPager(@Param("pager") Pager pager);
+    List <Object> listPagerCriteria(@Param("pager") Pager pager,@Param("query") Object obj);
 
     @Override
-    List <Object> listPagerCriteria(@Param("pager") Pager pager,@Param("query") Object obj);
+    Long countCriteria(@Param("query") Object obj);
 }
