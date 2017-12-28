@@ -16,6 +16,7 @@ import top.zzh.vo.RecommendVO;
 @Controller
 @RequestMapping("/recommend")
 public class RecommendController {
+
     @Autowired
     private RecommendService recommendService;
 
