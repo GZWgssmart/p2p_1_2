@@ -61,7 +61,11 @@ function register() {
         swal("手机号请输入数字类型！","","error");
         return;
     }
-
+    var userCode=$("#userCode").val();
+    if(userCode.length!=5&&userCode.length!=11){
+        swal("请输入正确的推荐码！","","error");
+        return;
+    }
 
     $.post(path + '/luser/registerSave',
         $('#registerForm').serialize(),

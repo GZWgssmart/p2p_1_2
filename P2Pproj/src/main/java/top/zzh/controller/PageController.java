@@ -56,6 +56,11 @@ public class PageController {
     public String login(){
         return "user/login";
     }
+    //推荐链接注册
+    @RequestMapping("register?userCode={userCode}")
+    public String recommendReg(){
+        return "user/register";
+    }
     @RequestMapping("register")
     public String register(){
         return "user/register";

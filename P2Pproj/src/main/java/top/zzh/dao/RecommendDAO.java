@@ -14,6 +14,7 @@ import java.util.List;
 public interface RecommendDAO extends BaseDAO {
     //不存在：0  存在：1
     int countTzm(@Param("tzm") String tzm);
+
     @Override
     List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
@@ -21,4 +22,6 @@ public interface RecommendDAO extends BaseDAO {
     Long countCriteria(@Param("query") Object obj);
 
     Object recommendRanking();
+
+    Object getByTzm(@Param("tzm")String tzm);
 }

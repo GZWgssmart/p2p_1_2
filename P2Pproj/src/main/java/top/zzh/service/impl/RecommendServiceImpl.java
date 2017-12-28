@@ -47,4 +47,9 @@ public class RecommendServiceImpl extends AbstractService implements RecommendSe
     public Object recommendRanking() {
         return recommendDAO.recommendRanking();
     }
+
+    @Override
+    public Object getByTzm(String tzm) {
+        return recommendDAO.getByTzm(tzm);
+    }
 }
