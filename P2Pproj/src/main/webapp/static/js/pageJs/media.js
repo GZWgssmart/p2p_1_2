@@ -197,6 +197,7 @@ $('#search_btn').click(function () {
 function refush() {
     $('#mytab').bootstrapTable('refresh', {url: '/leave/leaveList'});
 }
+
 $("#update").click(function () {
     $.post(
         "/leave/leaveUpdateSave",
@@ -212,6 +213,8 @@ $("#update").click(function () {
         }, "json"
     );
 });
+
+
 $("#shenhe").click(function () {
     $.post(
         "/leave/leaveShenHe",

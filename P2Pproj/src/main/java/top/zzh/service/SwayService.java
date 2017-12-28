@@ -8,6 +8,6 @@ import top.zzh.bean.Sway;
  * CREATE TIME :2017/12/25 14:31
  * @authro :LH
  */
-public interface SwayService {
+public interface SwayService extends BaseService{
     void updateState(Sway sway);
 }
