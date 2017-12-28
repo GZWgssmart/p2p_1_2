@@ -4,7 +4,7 @@
 
 <mapper namespace="top.zzh.dao.JklxDAO">
 
-    <select id="countCriteria" resultType="long">
+    <select id="count" resultType="long">
         <![CDATA[
 		select count(*) from t_jklx
 		]]>
