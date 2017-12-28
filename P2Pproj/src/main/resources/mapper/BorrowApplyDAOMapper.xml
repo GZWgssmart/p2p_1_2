@@ -24,6 +24,7 @@
         ]]>
     </update>
 
+    <!-- 审核-->
     <update id="updateState" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
            update t_borrowapply set state = 0,time = CURRENT_TIME where baid = #{baid}
