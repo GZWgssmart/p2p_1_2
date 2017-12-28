@@ -44,7 +44,7 @@
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">退出时间：</label>
                     <div class="col-sm-2">
-                        <input type="date" class="form-control" name="logout_time" id="logout_time"/>
+                        <input type="text" class="form-control" name="logout_time" id="logout_time"/>
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
                         <button class="btn btn-primary"  onclick="doSearch();">查询</button>

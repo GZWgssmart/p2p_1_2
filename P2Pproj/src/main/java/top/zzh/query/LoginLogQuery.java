@@ -11,6 +11,19 @@ public class LoginLogQuery {
     private String loginIp;
     private String logoutTime;
 
+    public LoginLogQuery() {
+    }
+
+    public LoginLogQuery(Long id, Long userId, String loginTime, Integer isOnline, String uname, String loginIp, String logoutTime) {
+        this.id = id;
+        this.userId = userId;
+        this.loginTime = loginTime;
+        this.isOnline = isOnline;
+        this.uname = uname;
+        this.loginIp = loginIp;
+        this.logoutTime = logoutTime;
+    }
+
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp;
     }

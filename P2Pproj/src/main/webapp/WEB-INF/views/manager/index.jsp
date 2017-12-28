@@ -49,10 +49,6 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/page/users">申请借款列表</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
-                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/tz/page">用户投资详情列表</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
@@ -60,8 +56,6 @@
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
                 </li>
@@ -82,13 +76,24 @@
                         </li>
                         <li><a a class="J_menuItem" href="">代码编辑器</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">模态窗口</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">表单验证</a>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-label">金额管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<%=path%>/page/users">申请借款列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">树形视图</a>
+                        <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">聊天窗口</a>
+                        <li><a a class="J_menuItem" href="">收款管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="">还款管理</a>
                         </li>
                     </ul>
                 </li>
@@ -100,7 +105,7 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">百度ECharts</a>
+                        <li><a a class="J_menuItem" href="">运营数据统计</a>
                         </li>
                         <li><a a class="J_menuItem" href="">Flot</a>
                         </li>
@@ -111,27 +116,6 @@
                         <li><a a class="J_menuItem" href="">Peity</a>
                         </li>
                         <li><a a class="J_menuItem" href="">Sparkline</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-edit"></i>
-                        <span class="nav-label">表单</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">基本表单</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">表单验证</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">高级插件</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">步骤条</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">百度WebUploader</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">文件上传</a>
                         </li>
                     </ul>
                 </li>
@@ -207,11 +191,11 @@
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-table"></i>
-                        <span class="nav-label">表格</span>
+                        <span class="nav-label">系统设置</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">基本表格</a>
+                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                         <li><a a class="J_menuItem" href="">数据表格(DataTables)</a>
                         </li>

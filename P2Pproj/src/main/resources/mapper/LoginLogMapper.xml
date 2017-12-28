@@ -34,7 +34,7 @@
             and ll.is_online like concat('%', #{query.is_online}, '%')
         </if>
         <if test="query != null and query.logout_time != null and query.logout_time !=''">
-            and ll.logout_time <![CDATA[<=]]> #{query.logout_time}
+            and `date` <![CDATA[<=]]> #{query.logout_time}
         </if>
     </sql>
 
