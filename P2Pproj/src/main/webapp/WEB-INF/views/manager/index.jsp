@@ -171,45 +171,6 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span class="nav-label">其他页面</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">搜索结果</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">登录超时</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">404页面</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">500页面</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">空白页</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-flask"></i>
-                        <span class="nav-label">UI元素</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">排版</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">字体图标</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">阿里巴巴矢量图标库</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">拖动面板</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">按钮</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
                         <i class="fa fa-table"></i>
                         <span class="nav-label">系统设置</span>
                         <span class="fa arrow"></span>
