@@ -20,5 +20,5 @@ public interface TzbDAO extends BaseDAO {
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
     @Override
-    Long countCriteria(@Param("pager") Object obj);
+    Long countCriteria(@Param("query") Object obj);
 }

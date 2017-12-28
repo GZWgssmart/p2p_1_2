@@ -11,30 +11,27 @@
         ]]>
     </insert>
 
-    <!-- 投资金额，投资产品，投资时间-->
+    <!-- 投资金额，投资产品-->
     <sql id="cash_query_criteria">
-        <if test="query != null and query.money != null">
+        <if test="query != null and query.money != null and query.money!=''">
             and t.money like concat('%', #{query.money}, '%')
         </if>
-        <if test="query != null and query.cpname != null">
+        <if test="query != null and query.cpname != null and query.cpname!=''">
             and t.cpname like concat('%', #{query.cpname}, '%')
-        </if>
-        <if test="query != null and query.time != null">
-            and t.time like concat('%', #{query.time}, '%')
         </if>
     </sql>
 
-    <select id="listPager" resultType="top.zzh.bean.Tzb">
+    <select id="listPager" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
-            select u.uname,b.baid,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
-             where t.uid = u.uid and b.baid = t.baid
+            select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
+          where t.uid = u.uid and b.baid = t.baid
              limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
-    <select id="listPagerCriteria" resultType="top.zzh.bean.Tzb">
-         select u.uname,b.baid,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
-          where t.uid = u.uid and b.baid = t.baid
+    <select id="listPagerCriteria" resultType="top.zzh.vo.TzbVO">
+        select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
+        where t.uid = u.uid and b.baid = t.baid
         <include refid="cash_query_criteria"/>
           limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
@@ -46,7 +43,7 @@
         ]]>
     </select>
 
-    <select id="count" resultType="top.zzh.bean.Tzb">
+    <select id="count" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
           select count(tzid) from t_tzb
         ]]>

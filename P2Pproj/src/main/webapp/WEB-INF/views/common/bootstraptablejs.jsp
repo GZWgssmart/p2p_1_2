@@ -2,22 +2,13 @@
 <%
     String path = request.getContextPath();
 %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-<!-- Mainly scripts -->
 <script src="<%=path%>/static/js/jquery.min.js?v=2.1.4"></script>
 <script src="<%=path%>/static/js/bootstrap.min.js?v=3.3.5"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<!-- Custom and plugin javascript -->
-<script src="js/hplus.js?v=2.2.0"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-
+<script src="<%=path%>/static/plugin/bootstrap/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="<%=path%>/static/plugin/bootstrap/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<%=path%>/static/js/hplus.js?v=2.2.0"></script>
+<script src="<%=path%>/static/plugin/bootstrap/js/plugins/pace/pace.min.js"></script>
 <script src="<%=path%>/static/plugin/bootstrap/js/content.min.js?v=1.0.0"></script>
 <script src="<%=path%>/static/plugin/bootstrap/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="<%=path%>/static/plugin/bootstrap/js/plugins/validate/messages_zh.min.js"></script>
@@ -32,4 +23,4 @@
 <script type="text/javascript" src="<%=path%>/static/plugin/bootstrap/js/plugins/datapicker/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/plugin/bootstrap/js/plugins/datapicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="<%=path%>/static/plugin/bootstrap/js/select2.min.js"></script>
-</html>
+

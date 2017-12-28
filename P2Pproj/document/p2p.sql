@@ -134,7 +134,7 @@ CREATE TABLE `t_friend` (
 
 -- ----------------------------
 -- Table structure for t_hkb
--- 还款表
+-- 还款表 save update list
 -- ----------------------------
 DROP TABLE IF EXISTS `t_hkb`;
 CREATE TABLE `t_hkb` (
@@ -467,7 +467,7 @@ CREATE TABLE `t_shborrow` (
 
 -- ----------------------------
 -- Table structure for t_skb
--- 收款表
+-- 收款表 save update
 -- ----------------------------
 DROP TABLE IF EXISTS `t_skb`;
 CREATE TABLE `t_skb` (

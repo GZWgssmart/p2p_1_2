@@ -12,7 +12,7 @@
     <title>404</title>
     <link href="<%=path%>/static/css/bootstrap.css" rel="stylesheet">
     <link href="<%=path%>/static/css/font-awesome.min.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Nova+Flat' rel='stylesheet' type='text/css'>
+    <link href='<%=path%>/static/css/404.css' rel='stylesheet' type='text/css'>
     <link href="<%=path%>/static/css/style.css" rel="stylesheet" />
 </head>
 <body>

@@ -21,7 +21,7 @@
 <!--个人中心-->
 <div class="wrapper wbgcolor">
     <div class="w1200 personal">
-        <div class="credit-ad"><img src="images/clist1.jpg" width="1200" height="96"></div>
+        <div class="credit-ad"><img src="<%=path%>/static/images/clist1.jpg" width="1200" height="96"></div>
         <div id="personal-left" class="personal-left">
             <ul>
                 <li class="pleft-cur"><span><a href="<%=path%>/page/user"><i class="dot dot1"></i>账户总览</a></span></li>
