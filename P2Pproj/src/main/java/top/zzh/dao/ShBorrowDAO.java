@@ -24,5 +24,6 @@ public interface ShBorrowDAO extends BaseDAO{
     @Override
     Long countCriteria(@Param("query") Object obj);
 
-
+    @Override
+    Long count();
 }

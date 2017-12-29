@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.ShBorrow;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
+import top.zzh.service.BorrowApplyService;
 import top.zzh.service.ShBorrowService;
 import top.zzh.vo.ControllerStatusVO;
-import top.zzh.vo.ShBorrowVO;
-import java.util.*;
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by 曾志湖 on 2017/12/26.
@@ -30,28 +28,13 @@ public class ShBorrowController {
 
     @RequestMapping("page")
     public String page(){
-        return "shenhe/shborrowShenhe";
-    }
-
-    @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(ShBorrow shBorrow){
-        logger.info("审核借款信息");
-        ControllerStatusVO statusVO = null;
-        try{
-            shBorrowService.save(shBorrow);
-        }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);
-        return statusVO;
+        return "manager/shborrow";
     }
 
     @RequestMapping("update/{id}/{isok}")
     @ResponseBody
     public ControllerStatusVO update(@PathVariable("id") Long id,@PathVariable("isok") int isok, ShBorrow shBorrow){
         logger.info("修改审核信息");
-        shBorrow.setShid(id);
         shBorrow.setIsok((byte)isok);
         shBorrow.setExcute(shBorrow.getExcute());
         ControllerStatusVO statusVO = null;
@@ -64,11 +47,5 @@ public class ShBorrowController {
         return statusVO;
     }
 
-    @RequestMapping("pager_criteria")
-    @ResponseBody
-    public Pager pagerCriteria(int pageIndex,int pageSize,ShBorrowVO shBorrowVO) {
-        logger.info("借款审核+条件查询");
-        return shBorrowService.listPagerCriteria(pageIndex, pageSize, shBorrowVO);
-    }
 
 }

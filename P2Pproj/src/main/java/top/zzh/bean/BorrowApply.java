@@ -17,15 +17,20 @@ public class BorrowApply {
     private Integer term;//借款期限
     private Date deadline;//截止时间
     private String bzname;
+    private Long huid;
+    private String reason;
     private String uname;
     private String lxname;
     private Long lxid;
-    private Long int1;
-    private String str1;
+    private String username;
 
-    public BorrowApply(Long lxid,String lxname,String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, Integer term, Date deadline,Long int1, String str1) {
+
+    public BorrowApply(String username,Long huid,String reason,Long lxid,String lxname,String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, Integer term, Date deadline) {
         this.baid = baid;
         this.uname = uname;
+        this.username = username;
+        this.huid = huid;
+        this.reason = reason;
         this.lxname = lxname;
         this.bzname = bzname;
         this.lxid = lxid;
@@ -38,8 +43,30 @@ public class BorrowApply {
         this.type = type;
         this.term = term;
         this.deadline = deadline;
-        this.int1 = int1;
-        this.str1 = str1;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setHuid(Long huid) {
+        this.huid = huid;
+    }
+
+    public Long getHuid() {
+        return huid;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getReason() {
+        return reason;
     }
 
     public void setLxid(Long lxid) {
@@ -158,19 +185,4 @@ public class BorrowApply {
         this.deadline = deadline;
     }
 
-    public Long getInt1() {
-        return int1;
-    }
-
-    public void setInt1(Long int1) {
-        this.int1 = int1;
-    }
-
-    public String getStr1() {
-        return str1;
-    }
-
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
-    }
 }

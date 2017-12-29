@@ -1,20 +1,18 @@
 package top.zzh.controller;
 
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.LogTx;
 import top.zzh.bean.UserMoney;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
-import top.zzh.service.LogTxService;
 import top.zzh.service.UserMoneyService;
 import top.zzh.vo.ControllerStatusVO;
-import top.zzh.vo.LogTxVO;
 import top.zzh.vo.UserMoneyVO;
 
 /**
@@ -29,7 +27,7 @@ public class UserMoneyController {
 
     private ControllerStatusVO statusVO;
 
-    private org.slf4j.Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
+    private Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
 
     @PostMapping("save")
     @ResponseBody

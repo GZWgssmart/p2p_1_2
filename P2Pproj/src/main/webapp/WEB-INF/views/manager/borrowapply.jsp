@@ -80,6 +80,12 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核理由：</label>
+                            <div class="col-sm-8">
+                                <textarea  name="reason" id="reason" class="form-control" required="" aria-required="true"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭

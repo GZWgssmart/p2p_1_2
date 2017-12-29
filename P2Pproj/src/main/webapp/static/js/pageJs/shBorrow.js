@@ -2,7 +2,7 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/shborrow/pager_criteria",//要请求数据的文件路径
+    url: "/borrowapply/pager",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -21,7 +21,7 @@ $('#mytab').bootstrapTable({
     toolbarAlign: 'right',//工具栏对齐方式
     buttonsAlign: 'right',//按钮对齐方式
     search: true,
-    uniqueId: "shid",                     //每一行的唯一标识，一般为主键列
+    uniqueId: "baid",                     //每一行的唯一标识，一般为主键列
     showExport: true,
     exportDataType: 'all',
     columns: [
@@ -37,43 +37,50 @@ $('#mytab').bootstrapTable({
 
         {
             title: '审核人',
-            field: 'rname',
+            field: 'username',
             align: 'center',
             sortable: true
         }
         ,
         {
             title: '借款人',
-            field: 'nickname',
+            field: 'uname',
             align: 'center',
             sortable: true
         }
         ,
         {
             title: '审核理由',
-            field: 'excute',
+            field: 'reason',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '申请借款人',
+            field: 'rname',
             align: 'center',
             sortable: true
         }
         ,
         {
             title: '审核状态',
-            field: 'isok',
+            field: 'state',
             align: 'center',
             formatter: function (value, row, index) {
                 if (value == 0) {
                     //表示激活状态
-                    return '<span style="color:red" >未审核</span>';
+                    return '<span style="color:green">已审核</span>';
                 } else {
                     //表示冻结状态
-                    return '<span style="color:green">已审核</span>';
+                    return '<span style="color:red" >未审核</span>';
                 }
             }
         }
         ,
         {
             title: '审核时间',
-            field: 'date',
+            field: 'time',
             align: 'center',
             sortable: true,
             formatter: function (value) {
@@ -87,17 +94,17 @@ $('#mytab').bootstrapTable({
                 return y + '-' + m + '-' + d ;
             }
         }
-        ,
-        {
-            title: '操作',
-            align: 'center',
-            field: '',
-            formatter: function (value, row, index) {
-                var g='';
-                g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.shid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.shid+','+row.isok+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-                return g;
-            }
-        }
+        // ,
+        // {
+        //     title: '操作',
+        //     align: 'center',
+        //     field: '',
+        //     formatter: function (value, row, index) {
+        //         var g='';
+        //         g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.shid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.shid+','+row.isok+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+        //         return g;
+        //     }
+        // }
     ],
     locale: 'zh-CN',//中文支持,
     responseHandler: function (res) {
@@ -153,7 +160,7 @@ function shenhe(id,isok) {
 
 //查询按钮事件
 $('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/shborrow/pager_criteria'});
+    $('#mytab').bootstrapTable('refresh', {url: '/borrowapply/pager'});
 })
 
 

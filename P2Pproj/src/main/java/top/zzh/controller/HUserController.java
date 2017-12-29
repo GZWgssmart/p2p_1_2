@@ -38,11 +38,12 @@ public class HUserController {
     //后台用户中心页面
     @RequestMapping("page")
     @ResponseBody
-    public ControllerStatusVO page(String pwd, String phone){
+    public ControllerStatusVO page(String pwd, String phone,HttpSession session){
         ControllerStatusVO statusVO = null;
         HUser hUser=huserService.getByNamePwd(phone, EncryptUtils.md5(pwd));
         if(hUser!=null && hUser.getState()==1){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
+            session.setAttribute("HUser",hUser);
         }else{
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_PHONEFAIL);
         }
@@ -116,6 +117,7 @@ public class HUserController {
 
         if(user!=null && user.getState()==1){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
+
         }
 
         return  statusVO;

@@ -3,8 +3,12 @@ package top.zzh.test;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.zzh.bean.BorrowApply;
+import top.zzh.bean.BorrowDetail;
+import top.zzh.bean.ShBorrow;
 import top.zzh.common.Pager;
 import top.zzh.dao.BorrowApplyDAO;
+import top.zzh.service.BorrowDetailService;
+import top.zzh.service.ShBorrowService;
 import top.zzh.vo.BorrowDetailVO;
 
 import java.math.BigDecimal;
@@ -19,18 +23,40 @@ public class BorrowApplyTest extends BaseTest {
     @Autowired
     private BorrowApplyDAO borrowApplyDAO;
 
+    @Autowired
+    private BorrowDetailService borrowDetailService;
+
+    @Autowired
+    private ShBorrowService shBorrowService;
+
     @Test
     public void save(){
         BorrowApply borrowApply = new BorrowApply();
-        borrowApply.setRname("张三");
-        borrowApply.setMoney(BigDecimal.valueOf(1500));
-        borrowApply.setUid(4L);
-        borrowApply.setBzid(1L);
+        borrowApply.setRname("张六");
+        borrowApply.setMoney(BigDecimal.valueOf(2500));
+        borrowApply.setUid(38L);
+        borrowApply.setBzid(3L);
         borrowApply.setState((byte)0);
-        borrowApply.setTerm(5);
+        borrowApply.setTerm(6);
         borrowApply.setType((byte)1);
         borrowApply.setDeadline(new Date());
         borrowApplyDAO.save(borrowApply);
+        BorrowDetail borrowDetail = new BorrowDetail();
+        borrowDetail.setMpurpose("用于投资");
+        borrowDetail.setHksource("***科技公司");
+        borrowDetail.setSuggest("建议");
+        borrowDetail.setXmdescrip("工程描述");
+        borrowDetail.setGuarantee("工程措施");
+        borrowDetail.setNprofit((float)40);
+        borrowDetail.setWay("借款方式");
+        borrowDetail.setCpname("YRB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
+        borrowDetail.setBaid(borrowApply.getBaid());
+        borrowDetail.setMoney(borrowApply.getMoney());
+        borrowDetailService.save(borrowDetail);
+        ShBorrow shBorrow = new ShBorrow();
+        shBorrow.setBaid(borrowApply.getBaid());
+        shBorrow.setIsok((byte)1);
+        shBorrowService.save(shBorrow);
     }
 
     @Test

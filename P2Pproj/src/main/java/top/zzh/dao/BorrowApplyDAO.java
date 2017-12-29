@@ -23,6 +23,9 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     Long countCriteria(@Param("pager") Object obj);
 
+    @Override
+    Long count();
+
     //修改审核状态
     void updateState(BorrowApply borrowApply);
 }

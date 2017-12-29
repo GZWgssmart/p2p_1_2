@@ -12,8 +12,8 @@
 
     <insert id="save" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-          insert into t_borrowapply(rname,money,uid,bzid,time,state,type,term,deadline)
-          values(#{rname},#{money},#{uid},#{bzid},null,0,#{type},#{term},#{deadline})
+          insert into t_borrowapply(rname,money,uid,bzid,state,type,term,deadline)
+          values(#{rname},#{money},#{uid},#{bzid},1,#{type},#{term},#{deadline})
         ]]>
     </insert>
 
@@ -27,7 +27,7 @@
     <!-- 审核-->
     <update id="updateState" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-           update t_borrowapply set state = 0,time = CURRENT_TIME where baid = #{baid}
+           update t_borrowapply set state = 0,time = CURRENT_TIME,reason = #{reason},huid = #{huid} where baid = #{baid}
         ]]>
     </update>
 
@@ -43,25 +43,25 @@
 
     <select id="listPager" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-       select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type
-         limit #{pager.beginIndex}, #{pager.pageSize}
+         select ba.rname,ba.reason,h.rname as username,u.uname,ba.time,ba.state from
+        t_borrowapply ba,t_user u,t_huser h
+        where ba.uid = u.uid and ba.huid = h.huid
+        limit #{pager.beginIndex}, #{pager.pageSize}
          ]]>
     </select>
 
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type
+        select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.state=0
+          select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,h.rname as username,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
     </select>
 
     <select id="countCriteria" resultType="long">
@@ -71,8 +71,9 @@
         ]]>
     </select>
 
-    <select id="count" resultType="top.zzh.bean.BorrowApply">
-        select count(baid) from t_borrowapply
+    <select id="count" resultType="long">
+        select count(baid) from t_borrowapply ba,t_user u,t_huser h
+        where ba.uid = u.uid and ba.huid = h.huid
     </select>
 
     <select id="getById" parameterType="top.zzh.bean.BorrowApply">

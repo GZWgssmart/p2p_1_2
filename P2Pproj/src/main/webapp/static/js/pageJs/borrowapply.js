@@ -71,21 +71,6 @@ $('#mytab').bootstrapTable({
         }
         ,
         {
-            title: '审核状态',
-            field: 'state',
-            align: 'center',
-            formatter: function (value, row, index) {
-                if (value == 0) {
-                    //表示激活状态
-                    return '<span style="color:green" >已审核</span>';
-                } else if(value==1){
-                    //表示激活状态
-                    return '<span style="color:red">未审核</span>';
-                }
-            }
-        }
-        ,
-        {
             title: '借款期限(月)',
             field: 'term',
             align: 'center',
@@ -106,6 +91,45 @@ $('#mytab').bootstrapTable({
                 var mi = date.getMinutes();
                 var ss = date.getSeconds();
                 return y + '-' + m + '-' + d ;
+            }
+        }
+        ,
+        {
+            title: '审核理由',
+            field: 'reason',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '审核时间',
+            field: 'time',
+            align: 'center',
+            sortable: true,
+            formatter: function (value) {
+                var date = new Date(value);
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                var d = date.getDate();
+                var h = date.getHours();
+                var mi = date.getMinutes();
+                var ss = date.getSeconds();
+                return y + '-' + m + '-' + d ;
+            }
+        }
+        ,
+        {
+            title: '审核状态',
+            field: 'state',
+            align: 'center',
+            formatter: function (value, row, index) {
+                if (value == 0) {
+                    //表示激活状态
+                    return '<span style="color:green" >已审核</span>';
+                } else if(value==1){
+                    //表示激活状态
+                    return '<span style="color:red">未审核</span>';
+                }
             }
         }
         ,

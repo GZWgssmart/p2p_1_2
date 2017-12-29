@@ -49,8 +49,8 @@ CREATE TABLE `t_borrowapply` (
   `type` tinyint(4) DEFAULT NULL COMMENT '借款类型为标种的主键字段，比如普金包，多金宝',
   `term` varchar(20) DEFAULT NULL COMMENT '借款期限',
   `deadline` datetime NOT NULL  COMMENT '截止时间',
-  `int1` bigint(20) DEFAULT NULL COMMENT '预留字段',
-  `str1` varchar(20) DEFAULT NULL COMMENT '预留字段',
+  `huid` bigint(20) DEFAULT NULL COMMENT '审核人id',
+  `reason` varchar(50) DEFAULT NULL COMMENT '审核理由',
   PRIMARY KEY (`baid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
