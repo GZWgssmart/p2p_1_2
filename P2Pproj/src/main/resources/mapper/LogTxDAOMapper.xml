@@ -58,5 +58,18 @@
         ]]>
     </delete>
 
+    <!--查看用户提现记录（个人）-->
+    <select id="listPagerByid" resultType="top.zzh.vo.LogTxVO">
+        select u.rname,lg.banktype,lg.bankcard,lg.money,lg.date_time,lg.state
+        from t_logtx as lg ,t_user as u where lg.uid=u.uid and u.uid=#{id}
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countById" resultType="long">
+        select count(u.uid)  from t_logtx as lg ,t_user as u where lg.uid=u.uid
+        and u.id=#{id}
+    </select>
+
+
 
 </mapper>

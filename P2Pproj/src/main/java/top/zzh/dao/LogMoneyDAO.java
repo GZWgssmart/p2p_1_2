@@ -17,4 +17,9 @@ public interface LogMoneyDAO extends BaseDAO{
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    List<Object> listPagerById(@Param("pager") Pager pager,@Param("id") Long id);
+
+    Long countById(@Param("id") Long id);
+
 }

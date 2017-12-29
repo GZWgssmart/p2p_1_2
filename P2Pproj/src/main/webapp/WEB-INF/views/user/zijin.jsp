@@ -13,6 +13,7 @@
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
     <script src="<%=path%>/static/js/user.js" type="text/javascript"></script>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body>
 <!-- 网站头部-->
@@ -50,20 +51,9 @@
                         <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-dc"><span class="ui-button-text ui-c">导出</span></button>
                     </div>
                     <span id="form:dataTable">
-          <div class="personal-moneylist">
-            <div class="pmain-contitle"> <span class="pmain-title1 fb">交易时间</span> <span class="pmain-title2 fb">交易类型</span> <span class="pmain-title3 fb">交易金额</span> <span class="pmain-title4 fb">余额</span> <span class="pmain-title5 fb">备注</span> </div>
-            <ul>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-              <li><span class="pmain-title1 pmain-height">2015-10-20</span><span class="pmain-title2 pmain-height">债权转让</span><span class="pmain-title3 pmain-height">10.00</span><span class="pmain-title4 pmain-height">10.00</span><span class="pmain-title5 pmain-height">备注</span></li>
-                <!-- <div style=" width:760px;height:200px;padding-top:100px; text-align:center;color:#d4d4d4; font-size:16px;"> <img src="images/nondata.png" width="60" height="60"><br>
-                  <br>
-                  暂无资金记录</div>-->
-            </ul>
+          <div >
+                 <table id="mytab" name="mytab" class="table table-hover"></table>
+            <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
           </div>
           </span>
                 </form>
@@ -74,4 +64,6 @@
 </div>
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %></body>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
+<script src="<%=path%>/static/js/pageJs/zijin.js"></script>
 </html>

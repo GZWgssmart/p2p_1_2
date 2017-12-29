@@ -90,9 +90,13 @@
         <include refid="money_all"/>
     </select>
 
+    <!--用户资金管理（个人）-->
     <select id="getById" parameterType="top.zzh.bean.UserMoney">
         <![CDATA[
-        select * from t_usermoney where uid=#{uid}
+         select u.rname,um.uid,um.zmoney,um.kymoney,um.symoney,
+         um.tzmoney,um.dsmoney,um.djmoney,um.jlmoney
+          from t_usermoney as um ,t_user as u
+          where  u.uid=#{uid}
     ]]]>
     </select>
 

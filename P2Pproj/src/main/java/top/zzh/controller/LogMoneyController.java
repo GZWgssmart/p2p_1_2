@@ -48,6 +48,13 @@ public class LogMoneyController {
         return LogMoneyService.listPagerCriteria(pageIndex, pageSize, logMoneyVO);
     }
 
+    @RequestMapping("pageById")
+    @ResponseBody
+    public Pager pageById(int pageIndex, int pageSize) {
+        logger.info("用户资金流向记录分页+条件查询");
+        return LogMoneyService.listPagerById(pageIndex,pageSize,1L);
+    }
+
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(LogMoney logMoney){

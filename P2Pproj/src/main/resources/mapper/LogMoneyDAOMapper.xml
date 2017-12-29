@@ -48,4 +48,16 @@
         <include refid="query_criteria"/>
     </select>
 
+    <!--资金流向管理（个人）-->
+    <select id="listPagerById" resultType="logMoney">
+      select * from
+        t_logmoney  where uid=#{id}
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countById" resultType="long">
+        select count(uid) from
+        t_logmoney where  uid=#{id}
+    </select>
+
 </mapper>
