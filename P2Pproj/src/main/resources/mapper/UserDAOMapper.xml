@@ -32,4 +32,16 @@
     </insert>
 
 
+    <update id="saveHeader" parameterType="string">
+        <![CDATA[
+           update t_user set face=#{face} where uname=#{uname}
+        ]]>
+    </update>
+
+    <select id="getByface" resultMap="userMap">
+        select uid,uname,face from t_user
+        where uname=#{uname}
+    </select>
+
+
 </mapper>

@@ -8,7 +8,11 @@ import top.zzh.bean.User;
 public interface UserService extends BaseService {
     User getByNamePwd(String name, String pwd);
 
+
     User getByPhone(String phone);
     Long  register(Object obj);
 
+    void saveHeader(String face,String uname);
+
+    User getByface(String uname);
 }

@@ -21,7 +21,23 @@
 <!--个人中心-->
 <div class="wrapper wbgcolor">
     <div class="w1200 personal">
-        <%@include file="../common/leftList.jsp"%>
+        <div class="credit-ad"><img src="<%=path%>/static/images/clist1.jpg" width="1200" height="96"></div>
+        <div id="personal-left" class="personal-left">
+            <ul>
+                <li class="pleft-cur"><span><a href="<%=path%>/luser/userindex"><i class="dot dot1"></i>账户总览</a></span></li>
+                <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;" href="<%=path%>/page/zijin">资金记录</a></span></li>
+                <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;" href="<%=path%>/page/touzi">投资记录</a></span></li>
+                <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;" href="<%=path%>/page/huikuan">回款计划</a></span></li>
+                <li class=""><span><a href="<%=path%>/page/disanfang"><i class="dot dot02"></i>开通第三方</a> </span> </li>
+                <li><span><a href="<%=path%>/page/chongzhi"><i class="dot dot03"></i>充值</a></span></li>
+                <li class=""><span><a href="<%=path%>/page/tixian"><i class="dot dot04"></i>提现</a></span></li>
+                <li style="position:relative;" class=""> <span> <a href="<%=path%>/page/hongbao"> <i class="dot dot06"></i> 我的红包 </a> </span> </li>
+                <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;" href="<%=path%>/page/history">兑换历史</a></span></li>
+                <li style="position:relative;"> <span> <a href="<%=path%>/page/xitong"><i class="dot dot08"></i>系统信息 </a> </span> </li>
+                <li><span><a href="<%=path%>/page/zhanghu"><i class="dot dot09"></i>账户设置</a></span></li>
+                <li><span><a href="<%=path%>/luser/logout"><i class="dot dot10"></i>安全退出</a></span></li>
+            </ul>
+        </div>
         <script type="text/javascript">
             //<![CDATA[
             function showSpan(op){
@@ -260,12 +276,11 @@
                 <h3><i>账户设置</i></h3>
                 <div class="personal-level"> <span class="wzd">您的账户完整度</span><i class="grzxbg level3" style="border: none; margin: 37px 0px 0px 20px; height: 17px; background-position: 0px -550px;"></i><span class="state">[中]</span> <i id="zhwzd" class="markicon fl mt35"></i><span class="arrow-personal">请尽快完成账户安全设置，以确保您的账户安全</span><span class="grzxbg icon-personal"></span> </div>
                 <ul>
-                    <li><i class="grzxbg p-right"></i><span class="zhsz-span1">手机号</span><span class="zhsz-span2">150****0139</span><span class="zhsz-span3"><a href="javascript:void(0)" onclick="showSpan('alert-checkOldMobile')">更改</a></span></li>
                     <input type="hidden" value="false" id="authenticationMobile">
-                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">身份认证</span><span class="zhsz-span2">未认证</span><span class="zhsz-span3"><a href="#">认证</a></span></li>
-                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">第三方支付</span><span class="zhsz-span2">未开通</span><span class="zhsz-span3"><a href="#">开通</a></span></li>
-                    <li> <i class="grzxbg p-right"></i> <span class="zhsz-span1">电子邮箱</span> <span class="zhsz-span2">348****@qq.com</span> <span class="zhsz-span3"> <a href="#" onclick="showSpan('alert-updateEmail')">更改</a> </span> </li>
-                    <li><i class="grzxbg p-right"></i><span class="zhsz-span1">登录密码</span><span class="zhsz-span2"></span><span class="zhsz-span3"><a href="javascript:void(0)" onclick="showSpan('alert-updatePass')">更改</a></span></li>
+                    <li><i class="grzxbg p-right"></i><span class="zhsz-span1">信息认证</span><span class="zhsz-span3"><a href="<%=path%>/rzvip/rzvipaddView">认证</a></span></li>
+                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">支付密码</span><span class="zhsz-span3"><a href="#">更改</a></span></li>
+                    <li> <i class="grzxbg p-right"></i> <span class="zhsz-span1">个人资料</span> <span class="zhsz-span3"> <a href="#" onclick="showSpan('alert-updateEmail')">查看</a> </span> </li>
+                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">登录密码</span><span class="zhsz-span2"></span><span class="zhsz-span3"><a href="javascript:void(0)" onclick="showSpan('alert-updatePass')">更改</a></span></li>
                 </ul>
             </div>
         </div>

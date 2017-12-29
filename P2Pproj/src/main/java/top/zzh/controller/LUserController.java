@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.*;
-import top.zzh.common.CheckCodeUtils;
-import top.zzh.common.Constants;
-import top.zzh.common.EncryptUtils;
-import top.zzh.common.Pager;
+import top.zzh.common.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
 import top.zzh.query.LoginLogQuery;
@@ -29,7 +27,11 @@ import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 /**
  * Created by Administrator on 2017/12/21 0021.
@@ -80,6 +82,7 @@ public class LUserController {
                         log.setUserId(userid);
                         log.setLoginIp(request.getRemoteHost());
                         loginLogService.save(log);
+                        sessionShiro.setAttribute(Constants.USER_ID_SESSION,userid);
 
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
                         session.setAttribute("userObj",userObj);
@@ -100,8 +103,12 @@ public class LUserController {
 
 
     @GetMapping("userindex")
-    public String userLogin() {
-
+    public String userLogin(HttpSession session,HttpServletRequest request) {
+        String name= (String) session.getAttribute(Constants.USER_IN_SESSION);
+        String time=loginLogService.getByloginTime(name);
+        User user=userService.getByface(name);
+        request.setAttribute("time",time);
+        request.setAttribute("face",user.getFace());
         return "/user/userindex";
     }
 
@@ -171,6 +178,25 @@ public class LUserController {
         return statusVO;
     }
 
+    @PostMapping("uploadHeader")
+    public String uploadHeader(MultipartFile header, HttpServletRequest request, HttpSession session){
+        ControllerStatusVO statusVO=null;
+
+        try {
+            copyInputStreamToFile(header.getInputStream(),new File(PathUtils.uploadDir(request)+"/"+header.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String face="static/uploads/"+header.getOriginalFilename();
+
+        userService.saveHeader(face, (String) session.getAttribute(Constants.USER_IN_SESSION));
+        String time=loginLogService.getByloginTime((String) session.getAttribute(Constants.USER_IN_SESSION));
+        request.setAttribute("face",face);
+        request.setAttribute("time",time);
+
+        return  "user/userindex";
+    }
 
     @PostMapping("registerSave")
     @ResponseBody
@@ -240,7 +266,9 @@ public class LUserController {
 
     @RequestMapping("logout")
     public String logout(HttpSession session){
-        logger.info("安全退出+退出日志");
+        String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        long userid=loginLogService.getByName(name);
+        loginLogService.updateByUserId(userid);
         session.invalidate();
         return "user/login";
     }

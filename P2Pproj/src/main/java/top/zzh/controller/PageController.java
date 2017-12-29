@@ -1,14 +1,25 @@
 package top.zzh.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import top.zzh.bean.User;
 import top.zzh.common.Constants;
+import top.zzh.service.LoginLogService;
+import top.zzh.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/page")
 public class PageController {
+
+    @Autowired
+    private LoginLogService loginLogService;
+
+    @Autowired
+    private UserService userService;
 
    @RequestMapping("welcome")
     public String welcome(){
@@ -25,12 +36,18 @@ public class PageController {
     }
 
     @RequestMapping("user")
-    public String user(HttpSession session){
+    public String user(HttpSession session, HttpServletRequest request){
         if(session.getAttribute(Constants.USER_IN_SESSION)==null || session.getAttribute(Constants.USER_IN_SESSION)==""){
 
             return "user/nopower";
+        }else{
+            String name= (String) session.getAttribute(Constants.USER_IN_SESSION);
+            String time=loginLogService.getByloginTime(name);
+            User user=userService.getByface(name);
+            request.setAttribute("time",time);
+            request.setAttribute("face",user.getFace());
+            return "user/userindex";
         }
-        return "user/userindex";
     }
     @RequestMapping("chongzhi")
     public String chongzhi(){

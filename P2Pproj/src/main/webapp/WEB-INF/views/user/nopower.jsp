@@ -20,6 +20,14 @@
 
 </head>
 <body>
+
+<script type="text/javascript">
+    $(function(){
+        swal("没有权限，请先登录！","","error");
+    });
+
+</script>
+
 <!-- 网站头部-->
 <%@include file="../common/header.jsp"%>
 <!--注册-->

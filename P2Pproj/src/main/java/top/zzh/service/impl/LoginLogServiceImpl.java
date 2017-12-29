@@ -32,4 +32,12 @@ public class LoginLogServiceImpl extends AbstractService implements LoginLogServ
     public void updateByUserId(Long userId) {
         loginLogDAO.updateByUserId(userId);
     }
+
+    @Override
+    public String getByloginTime(String name) {
+        return loginLogDAO.getByloginTime(name);
+    }
+
+
+
 }

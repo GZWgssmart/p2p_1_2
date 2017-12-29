@@ -15,6 +15,8 @@ public interface LoginLogDAO extends BaseDAO {
 
     long getByName(@Param("name") String name);
 
+    String getByloginTime(@Param("name") String name);
+
     void updateByUserId(Long userId);
 
     @Override

@@ -16,6 +16,7 @@ import top.zzh.service.UserService;
 public class UserServiceImpl extends AbstractService implements UserService{
 
 
+
     private UserDAO userDAO;
 
     @Autowired
@@ -29,6 +30,7 @@ public class UserServiceImpl extends AbstractService implements UserService{
         return userDAO.getByNamePwd(name, pwd);
     }
 
+
     @Override
     public User getByPhone(String phone) {
         return userDAO.getByPhone(phone);
@@ -37,5 +39,15 @@ public class UserServiceImpl extends AbstractService implements UserService{
     @Override
     public Long register(Object obj) {
         return userDAO.register(obj);
+    }
+
+    @Override
+    public void saveHeader(String face,String uname) {
+        userDAO.saveHeader(face,uname);
+    }
+
+    @Override
+    public User getByface(String uname) {
+        return userDAO.getByface(uname);
     }
 }

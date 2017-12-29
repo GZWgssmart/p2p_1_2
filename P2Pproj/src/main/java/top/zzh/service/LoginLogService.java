@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Param;
 public interface LoginLogService extends BaseService {
     long getByName(String name);
     void updateByUserId(Long userId);
+    String getByloginTime(String name);
 }
