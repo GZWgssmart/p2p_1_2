@@ -28,6 +28,11 @@ public class RecommendController {
         return "recommend/recommend";
     }
 
+    @RequestMapping("tuijian")
+    public String tuijian() {
+        return "user/tuijian";
+    }
+
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex, int pageSize, RecommendVO recommend) {
