@@ -107,10 +107,8 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
                 for (int cell = 0; cell <= hssfRow.getLastCellNum(); cell++) {
                     HSSFCell hssfCell = hssfRow.getCell(cell);
                     if (cell == 0) {
-                        jur.setJid((long) hssfCell.getNumericCellValue());
-                    } else if (cell == 1) {
                         jur.setJurl(hssfCell.getStringCellValue());
-                    } else if (cell == 2) {
+                    } else if (cell == 1) {
                         jur.setContent(hssfCell.getStringCellValue());
                     }
                 }
@@ -133,10 +131,8 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
                 for (int cell = 0; cell <= xssfRow.getLastCellNum(); cell++) {
                     XSSFCell xssfCell = xssfRow.getCell(cell);
                     if (cell == 0) {
-                        jur.setJid((long) xssfCell.getNumericCellValue());
-                    } else if (cell == 1) {
                         jur.setJurl(xssfCell.getStringCellValue());
-                    } else if (cell == 2) {
+                    } else if (cell == 1) {
                         jur.setContent(xssfCell.getStringCellValue());
                     }
                 }
