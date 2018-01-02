@@ -73,7 +73,7 @@ CREATE TABLE `t_borrowdetail` (
   `guarantee` varchar(500) DEFAULT NULL COMMENT '保障措施',
   `money` decimal(7,2) DEFAULT NULL COMMENT '金额', 
   `nprofit` float(3,2) DEFAULT NULL COMMENT '年化收益',
-  `way` varchar(200) DEFAULT NULL COMMENT '收益方式',
+  `sid` bigint(20) DEFAULT NULL COMMENT '收益方式',
   `cpname` varchar(200) DEFAULT NULL COMMENT '产品名称',
   `baid` bigint(20) DEFAULT NULL COMMENT '借款人id，baid为t_borrowapply表id',
   `int1` bigint(20) DEFAULT NULL COMMENT '预留字段',

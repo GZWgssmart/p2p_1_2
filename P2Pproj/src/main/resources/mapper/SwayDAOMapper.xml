@@ -45,4 +45,9 @@
         select * from t_sway where sid = #{sid}
     ]]>
     </select>
+    <select id="listAll" resultType="top.zzh.bean.Sway" >
+        <![CDATA[
+        select * from t_sway
+    ]]>
+    </select>
 </mapper>

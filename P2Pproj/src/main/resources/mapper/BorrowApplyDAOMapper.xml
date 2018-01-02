@@ -11,16 +11,19 @@
     </delete>
 
     <insert id="save" parameterType="top.zzh.bean.BorrowApply">
+        <selectKey keyColumn="baid" keyProperty="baid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
-          insert into t_borrowapply(rname,money,uid,bzid,state,type,term,deadline)
-          values(#{rname},#{money},#{uid},#{bzid},1,#{type},#{term},#{deadline})
+          insert into t_borrowapply(rname,money,uid,bzid,state,time,lxid,term,deadline,reason,huid)
+          values(#{rname},#{money},#{uid},#{bzid},1,CURRENT_TIME ,#{lxid},#{term},#{deadline},#{reason},#{huid})
         ]]>
     </insert>
 
     <update id="update" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-            update t_borrowapply set money = #{money},bzid = #{bzid},type = #{type},
-            term = #{term},deadline = #{deadline} ,state = 1 where baid = #{baid}
+            update t_borrowapply set money = #{money},bzid = #{bzid},state = 1,lxid = #{lxid},
+            term = #{term},deadline = #{deadline},reason = #{reason} where baid = #{baid}
         ]]>
     </update>
 
@@ -53,15 +56,15 @@
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
         select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-          select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,h.rname as username,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+          select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
     </select>
 
     <select id="countCriteria" resultType="long">

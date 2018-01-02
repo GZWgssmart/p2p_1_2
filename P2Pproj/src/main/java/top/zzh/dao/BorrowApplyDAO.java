@@ -28,4 +28,11 @@ public interface BorrowApplyDAO extends BaseDAO{
 
     //修改审核状态
     void updateState(BorrowApply borrowApply);
+
+    @Override
+    void save(Object obj);
+
+    @Override
+    void update(Object obj);
+
 }

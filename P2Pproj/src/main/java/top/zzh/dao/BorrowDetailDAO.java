@@ -25,4 +25,10 @@ public interface BorrowDetailDAO extends BaseDAO{
 
     //修改图片
     void updateTupian(Object obj);
+
+    @Override
+    void update(Object obj);
+
+    @Override
+    void save(Object obj);
 }
