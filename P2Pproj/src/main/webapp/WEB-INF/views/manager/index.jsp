@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <title>亿人宝后台管理系统</title>
     <jsp:include page="../common/css.jsp"/>
 </head>
@@ -49,13 +49,13 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/page/users">前台用户列表</a>
+                        <li><a class="J_menuItem" href="<%=path%>/tz/page">用户投资详情列表</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
-                        <li><a class="J_menuItem" href="">主页示例四</a>
+                        <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
                         </li>
                     </ul>
                 </li>
@@ -70,23 +70,14 @@
                         </li>
                         <li><a a class="J_menuItem" href="">认证审核</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">提现审核</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
                         </li>
                         <li><a a class="J_menuItem" href="">论坛</a>
                         </li>
                         <li><a a class="J_menuItem" href="">代码编辑器</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">模态窗口</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">表单验证</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">树形视图</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">聊天窗口</a>
-                        </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="javascript:void(0);">
                         <i class="glyphicon glyphicon-link"></i>
@@ -99,7 +90,25 @@
                         <li><a a class="J_menuItem" href="">用户角色管理</a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-label">金额管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<%=path%>/page/users">申请借款列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="">收款管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="">还款管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
+                        </li>
+                    </ul>
+                </li>
 
                 <li>
                     <a href="javascript:void(0);">
@@ -108,7 +117,7 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">百度ECharts</a>
+                        <li><a a class="J_menuItem" href="">运营数据统计</a>
                         </li>
                         <li><a a class="J_menuItem" href="">Flot</a>
                         </li>
@@ -124,90 +133,61 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);">
-                        <i class="fa fa-edit"></i>
-                        <span class="nav-label">表单</span>
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">公司动态</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">基本表单</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">表单验证</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">高级插件</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/update">更改公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">步骤条</a>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">类型管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/sway/sway">还款方式类型管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">百度WebUploader</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/bz/bz">标种类型管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">文件上传</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="#">最新公告管理</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-desktop"></i>
-                        <span class="nav-label">页面</span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">联系人</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">个人资料</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">项目</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">项目详情</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">文件管理器</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span class="nav-label">其他页面</span>
+                        <span class="nav-label">媒体报道</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">搜索结果</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">登录超时</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">404页面</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">500页面</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">空白页</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-flask"></i>
-                        <span class="nav-label">UI元素</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">排版</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">字体图标</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">阿里巴巴矢量图标库</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">拖动面板</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">按钮</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/media/update">更改媒体报道</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-table"></i>
-                        <span class="nav-label">表格</span>
+                        <span class="nav-label">系统设置</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">基本表格</a>
+                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                         <li><a a class="J_menuItem" href="">数据表格(DataTables)</a>
                         </li>
