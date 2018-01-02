@@ -281,4 +281,86 @@ public class LUserController {
         this.loginLogQuery = loginLogQuery;
     }
 
+    @RequestMapping("zpwdUpdate1")
+    public String zpwdUpdate(HttpSession session){
+        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        String zpwd=userService.getByZpwd(uname);
+        if(zpwd==null){
+            return "user/zpwdUpdate1";
+        }
+        if(zpwd.equals("")){
+            return "user/zpwdUpdate1";
+        }
+        if(!zpwd.equals("")){
+            return "user/zpwdUpdate2";
+        }
+        return "";
+    }
+
+    @PostMapping("updateZpwd")
+    public String updateZpwd(HttpServletRequest request,String zpwd,HttpSession session){
+        String uname= (String) session.getAttribute(Constants.USER_IN_SESSION);
+        userService.updateZpwd(uname,EncryptUtils.md5(zpwd));
+        request.setAttribute("exist","恭喜您，修改支付密码成功！");
+        return  "user/zpwdUpdate1";
+    }
+
+    @PostMapping("updateZpwd2")
+    public String updateZpwd2(HttpServletRequest request,HttpSession session,String zpwd,String xpwd){
+        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        String zpd=userService.getByZpwd(uname);
+        String pd=EncryptUtils.md5(zpwd);
+        if(!pd.equals(zpd)){
+            request.setAttribute("check","原支付密码输入错误！");
+            return  "user/zpwdUpdate2";
+        }
+        if(pd.equals(zpd)){
+            userService.updateZpwd(uname,EncryptUtils.md5(xpwd));
+            request.setAttribute("exist","恭喜您，修改支付密码成功！");
+            return  "user/zpwdUpdate2";
+        }
+        return "";
+    }
+
+    @RequestMapping("upwdUpdateView")
+    public String upwdUpdateView(){
+
+        return  "user/upwdUpdate";
+    }
+
+    @PostMapping("upwdUpdate")
+    public String upwdUpdate(HttpServletRequest request,HttpSession session,String upwd,String xupwd){
+        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        User user= (User) userService.getById(uid);
+        String upd=EncryptUtils.md5(upwd);
+        if(upd.equals(user.getUpwd())){
+            userService.updateUpwd(uid,EncryptUtils.md5(xupwd));
+            request.setAttribute("exist","恭喜您，修改登录密码成功！");
+            return "user/upwdUpdate";
+        }
+        if(!upd.equals(user.getUpwd())){
+            request.setAttribute("check","您的原登录密码错误，修改失败！");
+            return "user/upwdUpdate";
+        }
+
+        return "user/upwdUpdate";
+    }
+
+    @RequestMapping("userdataFind")
+    public String userdataFind(HttpServletRequest request,HttpSession session){
+        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        User user= (User) userService.getById(uid);
+        request.setAttribute("user",user);
+        return  "user/userdataUpdate";
+    }
+
+    @PostMapping("userdataUpdate")
+    public String userdataUpdate(HttpSession session,User user,HttpServletRequest request){
+        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        user.setUname(uname);
+        userService.update(user);
+        request.setAttribute("exist","恭喜您，修改资料成功！");
+        return  "user/userdataUpdate";
+    }
+
 }

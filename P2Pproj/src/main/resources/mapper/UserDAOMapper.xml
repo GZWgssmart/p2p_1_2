@@ -27,7 +27,7 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         <![CDATA[
-           insert into t_user (uname,upwd,phone,tzm,tid,state)  VALUES(#{uname},#{upwd},#{phone},#{tzm},#{tid},1)
+           insert into t_user (uname,upwd,phone,tzm,tid,state,idtype)  VALUES(#{uname},#{upwd},#{phone},#{tzm},#{tid},1,'身份证')
         ]]>
     </insert>
 
@@ -43,5 +43,35 @@
         where uname=#{uname}
     </select>
 
+
+    <update id="updateZpwd" parameterType="string">
+        <![CDATA[
+           update t_user set zpwd=#{zpwd} where uname=#{uname}
+        ]]>
+    </update>
+
+    <select id="getByZpwd" resultType="string">
+        select zpwd from t_user
+        where uname=#{uname}
+    </select>
+
+
+    <select id="getById" resultMap="userMap">
+        select uname,upwd,phone,tzm,idtype,idno,email,rname,face,sex,isvip,create_time from t_user
+        where uid=#{uid}
+    </select>
+
+    <update id="update" parameterType="user">
+        <![CDATA[
+           update t_user set phone=#{phone},idno=#{idno},email=#{email},
+            rname=#{rname},sex=#{sex}  where uname=#{uname}
+        ]]>
+    </update>
+
+    <update id="updateUpwd">
+        <![CDATA[
+           update t_user set upwd=#{upwd}  where uid=#{uid}
+        ]]>
+    </update>
 
 </mapper>
