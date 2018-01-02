@@ -280,7 +280,7 @@
                     <li><i class="grzxbg p-right"></i><span class="zhsz-span1">信息认证</span><span class="zhsz-span3"><a href="<%=path%>/rzvip/rzvipaddView">认证</a></span></li>
                     <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">支付密码</span><span class="zhsz-span3"><a href="<%=path%>/luser/zpwdUpdate1">更改</a></span></li>
                     <li> <i class="grzxbg p-right"></i> <span class="zhsz-span1">个人资料</span> <span class="zhsz-span3"> <a href="<%=path%>/luser/userdataFind">查看</a> </span> </li>
-                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">登录密码</span><span class="zhsz-span2"></span><span class="zhsz-span3"><a href="<%=path%>/luser/" >更改</a></span></li>
+                    <li><i class="grzxbg p-danger"></i><span class="zhsz-span1">登录密码</span><span class="zhsz-span2"></span><span class="zhsz-span3"><a href="<%=path%>/luser/upwdUpdateView">更改</a></span></li>
                 </ul>
             </div>
         </div>
