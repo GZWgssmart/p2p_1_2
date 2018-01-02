@@ -15,7 +15,7 @@
 
     <insert id="saveJur" parameterType="top.zzh.bean.Jur">
         <![CDATA[
-          insert into t_jur(jid, jurl, content) values (#{jid},#{jurl},#{content});
+          insert into t_jur(jurl, content) values (#{jurl},#{content});
         ]]>
     </insert>
 </mapper>
