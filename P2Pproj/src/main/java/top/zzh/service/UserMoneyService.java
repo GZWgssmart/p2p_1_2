@@ -5,4 +5,8 @@ package top.zzh.service;
  */
 public interface UserMoneyService extends BaseService {
 
+    Long getMoney(String uid);
+
+    void updateMoney(String money,String uid);
+
 }

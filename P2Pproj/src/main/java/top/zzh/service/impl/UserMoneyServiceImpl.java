@@ -21,4 +21,13 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
         this.userMoneyDAO = userMoneyDAO;
     }
 
+    @Override
+    public Long getMoney(String uid) {
+        return userMoneyDAO.getMoney(uid);
+    }
+
+    @Override
+    public void updateMoney(String money, String uid) {
+        userMoneyDAO.updateMoney(money,uid);
+    }
 }

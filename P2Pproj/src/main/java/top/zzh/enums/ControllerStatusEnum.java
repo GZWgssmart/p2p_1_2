@@ -59,7 +59,9 @@ public enum ControllerStatusEnum {
     JKLX_DELETE_SUCCESS(521,"ok","删除成功"),
     JKLX_DELETE_FAIL(522,"error","删除失败"),
     JKLX_UPDATE_STATE_SUCCESS(523,"ok","修改状态成功"),
-    JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败")
+    JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败"),
+    UESR_CHONG_SUCCESS(225,"ok","充值成功"),
+    UESR_CHONG_FAIL(226,"error","充值失败")
     ;
 
     private Integer code;

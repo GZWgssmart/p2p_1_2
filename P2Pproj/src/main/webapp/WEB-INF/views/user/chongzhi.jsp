@@ -14,6 +14,7 @@
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
     <script src="<%=path%>/static/js/user.js" type="text/javascript"></script>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body>
 <!-- 网站头部-->
@@ -150,6 +151,7 @@
             }
 
             //验证输入银行卡号的合法性
+            /*
             function checkBankCardNo() {
                 //$("#form\\:defaultBankName").text("");
                 var cardNo = $("#form\\:bankCardNo").val();
@@ -166,6 +168,7 @@
                 }
                 return true;
             }
+            */
             function checkBank() {
                 $("#form\\:defaultBankName").text("");
                 var cardNo = $("#form\\:bankCardNo").val();
@@ -266,7 +269,25 @@
                  }*/
                 return payflag;
             }
+            function chongzhi(){
+                $.post(
+                    "/userMoney/chongzhi",
+                    $("#form").serialize(),
+                    function (data) {
+                        if (data.result == "ok") {
 
+                            layer.msg(data.message, {icon: 1, time: 1000});
+                            refush();
+                        } else {
+                            layer.msg(data.message, {icon: 2, time: 1000});
+                            refush();
+                        }
+                    }, "json"
+                );
+            }
+            function refush() {
+                $('#form').bootstrapTable('refresh', {url: '/userMoney/chongzhi'});
+            }
             function checkRecharge2() {
                 var moneyRegex="^(([1-9]+[0-9]*)|((([1-9]+[0-9]*)|0)\\.[0-9]{1,2}))$";
                 var money = $("#form2\\:actualMoney2").val();
@@ -363,16 +384,16 @@
                         <div class="quick-main">
                             <div class="fl quick-info">
                                 <div class="info-1"> <span class="info-tit">充值金额</span> <span class="info1-input">
-                  <input id="form:actualMoney1" type="text" name="" class="pay-money-txt" maxlength="10" >
+                  <input id="form:actualMoney1" type="text" name="kymoney" class="pay-money-txt" maxlength="10" >
                   <em>元</em> </span> <span class="quick-error"> </span> </div>
                                 <div class="info-tips">亿人宝提醒您：充值金额超过50000元时，请切换到网银充值</div>
                                 <div class="info-2"> <span class="info-tit">银行卡号</span> <span class="info2-input">
-                  <input id="form:bankCardNo" type="text" name="form:bankCardNo" class="tx-txt">
+                  <input id="form:bankCardNo" type="text" name="zmoney" class="tx-txt">
                   <em class="info2-bank" style="display: none;">
                   <label id="form:defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="bankCardError"></span> </div>
                                 <div class="bank-check" id="bank-check2"> <b class="selected" id="bankProtocol1"></b><span class="bank-agree">我同意并接受<a href="#" target="_blank">《亿人宝投资咨询与管理服务电子协议》</a></span> <span class="error" id="bankProtocol_message" style="display:none;margin-top:-3px;">请同意协议内容！</span> </div>
-                                <input type="submit" name="" value="充值" class="btn-paycz" onclick="return getShowPayVal1()">
+                                <input type="button" name="" value="充值" class="btn-paycz" onclick="chongzhi()">
                             </div>
                             <div class="fr bank-info">
                                 <p class="bank-tit">快捷支付支持银行：</p>
@@ -595,6 +616,7 @@
 
 <script src="<%=path%>/static/js/jquery.datetimepicker.js" type="text/javascript"></script>
 <script src="<%=path%>/static/js/datepicker.js" type="text/javascript"></script>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
 </body>
 </html>
 

@@ -82,6 +82,8 @@ public class LUserController {
                         log.setUserId(userid);
                         log.setLoginIp(request.getRemoteHost());
                         loginLogService.save(log);
+                        System.out.println("ID:"+userid);
+
                         sessionShiro.setAttribute(Constants.USER_ID_SESSION,userid);
 
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
