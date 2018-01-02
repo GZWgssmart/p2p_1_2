@@ -78,7 +78,18 @@
                         </li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="glyphicon glyphicon-link"></i>
+                        <span class="nav-label">权限分配</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<%=path%>/authManage/permissionPage">权限管理</a></li>
+                        <li><a a class="J_menuItem" href="">角色管理</a></li>
+                        <li><a a class="J_menuItem" href="">用户角色管理</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-edit"></i>
