@@ -90,6 +90,16 @@
         <include refid="money_all"/>
     </select>
 
+    <select id="getMoney" resultType="long">
+        select kymoney  from t_usermoney   where uid=#{uid}
+    </select>
+
+    <update id="updateMoney">
+        <![CDATA[
+          update t_usermoney set kymoney=#{money} where uid =#{uid}
+           ]]>
+    </update>
+
     <!--用户资金管理（个人）-->
     <select id="getById" parameterType="top.zzh.bean.UserMoney">
         <![CDATA[

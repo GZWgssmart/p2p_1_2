@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.BankCard;
 import top.zzh.bean.LogMoney;
+import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BankCardService;
 import top.zzh.service.LogMoneyService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.LogMoneyVO;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by 陈桢 on 2017/12/26.
@@ -50,9 +53,11 @@ public class LogMoneyController {
 
     @RequestMapping("pageById")
     @ResponseBody
-    public Pager pageById(int pageIndex, int pageSize) {
+    public Pager pageById(int pageIndex, int pageSize, HttpSession session) {
+
         logger.info("用户资金流向记录分页+条件查询");
-        return LogMoneyService.listPagerById(pageIndex,pageSize,1L);
+        Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        return LogMoneyService.listPagerById(pageIndex,pageSize,id);
     }
 
     @RequestMapping("save")
