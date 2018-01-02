@@ -50,4 +50,30 @@ public class UserServiceImpl extends AbstractService implements UserService{
     public User getByface(String uname) {
         return userDAO.getByface(uname);
     }
+
+    @Override
+    public void updateZpwd(String uname,String zpwd) {
+
+        userDAO.updateZpwd(uname,zpwd);
+    }
+
+    @Override
+    public String getByZpwd(String uname) {
+        return userDAO.getByZpwd(uname);
+    }
+
+    @Override
+    public void updateUpwd(long uid,String upwd) {
+        userDAO.updateUpwd(uid,upwd);
+    }
+
+    @Override
+    public void update(Object obj) {
+        userDAO.update(obj);
+    }
+
+    @Override
+    public Object getById(Long id) {
+        return  userDAO.getById(id);
+    }
 }

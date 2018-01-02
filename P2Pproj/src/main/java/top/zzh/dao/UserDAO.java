@@ -18,5 +18,11 @@ public interface UserDAO extends BaseDAO {
 
     User getByface(@Param("uname")String uname);
 
+    void updateZpwd(@Param("uname")String uname,@Param("zpwd")String zpwd);
+
+    String getByZpwd(@Param("uname")String uname);
+
+    void updateUpwd(@Param("uid")long uid,@Param("upwd") String upwd);
+
 
 }
