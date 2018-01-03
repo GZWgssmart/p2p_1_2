@@ -61,7 +61,13 @@ public enum ControllerStatusEnum {
     JKLX_UPDATE_STATE_SUCCESS(523,"ok","修改状态成功"),
     JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败"),
     UESR_CHONG_SUCCESS(225,"ok","充值成功"),
-    UESR_CHONG_FAIL(226,"error","充值失败")
+    UESR_CHONG_FAIL(226,"error","充值失败")，
+	TICKET_SAVE_SUCCESS(1125,"ok","保存成功"),
+    TICKET_SAVE_FAIL(1126,"error","保存失败"),
+    TICKET_UPDATE_SUCCESS(1128,"ok","修改成功"),
+    TICKET_UPDATE_FAIL(1129,"error","修改失败"),
+    TICKET_GETBYID_SUCCESS(1130,"ok","获取信息成功"),
+    TICKET_GETBYID_FAIL(1131,"error","获取信息失败")
     ;
 
     private Integer code;
