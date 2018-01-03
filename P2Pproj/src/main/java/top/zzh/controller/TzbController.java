@@ -28,19 +28,6 @@ public class TzbController {
     @Autowired
     private TzbService tzbService;
 
-    @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(Tzb tzb){
-        logger.info("开始投资");
-        ControllerStatusVO statusVO = null;
-        try {
-            tzbService.save(tzb);
-        }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
-        return statusVO;
-    }
 
     @RequestMapping("pager_criteria")
     @ResponseBody

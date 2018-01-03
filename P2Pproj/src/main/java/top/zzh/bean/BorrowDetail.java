@@ -36,11 +36,8 @@ public class BorrowDetail {
     private Long baid;//借款人id，baid为t_borrowapply表id
 
 
-    private Long int1;
 
-    private String str1;
-
-    public BorrowDetail(Long sid,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
+    public BorrowDetail(Long sid,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid) {
         this.bdid = bdid;
         this.fpic = fpic;
         this.sid = sid;
@@ -57,8 +54,6 @@ public class BorrowDetail {
         this.way = way;
         this.cpname = cpname;
         this.baid = baid;
-        this.int1 = int1;
-        this.str1 = str1;
     }
 
     public void setSid(Long sid) {
@@ -193,19 +188,4 @@ public class BorrowDetail {
         this.baid = baid;
     }
 
-    public Long getInt1() {
-        return int1;
-    }
-
-    public void setInt1(Long int1) {
-        this.int1 = int1;
-    }
-
-    public String getStr1() {
-        return str1;
-    }
-
-    public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
-    }
 }

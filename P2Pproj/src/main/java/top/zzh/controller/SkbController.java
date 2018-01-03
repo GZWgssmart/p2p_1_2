@@ -32,6 +32,7 @@ public class SkbController {
 
     @RequestMapping("manager_page")
     public String page(){
+        logger.info("后台用户收款页面");
         return "manager/sk";
     }
 }
