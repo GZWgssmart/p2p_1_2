@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="credit-ad"><img src="${request.getContextPath}/static/images/clist1.jpg" width="1200" height="96"></div>
+<div class="credit-ad">
+    <img src="${request.getContextPath}/static/images/clist1.jpg" width="1200" height="96">
+</div>
 <div id="personal-left" class="personal-left">
     <ul>
         <li class="pleft-cur"><span><a href="${request.getContextPath}/page/user"><i class="dot dot1"></i>账户总览</a></span></li>

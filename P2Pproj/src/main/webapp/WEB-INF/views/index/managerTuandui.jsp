@@ -19,21 +19,9 @@
 <!--关于我们-->
 <div class="bg">
     <div class="contain" id="tabs" style="margin:0 auto;">
-        <div class="text-nav">
-            <ul class="clearfix">
-                <li> <a class="text-link" href="<%=path%>/page/ad">网站公告</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/report">媒体报道</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/about">公司简介</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/managerTuandui">管理团队</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/hezuo">合作伙伴</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/tuandui">团队风采</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/fl1">法律政策</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/fl2">法律声明</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/zifei">资费说明</a> </li>
-                <li> <a class="text-link" href="<%=path%>/page/zhaopin">招贤纳士</a> </li>
-                <li class="selected"> <a class="text-link" href="<%=path%>/page/contract">联系我们</a> </li>
-            </ul>
-        </div>
+
+        <%@include file="../common/aboutLeft.jsp"%>
+
         <div class="text-box">
             <div class="text-content" id="text-content">
                 <h1 class="title">管理团队</h1>

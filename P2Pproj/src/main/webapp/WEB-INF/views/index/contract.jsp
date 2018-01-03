@@ -19,21 +19,9 @@
 <!--关于我们-->
 <div class="bg">
     <div class="contain" id="tabs" style="margin:0 auto;">
-        <div class="text-nav">
-            <ul class="clearfix">
-                <li> <a class="text-link" href="ad.jsp">网站公告</a> </li>
-                <li> <a class="text-link" href="report.jsp">媒体报道</a> </li>
-                <li> <a class="text-link" href="about.jsp">公司简介</a> </li>
-                <li> <a class="text-link" href="managerTuandui.jsp">管理团队</a> </li>
-                <li> <a class="text-link" href="hezuo.jsp">合作伙伴</a> </li>
-                <li> <a class="text-link" href="tuandui.jsp">团队风采</a> </li>
-                <li> <a class="text-link" href="fl1.jsp">法律政策</a> </li>
-                <li> <a class="text-link" href="fl2.jsp">法律声明</a> </li>
-                <li> <a class="text-link" href="zifei.jsp">资费说明</a> </li>
-                <li> <a class="text-link" href="zhaopin.jsp">招贤纳士</a> </li>
-                <li class="selected"> <a class="text-link" href="contract.jsp">联系我们</a> </li>
-            </ul>
-        </div>
+
+        <%@include file="../common/aboutLeft.jsp"%>
+
         <div class="text-box">
             <div class="text-content" id="text-content">
                 <h1 class="title">联系我们</h1>
