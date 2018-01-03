@@ -92,19 +92,7 @@
                 {
                     $(actualMessage).hide();
                 }
-                var balance=Number("0.0");
-                //提现金额小于余额
-                var legalFlag=(actualMoney-balance).toFixed(2)<=0;
-                if(!legalFlag)
-                {
-                    $(actualMessage).text("余额不足");
-                    $(actualMessage).show();
-                    return false;
-                }
-                else
-                {
-                    $(actualMessage).hide();
-                }
+
                 return true;
             }
 
@@ -128,23 +116,18 @@
         <div class="personal-main">
             <div class="personal-deposit">
                 <h3><i>提现</i></h3>
-                <form id="form" name="form" method="post" action="" enctype="application/x-www-form-urlencoded" target="_blank">
+                <form id="form" name="form" method="post" action="<%=path%>/page/tixian" enctype="application/x-www-form-urlencoded" target="_blank">
                     <input type="hidden" name="form" value="form">
                     <div class="deposit-form" style="margin-top:0px;border-top:0px none;">
                         <h6>填写提现金额</h6>
                         <ul>
                             <li> <span class="deposit-formleft">可用金额</span> <span class="deposit-formright"> <i>
-                <label id="form:blance"> 0.00</label>
+                <label id="form:blance">${kymoney}</label>
                 </i>元 </span> </li>
                             <li> <span class="deposit-formleft">提现金额</span> <span class="deposit-formright">
-                <input id="form:actualMoney" type="text" name="form:actualMoney" class="deposite-txt" maxlength="10">
+                <input id="form:actualMoney" type="text" name="actualMoney" class="deposite-txt" maxlength="10">
                 元 </span> <span id="actualMoneyErrorDiv"><span id="actualMoney_message" style="display:none" class="error"></span></span> </li>
-                            <li> <span class="deposit-formleft">提现费用</span> <em id="txfy" class="markicon fl"></em> <span class="deposit-formright deposit-formright1"> <i>
-                <label id="form:fee"> 0.00</label>
-                </i>元 </span> <span class="txarrow-show">提现金额的0.1%，最低不低于2元，最高100元封顶</span><span class="txicon-show"></span> </li>
-                            <li><span class="deposit-formleft">实际到账金额</span> <em id="dzje" class="markicon fl"></em> <span class="deposit-formright deposit-formright1"> <i>
-                <label id="form:cashFine"> 0.00</label>
-                </i> 元</span> <span class="dzarrow-show">提现金额 - 提现费用</span><span class="dzicon-show"></span> </li>
+
                             <li>
                                 <input type="submit" name="form:j_idt78" value="提现" class="btn-depositok" onclick="return checkActualMoney()">
                             </li>
