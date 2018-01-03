@@ -3,13 +3,10 @@ package top.zzh.enums;
 
 public enum ControllerStatusEnum {
 
-    PERMISSION_UPDATE_FAIL(93,"error","修改权限失败"),
-    PERMISSION_UPDATE_SUCCESS(94,"ok","修改权限成功！"),
-    PERMISSION_ADD_FAIL(95,"error","权限新增失败"),
-    PERMISSION_ADD_SUCCESS(96,"ok","权限新增成功！"),
-    UPLOAD_EXCEL_BUSY(97,"error","服务器繁忙，请稍后再试哦！"),
+
+    UPLOAD_EXCEL_BUSY(97,"BUSY","服务器繁忙，请稍后再试哦！"),
     UPLOAD_EXCEL_ERROR(98,"error","文件上传错误，请上传excel文件！"),
-    UPLOAD_EXCEL_SUCCESS(99,"ok","文件上传成功,已成功导入数据库！"),
+    UPLOAD_EXCEL_SUCCESS(99,"success","文件上传成功,已成功导入数据库！"),
 
     USER_LOGIN_SUCCESS(100, "ok", "登录成功"),
     USER_LOGIN_ERROR_CODE(101, "error", "验证码错误"),
@@ -60,8 +57,12 @@ public enum ControllerStatusEnum {
     JKLX_DELETE_FAIL(522,"error","删除失败"),
     JKLX_UPDATE_STATE_SUCCESS(523,"ok","修改状态成功"),
     JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败"),
-    UESR_CHONG_SUCCESS(225,"ok","充值成功"),
-    UESR_CHONG_FAIL(226,"error","充值失败")
+    TICKET_SAVE_SUCCESS(1125,"ok","保存成功"),
+    TICKET_SAVE_FAIL(1126,"error","保存失败"),
+    TICKET_UPDATE_SUCCESS(1128,"ok","修改成功"),
+    TICKET_UPDATE_FAIL(1129,"error","修改失败"),
+    TICKET_GETBYID_SUCCESS(1130,"ok","修改成功"),
+    TICKET_GETBYID_FAIL(1131,"error","修改失败")
     ;
 
     private Integer code;
