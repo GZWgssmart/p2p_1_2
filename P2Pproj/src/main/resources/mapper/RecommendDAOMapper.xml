@@ -8,7 +8,7 @@
       select count(uid) t_user where tzm = #{tzm};
     </select>
     <!--用于前台判断推荐码是否存在-->
-    <select id="getByTzmOrPhone" parameterType="string">
+    <select id="getByTzm" parameterType="string">
         select uid,rname t_user where tzm = #{tzm};
     </select>
     <insert id="save" parameterType="recommend">

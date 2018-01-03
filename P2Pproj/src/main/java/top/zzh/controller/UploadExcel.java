@@ -22,7 +22,7 @@ import java.io.IOException;
  * 上传Excel文件
  */
 @Controller
-@RequestMapping("/uploadExcel")
+@RequestMapping("/excel")
 public class UploadExcel {
 
     private Logger logger = LoggerFactory.getLogger(UploadExcel.class);
@@ -41,9 +41,4 @@ public class UploadExcel {
     public ControllerStatusVO uploadExcelAndIntoDB(MultipartFile file, HttpServletRequest request){
         return uploadExcelService.uploadExcelAndIntoDB(file,request);
     }
-
-
-
-
-
 }

@@ -30,6 +30,8 @@ public class BorrowApplyVO {
 
     private Float nprofit;//年化收益
 
+    private Long sid;
+
     private String way;//收益方式
 
     private String cpname;//产品名称
@@ -38,11 +40,12 @@ public class BorrowApplyVO {
 
     private String rname;
 
-    public BorrowApplyVO(String rname,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid) {
+    public BorrowApplyVO(Long sid,String rname,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid) {
         this.bdid = bdid;
         this.fpic = fpic;
         this.ypic = ypic;
         this.qpic = qpic;
+        this.sid = sid;
         this.rname = rname;
         this.tpic = tpic;
         this.mpurpose = mpurpose;
@@ -56,6 +59,14 @@ public class BorrowApplyVO {
         this.cpname = cpname;
         this.baid = baid;
 
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public Long getSid() {
+        return sid;
     }
 
     public void setRname(String rname) {

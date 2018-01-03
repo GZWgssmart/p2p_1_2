@@ -1,7 +1,9 @@
 package top.zzh.bean;
 
+import java.io.Serializable;
+
 //权限表
-public class Jur {
+public class Jur implements Serializable{
     private Long jid;
 
     private String jurl;//权限URL

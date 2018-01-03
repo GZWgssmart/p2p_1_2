@@ -16,6 +16,8 @@
         </li>
         <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                               href="${request.getContextPath}/page/history">兑换历史</a></span></li>
+        <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
+                              href="${request.getContextPath}/borrowapply/borrow_page">申请借款</a></span></li>
         <li style="position:relative;"><span> <a href="${request.getContextPath}/page/xitong"><i class="dot dot08"></i>系统信息 </a> </span>
         </li>
         <li><span><a href="${request.getContextPath}/page/zhanghu"><i class="dot dot09"></i>账户设置</a></span></li>

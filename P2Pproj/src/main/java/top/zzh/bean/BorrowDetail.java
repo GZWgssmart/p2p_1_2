@@ -28,6 +28,7 @@ public class BorrowDetail {
 
     private Float nprofit;//年化收益
 
+    private Long sid;
     private String way;//收益方式
 
     private String cpname;//产品名称
@@ -39,9 +40,10 @@ public class BorrowDetail {
 
     private String str1;
 
-    public BorrowDetail(Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
+    public BorrowDetail(Long sid,Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Long baid, Long int1, String str1) {
         this.bdid = bdid;
         this.fpic = fpic;
+        this.sid = sid;
         this.ypic = ypic;
         this.qpic = qpic;
         this.tpic = tpic;
@@ -57,6 +59,14 @@ public class BorrowDetail {
         this.baid = baid;
         this.int1 = int1;
         this.str1 = str1;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public Long getSid() {
+        return sid;
     }
 
     public BorrowDetail() {

@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.User;
 
 /**
@@ -15,4 +16,11 @@ public interface UserService extends BaseService {
     void saveHeader(String face,String uname);
 
     User getByface(String uname);
+
+    void updateZpwd(String uname,String zpwd);
+
+    String getByZpwd(String uname);
+
+    void updateUpwd(long uid,String upwd);
+
 }

@@ -16,4 +16,8 @@ public interface UserMoneyDAO extends BaseDAO {
 
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    Long getMoney(@Param("uid") String uid);
+
+    void updateMoney(@Param("money") String money,@Param("uid") String uid);
 }
