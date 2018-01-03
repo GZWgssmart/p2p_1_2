@@ -146,6 +146,17 @@
                         </li>
                     </ul>
                 </li>
+				 <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">卷的管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">发布的卷</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-star"></i>
