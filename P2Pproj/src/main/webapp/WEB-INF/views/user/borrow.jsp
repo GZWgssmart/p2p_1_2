@@ -24,20 +24,19 @@
         <%@include file="../common/leftList.jsp"%>
         <div class="personal-main">
             <div class="personal-money">
-                <h3><i>资金记录</i></h3>
-
-          <div >
-                 <table id="mytab" name="mytab" class="table table-hover"></table>
-            <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-          </div>
+                <h3><i>申请借款进度</i></h3>
+                <div >
+                    <table id="mytab" name="mytab" class="table table-hover"></table>
+                    <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+                    </div>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
     </div>
-</div>
-<!-- 网站底部-->
-<%@include file="../common/footer.jsp" %>
+    <!-- 网站底部-->
+    <%@include file="../common/footer.jsp" %>
 </body>
 <jsp:include page="../common/bootstraptablejs.jsp"/>
-<script src="<%=path%>/static/js/pageJs/zijin.js"></script>
+<script src="<%=path%>/static/js/pageJs/borrow.js"></script>
 </html>

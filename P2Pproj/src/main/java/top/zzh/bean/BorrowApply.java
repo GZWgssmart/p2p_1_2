@@ -19,14 +19,16 @@ public class BorrowApply {
     private String bzname;
     private Long huid;
     private String reason;
+    private Long bdid;
     private String uname;
     private String lxname;
     private Long lxid;
     private String username;
 
 
-    public BorrowApply(String username,Long huid,String reason,Long lxid,String lxname,String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, Integer term, Date deadline) {
+    public BorrowApply(Long bdid,String username,Long huid,String reason,Long lxid,String lxname,String uname,String bzname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Date time, Byte state, Byte type, Integer term, Date deadline) {
         this.baid = baid;
+        this.bdid = bdid;
         this.uname = uname;
         this.username = username;
         this.huid = huid;
@@ -43,6 +45,14 @@ public class BorrowApply {
         this.type = type;
         this.term = term;
         this.deadline = deadline;
+    }
+
+    public void setBdid(Long bdid) {
+        this.bdid = bdid;
+    }
+
+    public Long getBdid() {
+        return bdid;
     }
 
     public void setUsername(String username) {

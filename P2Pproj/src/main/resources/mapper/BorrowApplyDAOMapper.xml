@@ -46,9 +46,9 @@
 
     <select id="listPager" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-         select ba.rname,ba.reason,h.rname as username,u.uname,ba.time,ba.state from
-        t_borrowapply ba,t_user u,t_huser h
-        where ba.uid = u.uid and ba.huid = h.huid
+         select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid
         limit #{pager.beginIndex}, #{pager.pageSize}
          ]]>
     </select>
@@ -79,10 +79,26 @@
         where ba.uid = u.uid and ba.huid = h.huid
     </select>
 
-    <select id="getById" parameterType="top.zzh.bean.BorrowApply">
+    <select id="getById" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-        select * from t_borrowapply where baid=#{baid}
-    ]]]>
+          select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and u.uid = #{uid}
+        ]]>
+    </select>
+
+    <select id="listPagerById" resultType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+           select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and u.uid = #{id}
+          limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="countById" resultType="long">
+        select count(uid) from
+        t_borrowapply where  uid=#{id}
     </select>
 
 </mapper>

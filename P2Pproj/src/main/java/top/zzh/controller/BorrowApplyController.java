@@ -48,7 +48,8 @@ public class BorrowApplyController {
     private JklxService jklxService;
     @Autowired
     private SwayService swayService;
-
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("borrow_page")
     public String borrowpage(HttpSession session, HttpServletRequest request){
@@ -189,6 +190,19 @@ public class BorrowApplyController {
     public Pager pager(int pageIndex, int pageSize) {
         logger.info("显示审核列表");
         return borrowApplyService.listPager(pageIndex,pageSize);
+    }
+
+    @RequestMapping("pageById")
+    @ResponseBody
+    public Pager pageById(int pageIndex, int pageSize, HttpSession session) {
+        logger.info("申请借款进度分页+条件查询");
+        Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        return borrowApplyService.listPagerById(pageIndex,pageSize,id);
+    }
+
+    @RequestMapping("shenqin")
+    public String shenqin(HttpServletRequest request,HttpSession session){
+        return  "user/borrow";
     }
 
     @InitBinder

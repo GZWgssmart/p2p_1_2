@@ -20,7 +20,6 @@
     <!--弹出框样式-->
     <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
     <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
-
 </head>
 <body>
 <!-- 网站头部-->

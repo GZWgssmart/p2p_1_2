@@ -26,6 +26,11 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     Long count();
 
+    List<Object> listPagerById(@Param("pager") Pager pager,@Param("id") Long id);
+
+    Long countById(@Param("id") Long id);
+
+
     //修改审核状态
     void updateState(BorrowApply borrowApply);
 
