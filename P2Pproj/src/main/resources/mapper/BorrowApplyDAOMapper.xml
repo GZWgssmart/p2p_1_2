@@ -81,17 +81,17 @@
 
     <select id="getById" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-          select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
-        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
-        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and u.uid = #{uid}
+         select ba.rname,ba.reason,h.rname as username,ba.money,j.lxname,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd,t_jklx j
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and j.lxid = ba.lxid and u.uid = #{id}
         ]]>
     </select>
 
     <select id="listPagerById" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-           select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
-        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
-        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and u.uid = #{id}
+            select ba.rname,ba.reason,h.rname as username,ba.money,j.lxname,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd,t_jklx j
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and j.lxid = ba.lxid and u.uid = #{id}
           limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>

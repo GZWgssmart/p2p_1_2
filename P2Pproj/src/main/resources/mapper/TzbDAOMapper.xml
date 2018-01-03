@@ -43,9 +43,23 @@
         ]]>
     </select>
 
-    <select id="count" resultType="top.zzh.vo.TzbVO">
+    <select id="count" resultType="long">
         <![CDATA[
           select count(tzid) from t_tzb
+        ]]>
+    </select>
+
+    <select id="countById" resultType="long">
+        <![CDATA[
+          select count(uid) from t_tzb where uid = #{id}
+        ]]>
+    </select>
+
+    <select id="listPagerById" resultType="top.zzh.vo.TzbVO">
+        <![CDATA[
+             select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+          from t_tzb t,t_user u,t_borrowapply b
+          where t.uid = u.uid and b.baid = t.baid and u.uid = #{id}
         ]]>
     </select>
 </mapper>

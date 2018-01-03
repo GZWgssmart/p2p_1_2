@@ -43,6 +43,20 @@ $('#mytab').bootstrapTable({
         }
         ,
         {
+            title: '申请金额',
+            field: 'money',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '借款方式',
+            field: 'lxname',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
             title: '审核人',
             field: 'username',
             align: 'center',

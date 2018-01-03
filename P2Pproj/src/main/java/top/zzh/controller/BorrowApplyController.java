@@ -170,14 +170,6 @@ public class BorrowApplyController {
     }
 
 
-    @RequestMapping("list")
-    public String list(HttpServletRequest request){
-        logger.info("前台用户查看个人借款信息");
-        List<BorrowApply> borrowApplyList = (List)borrowApplyService.listAll();
-        request.setAttribute("borrowApplyList",borrowApplyList);
-        return "";
-    }
-
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex, int pageSize, BorrowApply borrowApply) {
@@ -195,7 +187,7 @@ public class BorrowApplyController {
     @RequestMapping("pageById")
     @ResponseBody
     public Pager pageById(int pageIndex, int pageSize, HttpSession session) {
-        logger.info("申请借款进度分页+条件查询");
+        logger.info("前台查看申请借款进度");
         Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         return borrowApplyService.listPagerById(pageIndex,pageSize,id);
     }

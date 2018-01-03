@@ -101,9 +101,9 @@
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">收款管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">还款管理</a>
+                        <li><a a class="J_menuItem" href="">用户还款管理</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
                         </li>

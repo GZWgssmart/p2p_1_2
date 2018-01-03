@@ -4,6 +4,30 @@
 
 <mapper namespace="top.zzh.dao.SkbDAO">
 
+    <!-- 借款人，用户-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.uname != null and query.uname!=''">
+            and u.uname like concat('%', #{query.uname}, '%')
+        </if>
+        <if test="query != null and query.rname != null and query.rname!=''">
+            and b.rname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
 
+
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+            select count(skid) from t_skb s,t_user u,t_borrowapply b
+            where s.uid = u.uid and s.baid = b.baid
+        ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="top.zzh.vo.SkbVO">
+            select u.uname,b.rname,s.ybx,s.rbx,s.ylx,s.rlx,s.ybj,s.rbj,s.rnum,s.tnum,s.fmoney,s.date
+            from t_skb s,t_user u,t_borrowapply b
+            where s.uid = u.uid and s.baid = b.baid
+            <include refid="cash_query_criteria"/>
+          limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
 
 </mapper>

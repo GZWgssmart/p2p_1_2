@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Tzb;
+import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.TzbService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.TzbVO;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by 曾志湖 on 2017/12/26.
@@ -45,6 +48,15 @@ public class TzbController {
         logger.info("投资信息+条件查询");
         return tzbService.listPagerCriteria(pageIndex, pageSize, tzbVO);
     }
+
+    @RequestMapping("pageById")
+    @ResponseBody
+    public Pager pageById(int pageIndex, int pageSize, HttpSession session) {
+        logger.info("前台查看投资进度");
+        Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        return tzbService.listPagerById(pageIndex,pageSize,id);
+    }
+
 
     @RequestMapping("page")
     public String page(){
