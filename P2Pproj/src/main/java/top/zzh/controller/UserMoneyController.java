@@ -58,11 +58,18 @@ public class UserMoneyController {
         Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         System.out.println("ID:"+id);
         try {
-            //用户当前可用余额
-            Long kymoney=userMoneyService.getMoney(id.toString());
-            kymoney=userMoney.getKymoney().longValue()+kymoney;
-            System.out.println(kymoney.toString());
-            userMoneyService.updateMoney(kymoney.toString(),id.toString());//充值
+            if(userMoneyService.getMoney(id.toString())!=null){
+                //用户当前可用余额
+                Long kymoney=userMoneyService.getMoney(id.toString());
+                kymoney=userMoney.getKymoney().longValue()+kymoney;
+                System.out.println(kymoney.toString());
+                userMoneyService.updateMoney(kymoney.toString(),id.toString());//充值
+            }else {
+
+                userMoneyService.updateMoney(userMoney.getKymoney().toString(),id.toString());//充值
+
+            }
+
             //用户资金流向
             LogMoney logMoney =new LogMoney();
             logMoney.setUid(id);
