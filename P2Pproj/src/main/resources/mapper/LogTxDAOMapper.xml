@@ -5,6 +5,9 @@
 <mapper namespace="top.zzh.dao.LogTxDAO">
 
     <insert id="save" parameterType="logTx">
+        <selectKey keyColumn="id" keyProperty="id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
           insert into t_logtx(uid,bankcard,banktype,money,date_time,state)
           values(#{uid},#{bankcard},#{banktype},#{money},CURRENT_TIMESTAMP,#{state})

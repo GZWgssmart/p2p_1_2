@@ -12,6 +12,7 @@ import top.zzh.service.LogMoneyService;
 import top.zzh.service.LoginLogService;
 import top.zzh.service.UserMoneyService;
 import top.zzh.service.UserService;
+import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -108,8 +109,18 @@ public class PageController {
     public String registerSuccess() {
         return "user/registerSuccess";
     }
-
     @RequestMapping("tixian")
+    public String tixian(HttpSession session) {
+        Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        //用户当前可用余额
+        Long bigDecimal = userMoneyService.getMoney(id.toString());
+        Double kymoney = Double.valueOf(bigDecimal);
+        System.out.println(bigDecimal);
+        session.setAttribute("kymoney",kymoney);
+        return "user/tixian";
+    }
+
+   /* @RequestMapping("tixian")
     public ModelAndView tixian(HttpSession session,String actualMoney) {
         System.out.println(actualMoney);
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
@@ -136,7 +147,7 @@ public class PageController {
         m.setViewName("user/tixian");
         m.addObject("kymoney",kymoney);
         return m;
-    }
+    }*/
 
     @RequestMapping("touzi")
     public String touzi() {

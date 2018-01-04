@@ -40,6 +40,7 @@ public enum ControllerStatusEnum {
     CHECK_USER_FAIL(115,"error","审核用户失败，请稍候再试"),
     BORROW_SAVE_WAIT(116,"ok","我们将在1个工作日之内完成审核"),
     TZM_FIND_FAIL(117,"error","该推荐码不存在"),
+    CHECK_ERR_FAIL(115,"error","提现失败，请稍候再试"),
     SWAY_SAVE_SUCCESS(500,"ok","添加成功"),
     SWAY_SAVE_FAIL(501,"error","添加失败"),
     SWAY_UPDATE_SUCCESS(503,"ok","修改成功"),
