@@ -2,11 +2,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="top.zzh.dao.AuthManagementDAO">
+<mapper namespace="top.zzh.dao.PermissionDAO">
 
     <!--条件查询【权限描述】-->
     <sql id="cash_query_criteria">
-        <if test="query != null and query.content != null and query.content!=''">
+        <if test="query != null and query.content != null and query.content != ''">
             and content like concat('%', #{query.content}, '%')
         </if>
     </sql>

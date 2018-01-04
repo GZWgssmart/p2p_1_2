@@ -4,6 +4,7 @@ package top.zzh.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.bean.BorrowApply;
+import top.zzh.bean.Role;
 import top.zzh.common.Pager;
 import top.zzh.dao.RoleDAO;
 import top.zzh.service.RoleService;
@@ -21,6 +22,16 @@ public class RoleServiceImpl implements RoleService {
 
     public List<String> listRoles(String username) {
         return roleDAO.listRoles(username);
+    }
+
+    @Override
+    public void addRole(Role role) {
+        roleDAO.addRole(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        roleDAO.updateRole(role);
     }
 
 
@@ -56,7 +67,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Pager listPager(int pageNo, int pageSize) {
-        return null;
+        Pager pager = new Pager(pageNo,pageSize);
+        pager.setRows(roleDAO.listPager(pager));
+        pager.setTotal(roleDAO.count());
+        return pager;
     }
 
     @Override

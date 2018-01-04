@@ -2,7 +2,7 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/permission/permissionCriteriaQuery",//要请求数据的文件路径
+    url: "/role/roleQuery",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -32,19 +32,19 @@ $('#mytab').bootstrapTable({
             valign: 'middle'
         },
         {
-            title: '权限Id',
-            field: 'jid',
+            title: '角色Id',
+            field: 'rid',
             align: 'center',
             sortable: true
         },
         {
-            title: '权限url',
-            field: 'jurl',
+            title: '角色名称',
+            field: 'rname',
             align: 'center',
             sortable: true
         },
         {
-            title: '权限描述',
+            title: '角色描述',
             field: 'content',
             align: 'center',
             sortable: true
@@ -54,7 +54,7 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.jid + '\'" data-target="#myModal" onclick="return edit(\'' + row.jid + '\',\'' + row.jurl + '\',\'' + row.content + '\',)"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.rid + '\'" data-target="#myModal" onclick="return edit(\'' + row.rid + '\',\'' + row.rname + '\',\'' + row.content + '\',)"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
                 return e;
             }
         }
@@ -95,16 +95,16 @@ function refush() {
     $('#mytab').bootstrapTable('refresh');
 }
 
-//按条件查询
+//按条件查询     未用到
 function doSearchContent() {
     var content = $("#content").val();
     var options = $("#mytab").bootstrapTable('refresh', {
-        url: '/permission/permissionCriteriaQuery',
+        url: '/role/roleQuery',
         query: {content: content}
     });
 }
 
-//验证并新增权限
+//验证并新增角色
 $('#formadd').bootstrapValidator({
     message: 'This value is not valid',
     feedbackIcons: {
@@ -113,20 +113,20 @@ $('#formadd').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        jurl: {
-            message: '权限url验证失败',
+        rname: {
+            message: '角色名称验证失败',
             validators: {
                 notEmpty: {
-                    message: '权限url不能为空'
+                    message: '角色名称不能为空'
                 },
 
             }
         },
         content: {
-            message: '权限描述验证失败',
+            message: '角色描述验证失败',
             validators: {
                 notEmpty: {
-                    message: '权限描述不能为空'
+                    message: '角色描述不能为空'
                 }
             }
         },
@@ -136,7 +136,7 @@ $('#formadd').bootstrapValidator({
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/permission/addPermission",
+        "/role/addRole",
         $("#formadd").serialize(),
             function (data) {
             if (data.result == "ok") {
@@ -146,7 +146,7 @@ $('#formadd').bootstrapValidator({
             }
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
-            $("#addJurl").val("");
+            $("#addRname").val("");
             $("#addContent").val("");
             refush();
         }, "json"
@@ -155,9 +155,9 @@ $('#formadd').bootstrapValidator({
 
 
 //修改前填充数据到模态框
-function edit(jid,jurl,content) {
-    $("#jid").val(jid);
-    $("#updateJurl").val(jurl);
+function edit(rid,rname,content) {
+    $("#rid").val(rid);
+    $("#updateRname").val(rname);
     $("#updateContent").val(content);
 }
 
@@ -170,20 +170,20 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        jurl: {
-            message: '权限URL验证失败',
+        rname: {
+            message: '角色名称验证失败',
             validators: {
                 notEmpty: {
-                    message: '权限URL不能为空'
+                    message: '角色名称不能为空'
                 },
 
             }
         },
         content: {
-            message: '权限描述验证失败',
+            message: '角色描述验证失败',
             validators: {
                 notEmpty: {
-                    message: '权限描述不能为空'
+                    message: '角色描述不能为空'
                 }
 
             }
@@ -194,7 +194,7 @@ $('#updateForm').bootstrapValidator({
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/permission/updatePermission",
+        "/role/updateRole",
         $("#updateForm").serialize(),
         function (data) {
             if (data.message == "ok") {
@@ -202,10 +202,15 @@ $('#updateForm').bootstrapValidator({
             } else {
                 layer.msg(data.message, {icon: 1, time: 1000});
             }
-            refush();
+            $("#updateForm").data('bootstrapValidator').resetForm();
             $("#myModal").modal('hide');
-            $("#updateJurl").val("");
+            $("#updateRname").val("");
             $("#updateContent").val("");
+            refush();
         }, "json"
     );
 });
+
+
+
+
