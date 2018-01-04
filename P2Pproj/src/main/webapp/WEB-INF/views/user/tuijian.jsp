@@ -44,13 +44,14 @@
                         <br/>注：需将自己的邀请链接地址或推荐号发给你的好友，这样你才能成为他们的邀请者。
                         <br/><br/>
                         <input style="float: left;width: 560px;height: 30px;border: 1px solid #d9d9d9;border-right: none;color: #777777;line-height: 30px;text-indent: 10px;"
-                               id="text" name="text" disabled
+                               id="text" name="text" readonly
                                value="http://localhost:8080/page/register?userCode=${tzm}"/>
                         <button style="float: left;width: 80px;height: 32px;background-color: #319bff;color: #fff;text-align: center;position: relative;cursor: pointer;"
                                 onclick="myCopy()">
                             复制链接
                         </button>
                         <br/><br/>
+                        <p id="fuZhi" style="colo:red"></p>
                     </div>
                 </div>
                 <div class="tabCon">
