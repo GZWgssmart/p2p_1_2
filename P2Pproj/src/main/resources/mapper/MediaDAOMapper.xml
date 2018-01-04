@@ -6,8 +6,8 @@
     <!--媒体报道的新增-->
     <insert id="save" parameterType="media">
         <![CDATA[
-          insert into t_media(mid,title,content,pic,date,url)
-          values(#{mid},#{title},#{content},#{pic},#{date},#{url})
+          insert into t_media(mid,title,content,pic,date,url,state)
+          values(#{mid},#{title},#{content},#{pic},#{date},#{url},#{state})
         ]]>
     </insert>
 
@@ -32,37 +32,55 @@
             <if test="url != null and url !=''">
                 url = #{url},
             </if>
+            <if test="state != null and state !=''">
+                state = #{state},
+            </if>
         </set>
         where mid = #{mid}
     </update>
 
+    <!--修改状态-->
+    <update id="updateStatus" parameterType="media">
+        <![CDATA[
+          update t_media set state = #{state} where mid = #{mid};
+        ]]>
+    </update>
+
+    <!--删除-->
+    <delete id="remove" parameterType="media">
+        <![CDATA[
+          delete from t_media where mid = #{mid}
+        ]]>
+    </delete>
+
     <!--媒体报道的分页查询-->
     <sql id="media_query_criteria">
-        <where>
-            <if test="query != null and query.title != null">
-              and title = #{query.title}
-            </if>
-            <if test="content != null and query.content != null">
-              and content = #{query.content},
-            </if>
-            <if test="date != null and query.date != null">
-              and date <![CDATA[<=]]> = #{query.date},
-            </if>
-            <if test="url != null and qury.url != null">
-              and url = #{query.url}
-            </if>
-        </where>
+        <if test="query != null and query.title != null">
+          and title = #{query.title}
+        </if>
+       <if test="date != null and query.date != null">
+          and date <![CDATA[<=]]> = #{query.date},
+        </if>
+        <if test="url != null and qury.url != null">
+          and url = #{query.url}
+        </if>
+        <if test="state != null and query.state != null">
+          and state = #{query.state}
+        </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="media">
         select * from t_media
-        <include refid="media_query_criteria"/>
         limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="long">
         select count(mid) from t_media
-        <include refid="media_query_criteria"/>
     </select>
-    
+
+    <select id="listAll" resultType="media">
+        <![CDATA[
+          select * from t_media where 1=1
+        ]]>
+    </select>
 </mapper>

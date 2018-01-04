@@ -31,7 +31,7 @@ $('#mytab').bootstrapTable({
             field: 'select',
             //复选框
             checkbox: true,
-            width: 25,
+            width: 50,
             align: 'center',
             valign: 'middle'
         },
@@ -39,13 +39,6 @@ $('#mytab').bootstrapTable({
         {
             title: '报道标题',
             field: 'title',
-            align: 'center',
-            sortable: true
-        },
-
-        {
-            title: '报道内容',
-            field: 'content',
             align: 'center',
             sortable: true
         }
@@ -81,24 +74,38 @@ $('#mytab').bootstrapTable({
             }
         }
         ,
+
+        {
+            title: '状态',
+            field: 'state',
+            align: 'center',
+            formatter: function (value, row, index) {
+                if (value == 1) {
+                    //表示激活状态
+                    return '<span style="color:red" >冻结</span>';
+                } else if(value == 0) {
+                    //表示冻结状态
+                    return '<span style="color:green">激活</span>';
+                }
+            }
+        }
+        ,
         {
             title: '操作',
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var g='';
-                if(row.isCheck==0){
-                    g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-                }
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',' + row.isActive + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.mid + '\'" data-target="#mediaUpdate" onclick="return edit(\'' + row.mid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.mid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
-                if (row.isActive == 0) {
-                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 0 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
-                } else if (row.isActive == 1) {
-                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.id + ',' + 1 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
+                if (row.state == 0) {
+                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.mid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
+                } else if (row.state == 1) {
+                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.mid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
                 }
-                return g+e + d + f;
+
+
+                return e + d + f;
             }
         }
     ],
@@ -132,15 +139,24 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function del(leaveid, status) {
-    if (status == 0) {
+//查询按钮事件
+$('#search_btn').click(function () {
+    $('#mytab').bootstrapTable('refresh', {url: '/media/pager_criteria'});
+})
+function refush() {
+    $('#mytab').bootstrapTable('refresh', {url: '/media/pager_criteria'});
+}
+
+//单个删除
+function del(mid, state) {
+    if (state == 0) {
         layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
         return;
     }
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: '/leave/deleteManyLeave/' + leaveid,
+            url: '/media/delete/' + mid,
             dataType: 'json',
             success: function (data) {
                 if (data.message == '删除成功!') {
@@ -156,33 +172,56 @@ function del(leaveid, status) {
         });
     });
 }
-function edit(name) {
-    $.post("/leave/findLeave/" + name,
-        function (data) {
-            $("#updateForm").autofill(data);
+//编辑
+function edit(mid) {
+        $.post("/media/findMedia/" + mid,
+            function (data) {
+                $("#updateForm").autofill(data);
 
-        },
-        "json"
-    );
+            },
+            "json"
+        );
 }
-function shenhe(name) {
-    $("#leaveid").val(name);
-}
+function update() {
+    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        return row.mid;
+    });
+    if (row == "") {
+        layer.msg('修改失败，请勾选数据!', {
+            icon: 2,
+            time: 2000
+        });
+        return ;
 
-function updatestatus(id, status) {
-    $.post("/leave/updateStatus/" + id + "/" + status,
-        function (data) {
-            if (status == 0) {
-                if (data.message == "ok") {
-                    layer.msg("已激活", {icon: 1, time: 1000});
+    }else {
+        $.post("/media/findMedia/" + $("#mid").val(),
+            function (data) {
+                if (data == "ok") {
+                    $("#updateForm").autofill(data);
                 } else {
-                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 1000});
+                }
+
+            },
+            "json"
+        );
+    }
+}
+
+function updatestatus(mid, state) {
+    $.post("/media/updateStatus/" + mid + "/" + state,
+        function (data) {
+            if (state == 1) {
+                if (data.message == "ok") {
+                    layer.msg(data.message, {icon: 1, time: 1000});
+                } else {
+                    layer.msg(data.message, {icon: 1, time: 1000});
                 }
             } else {
                 if (data.message == "ok") {
-                    layer.msg("已冻结", {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
-                    layer.msg("修改状态失败!", {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 1, time: 1000});
                 }
             }
             refush();
@@ -190,29 +229,7 @@ function updatestatus(id, status) {
         "json"
     );
 }
-//查询按钮事件
-$('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/leave/leaveList'});
-})
-function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/leave/leaveList'});
-}
 
-$("#update").click(function () {
-    $.post(
-        "/leave/leaveUpdateSave",
-        $("#updateForm").serialize(),
-        function (data) {
-            if (data.message == "修改成功!") {
-                layer.msg(data.message, {icon: 1, time: 1000});
-            } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
-            }
-            refush();
-            $("#myModal").modal('hide');
-        }, "json"
-    );
-});
 
 
 $("#shenhe").click(function () {
@@ -230,7 +247,7 @@ $("#shenhe").click(function () {
         }, "json"
     );
 });
-
+//新增
 $('#mediaAdd').bootstrapValidator({
     message: 'This value is not valid',
     feedbackIcons: {
@@ -245,25 +262,97 @@ $('#mediaAdd').bootstrapValidator({
                 notEmpty: {
                     message: '请输入报道标题'
                 },
-
+                stringLength: {
+                    min: 1,
+                    max: 20,
+                    message: '标题长度必须在1到20之间'
+                }
             }
         },
-        content: {
-            message: '报道内容验证失败',
+        url: {
+            message: '报道标题验证失败',
             validators: {
                 notEmpty: {
-                    message: '请输入报道内容'
+                    message: '请输入报道地址'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 100,
+                    message: '请输入报道地址长度必须在1到100之间'
                 }
-
             }
         },
-        pic: {
-            message: '封面图片验证失败',
+        date: {
+             message: '报道时间验证失败',
+             validators: {
+                 notEmpty: {
+                     message: '请选择报道时间'
+                 },
+                 date:{
+                     format : 'YYYY/MM/DD',
+                     message : '日期格式不正确'
+                 }
+
+             }
+        }
+    }
+}).on('success.form.bv', function(e) {//点击提交之后
+    e.preventDefault();
+    var $form = $(e.target);
+    var bv = $form.data('bootstrapValidator');
+     $.post(
+        "/media/save",
+        $('#mediaAdd').serialize(),
+        function (data) {
+            if (data.message == "ok") {
+                layer.msg(data.message, {icon: 1, time: 1000});
+            } else {
+                layer.msg(data.message, {icon: 1, time: 1000});
+            }
+            $("#mediaAdd").data('bootstrapValidator').resetForm();
+            $("#title").val("");
+            $("#content").val("");
+            $("#pic").val("");
+            $("#date").val("");
+            $("#url").val("");
+            refush();
+        },
+        "json"
+    );
+});
+//修改
+$('#updateForm').bootstrapValidator({
+    message: 'This value is not valid',
+    feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+        title: {
+            message: '报道标题验证失败',
             validators: {
                 notEmpty: {
-                    message: '请上传封面图片'
+                    message: '请输入报道标题'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 20,
+                    message: '标题长度必须在1到20之间'
                 }
-
+            }
+        },
+        url: {
+            message: '报道标题验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入报道地址'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 100,
+                    message: '请输入报道地址长度必须在1到100之间'
+                }
             }
         },
         date: {
@@ -271,49 +360,45 @@ $('#mediaAdd').bootstrapValidator({
             validators: {
                 notEmpty: {
                     message: '请选择报道时间'
+                },
+                date:{
+                    format : 'YYYY/MM/DD',
+                    message : '日期格式不正确'
                 }
 
             }
-        },
-        url: {
-            message: '报道地址验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请输入报道地址'
-                }
-
-            }
-        },
+        }
     }
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
+
     $.post(
-        "/media/save",
-        $("#media_add").serialize(),
+        "/media/update",
+        $('#updateForm').serialize(),
         function (data) {
-            if (data.message == "新增成功!") {
+            if (data.message == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
                 layer.msg(data.message, {icon: 1, time: 1000});
-
             }
-            refush();
-            $("#mediaAdd").modal('hide');
+            $("#myModal").modal('hide');
             $("#title").val("");
             $("#content").val("");
             $("#pic").val("");
             $("#date").val("");
             $("#url").val("");
-        }, "json"
+            refush();
+        },
+        "json"
     );
 });
 function deleteMany() {
     var isactivity = "";
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        if (row.isActive == 0) {
-            isactivity += row.isActive;
+        if (row.state == 0) {
+            isactivity += row.state;
         }
         return row.id;
     });
@@ -333,65 +418,21 @@ function deleteMany() {
 
     }
     $("#deleteId").val(row);
-    layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
+    layer.confirm('确认要执行批量删除媒体报道数据吗？', function (index) {
         $.post(
-            "/leave/deleteManyLeave",
+            "/media/deleteMany",
             {
                 "manyId": $("#deleteId").val()
             },
             function (data) {
                 if (data.message == "删除成功!") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg("批量删除成功", {icon: 1, time: 1000});
                     refush();
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg("批量删除失败", {icon: 2, time: 1000});
                 }
                 refush();
             }, "json"
         );
     });
-}
-function getAccounts(){
-    $("#accountsshenhe").click(function () {
-        var isActives = "";
-        var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-            if (row.isActive == 1) {
-                isActives += row.isActive;
-            }
-            return row.id;
-        });
-        if (row == "") {
-            layer.msg('审核失败，请勾选数据!', {
-                icon: 2,
-                time: 2000
-            });
-            return;
-        }
-        if (isActives != "") {
-            layer.msg('审核失败，已经审核通过的的不允许再次审核!', {
-                icon: 2,
-                time: 2000
-            });
-            return;
-
-        }
-        $("#manyId").val(row);
-        layer.confirm('确认要执行批量审核请假员工吗？', function (index) {
-            $.post(
-                "/leave/checkerLeave",
-                $("#manyshenheform").serialize(),
-                function (data) {
-                    if (data.message == "批量审核成功!") {
-                        layer.msg(data.message, {icon: 1, time: 1000});
-                    } else {
-                        layer.msg(data.message, {icon: 2, time: 1000});
-                    }
-                    refush();
-                    $("#manyId").val("");
-                    $("#remarks").val("");
-                }, "json"
-            );
-        });
-    });
-
 }
