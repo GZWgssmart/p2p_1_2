@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Tzb;
+import top.zzh.bean.User;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
@@ -29,6 +30,22 @@ public class TzbController {
     private TzbService tzbService;
 
 
+    @RequestMapping("save")
+    @ResponseBody
+    public ControllerStatusVO save(User user,Tzb tzb, HttpSession session){
+        logger.info("用户id"+user.getUid()+"正在开始投资");
+        ControllerStatusVO statusVO = null;
+        Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
+        tzb.setUid(userid);
+        try{
+            tzbService.save(tzb);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_SUCCESS);
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
+        }
+        return statusVO;
+    }
+    
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex,int pageSize, TzbVO tzbVO) {
@@ -47,6 +64,7 @@ public class TzbController {
 
     @RequestMapping("page")
     public String page(){
+        logger.info("管理员查看用户投资情况");
         return "manager/tz";
     }
 }
