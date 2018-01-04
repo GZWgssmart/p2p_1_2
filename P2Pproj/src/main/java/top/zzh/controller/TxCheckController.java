@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.HUser;
 import top.zzh.bean.LogTx;
 import top.zzh.bean.TxCheck;
 import top.zzh.common.Pager;
@@ -18,8 +17,6 @@ import top.zzh.service.UserMoneyService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.LogTxVO;
 import top.zzh.vo.TxCheckVO;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * Cander 陈桢 2017/12/27
@@ -56,22 +53,15 @@ public class TxCheckController {
 
     @PostMapping("leaveShenHe")
     @ResponseBody
-    public ControllerStatusVO leaveShenHe(TxCheck txCheck, String money, HttpSession session){
+    public ControllerStatusVO leaveShenHe(TxCheck txCheck,String money){
         logger.info("审核提现！");
-        HUser hUser =(HUser)session.getAttribute("HUser");
-
-        System.out.println(hUser.getHuid());
-        txCheck.setHuid(hUser.getHuid());
+        System.out.println(txCheck.getTxid());
         //用户当前可用余额
         Long bigDecimal = userMoneyService.getMoney(txCheck.getHuid().toString());
         Double kymoney = Double.valueOf(bigDecimal);
-        System.out.println(kymoney);
         Double mone=Double.valueOf(money);
-        if(txCheck.getIsok()==(byte)0) {
-            if (kymoney < mone) {
-                statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_MONEY_FAIL);
-                return statusVO;
-            }
+        if (kymoney<mone && txCheck.getIsok().equals("0")){
+            statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_MONEY_FAIL);
         }
         try {
             txcheckService.update(txCheck);

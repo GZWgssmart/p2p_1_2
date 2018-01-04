@@ -34,6 +34,7 @@ public class PageController {
     @Autowired
     private LogMoneyService logMoneyService;
 
+    //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
         return "common/calculator";
@@ -44,6 +45,7 @@ public class PageController {
         return "manager/welcome";
     }
 
+    //管理员主界面
     @RequestMapping("managerindex")
     public String managerindex() {
         return "common/managerindex";
