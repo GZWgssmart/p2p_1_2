@@ -34,6 +34,11 @@ public class PageController {
     @Autowired
     private LogMoneyService logMoneyService;
 
+    @RequestMapping("cal")
+    public String cal() {
+        return "common/calculator";
+    }
+
     @RequestMapping("welcome")
     public String welcome() {
         return "manager/welcome";

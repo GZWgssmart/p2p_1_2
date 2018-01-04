@@ -35,4 +35,5 @@ public class SkbController {
         logger.info("后台用户收款页面");
         return "manager/sk";
     }
+
 }

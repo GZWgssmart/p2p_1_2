@@ -10,7 +10,7 @@
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                      href="${request.getContextPath}/page/touzi">投资记录</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
-                     href="${request.getContextPath}/page/huikuan">回款计划</a></span></li>
+                     href="${request.getContextPath}/page/huikuan">还款计划</a></span></li>
         <li class=""><span><a href="${request.getContextPath}/page/disanfang"><i class="dot dot02"></i>开通第三方</a> </span></li>
         <li><span><a href="${request.getContextPath}/page/chongzhi"><i class="dot dot03"></i>充值</a></span></li>
         <li class=""><span><a href="${request.getContextPath}/page/tixian"><i class="dot dot04"></i>提现</a></span></li>
