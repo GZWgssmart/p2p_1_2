@@ -41,9 +41,7 @@
         <include refid="query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
-
     
-
     <select id="countCriteria" resultType="long">
         select count(lg.id) from t_txcheck as tx ,t_logtx as lg,t_user as u,t_usermoney as um
         where tx.txid =lg.id and lg.uid =u.uid and  lg.uid=um.uid
