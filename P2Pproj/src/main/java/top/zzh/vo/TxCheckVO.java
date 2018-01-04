@@ -15,11 +15,14 @@ public class TxCheckVO {
     private String excute;//审核理由
     private Timestamp dateTime;//审核时间
     private  String id;
+    private String huid;
+    private String txid;
+    private BigDecimal kymoney;//用户可用金额
 
     public TxCheckVO() {
     }
 
-    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, String isok, String excute, Timestamp dateTime,String id) {
+    public TxCheckVO(String rname, String bankcard, String banktype, BigDecimal money, String isok, String excute, Timestamp dateTime, String id, String huid, BigDecimal kymoney) {
         this.rname = rname;
         this.bankcard = bankcard;
         this.banktype = banktype;
@@ -27,7 +30,9 @@ public class TxCheckVO {
         this.isok = isok;
         this.excute = excute;
         this.dateTime = dateTime;
-        this.id=id;
+        this.id = id;
+        this.huid = huid;
+        this.kymoney = kymoney;
     }
 
     public String getRname() {
@@ -92,5 +97,29 @@ public class TxCheckVO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getHuid() {
+        return huid;
+    }
+
+    public void setHuid(String huid) {
+        this.huid = huid;
+    }
+
+    public BigDecimal getKymoney() {
+        return kymoney;
+    }
+
+    public void setKymoney(BigDecimal kymoney) {
+        this.kymoney = kymoney;
+    }
+
+    public String getTxid() {
+        return txid;
+    }
+
+    public void setTxid(String txid) {
+        this.txid = txid;
     }
 }

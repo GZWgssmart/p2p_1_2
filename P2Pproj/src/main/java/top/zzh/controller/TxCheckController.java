@@ -13,6 +13,7 @@ import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.LogTxService;
 import top.zzh.service.TxcheckService;
+import top.zzh.service.UserMoneyService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.LogTxVO;
 import top.zzh.vo.TxCheckVO;
@@ -26,6 +27,12 @@ public class TxCheckController {
 
     @Autowired
     private TxcheckService txcheckService;
+
+    @Autowired
+    private  LogTxService logTxService;
+
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     private ControllerStatusVO statusVO;
 
@@ -46,13 +53,24 @@ public class TxCheckController {
 
     @PostMapping("leaveShenHe")
     @ResponseBody
-    public ControllerStatusVO leaveShenHe(TxCheck txCheck){
-        logger.info("新增提现记录！");
-        System.out.println(txCheck.getExcute());
-        System.out.println(txCheck.getIsok());
-        System.out.println(txCheck.getId());
+    public ControllerStatusVO leaveShenHe(TxCheck txCheck,String money){
+        logger.info("审核提现！");
+        System.out.println(txCheck.getTxid());
+        //用户当前可用余额
+        Long bigDecimal = userMoneyService.getMoney(txCheck.getHuid().toString());
+        Double kymoney = Double.valueOf(bigDecimal);
+        Double mone=Double.valueOf(money);
+        if (kymoney<mone && txCheck.getIsok().equals(0)){
+            statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_MONEY_FAIL);
+        }
         try {
             txcheckService.update(txCheck);
+            kymoney = kymoney - mone;
+            userMoneyService.updateMoney(kymoney.toString(),txCheck.getHuid().toString());
+            LogTx logTx=new LogTx();
+            logTx.setState((byte)0);
+            logTx.setId(txCheck.getTxid());
+            logTxService.update(logTx);
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);
         }catch (Exception e){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_FAIL);

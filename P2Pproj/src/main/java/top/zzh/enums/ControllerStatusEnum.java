@@ -72,7 +72,8 @@ public enum ControllerStatusEnum {
     TICKET_UPDATE_SUCCESS(1128,"ok","修改成功"),
     TICKET_UPDATE_FAIL(1129,"error","修改失败"),
     TICKET_GETBYID_SUCCESS(1130,"ok","获取信息成功"),
-    TICKET_GETBYID_FAIL(1131,"error","获取信息失败")
+    TICKET_GETBYID_FAIL(1131,"error","获取信息失败"),
+    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败")
 
     ;
 

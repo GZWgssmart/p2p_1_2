@@ -67,6 +67,13 @@ $('#mytab').bootstrapTable({
         }
         ,
         {
+            title: '可用金额',
+            field: 'kymoney',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
             title: '状态',
             field: 'isok',
             align: 'center',
@@ -109,7 +116,7 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe(\'' + row.id + '\')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                var g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#shenheModal" onclick="return shenhe('+row.id+','+row.huid+','+row.money+','+row.txid+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
                 return g;
             }
         }
@@ -177,8 +184,11 @@ function edit(name) {
         "json"
     );
 }
-function shenhe(name) {
+function shenhe(name,huid,mone,txid) {
     $("#leaveid").val(name);
+    $("#huid").val(huid);
+    $("#mone").val(mone);
+    $("#txid").val(txid);
 }
 
 function updatestatus(id, status) {

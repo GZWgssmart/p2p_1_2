@@ -72,6 +72,9 @@
             </div>
             <form class="form-horizontal" id="shenheform" >
                 <input class="hidden" id="leaveid" name="id" aria-required="true">
+                <input class="hidden" id="huid" name="huid" aria-required="true">
+                <input class="hidden" id="mone" name="money" aria-required="true">
+                <input class="hidden" id="txid" name="txid" aria-required="true">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">审核操作：</label>

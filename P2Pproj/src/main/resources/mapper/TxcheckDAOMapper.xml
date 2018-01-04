@@ -35,9 +35,9 @@
     </sql>
 
     <select id="listPagerCriteria" resultType="top.zzh.vo.TxCheckVO">
-        select u.rname,lg.bankcard,lg.banktype,lg.money,tx.id,tx.isok,tx.excute,tx.date_time
-        from t_txcheck as tx ,t_logtx as lg,t_huser as u
-        where u.huid=tx.huid and tx.txid=lg.id
+        select u.rname,lg.bankcard,lg.banktype,lg.money,um.kymoney,tx.id,tx.huid,tx.txid,tx.isok,tx.excute,tx.date_time
+        from t_txcheck as tx ,t_logtx as lg,t_huser as u,t_usermoney as um
+        where u.huid=tx.huid and um.uid=tx.huid and tx.txid=lg.id
         <include refid="query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
