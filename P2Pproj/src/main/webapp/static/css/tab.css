@@ -1,0 +1,6 @@
+.clearfix:after{content:"\20";display:block;height:0;clear:both;visibility:hidden}.clearfix{zoom:1}
+.dataTh span{padding-left: 120px;font-size: 16px}
+.tabBar {background: white}
+.tabBar span {cursor: pointer;float: left;font-size:17px;height: 18px;line-height: 25px;padding: 15px 15px}
+.tabBar span.current{border-bottom: 2px solid #28A7E1;}
+.tabCon {display: none;background: white;padding-top: 10px;padding-left:20px }

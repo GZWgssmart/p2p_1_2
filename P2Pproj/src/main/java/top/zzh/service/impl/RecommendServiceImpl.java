@@ -52,4 +52,9 @@ public class RecommendServiceImpl extends AbstractService implements RecommendSe
     public Object getByTzm(String tzm) {
         return recommendDAO.getByTzm(tzm);
     }
+
+    @Override
+    public String getByUid(long uid) {
+        return recommendDAO.getByUid(uid);
+    }
 }

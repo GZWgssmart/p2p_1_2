@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.RecommendService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.RecommendVO;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by 谢学培 on 2017/12/21.
@@ -29,8 +33,13 @@ public class RecommendController {
     }
 
     @RequestMapping("tuijian")
-    public String tuijian() {
-        return "user/tuijian";
+    public ModelAndView tuijian(HttpSession session) {
+        long uid=(long)session.getAttribute(Constants.USER_ID_SESSION);
+        String tzm=recommendService.getByUid(uid);
+        ModelAndView m=new ModelAndView();
+        m.setViewName("user/tuijian");
+        m.addObject("tzm",tzm);
+        return m;
     }
 
     @RequestMapping("pager_criteria")

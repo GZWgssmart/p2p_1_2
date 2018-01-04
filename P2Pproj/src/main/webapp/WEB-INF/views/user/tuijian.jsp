@@ -11,6 +11,7 @@
     <link href="<%=path%>/static/css/common.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/user.css"/>
     <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/tab.css"/>
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
     <script src="<%=path%>/static/js/user.js" type="text/javascript"></script>
@@ -24,12 +25,14 @@
         <%@include file="../common/leftList.jsp" %>
         <label id="typeValue" style="display:none;"> </label>
         <div class="personal-main">
-            <div class="personal-pay">
-                <h3><i>推荐中心</i></h3>
-                <div class="quick-pay-wrap">
+            <div id="tab_demo" class="HuiTab">
+                <div class="tabBar clearfix"><span>推荐好友</span><span>推荐列表</span></div>
+                <div class="tabCon">
                     <img src="/static/images/banner_tuijian.png"/>
-                    <div style="padding-top: 30px;font-size: 16px;color:#777;"><p style="font-size: 18px;">尊敬的用户，你的推荐码是:<span
-                            style="color:orange">${user.tzm}</span></p><br/>
+                    <div style="padding-top: 30px;font-size: 16px;color:#777;">
+                        <p style="font-size: 18px;">尊敬的用户，你的推荐码是:
+                            <span style="color:orange">${tzm}</span>
+                        </p><br/>
                         活动时间：2017年12月1日至2018年12月31日<br/>
                         活动对象：活动期间新注册用户的推荐人<br/>
                         活动说明：<br/>
@@ -42,22 +45,30 @@
                         <br/><br/>
                         <input style="float: left;width: 560px;height: 30px;border: 1px solid #d9d9d9;border-right: none;color: #777777;line-height: 30px;text-indent: 10px;"
                                id="text" name="text" disabled
-                               value="http://localhost:8080/page/register?userCode=${user.tzm}"/>
-                        <button style="float: left;width: 80px;height: 32px;background-color: #319bff;color: #fff;text-align: center;position: relative;cursor: pointer;" onclick="myCopy()">
+                               value="http://localhost:8080/page/register?userCode=${tzm}"/>
+                        <button style="float: left;width: 80px;height: 32px;background-color: #319bff;color: #fff;text-align: center;position: relative;cursor: pointer;"
+                                onclick="myCopy()">
                             复制链接
                         </button>
+                        <br/><br/>
                     </div>
+                </div>
+                <div class="tabCon">
+                    <div class="dataTh"><span>用户名</span><span>用户创建时间</span><span>奖励金额</span><span>操作</span></div>
+                    <div class="dataTh"><span>用户名</span><span>用户创建时间</span><span>奖励金额</span><span>操作</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 网站底部-->
-    <%@include file="../common/footer.jsp" %>
+</div>
+        <!-- 网站底部-->
+        <%@include file="../common/footer.jsp" %>
 </body>
 </html>
 
 <script src="<%=path%>/static/js/jquery.datetimepicker.js" type="text/javascript"></script>
 <script src="<%=path%>/static/js/datepicker.js" type="text/javascript"></script>
+<script src="<%=path%>/static/js/pageJs/tab.js" type="text/javascript"></script>
 <script>
     function myCopy() {
         var ele = document.getElementById("text");
