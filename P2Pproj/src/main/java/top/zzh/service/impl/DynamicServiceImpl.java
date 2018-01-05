@@ -2,6 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.Dynamic;
 import top.zzh.dao.DynamicDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.DynamicService;
@@ -17,5 +18,10 @@ public class DynamicServiceImpl extends AbstractService implements DynamicServic
     public void setDynamicDAO(DynamicDAO dynamicDAO) {
         super.setBaseDAO(dynamicDAO);
         this.dynamicDAO = dynamicDAO;
+    }
+
+    @Override
+    public void updateStatus(Dynamic dynamic) {
+        dynamicDAO.updateStatus(dynamic);
     }
 }

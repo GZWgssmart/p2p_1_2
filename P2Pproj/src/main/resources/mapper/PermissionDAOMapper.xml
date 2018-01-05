@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.PermissionDAO">
+
+    <!--条件查询【权限描述】-->
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.content != null and query.content != ''">
+            and content like concat('%', #{query.content}, '%')
+        </if>
+    </sql>
+
+    <select id="permissionListPagerCriteria" resultType="jur">
+        select jid,jurl,content from t_jur where 1=1
+        <include refid="cash_query_criteria"/>
+        order by jid DESC limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="permissionCountCriteria" resultType="long">
+        select count(jid) from t_jur where 1=1
+        <include refid="cash_query_criteria"/>
+    </select>
+
+    <insert id="addPermission" parameterType="top.zzh.bean.Jur">
+        <![CDATA[
+          insert into t_jur(jurl, content) values (#{jurl},#{content});
+        ]]>
+    </insert>
+
+    <update id="updatePermission" parameterType="jur">
+        <![CDATA[
+          update t_jur
+        ]]>
+        <set>
+            <if test="jurl != null and  jurl != ''">
+                jurl = #{jurl},
+            </if>
+            <if test="content != null and content != '' ">
+                content = #{content},
+            </if>
+        </set>
+        where jid = #{jid}
+    </update>
+
+</mapper>

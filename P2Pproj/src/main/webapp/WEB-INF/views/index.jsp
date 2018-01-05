@@ -442,7 +442,8 @@
           </div>
         </div>
       </div>
-      <div class="mrt20 mod"> <a href="#"><img src="<%=path%>/static/images/pic_home_js.jpg" width="300" height="80" alt="收益计算器" class="pic"></a></div>
+      <!-- 收益计算器-->
+      <div class="mrt20 mod"> <a target="_blank" href="<%=path%>/page/cal"><img src="<%=path%>/static/images/pic_home_js.jpg" width="300" height="80" alt="收益计算器" class="pic"></a></div>
     </div>
   </div>
 </div>

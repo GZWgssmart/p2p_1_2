@@ -1,0 +1,43 @@
+package top.zzh.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import top.zzh.bean.Jur;
+import top.zzh.bean.Role;
+import top.zzh.common.Pager;
+import top.zzh.dao.PermissionDAO;
+import top.zzh.service.AbstractService;
+import top.zzh.service.PermissionService;
+
+/**
+ * Created by XIE Shanlin on 2018.01.02.
+ */
+@Service
+public class PermissionServiceImpl extends AbstractService implements PermissionService {
+
+    private PermissionDAO permissionDAO;
+
+    @Autowired
+    public void setAuthManagementDAO(PermissionDAO authManagementDAO) {
+        super.setBaseDAO(authManagementDAO);
+        this.permissionDAO = authManagementDAO;
+    }
+
+    @Override
+    public Pager permissionListPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(permissionDAO.permissionListPagerCriteria(pager,obj));
+        pager.setTotal(permissionDAO.permissionCountCriteria(obj));
+        return pager;
+    }
+
+    @Override
+    public void addPermission(Jur jur) {
+        permissionDAO.addPermission(jur);
+    }
+
+    @Override
+    public void updatePermission(Jur jur) {
+        permissionDAO.updatePermission(jur);
+    }
+}

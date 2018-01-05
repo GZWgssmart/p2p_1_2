@@ -3,10 +3,17 @@ package top.zzh.enums;
 
 public enum ControllerStatusEnum {
 
-
-    UPLOAD_EXCEL_BUSY(97,"BUSY","服务器繁忙，请稍后再试哦！"),
+    ROLE_ADD_SUCCESS(89,"ok","角色新增成功！"),
+    ROLE_ADD_FAIL(90,"error","角色新增失败"),
+    ROLE_UPDATE_SUCCESS(91,"ok","修改角色成功！"),
+    ROLE_UPDATE_FAIL(92,"error","修改角色失败"),
+    PERMISSION_UPDATE_FAIL(93,"error","修改权限失败"),
+    PERMISSION_UPDATE_SUCCESS(94,"ok","修改权限成功！"),
+    PERMISSION_ADD_FAIL(95,"error","权限新增失败"),
+    PERMISSION_ADD_SUCCESS(96,"ok","权限新增成功！"),
+    UPLOAD_EXCEL_BUSY(97,"error","服务器繁忙，请稍后再试哦！"),
     UPLOAD_EXCEL_ERROR(98,"error","文件上传错误，请上传excel文件！"),
-    UPLOAD_EXCEL_SUCCESS(99,"success","文件上传成功,已成功导入数据库！"),
+    UPLOAD_EXCEL_SUCCESS(99,"ok","文件上传成功,已成功导入数据库！"),
 
     USER_LOGIN_SUCCESS(100, "ok", "登录成功"),
     USER_LOGIN_ERROR_CODE(101, "error", "验证码错误"),
@@ -34,6 +41,9 @@ public enum ControllerStatusEnum {
     CHECK_USER_FAIL(115,"error","审核用户失败，请稍候再试"),
     BORROW_SAVE_WAIT(116,"ok","我们将在1个工作日之内完成审核"),
     TZM_FIND_FAIL(117,"error","该推荐码不存在"),
+    CHECK_ERR_FAIL(118,"error","提现失败，请稍候再试"),
+    USER_TZ_SUCCESS(119,"ok","恭喜你，投资成功！"),
+    USER_TZ_FAIL(120,"error","投资失败，请稍候再试"),
     SWAY_SAVE_SUCCESS(500,"ok","添加成功"),
     SWAY_SAVE_FAIL(501,"error","添加失败"),
     SWAY_UPDATE_SUCCESS(503,"ok","修改成功"),
@@ -57,7 +67,33 @@ public enum ControllerStatusEnum {
     JKLX_DELETE_SUCCESS(521,"ok","删除成功"),
     JKLX_DELETE_FAIL(522,"error","删除失败"),
     JKLX_UPDATE_STATE_SUCCESS(523,"ok","修改状态成功"),
-    JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败")
+    JKLX_UPDATE_STATE_FAIL(524,"error","修改状态失败"),
+    MEDIA_SAVE_SUCCESS(525,"ok","添加成功"),
+    MEDIA_SAVE_FAIL(526,"error","添加失败"),
+    MEDIA_UPDATE_SUCCESS(527,"ok","修改成功"),
+    MEDIA_UPDATE_FAIL(528,"error","修改失败"),
+    MEDIA_DELETE_SUCCESS(529,"ok","删除成功"),
+    MEDIA_DELETE_FAIL(530,"error","删除失败"),
+    MEDIA_UPDATE_STATE_SUCCESS(531,"ok","修改状态成功"),
+    MEDIA_UPDATE_STATE_FAIL(532,"error","修改状态失败"),
+    DYNAMIC_SAVE_SUCCESS(533,"ok","添加成功"),
+    DYNAMIC_SAVE_FAIL(534,"error","添加失败"),
+    DYNAMIC_UPDATE_SUCCESS(535,"ok","修改成功"),
+    DYNAMIC_UPDATE_FAIL(536,"error","修改失败"),
+    DYNAMIC_DELETE_SUCCESS(537,"ok","删除成功"),
+    DYNAMIC_DELETE_FAIL(538,"error","删除失败"),
+    DYNAMIC_UPDATE_STATE_SUCCESS(539,"ok","修改状态成功"),
+    DYNAMIC_UPDATE_STATE_FAIL(540,"error","修改状态失败"),
+    UESR_CHONG_SUCCESS(225,"ok","充值成功"),
+    UESR_CHONG_FAIL(226,"error","充值失败"),
+    TICKET_SAVE_SUCCESS(1125,"ok","保存成功"),
+    TICKET_SAVE_FAIL(1126,"error","保存失败"),
+    TICKET_UPDATE_SUCCESS(1128,"ok","修改成功"),
+    TICKET_UPDATE_FAIL(1129,"error","修改失败"),
+    TICKET_GETBYID_SUCCESS(1130,"ok","获取信息成功"),
+    TICKET_GETBYID_FAIL(1131,"error","获取信息失败"),
+    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败")
+
     ;
 
     private Integer code;

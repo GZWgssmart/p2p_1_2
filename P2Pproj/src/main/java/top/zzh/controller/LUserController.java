@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import top.zzh.bean.*;
+import top.zzh.bean.LoginLog;
+import top.zzh.bean.Recommend;
+import top.zzh.bean.User;
+import top.zzh.bean.UserRole;
 import top.zzh.common.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
@@ -53,7 +56,7 @@ public class LUserController {
     @Autowired
     private RecommendService recommendService;
 
-    private  LoginLogQuery loginLogQuery;
+    private LoginLogQuery loginLogQuery;
 
 
     @GetMapping("login_page")
@@ -82,10 +85,12 @@ public class LUserController {
                         log.setUserId(userid);
                         log.setLoginIp(request.getRemoteHost());
                         loginLogService.save(log);
-                        sessionShiro.setAttribute(Constants.USER_ID_SESSION,userid);
+                        System.out.println("ID:" + userid);
+
+                        sessionShiro.setAttribute(Constants.USER_ID_SESSION, userid);
 
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
-                        session.setAttribute("userObj",userObj);
+                        session.setAttribute("userObj", userObj);
                     } catch (AuthenticationException e) {
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_FAIL);
                     }
@@ -103,12 +108,12 @@ public class LUserController {
 
 
     @GetMapping("userindex")
-    public String userLogin(HttpSession session,HttpServletRequest request) {
-        String name= (String) session.getAttribute(Constants.USER_IN_SESSION);
-        String time=loginLogService.getByloginTime(name);
-        User user=userService.getByface(name);
-        request.setAttribute("time",time);
-        request.setAttribute("face",user.getFace());
+    public String userLogin(HttpSession session, HttpServletRequest request) {
+        String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        String time = loginLogService.getByloginTime(name);
+        User user = userService.getByface(name);
+        request.setAttribute("time", time);
+        request.setAttribute("face", user.getFace());
         return "/user/userindex";
     }
 
@@ -179,42 +184,36 @@ public class LUserController {
     }
 
     @PostMapping("uploadHeader")
-    public String uploadHeader(MultipartFile header, HttpServletRequest request, HttpSession session){
-        ControllerStatusVO statusVO=null;
+    public String uploadHeader(MultipartFile header, HttpServletRequest request, HttpSession session) {
+        ControllerStatusVO statusVO = null;
 
         try {
-            copyInputStreamToFile(header.getInputStream(),new File(PathUtils.uploadDir(request)+"/"+header.getOriginalFilename()));
+            copyInputStreamToFile(header.getInputStream(), new File(PathUtils.uploadDir(request) + "/" + header.getOriginalFilename()));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String face="static/uploads/"+header.getOriginalFilename();
+        String face = "static/uploads/" + header.getOriginalFilename();
 
         userService.saveHeader(face, (String) session.getAttribute(Constants.USER_IN_SESSION));
-        String time=loginLogService.getByloginTime((String) session.getAttribute(Constants.USER_IN_SESSION));
-        request.setAttribute("face",face);
-        request.setAttribute("time",time);
+        String time = loginLogService.getByloginTime((String) session.getAttribute(Constants.USER_IN_SESSION));
+        request.setAttribute("face", face);
+        request.setAttribute("time", time);
 
-        return  "user/userindex";
+        return "user/userindex";
     }
 
     @PostMapping("registerSave")
     @ResponseBody
     public ControllerStatusVO registerSave(User user, String userCode) {
         ControllerStatusVO statusVO = null;
+        User userToRecommend = null;
         if (userCode != null && !userCode.equals("")) {
-            User userToRecommend = (User) recommendService.getByTzm(userCode);
-            if (userToRecommend.getUid() == null || userToRecommend.getUname() == null) {
+            userToRecommend = (User) recommendService.getByTzm(userCode);
+            if (userToRecommend == null) {
                 statusVO = ControllerStatusVO.status(ControllerStatusEnum.TZM_FIND_FAIL);
                 return statusVO;
             }
-            //推荐保存
-            Recommend recommend = new Recommend();
-            recommend.setTid(userToRecommend.getUid());
-            recommend.setTname(userToRecommend.getRname());
-            recommend.setUid(user.getUid());
-            recommend.setRname(user.getRname());
-            recommendService.save(recommend);
         }
         String pwd = EncryptUtils.md5(user.getUpwd());
         user.setUpwd(pwd);
@@ -233,12 +232,19 @@ public class LUserController {
         }
         userService.register(user);
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
-        System.out.println("新增的id为：" + user.getUid());
         UserRole userRole = new UserRole();
         userRole.setRoleId(3);
         userRole.setUserId(Math.toIntExact(user.getUid()));
         roleService.save(userRole);
-
+        if (userToRecommend != null) {
+            //推荐保存
+            Recommend recommend = new Recommend();
+            recommend.setTid(userToRecommend.getUid());
+            recommend.setTname(userToRecommend.getUname());
+            recommend.setUid(user.getUid());
+            recommend.setRname(user.getUname());
+            recommendService.save(recommend);
+        }
         return statusVO;
     }
 
@@ -251,23 +257,22 @@ public class LUserController {
 
 
     @RequestMapping("loginlog")
-    public String loginlogpage(){
+    public String loginlogpage() {
         return "manager/loginlog";
     }
-
 
 
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex, int pageSize) {
         logger.info("登录日志+条件查询");
-        return loginLogService.listPagerCriteria(pageIndex, pageSize,loginLogQuery);
+        return loginLogService.listPagerCriteria(pageIndex, pageSize, loginLogQuery);
     }
 
     @RequestMapping("logout")
-    public String logout(HttpSession session){
-        String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
-        long userid=loginLogService.getByName(name);
+    public String logout(HttpSession session) {
+        String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        long userid = loginLogService.getByName(name);
         loginLogService.updateByUserId(userid);
         session.invalidate();
         return "user/login";
@@ -282,64 +287,64 @@ public class LUserController {
     }
 
     @RequestMapping("zpwdUpdate1")
-    public String zpwdUpdate(HttpSession session){
-        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
-        String zpwd=userService.getByZpwd(uname);
-        if(zpwd==null){
+    public String zpwdUpdate(HttpSession session) {
+        String uname = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        String zpwd = userService.getByZpwd(uname);
+        if (zpwd == null) {
             return "user/zpwdUpdate1";
         }
-        if(zpwd.equals("")){
+        if (zpwd.equals("")) {
             return "user/zpwdUpdate1";
         }
-        if(!zpwd.equals("")){
+        if (!zpwd.equals("")) {
             return "user/zpwdUpdate2";
         }
         return "";
     }
 
     @PostMapping("updateZpwd")
-    public String updateZpwd(HttpServletRequest request,String zpwd,HttpSession session){
-        String uname= (String) session.getAttribute(Constants.USER_IN_SESSION);
-        userService.updateZpwd(uname,EncryptUtils.md5(zpwd));
-        request.setAttribute("exist","恭喜您，修改支付密码成功！");
-        return  "user/zpwdUpdate1";
+    public String updateZpwd(HttpServletRequest request, String zpwd, HttpSession session) {
+        String uname = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        userService.updateZpwd(uname, EncryptUtils.md5(zpwd));
+        request.setAttribute("exist", "恭喜您，修改支付密码成功！");
+        return "user/zpwdUpdate1";
     }
 
     @PostMapping("updateZpwd2")
-    public String updateZpwd2(HttpServletRequest request,HttpSession session,String zpwd,String xpwd){
-        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
-        String zpd=userService.getByZpwd(uname);
-        String pd=EncryptUtils.md5(zpwd);
-        if(!pd.equals(zpd)){
-            request.setAttribute("check","原支付密码输入错误！");
-            return  "user/zpwdUpdate2";
+    public String updateZpwd2(HttpServletRequest request, HttpSession session, String zpwd, String xpwd) {
+        String uname = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        String zpd = userService.getByZpwd(uname);
+        String pd = EncryptUtils.md5(zpwd);
+        if (!pd.equals(zpd)) {
+            request.setAttribute("check", "原支付密码输入错误！");
+            return "user/zpwdUpdate2";
         }
-        if(pd.equals(zpd)){
-            userService.updateZpwd(uname,EncryptUtils.md5(xpwd));
-            request.setAttribute("exist","恭喜您，修改支付密码成功！");
-            return  "user/zpwdUpdate2";
+        if (pd.equals(zpd)) {
+            userService.updateZpwd(uname, EncryptUtils.md5(xpwd));
+            request.setAttribute("exist", "恭喜您，修改支付密码成功！");
+            return "user/zpwdUpdate2";
         }
         return "";
     }
 
     @RequestMapping("upwdUpdateView")
-    public String upwdUpdateView(){
+    public String upwdUpdateView() {
 
-        return  "user/upwdUpdate";
+        return "user/upwdUpdate";
     }
 
     @PostMapping("upwdUpdate")
-    public String upwdUpdate(HttpServletRequest request,HttpSession session,String upwd,String xupwd){
-        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
-        User user= (User) userService.getById(uid);
-        String upd=EncryptUtils.md5(upwd);
-        if(upd.equals(user.getUpwd())){
-            userService.updateUpwd(uid,EncryptUtils.md5(xupwd));
-            request.setAttribute("exist","恭喜您，修改登录密码成功！");
+    public String upwdUpdate(HttpServletRequest request, HttpSession session, String upwd, String xupwd) {
+        Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        User user = (User) userService.getById(uid);
+        String upd = EncryptUtils.md5(upwd);
+        if (upd.equals(user.getUpwd())) {
+            userService.updateUpwd(uid, EncryptUtils.md5(xupwd));
+            request.setAttribute("exist", "恭喜您，修改登录密码成功！");
             return "user/upwdUpdate";
         }
-        if(!upd.equals(user.getUpwd())){
-            request.setAttribute("check","您的原登录密码错误，修改失败！");
+        if (!upd.equals(user.getUpwd())) {
+            request.setAttribute("check", "您的原登录密码错误，修改失败！");
             return "user/upwdUpdate";
         }
 
@@ -347,20 +352,20 @@ public class LUserController {
     }
 
     @RequestMapping("userdataFind")
-    public String userdataFind(HttpServletRequest request,HttpSession session){
-        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
-        User user= (User) userService.getById(uid);
-        request.setAttribute("user",user);
-        return  "user/userdataUpdate";
+    public String userdataFind(HttpServletRequest request, HttpSession session) {
+        Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        User user = (User) userService.getById(uid);
+        request.setAttribute("user", user);
+        return "user/userdataUpdate";
     }
 
     @PostMapping("userdataUpdate")
-    public String userdataUpdate(HttpSession session,User user,HttpServletRequest request){
-        String uname=(String)session.getAttribute(Constants.USER_IN_SESSION);
+    public String userdataUpdate(HttpSession session, User user, HttpServletRequest request) {
+        String uname = (String) session.getAttribute(Constants.USER_IN_SESSION);
         user.setUname(uname);
         userService.update(user);
-        request.setAttribute("exist","恭喜您，修改资料成功！");
-        return  "user/userdataUpdate";
+        request.setAttribute("exist", "恭喜您，修改资料成功！");
+        return "user/userdataUpdate";
     }
 
 }

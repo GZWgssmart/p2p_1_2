@@ -5,12 +5,23 @@
 <mapper namespace="top.zzh.dao.BorrowDetailDAO">
 
     <insert id="save" parameterType="top.zzh.bean.BorrowDetail">
+        <selectKey keyColumn="bdid" keyProperty="bdid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
           insert into t_borrowdetail(mpurpose,hksource,suggest,
-          xmdescrip,guarantee,money,nprofit,way,cpname,baid) values(#{mpurpose},
-            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{way},#{cpname},#{baid})
+          xmdescrip,guarantee,money,nprofit,sid,cpname,baid) values(#{mpurpose},
+            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{sid},#{cpname},#{baid})
         ]]>
     </insert>
+
+    <update id="update" parameterType="top.zzh.bean.BorrowDetail">
+
+        <![CDATA[
+          update t_borrowdetail set mpurpose = #{mpurpose},hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},
+          guarantee = #{guarantee},nprofit = #{nprofit},sid = #{sid} where bdid = #{bdid}
+        ]]>
+    </update>
 
     <update id="updateTupian" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
@@ -35,14 +46,14 @@
     </sql>
 
     <select id="listPagerCriteria" resultType="top.zzh.vo.BorrowApplyVO">
-        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
-        from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
+        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,s.way,bd.cpname,ba.rname
+        from t_borrowdetail bd,t_borrowapply ba,t_sway s where ba.baid = bd.baid and ba.money = bd.money and s.sid = bd.sid
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listPager" resultType="top.zzh.vo.BorrowApplyVO">
-       <![CDATA[
+        <![CDATA[
             select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
             from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
             limit #{pager.beginIndex}, #{pager.pageSize}
@@ -65,7 +76,7 @@
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowDetail">
-       select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
+        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
         from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
     </select>
 </mapper>

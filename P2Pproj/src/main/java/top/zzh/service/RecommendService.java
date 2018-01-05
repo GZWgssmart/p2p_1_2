@@ -6,4 +6,6 @@ public interface RecommendService extends BaseService {
     Object recommendRanking();
 
     Object getByTzm(String tzm);
+
+    String getByUid(long uid);
 }

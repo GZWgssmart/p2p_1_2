@@ -12,12 +12,46 @@
         select ur.user_id from t_user u,t_user_role ur where u.uid=ur.user_id and u.uname=#{username}
     </select>
 
-
     <insert id="save" parameterType="userRole">
         <![CDATA[
            insert into t_user_role (user_id,role_id)  VALUES(#{userId},#{roleId})
         ]]>
     </insert>
+
+
+
+    <insert id="addRole" parameterType="role">
+        <![CDATA[
+            insert into t_role(rname, content) values(#{rname},#{content})
+        ]]>
+    </insert>
+
+    <update id="updateRole" parameterType="role">
+        <![CDATA[
+            update t_role
+        ]]>
+        <set>
+            <if test="rname != null and rname != ''">
+                rname = #{rname},
+            </if>
+            <if test="content != null and content != ''">
+                content =#{content},
+            </if>
+        </set>
+        where rid = #{rid}
+    </update>
+
+    <select id="listPager" resultType="role">
+        <![CDATA[
+            select rid,rname,content from t_role order by rid desc limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+            select count(rid) from t_role
+        ]]>
+    </select>
 
 </mapper>
 

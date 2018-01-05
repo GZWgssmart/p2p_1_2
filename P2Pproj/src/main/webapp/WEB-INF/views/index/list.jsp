@@ -117,7 +117,7 @@
                 <!------------投资列表-------------->
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="info.jsp" title="赵女士长安福特福克斯汽车质押贷款4万元" target="_blank"> 赵女士长安福特福克斯汽车质... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="赵女士长安福特福克斯汽车质押贷款4万元" target="_blank"> 赵女士长安福特福克斯汽车质... </a></li>
                         <li class="col-180"><span class="f20 c-333">40,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">1</span>个月 </li>
@@ -131,12 +131,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="info.jsp" title="唐先生宝马318汽车质押贷款5万元" target="_blank"> 唐先生宝马318汽车质押贷... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="唐先生宝马318汽车质押贷款5万元" target="_blank"> 唐先生宝马318汽车质押贷... </a></li>
                         <li class="col-180"><span class="f20 c-333">50,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">1</span>个月 </li>
@@ -150,12 +150,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="info.jsp" title="秦先生雪佛兰赛欧汽车质押贷款2万元" target="_blank"> 秦先生雪佛兰赛欧汽车质押贷... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="秦先生雪佛兰赛欧汽车质押贷款2万元" target="_blank"> 秦先生雪佛兰赛欧汽车质押贷... </a></li>
                         <li class="col-180"><span class="f20 c-333">20,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">1</span>个月 </li>
@@ -169,12 +169,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="info.jsp" title="曾先生北京现代悦动汽车质押贷款3万元" target="_blank"> 曾先生北京现代悦动汽车质押... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="曾先生北京现代悦动汽车质押贷款3万元" target="_blank"> 曾先生北京现代悦动汽车质押... </a></li>
                         <li class="col-180"><span class="f20 c-333">30,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">1</span>个月 </li>
@@ -188,12 +188,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="info.jsp" title="李先生海马普力马汽车质押贷款3.5万元" target="_blank"> 李先生海马普力马汽车质押贷... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="李先生海马普力马汽车质押贷款3.5万元" target="_blank"> 李先生海马普力马汽车质押贷... </a></li>
                         <li class="col-180"><span class="f20 c-333">35,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">1</span>个月 </li>
@@ -207,12 +207,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="info.jsp" target="_blank"> 温先生单独所有房产抵押贷款... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="<%=path%>/page/info" target="_blank"> 温先生单独所有房产抵押贷款... </a></li>
                         <li class="col-180"><span class="f20 c-333">200,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">15.60% </span></li>
                         <li class="col-150"> <span class="f20 c-333">36</span>个月 </li>
@@ -226,12 +226,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="info.jsp" title="孙先生单独所有房产、车位抵押贷款26万元" target="_blank"> 孙先生单独所有房产、车位抵... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="孙先生单独所有房产、车位抵押贷款26万元" target="_blank"> 孙先生单独所有房产、车位抵... </a></li>
                         <li class="col-180"><span class="f20 c-333">260,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">15.60% </span></li>
                         <li class="col-150"> <span class="f20 c-333">36</span>个月 </li>
@@ -245,12 +245,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="#" title="马先生宝马X3汽车抵押贷款27万元" target="_blank"> 马先生宝马X3汽车抵押贷款... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a class="f18" href="#" title="马先生宝马X3汽车抵押贷款27万元" target="_blank"> 马先生宝马X3汽车抵押贷款... </a></li>
                         <li class="col-180"><span class="f20 c-333">270,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">13.20% </span></li>
                         <li class="col-150"> <span class="f20 c-333">12</span>个月 </li>
@@ -264,12 +264,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="info.jsp" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="#" title="吴女士单独所有房产抵押贷款13万元" target="_blank"> 吴女士单独所有房产抵押贷款... </a></li>
+                        <li class="col-330 col-t"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="#" title="吴女士单独所有房产抵押贷款13万元" target="_blank"> 吴女士单独所有房产抵押贷款... </a></li>
                         <li class="col-180"><span class="f20 c-333">130,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">12.10% </span></li>
                         <li class="col-150"> <span class="f20 c-333">2</span>个月 </li>
@@ -283,12 +283,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <div class="item">
                     <ul>
-                        <li class="col-330 col-t"><a href="#" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="info.jsp" title="李先生夫妻共有房产抵押贷款15万元" target="_blank"> 李先生夫妻共有房产抵押贷款... </a></li>
+                        <li class="col-330 col-t"><a href="#" target="_blank"><i class="icon icon-fang" title="房易贷"></i></a><a class="f18" href="<%=path%>/page/info" title="李先生夫妻共有房产抵押贷款15万元" target="_blank"> 李先生夫妻共有房产抵押贷款... </a></li>
                         <li class="col-180"><span class="f20 c-333">150,000.00</span>元</li>
                         <li class="col-110 relative"><span class="f20 c-orange">18.00% </span></li>
                         <li class="col-150"> <span class="f20 c-333">60</span>个月 </li>
@@ -302,19 +302,19 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="info.jsp">还款中</a> </li>
+                        <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info">还款中</a> </li>
                     </ul>
                 </div>
                 <!------------投资列表-------------->
             </div>
-            <div class="pagination clearfix mrt30"> <span class="page"><a href="javascript:void(0);" onclick="">首页</a><a href="javascript:void(0);" onclick="">上一页</a>&nbsp;<a class="curr" href="javascript:;">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="javascript:void(0);" onclick="#">下一页</a><a href="javascript:void(0);" onclick="#">尾页</a>&nbsp;<em>共2297页&nbsp;</em></span>
+            <div class="pagination clearfix mrt30"> <span class="page"><a href="javascript:void(0);" onclick="">首页</a><a href="javascript:void(0);" onclick="">上一页</a>&nbsp;<a class="curr" href="javascript:void(0);">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="javascript:void(0);" onclick="#">下一页</a><a href="javascript:void(0);" onclick="#">尾页</a>&nbsp;<em>共2297页&nbsp;</em></span>
                 <dl class="page-select">
                     <dt><span>1</span><i class="icon icon-down"></i></dt>
                     <dd style="display: none;">
                         <ul name="nump" id="jsnump">
-                            <li><a href="##" onclick="page_jump(&quot;this&quot;,1)">1</a></li>
-                            <li><a href="##" onclick="page_jump(&quot;this&quot;,2)">2</a></li>
-                            <li><a href="##" onclick="page_jump(&quot;this&quot;,3)">3</a></li>
+                            <li><a href="##" onclick="">1</a></li>
+                            <li><a href="##" onclick="">2</a></li>
+                            <li><a href="##" onclick="">3</a></li>
                         </ul>
                     </dd>
                 </dl>

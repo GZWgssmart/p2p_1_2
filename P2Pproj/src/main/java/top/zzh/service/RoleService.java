@@ -11,4 +11,8 @@ import java.util.List;
 public interface RoleService extends BaseService {
     List<String> listRoles(String username);
 
+
+    void addRole(Role role);
+    void updateRole(Role role);
+
 }

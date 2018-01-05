@@ -17,7 +17,7 @@ public class BorrowDetailVO {
     private Timestamp time;//审核时间
     private Integer state;//审核状态（0表示为审核，1表示已审核）
     private Integer type;//借款类型为标种的主键字段
-    private String term;//借款期限
+    private Integer term;//借款期限
     private Timestamp deadline;//截止时间
     private Long bdid;
     private String fpic;//法人身份证照片
@@ -30,6 +30,9 @@ public class BorrowDetailVO {
     private String xmdescrip;//项目描述
     private String guarantee;//保障措施
     private Float nprofit;//年化收益
+    private Long lxid;
+    private String lxname;
+    private Long sid;
     private String way;//收益方式
     private String cpname;//产品名称
     private String bzname;//标种名称
@@ -38,8 +41,11 @@ public class BorrowDetailVO {
     public BorrowDetailVO() {
     }
 
-    public BorrowDetailVO(Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, String term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
+    public BorrowDetailVO(Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
         this.baid = baid;
+        this.sid = sid;
+        this.lxid = lxid;
+        this.lxname = lxname;
         this.rname = rname;
         this.money = money;
         this.uid = uid;
@@ -64,6 +70,30 @@ public class BorrowDetailVO {
         this.cpname = cpname;
         this.bzname = bzname;
         this.uname = uname;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public Long getSid() {
+        return sid;
+    }
+
+    public void setLxid(Long lxid) {
+        this.lxid = lxid;
+    }
+
+    public Long getLxid() {
+        return lxid;
+    }
+
+    public void setLxname(String lxname) {
+        this.lxname = lxname;
+    }
+
+    public String getLxname() {
+        return lxname;
     }
 
     public Long getBaid() {
@@ -130,11 +160,11 @@ public class BorrowDetailVO {
         this.type = type;
     }
 
-    public String getTerm() {
+    public Integer getTerm() {
         return term;
     }
 
-    public void setTerm(String term) {
+    public void setTerm(Integer term) {
         this.term = term;
     }
 

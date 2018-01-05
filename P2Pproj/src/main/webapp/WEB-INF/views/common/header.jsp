@@ -9,7 +9,7 @@
                         <div class="cnr"> <img src="<%=path%>/static/images/code.png"> </div>
                         <b class="ar_up ar_top"></b> <b class="ar_up_in ar_top_in"></b> </div>
                 </li>
-                <li class="c_2"><a href="#" target="_blank" title="官方QQ" alt="官方QQ"><b class="ico_head_QQ"></b></a></li>
+                <li class="c_2"><a href="http://wpa.qq.com/msgrd?v=3&uin=1729340612&site=qq&menu=yes" target="_blank" title="官方QQ" alt="官方QQ"><b class="ico_head_QQ"></b></a></li>
                 <li class="c_4"><a href="#" target="_blank" title="新浪微博" alt="新浪微博"><b class="ico_head_sina"></b></a></li>
             </ul>
             <ul class="fn-right header-top-ul">

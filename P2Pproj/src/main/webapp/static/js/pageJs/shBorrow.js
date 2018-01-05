@@ -43,13 +43,6 @@ $('#mytab').bootstrapTable({
         }
         ,
         {
-            title: '借款人',
-            field: 'uname',
-            align: 'center',
-            sortable: true
-        }
-        ,
-        {
             title: '审核理由',
             field: 'reason',
             align: 'center',

@@ -12,17 +12,20 @@ public class Media {
 
     private String pic;//封面图片
 
-    private Date date;//时间
+    private String date;//时间
 
     private String url;//报道的URL地址
 
-    public Media(Long mid, String title, String content, String pic, Date date, String url) {
+    private Byte state;//状态
+
+    public Media(Long mid, String title, String content, String pic, String date, String url,Byte state) {
         this.mid = mid;
         this.title = title;
         this.content = content;
         this.pic = pic;
         this.date = date;
         this.url = url;
+        this.state = state;
     }
 
     public Media() {
@@ -61,11 +64,11 @@ public class Media {
         this.pic = pic == null ? null : pic.trim();
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -75,5 +78,13 @@ public class Media {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }

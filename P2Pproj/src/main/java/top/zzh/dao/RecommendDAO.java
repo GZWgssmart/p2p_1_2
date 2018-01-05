@@ -24,4 +24,6 @@ public interface RecommendDAO extends BaseDAO {
     Object recommendRanking();
 
     Object getByTzm(@Param("tzm")String tzm);
+
+    String getByUid(@Param("uid")long uid);
 }

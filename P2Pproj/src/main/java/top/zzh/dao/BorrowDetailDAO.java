@@ -21,8 +21,14 @@ public interface BorrowDetailDAO extends BaseDAO{
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
     @Override
-    Long countCriteria(@Param("pager") Object obj);
+    Long countCriteria(@Param("query") Object obj);
 
     //修改图片
     void updateTupian(Object obj);
+
+    @Override
+    void update(Object obj);
+
+    @Override
+    void save(Object obj);
 }

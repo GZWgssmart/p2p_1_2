@@ -5,11 +5,14 @@
 
 <mapper namespace="top.zzh.dao.RecommendDAO">
     <select id="countTzm" resultType="Integer">
-      select count(uid) t_user where tzm = #{tzm};
+      select count(uid) from t_user where tzm = #{tzm};
     </select>
     <!--用于前台判断推荐码是否存在-->
-    <select id="getByTzm" parameterType="string">
-        select uid,rname t_user where tzm = #{tzm};
+    <select id="getByTzm" parameterType="string" resultType="user">
+        select uid,uname from t_user where tzm = #{tzm};
+    </select>
+    <select id="getByUid" parameterType="long" resultType="string">
+        select tzm from t_user where uid = #{uid};
     </select>
     <insert id="save" parameterType="recommend">
         insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())
@@ -36,6 +39,16 @@
     </select>
     <select id="countCriteria" resultType="long">
         select count(id) from t_recommend where 1=1
+        <include refid="cash_query_criteria"/>
+    </select>
+
+    <select id="listPagerUid" resultType="recommend">
+        select id,uid,rname,`date` from t_recommend where tid=#{tid}
+        <include refid="cash_query_criteria"/>
+        order by `date` desc limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countByUid" resultType="long">
+        select count(id) from t_recommend where tid=#{tid}
         <include refid="cash_query_criteria"/>
     </select>
     <delete id="remove" parameterType="recommend">

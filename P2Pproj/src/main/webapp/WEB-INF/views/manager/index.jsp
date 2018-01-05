@@ -102,9 +102,9 @@
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">收款管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">还款管理</a>
+                        <li><a a class="J_menuItem" href="">用户还款管理</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
                         </li>
@@ -143,7 +143,16 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/update">更改公司动态</a>
+                    </ul>
+                </li>
+				 <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-star"></i>
+                        <span class="nav-label">卷的管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">发布的卷</a>
                         </li>
                     </ul>
                 </li>
@@ -176,8 +185,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/media/update">更改媒体报道</a>
                         </li>
                     </ul>
                 </li>

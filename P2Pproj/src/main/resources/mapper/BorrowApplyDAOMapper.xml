@@ -11,16 +11,19 @@
     </delete>
 
     <insert id="save" parameterType="top.zzh.bean.BorrowApply">
+        <selectKey keyColumn="baid" keyProperty="baid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
-          insert into t_borrowapply(rname,money,uid,bzid,state,type,term,deadline)
-          values(#{rname},#{money},#{uid},#{bzid},1,#{type},#{term},#{deadline})
+          insert into t_borrowapply(rname,money,uid,bzid,state,time,lxid,term,deadline,reason,huid)
+          values(#{rname},#{money},#{uid},#{bzid},1,CURRENT_TIME ,#{lxid},#{term},#{deadline},#{reason},#{huid})
         ]]>
     </insert>
 
     <update id="update" parameterType="top.zzh.bean.BorrowApply">
         <![CDATA[
-            update t_borrowapply set money = #{money},bzid = #{bzid},type = #{type},
-            term = #{term},deadline = #{deadline} ,state = 1 where baid = #{baid}
+            update t_borrowapply set money = #{money},bzid = #{bzid},state = 1,lxid = #{lxid},
+            term = #{term},deadline = #{deadline},reason = #{reason} where baid = #{baid}
         ]]>
     </update>
 
@@ -43,9 +46,9 @@
 
     <select id="listPager" resultType="top.zzh.bean.BorrowApply">
         <![CDATA[
-         select ba.rname,ba.reason,h.rname as username,u.uname,ba.time,ba.state from
-        t_borrowapply ba,t_user u,t_huser h
-        where ba.uid = u.uid and ba.huid = h.huid
+         select ba.rname,ba.reason,h.rname as username,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid
         limit #{pager.beginIndex}, #{pager.pageSize}
          ]]>
     </select>
@@ -53,19 +56,19 @@
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
         select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-          select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,h.rname as username,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.type and ba.huid = h.huid
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
     </select>
 
     <select id="countCriteria" resultType="long">
-       <![CDATA[
+        <![CDATA[
             select count(baid) from t_borrowapply ba,t_user u,t_bz b
         where ba.uid = u.uid and ba.bzid = b.bzid
         ]]>
@@ -76,10 +79,31 @@
         where ba.uid = u.uid and ba.huid = h.huid
     </select>
 
-    <select id="getById" parameterType="top.zzh.bean.BorrowApply">
+    <select id="getById" resultType="top.zzh.vo.BorrowDetailVO">
+
         <![CDATA[
-        select * from t_borrowapply where baid=#{baid}
-    ]]]>
+            select ba.baid,u.uid,ba.bzid,ba.lxid,bd.sid,ba.rname,ba.money,ba.term,j.lxname,b.bzname,
+            bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.bdid,bd.mpurpose,bd.hksource,bd.nprofit,
+            s.way,bd.suggest,bd.xmdescrip,bd.guarantee from
+            t_borrowapply ba,t_user u,t_borrowdetail bd,t_jklx j,t_sway s,t_bz b
+            where ba.uid = u.uid  and bd.baid = ba.baid and ba.baid = bd.baid and
+            j.lxid = ba.lxid  and ba.bzid = b.bzid and bd.sid = s.sid and  ba.uid = #{uid}
+        ]]>
     </select>
+
+    <select id="listPagerById" resultType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+            select ba.rname,ba.reason,h.rname as username,ba.money,j.lxname,ba.time,ba.state,bd.bdid from
+        t_borrowapply ba,t_user u,t_huser h,t_borrowdetail bd,t_jklx j
+        where ba.uid = u.uid and ba.huid = h.huid and bd.baid = ba.baid and j.lxid = ba.lxid and u.uid = #{id}
+          limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="countById" resultType="long">
+        select count(uid) from
+        t_borrowapply where  uid=#{id}
+    </select>
+
 
 </mapper>
