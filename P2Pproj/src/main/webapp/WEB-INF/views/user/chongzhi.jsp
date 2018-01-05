@@ -288,6 +288,24 @@
             function refush() {
                 $('#form').bootstrapTable('refresh', {url: '/userMoney/chongzhi'});
             }
+            function refush() {
+                $('#form\\:actualMoney1').val("");
+            }
+
+            function options(){
+                var kym =$('#form\\:actualMoney1').val();
+                layer.confirm('你确定要充值'+kym, {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    layer.msg('正在充值中。。', {icon: 1});
+                    chongzhi();
+                }, function(){
+                    layer.msg('取消中。。。', {
+                        time: 20000, //20s后自动关闭
+                        btn: ['明白了', '知道了']
+                    });
+                });
+            }
             function checkRecharge2() {
                 var moneyRegex="^(([1-9]+[0-9]*)|((([1-9]+[0-9]*)|0)\\.[0-9]{1,2}))$";
                 var money = $("#form2\\:actualMoney2").val();
@@ -393,7 +411,7 @@
                   <label id="form:defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="bankCardError"></span> </div>
                                 <div class="bank-check" id="bank-check2"> <b class="selected" id="bankProtocol1"></b><span class="bank-agree">我同意并接受<a href="#" target="_blank">《亿人宝投资咨询与管理服务电子协议》</a></span> <span class="error" id="bankProtocol_message" style="display:none;margin-top:-3px;">请同意协议内容！</span> </div>
-                                <input type="button" name="" value="充值" class="btn-paycz" onclick="chongzhi()">
+                                <input type="button" name="" value="充值" class="btn-paycz" onclick="options()">
                             </div>
                             <div class="fr bank-info">
                                 <p class="bank-tit">快捷支付支持银行：</p>
