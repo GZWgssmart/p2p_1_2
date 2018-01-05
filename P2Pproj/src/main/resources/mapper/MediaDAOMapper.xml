@@ -14,29 +14,8 @@
     <!--媒体报道的修改-->
     <update id="update" parameterType="media">
         <![CDATA[
-          update t_media
+              update t_media set title = #{title},content = #{content},pic = #{pic}, date = #{date},url = #{url} where mid = #{mid}
         ]]>
-        <set>
-            <if test="title != null and title != ''">
-                title = #{title},
-            </if>
-            <if test="content != null and content != ''">
-                content = #{content},
-            </if>
-            <if test="pic != null and pic != ''">
-                pic = #{pic},
-            </if>
-            <if test="date != null and date != '' ">
-                date = #{date},
-            </if>
-            <if test="url != null and url !=''">
-                url = #{url},
-            </if>
-            <if test="state != null and state !=''">
-                state = #{state},
-            </if>
-        </set>
-        where mid = #{mid}
     </update>
 
     <!--修改状态-->

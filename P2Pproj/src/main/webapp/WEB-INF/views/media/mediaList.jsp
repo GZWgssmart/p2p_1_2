@@ -87,8 +87,8 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal"  id="updateForm">
-                    <input type="hidden" name="mid" id="mid"/>
-                    <input type="hidden" name="state" id="state"/>
+                    <input type="text" name="mid" id="mid"/>
+                    <input type="text" name="state" id="state"/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">标题</label>
                         <div class="col-sm-10">
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
+                        <button class="btn btn-lg btn-primary" id="update" type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
                         <button class="btn btn-lg btn-default" data-dismiss="modal" type="button"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
 
                     </div>

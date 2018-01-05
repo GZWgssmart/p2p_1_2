@@ -142,8 +142,6 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
                         </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/update">更改公司动态</a>
-                        </li>
                     </ul>
                 </li>
 				 <li>
@@ -186,8 +184,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/media/update">更改媒体报道</a>
                         </li>
                     </ul>
                 </li>

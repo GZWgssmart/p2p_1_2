@@ -3,60 +3,61 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="top.zzh.dao.DynamicDAO">
-    <!--媒体报道的新增-->
+    <!--公司动态的新增-->
     <insert id="save" parameterType="dynamic">
         <![CDATA[
-          insert into t_dynamic(title,date,content,pic)
-          values(#{title},#{date},#{content},#{pic})
+          insert into t_dynamic(dyid,title,date,content,pic,state)
+          values(#{dyid},#{title},#{date},#{content},#{pic},#{state})
         ]]>
     </insert>
 
-    <!--媒体报道的修改-->
+    <!--公司动态的修改-->
     <update id="update" parameterType="dynamic">
         <![CDATA[
-          update t_dynamic
+          update t_dynamic set title = #{title},date = #{date},content = #{content},pic = #{pic} where dyid = #{dyid}
         ]]>
-        <set>
-            <if test="title != null and title != ''">
-                title = #{title},
-            </if>
-            <if test="date != null and date != '' ">
-                date = #{date},
-            </if>
-            <if test="content != null and content != ''">
-                content = #{content},
-            </if>
-            <if test="pic != null and pic != ''">
-                pic = #{pic},
-            </if>
-          </set>
-        where dyid = #{dyid}
     </update>
 
-    <!--媒体报道的分页查询-->
+    <!--修改状态-->
+    <update id="updateStatus" parameterType="dynamic">
+        <![CDATA[
+          update t_dynamic set state = #{state} where dyid = #{dyid};
+        ]]>
+    </update>
+
+    <!--删除-->
+    <delete id="remove" parameterType="dynamic">
+        <![CDATA[
+          delete from t_dynamic where dyid = #{dyid}
+        ]]>
+    </delete>
+
+    <!--公司动态的分页查询-->
     <sql id="dynamic_query_criteria">
-        <where>
-            <if test="query != null and query.title != null">
-               and title = #{query.title}
-            </if>
-            <if test="date != null and query.date != null">
-                and date <![CDATA[<=]]> = #{query.date},
-            </if>
-            <if test="content != null and query.content != null">
-               and content = #{query.content},
-            </if>
-         </where>
+        <if test="query != null and query.title != null">
+           and title = #{query.title}
+        </if>
+        <if test="date != null and query.date != null">
+            and date <![CDATA[<=]]> = #{query.date},
+        </if>
+        <if test="content != null and query.content != null">
+           and content = #{query.content},
+        </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="dynamic">
         select * from t_dynamic
-        <include refid="dynamic_query_criteria"/>
-        limit #{pager.beginIndex},#{pager.pageSize}
+         limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="long">
         select count(dyid) from t_dynamic
-        <include refid="dynamic_query_criteria"/>
+    </select>
+
+    <select id="listAll" resultType="dynamic">
+        <![CDATA[
+          select * from t_dynamic where 1=1
+        ]]>
     </select>
     
 </mapper>
