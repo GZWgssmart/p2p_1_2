@@ -17,6 +17,7 @@ public enum ControllerStatusEnum {
     USER_LOGIN_ERROR_EXIST(003, "error", "账户不存在！"),
     USER_LOGIN_ERROR_ALREADYEXIST(004, "error", "账户已存在！"),
     USER_LOGIN_ERROR_ALREADY_EXIST(005, "error", "用户名已存在！"),
+    USER_SUCCESS(007,"success","成功！"),
     CASH_SAVE_SUCCESS(103, "ok", "添加成功"),
     CASH_SAVE_FAIL(104, "error", "添加失败，稍候再试"),
     CASH_UPDATE_SUCCESS(105, "ok", "修改成功"),

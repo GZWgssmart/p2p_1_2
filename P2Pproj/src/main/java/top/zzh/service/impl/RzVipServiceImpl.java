@@ -3,6 +3,7 @@ package top.zzh.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.dao.RzVipDAO;
+import top.zzh.query.RzvipDetails;
 import top.zzh.service.AbstractService;
 import top.zzh.service.RzVipService;
 
@@ -34,5 +35,10 @@ public class RzVipServiceImpl extends AbstractService implements RzVipService {
     @Override
     public void update(Object obj) {
         rzVipDAO.update(obj);
+    }
+
+    @Override
+    public RzvipDetails findDetails(Long uid) {
+        return rzVipDAO.findDetails(uid);
     }
 }

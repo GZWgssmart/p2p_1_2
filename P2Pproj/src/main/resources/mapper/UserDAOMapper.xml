@@ -27,7 +27,7 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         <![CDATA[
-           insert into t_user (uname,upwd,phone,tzm,tid,state,idtype)  VALUES(#{uname},#{upwd},#{phone},#{tzm},#{tid},1,'身份证')
+           insert into t_user (uname,upwd,phone,tzm,tid,state,idtype,isvip)  VALUES(#{uname},#{upwd},#{phone},#{tzm},#{tid},1,'身份证',1)
         ]]>
     </insert>
 

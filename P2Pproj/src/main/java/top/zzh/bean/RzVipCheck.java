@@ -16,18 +16,7 @@ public class RzVipCheck {
 
     private Date date;//审核时间
 
-    public RzVipCheck(Long rcid, Long uid, Long huid, Byte isok, String excute, Date date) {
-        this.rcid = rcid;
-        this.uid = uid;
-        this.huid = huid;
-        this.isok = isok;
-        this.excute = excute;
-        this.date = date;
-    }
-
-    public RzVipCheck() {
-        super();
-    }
+    private RzVipCheck rows;
 
     public Long getRcid() {
         return rcid;
@@ -66,7 +55,7 @@ public class RzVipCheck {
     }
 
     public void setExcute(String excute) {
-        this.excute = excute == null ? null : excute.trim();
+        this.excute = excute;
     }
 
     public Date getDate() {
@@ -75,5 +64,13 @@ public class RzVipCheck {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public RzVipCheck getRows() {
+        return rows;
+    }
+
+    public void setRows(RzVipCheck rows) {
+        this.rows = rows;
     }
 }

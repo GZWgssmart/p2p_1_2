@@ -74,8 +74,15 @@ public class HUserController {
     }
 
     @RequestMapping("index")
-    private String index(){
-        return "manager/index";
+    private String index(HttpSession session){
+        HUser hUser=(HUser) session.getAttribute("HUser");
+        if(hUser==null){
+            return "manager/login";
+        }else if(hUser!=null){
+            return "manager/index";
+        }
+        return "";
+
     }
        //后台用户登录页面
     @RequestMapping("login")
