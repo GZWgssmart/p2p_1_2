@@ -16,14 +16,13 @@
     </insert>
 
     <update id="update" parameterType="top.zzh.bean.BorrowDetail">
-        <selectKey keyColumn="bdid" keyProperty="bdid" resultType="long" order="AFTER">
-            SELECT LAST_INSERT_ID();
-        </selectKey>
+
         <![CDATA[
           update t_borrowdetail set mpurpose = #{mpurpose},hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},
-          guarantee = #{guarantee},nprofit = #{nprofit},sid = #{sid},cpname = #{cpname} where bdid = #{bdid}
+          guarantee = #{guarantee},nprofit = #{nprofit},sid = #{sid} where bdid = #{bdid}
         ]]>
     </update>
+
     <update id="updateTupian" parameterType="top.zzh.bean.BorrowDetail">
         <![CDATA[
            update t_borrowdetail set fpic = #{fpic}, ypic = #{ypic},tpic = #{tpic},qpic = #{qpic}  where bdid = #{bdid}
@@ -54,7 +53,7 @@
     </select>
 
     <select id="listPager" resultType="top.zzh.vo.BorrowApplyVO">
-       <![CDATA[
+        <![CDATA[
             select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
             from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
             limit #{pager.beginIndex}, #{pager.pageSize}
@@ -77,7 +76,7 @@
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowDetail">
-       select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
+        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
         from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
     </select>
 </mapper>

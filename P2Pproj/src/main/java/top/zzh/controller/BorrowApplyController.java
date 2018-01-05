@@ -1,5 +1,8 @@
 package top.zzh.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import top.zzh.common.PathUtil;
 import top.zzh.common.PathUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.*;
+import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,10 +69,9 @@ public class BorrowApplyController {
 
     @RequestMapping("save")
     @ResponseBody
-    public ControllerStatusVO save(@RequestParam("file") MultipartFile[] picture,
-                                   HttpSession session, HttpServletRequest request, ShBorrow shBorrow,BorrowApply borrowApply, BorrowDetail borrowDetail){
+    public String save(@RequestParam("file") MultipartFile[] picture,
+                       HttpSession session, HttpServletRequest request, ShBorrow shBorrow,BorrowApply borrowApply, BorrowDetail borrowDetail) throws Exception{
         logger.info("新增借款信息");
-        ControllerStatusVO statusVO = null;
         String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
         Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
         borrowApply.setRname(name);
@@ -107,11 +110,7 @@ public class BorrowApplyController {
             }else if (i==3){
                 tpic = name1;
             }
-            try {
-                picture[i].transferTo(new File(PathUtils.uploadDir(request)+"/"+name1));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            picture[i].transferTo(new File(PathUtils.uploadDir(request)+"/"+name1));
         }
         borrowDetail.setBdid(borrowDetail.getBdid());
         borrowDetail.setFpic(fpic);
@@ -121,18 +120,37 @@ public class BorrowApplyController {
         borrowDetailService.updateTupian(borrowDetail);
         request.setAttribute("borrowApply",borrowApply);
         request.setAttribute("borrowDetail",borrowDetail);
-        request.setAttribute("exist","申请借款成功！");
-        ControllerStatusEnum.BORROW_SAVE_WAIT.setCode(Integer.parseInt(borrowDetail.getBdid().toString()));
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.BORROW_SAVE_WAIT);
-        return statusVO;
+        request.setAttribute("exist","恭喜你，申请成功，我们将在一个工作日内进行审核！");
+        return "user/userindex";
     }
 
 
+    @RequestMapping("/update_page")
+    public String updatePage(HttpServletRequest request,HttpSession session){
+        String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        User user=userService.getByface(name);
+        BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
+        //如果为空则跳转到申请借款页面
+        if(borrowDetailVO==null){
+            return "user/borrowapply";
+        }
+        //如果不为空则跳转到修改页面进行修改操作
+        if(borrowDetailVO.getUid()!=null){
+            List<Bz> bzList = (List)bzService.listAll();
+            List<Jklx> jklxList = (List)jklxService.listAll();
+            List<Sway> swayList = (List)swayService.listAll();
+            request.setAttribute("bzList",bzList);
+            request.setAttribute("jklxList",jklxList);
+            request.setAttribute("swayList",swayList);
+            request.setAttribute("borrowDetailVO",borrowDetailVO);
+            return "user/update_borrow";
+        }
+        return "user/update_borrow";
+    }
+
     @RequestMapping("update")
-    @ResponseBody
-    public String update(HttpServletRequest request,HttpSession session,BorrowApply borrowApply,BorrowDetail borrowDetail){
+    public String update(HttpServletRequest request,HttpSession session,BorrowDetailVO borrowDetailVO, BorrowApply borrowApply,BorrowDetail borrowDetail){
         logger.info("修改申请借款资料");
-        ControllerStatusVO statusVO = null;
         Calendar cal = Calendar.getInstance();
         Date date = new Timestamp(cal.getTime().getTime());
         cal.setTime(date);
@@ -144,29 +162,26 @@ public class BorrowApplyController {
         borrowApply.setState((byte)1);
         borrowApplyService.update(borrowApply);
         borrowDetailService.update(borrowDetail);
-        request.setAttribute("borrowApply",borrowApply);
-        request.setAttribute("borrowDetail",borrowDetail);
-        request.setAttribute("msg","修改申请借款资料成功");
-        return "user/borrowapply";
+        return "user/userindex";
     }
 
     @RequestMapping("updateState/{id}/{state}")
     @ResponseBody
     public ControllerStatusVO updateState(@PathVariable("id") Long id,@PathVariable("state") int state ,BorrowApply borrowApply,HttpSession session){
-       logger.info("后台管理员审核借款人");
-       ControllerStatusVO statusVO = null;
-       HUser HUser = (HUser)session.getAttribute("HUser");
-       borrowApply.setHuid(HUser.getHuid());
-       borrowApply.setReason(borrowApply.getReason());
-       borrowApply.setBaid(id);
-       borrowApply.setState((byte)state);
-       try {
-           borrowApplyService.updateState(borrowApply);
-           statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);
-       }catch (RuntimeException e){
-           statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_FAIL);
-       }
-       return statusVO;
+        logger.info("后台管理员审核借款人");
+        ControllerStatusVO statusVO = null;
+        HUser HUser = (HUser)session.getAttribute("HUser");
+        borrowApply.setHuid(HUser.getHuid());
+        borrowApply.setReason(borrowApply.getReason());
+        borrowApply.setBaid(id);
+        borrowApply.setState((byte)state);
+        try {
+            borrowApplyService.updateState(borrowApply);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);
+        }catch (RuntimeException e){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_FAIL);
+        }
+        return statusVO;
     }
 
 

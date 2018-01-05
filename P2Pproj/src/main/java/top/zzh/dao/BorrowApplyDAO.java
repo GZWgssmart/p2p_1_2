@@ -31,6 +31,9 @@ public interface BorrowApplyDAO extends BaseDAO{
     Long countById(@Param("id") Long id);
 
 
+    @Override
+    Object getById(Long id);
+
     //修改审核状态
     void updateState(BorrowApply borrowApply);
 
