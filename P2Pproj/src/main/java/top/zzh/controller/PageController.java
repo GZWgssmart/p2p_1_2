@@ -95,6 +95,14 @@ public class PageController {
         return "user/disanfang";
     }
 
+
+    @RequestMapping("guodu")
+    public String guodu(HttpSession session) {
+
+        return "user/guodu";
+    }
+
+
     @RequestMapping("history")
     public String history() {
         return "user/history";
