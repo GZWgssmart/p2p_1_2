@@ -30,7 +30,7 @@
             <div class="fn-left logo"> <a class="" href="http://localhost:8080"> <img src="<%=path%>/static/images/logo.png"  title=""> </a> </div>
             <ul class="top-nav fn-clear">
                 <li class="on"> <a href="http://localhost:8080">首页</a> </li>
-                <li> <a href="<%=path%>/page/list" class="">我要投资</a> </li>
+                <li> <a href="<%=path%>/page/list" class="">投资理财</a> </li>
                 <li> <a href="<%=path%>/page/help">安全保障</a> </li>
                 <li class="top-nav-safe"> <a href="<%=path%>/page/user">我的账户</a> </li>
                 <li> <a href="<%=path%>/page/about">关于我们</a> </li>

@@ -37,12 +37,18 @@ public class BorrowDetailVO {
     private String cpname;//产品名称
     private String bzname;//标种名称
     private String uname;//用户名
+    private String zmoney;//总资产
+    private String kymoney;//可用余额
+    private String tzmoney;//投资总金额
 
     public BorrowDetailVO() {
     }
 
-    public BorrowDetailVO(Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
+    public BorrowDetailVO(String zmoney,String kymoney,String tzmoney,Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
         this.baid = baid;
+        this.zmoney = zmoney;
+        this.kymoney = kymoney;
+        this.tzmoney = tzmoney;
         this.sid = sid;
         this.lxid = lxid;
         this.lxname = lxname;
@@ -70,6 +76,30 @@ public class BorrowDetailVO {
         this.cpname = cpname;
         this.bzname = bzname;
         this.uname = uname;
+    }
+
+    public void setZmoney(String zmoney) {
+        this.zmoney = zmoney;
+    }
+
+    public String getZmoney() {
+        return zmoney;
+    }
+
+    public void setKymoney(String kymoney) {
+        this.kymoney = kymoney;
+    }
+
+    public String getKymoney() {
+        return kymoney;
+    }
+
+    public void setTzmoney(String tzmoney) {
+        this.tzmoney = tzmoney;
+    }
+
+    public String getTzmoney() {
+        return tzmoney;
     }
 
     public void setSid(Long sid) {

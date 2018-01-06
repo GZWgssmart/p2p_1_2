@@ -20,16 +20,13 @@ $('#mytab').bootstrapTable({
     clickToSelect: true,//是否启用点击选中行
     toolbarAlign: 'right',//工具栏对齐方式
     buttonsAlign: 'right',//按钮对齐方式
-    search: true,
+    search: false,
     uniqueId: "baid",                     //每一行的唯一标识，一般为主键列
     showExport: true,
     exportDataType: 'all',
     columns: [
         {
-            title: '全选',
-            field: 'select',
-            //复选框
-            checkbox: true,
+            radio: true,
             width: 25,
             align: 'center',
             valign: 'middle'
@@ -173,6 +170,23 @@ function queryParams(params) {
         pageIndex: this.pageNumber,
         searchVal: title
     }
+}
+
+function findDetails() {
+    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        return row.baid;
+    });
+    if (row == "") {
+        layer.msg('查看详情失败，请勾选数据!', {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }else {
+
+        window.location.href = "/borrowdetail/detailView?row="+row;
+    }
+
 }
 
 

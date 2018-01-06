@@ -30,6 +30,7 @@ public interface BorrowApplyDAO extends BaseDAO{
 
     Long countById(@Param("id") Long id);
 
+    BorrowApply shResult(@Param("uid")Long uid);
 
     @Override
     Object getById(Long id);

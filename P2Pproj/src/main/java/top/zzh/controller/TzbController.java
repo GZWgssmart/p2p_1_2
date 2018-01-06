@@ -56,10 +56,11 @@ public class TzbController {
     @RequestMapping("pageById")
     @ResponseBody
     public Pager pageById(int pageIndex, int pageSize, HttpSession session) {
-        logger.info("前台查看投资进度");
+        logger.info("前台用户查看投资进度");
         Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         return tzbService.listPagerById(pageIndex,pageSize,id);
     }
+
 
 
     @RequestMapping("page")

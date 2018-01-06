@@ -62,4 +62,12 @@
           where t.uid = u.uid and b.baid = t.baid and u.uid = #{id}
         ]]>
     </select>
+
+    <select id="listAll" resultType="top.zzh.vo.TzbVO">
+        <![CDATA[
+              select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+          from t_tzb t,t_user u,t_borrowapply b
+          where t.uid = u.uid and b.baid = t.baid
+        ]]>
+    </select>
 </mapper>

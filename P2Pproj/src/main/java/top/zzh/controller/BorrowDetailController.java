@@ -19,7 +19,9 @@ import top.zzh.vo.BorrowApplyVO;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
@@ -47,8 +49,21 @@ public class BorrowDetailController {
         return borrowDetailService.listPagerCriteria(pageIndex, pageSize, borrowDetail);
     }
 
-    @RequestMapping("detail_page")
-    public String page(){
+    @RequestMapping("detailView")
+    public String detailView(HttpServletRequest request, String row){
+        String baid = null;
+        if(row.contains(",")){
+            String rowString[] = row.split(",");
+            for(int i=0;i<rowString.length;i++){
+                baid = rowString[i];
+            }
+            BorrowDetailVO borrowDetailVO = borrowDetailService.findDetails(Long.valueOf(baid));
+            request.setAttribute("borrowDetailVO",borrowDetailVO);
+            return "manager/borrowdetail";
+        }
+        BorrowDetailVO borrowDetailVO = borrowDetailService.findDetails(Long.valueOf(row));
+        request.setAttribute("borrowDetailVO",borrowDetailVO);
         return "manager/borrowdetail";
     }
+
 }

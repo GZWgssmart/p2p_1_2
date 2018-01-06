@@ -53,6 +53,9 @@
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+                <button type="button" onclick="findDetails()" class="btn btn-default" style="display: block; border-radius: 0">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>借款详情
+                </button>
             </div>
         </div>
     </div>

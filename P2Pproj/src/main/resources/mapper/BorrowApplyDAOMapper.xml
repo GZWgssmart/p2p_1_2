@@ -61,10 +61,15 @@
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
-    <select id="listAll" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
+    <select id="listAll" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+          select ba.baid,ba.bzid,ba.rname,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and ba.uid = um.uid and ba.state = 0
+
+        ]]>
     </select>
 
     <select id="countCriteria" resultType="long">
@@ -105,5 +110,11 @@
         t_borrowapply where  uid=#{id}
     </select>
 
-
+    <select id="shResult" resultType="top.zzh.bean.BorrowApply">
+        <![CDATA[
+            select ba.reason,ba.state,ba.huid,h.rname as username,ba.rname from
+            t_borrowapply ba,t_user u,t_huser h
+            where h.huid = ba.huid and ba.uid = u.uid and ba.uid = #{uid}
+        ]]>
+    </select>
 </mapper>

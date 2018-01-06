@@ -36,4 +36,9 @@ public class BorrowDetailServiceImpl extends AbstractService implements BorrowDe
     public void updateTupian(Object obj) {
         borrowDetailDAO.updateTupian(obj);
     }
+
+    @Override
+    public BorrowDetailVO findDetails(Long baid) {
+        return borrowDetailDAO.findDetails(baid);
+    }
 }

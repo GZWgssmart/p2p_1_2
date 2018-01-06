@@ -209,6 +209,12 @@ public class BorrowApplyController {
 
     @RequestMapping("shenqin")
     public String shenqin(HttpServletRequest request,HttpSession session){
+        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        BorrowApply borrowApply = borrowApplyService.shResult(uid);
+        if(borrowApply.getHuid()!=null){
+            request.setAttribute("borrowApply",borrowApply);
+            return  "user/borrow";
+        }
         return  "user/borrow";
     }
 
