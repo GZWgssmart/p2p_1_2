@@ -17,4 +17,7 @@ public interface HuserDAO extends BaseDAO {
 
     Long  register(Object obj);
 
+    String findPwd(@Param("huid")Long huid);
+
+    void updatePwd(@Param("huid")Long huid,@Param("hpwd")String hpwd);
 }

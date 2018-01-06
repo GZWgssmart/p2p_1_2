@@ -28,10 +28,7 @@ $('#mytab').bootstrapTable({
     exportDataType: 'all',
     columns: [
         {
-            title: '全选',
-            field: 'select',
-            //复选框
-            checkbox: true,
+            radio: true,
             width: 25,
             align: 'center',
             valign: 'middle'

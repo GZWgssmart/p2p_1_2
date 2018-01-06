@@ -28,5 +28,30 @@
         ]]>
     </insert>
 
+    <select id="getById" resultMap="huserMap">
+        select rname,sex,phone,huname,email from t_huser
+        where huid=#{huid}
+    </select>
+
+    <update id="update" parameterType="huser">
+        <![CDATA[
+          update t_huser set huname=#{huname},rname=#{rname},sex=#{sex},phone=#{phone},email=#{email}
+          where huid=#{huid}
+        ]]>
+    </update>
+
+    <select id="findPwd" resultType="string">
+        <![CDATA[
+          select hpwd from t_huser where huid=#{huid}
+        ]]>
+    </select>
+
+    <update id="updatePwd">
+
+      <![CDATA[
+        update t_huser set hpwd=#{hpwd} where huid=#{huid}
+       ]]>
+
+    </update>
 
 </mapper>

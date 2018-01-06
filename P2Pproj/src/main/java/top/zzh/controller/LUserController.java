@@ -5,14 +5,12 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.LoginLog;
 import top.zzh.bean.Recommend;
@@ -22,6 +20,7 @@ import top.zzh.common.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
 import top.zzh.query.LoginLogQuery;
+import top.zzh.query.UserQuery;
 import top.zzh.service.LoginLogService;
 import top.zzh.service.RecommendService;
 import top.zzh.service.RoleService;
@@ -367,5 +366,29 @@ public class LUserController {
         request.setAttribute("exist", "恭喜您，修改资料成功！");
         return "user/userdataUpdate";
     }
+
+
+    @RequestMapping("pager")
+    @ResponseBody
+    public Pager pager(int pageIndex, int pageSize, UserQuery userQuery) {
+
+        return userService.listPagerCriteria(pageIndex,pageSize,userQuery);
+    }
+
+    @RequestMapping("userList")
+    public String rzvipList() {
+        return "manager/UserList";
+    }
+
+    @PostMapping("updateState/{uid}/{state}")
+    @ResponseBody
+    public ControllerStatusVO updateState(@PathVariable("uid")Long uid,@PathVariable("state") Integer state){
+        ControllerStatusVO statusVO=null;
+
+        userService.updateState(uid, state);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_UPDATE_STATE_SUCCESS);
+        return statusVO;
+    }
+
 
 }

@@ -68,6 +68,13 @@ public class UserServiceImpl extends AbstractService implements UserService{
     }
 
     @Override
+    public void updateState(Long uid, Integer state) {
+
+        userDAO.updateState(uid, state);
+
+    }
+
+    @Override
     public void update(Object obj) {
         userDAO.update(obj);
     }

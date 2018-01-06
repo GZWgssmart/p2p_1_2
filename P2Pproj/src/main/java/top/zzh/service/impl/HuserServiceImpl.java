@@ -42,4 +42,14 @@ public class HuserServiceImpl extends AbstractService implements HuserService{
     public Long register(Object obj) {
         return huserDAO.register(obj);
     }
+
+    @Override
+    public String findPwd(Long huid) {
+        return huserDAO.findPwd(huid);
+    }
+
+    @Override
+    public void updatePwd(Long huid, String hpwd) {
+        huserDAO.updatePwd(huid, hpwd);
+    }
 }

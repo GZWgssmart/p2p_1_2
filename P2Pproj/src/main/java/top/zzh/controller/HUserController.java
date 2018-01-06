@@ -17,6 +17,7 @@ import top.zzh.service.RoleService;
 import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -115,7 +116,7 @@ public class HUserController {
 
     @RequestMapping("huserLogin")
     @ResponseBody
-    public ControllerStatusVO huserLogin(String phone){
+    public ControllerStatusVO huserLogin(String phone,HttpSession session){
         ControllerStatusVO statusVO=null;
         HUser user=huserService.getByPhone(phone);
         if(user==null){
@@ -123,12 +124,56 @@ public class HUserController {
         }
 
         if(user!=null && user.getState()==1){
+            session.setAttribute("HUser",user);
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
 
         }
 
         return  statusVO;
     }
+
+    @RequestMapping("findMessage")
+    public String findMessage(HttpSession session, HttpServletRequest request){
+        HUser hUser=(HUser) session.getAttribute("HUser");
+        HUser hUser1=(HUser) huserService.getById(hUser.getHuid());
+        request.setAttribute("hUser",hUser1);
+        return  "manager/findManagerMessage";
+    }
+
+    @PostMapping("updateMessage")
+    public String updateMessage(HttpSession session,HttpServletRequest request,HUser hUser){
+        HUser hUser1=(HUser)session.getAttribute("HUser");
+        hUser.setHuid(hUser1.getHuid());
+        huserService.update(hUser);
+        HUser hUser2=(HUser) huserService.getById(hUser1.getHuid());
+        request.setAttribute("hUser",hUser2);
+        request.setAttribute("update","恭喜您，修改资料成功！");
+        return "manager/findManagerMessage";
+    }
+
+    @RequestMapping("updatePwdView")
+    public String updatePwdView(){
+        return "manager/updateHpwd";
+    }
+
+    @PostMapping("updatePwd")
+    public String updatePwd(HttpSession session,HttpServletRequest request,String xpwd,String hpwd){
+        HUser hUser=(HUser)session.getAttribute("HUser");
+        String jpwd=huserService.findPwd(hUser.getHuid());
+        String jm=EncryptUtils.md5(hpwd);
+        if(!jpwd.equals(jm)){
+            request.setAttribute("update","原密码错误，请重新输入！");
+            return "manager/updateHpwd";
+        }
+        if(jpwd.equals(jm)){
+            huserService.updatePwd(hUser.getHuid(),EncryptUtils.md5(xpwd));
+            request.setAttribute("update","恭喜您，修改密码成功！");
+            return "manager/updateHpwd";
+        }
+        return "";
+    }
+
+
 
 
 }

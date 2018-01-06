@@ -1,6 +1,8 @@
+<%@ page import="top.zzh.bean.HUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
+    HUser hUser=(HUser)session.getAttribute("HUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,12 +29,15 @@
                               <img alt="image" class="img-circle" src="<%=path%>/static/images/profile_small.jpg"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
-                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">小美</strong>
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=hUser.getHuname()%></strong>
                              </span> <span class="text-muted text-xs block">超级管理员 <b class="caret"></b></span> </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li>
-                                <a class="J_menuItem" href="">修改资料</a>
+                                <a class="J_menuItem" href="<%=path%>/Huser/findMessage">修改资料</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="<%=path%>/Huser/updatePwdView">修改密码</a>
                             </li>
                             <li>
                                 <a href="<%=path%>/Huser/logout">安全退出</a>
@@ -50,6 +55,8 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<%=path%>/tz/page">用户投资详情列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<%=path%>/luser/userList">用户信息</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
                         </li>

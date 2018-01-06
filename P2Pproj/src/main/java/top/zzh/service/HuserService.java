@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.HUser;
 import top.zzh.bean.User;
 
@@ -11,5 +12,7 @@ public interface HuserService extends BaseService {
 
     HUser getByPhone(String phone);
     Long  register(Object obj);
+    String findPwd(Long huid);
 
+    void updatePwd(Long huid,String hpwd);
 }
