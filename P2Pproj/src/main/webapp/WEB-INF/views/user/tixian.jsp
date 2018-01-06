@@ -57,6 +57,24 @@
                     }, "json"
                 );
             }
+            function refush() {
+                $('#form\\:actualMoney').val("");
+            }
+
+            function options(){
+                var kym =$('#form\\:actualMoney').val();
+                layer.confirm('你确定要提现'+kym, {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    layer.msg('正在提现中。。', {icon: 1});
+                    tixian();
+                }, function(){
+                    layer.msg('取消中。。。', {
+                        time: 20000, //20s后自动关闭
+                        btn: ['明白了', '知道了']
+                    });
+                });
+            }
         </script>
         <div class="personal-main">
             <div class="personal-deposit">
@@ -77,7 +95,7 @@
 
                             <li>
                                 <input type="button" name="form:j_idt78" value="提现" class="btn-depositok"
-                                       onclick="tixian()">
+                                       onclick="options()">
                             </li>
                         </ul>
                     </div>

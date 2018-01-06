@@ -77,7 +77,10 @@ public class PageController {
     }
 
     @RequestMapping("disanfang")
-    public String disanfang() {
+    public String disanfang(HttpSession session) {
+        Long id =(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        User user=(User)userService.getById(id);
+        session.setAttribute("users",user);
         return "user/disanfang";
     }
 
