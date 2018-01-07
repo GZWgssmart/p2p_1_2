@@ -2,8 +2,7 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.zzh.bean.Jur;
-import top.zzh.bean.Role;
+import top.zzh.bean.Permission;
 import top.zzh.common.Pager;
 import top.zzh.dao.PermissionDAO;
 import top.zzh.service.AbstractService;
@@ -32,12 +31,12 @@ public class PermissionServiceImpl extends AbstractService implements Permission
     }
 
     @Override
-    public void addPermission(Jur jur) {
-        permissionDAO.addPermission(jur);
+    public void addPermission(Permission permission) {
+        permissionDAO.addPermission(permission);
     }
 
     @Override
-    public void updatePermission(Jur jur) {
-        permissionDAO.updatePermission(jur);
+    public void updatePermission(Permission permission) {
+        permissionDAO.updatePermission(permission);
     }
 }

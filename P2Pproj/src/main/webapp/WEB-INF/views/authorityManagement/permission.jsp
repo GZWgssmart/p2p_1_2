@@ -38,13 +38,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">权限URL：</label>
                     <div class="col-sm-8">
-                        <input type="text" id="addJurl" name="jurl" class="form-control" required="" aria-required="true"/>
+                        <input type="text" id="addUrl" name="url" class="form-control" required="" aria-required="true"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">权限描述：</label>
                     <div class="col-sm-8">
-                        <input type="text" id="addContent"  name="content" class="form-control" required="" aria-required="true"/>
+                        <input type="text" id="addDesZh"  name="desZh" class="form-control" required="" aria-required="true"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -67,17 +67,17 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal"  id="updateForm">
-                    <input type="hidden" name="jid" id="jid"/>
+                    <input type="hidden" name="id" id="id"/>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">权限URL:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="updateJurl" name="jurl"  class="form-control" required="" aria-required="true"/>
+                            <input type="text" id="updateUrl" name="url"  class="form-control" required="" aria-required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">权限描述:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="updateContent" name="content" class="form-control" required="" aria-required="true"/>
+                            <input type="text" id="updateDesZh" name="desZh" class="form-control" required="" aria-required="true"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -119,7 +119,7 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-2 control-label" style="text-align: right; margin-top:5px">权限描述：</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" name="content" id="content"/>
+                        <input type="text" class="form-control" name="desZh" id="desZh"/>
                     </div>
 
                     <div class="col-sm-6">

@@ -5,9 +5,11 @@ package top.zzh.bean;
  */
 public class Permission {
     private Integer id;
-    private String permission;
+    private String url;
     private String desZh;
     private Integer moduleId;
+    private Integer status;     // 1：激活  2：冻结
+    private Integer sign;   //标记有没有该权限有没有被分配角色
 
     public Integer getId() {
         return id;
@@ -17,12 +19,12 @@ public class Permission {
         this.id = id;
     }
 
-    public String getPermission() {
-        return permission;
+    public String getUrl() {
+        return url;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getDesZh() {
@@ -39,5 +41,21 @@ public class Permission {
 
     public void setModuleId(Integer moduleId) {
         this.moduleId = moduleId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getSign() {
+        return sign;
+    }
+
+    public void setSign(Integer sign) {
+        this.sign = sign;
     }
 }

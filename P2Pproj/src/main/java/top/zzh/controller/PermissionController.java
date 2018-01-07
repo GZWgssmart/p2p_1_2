@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.Jur;
-import top.zzh.bean.Role;
+import top.zzh.bean.Permission;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.PermissionService;
@@ -32,17 +31,17 @@ public class PermissionController {
 
     @RequestMapping("permissionCriteriaQuery")
     @ResponseBody
-    public Pager permissionByCriteria(int pageIndex, int pageSize, Jur jur) {
+    public Pager permissionByCriteria(int pageIndex, int pageSize,Permission permission) {
         logger.info("按条件查询权限");
-        return permissionService.permissionListPagerCriteria(pageIndex,pageSize,jur);
+        return permissionService.permissionListPagerCriteria(pageIndex,pageSize,permission);
     }
 
     @RequestMapping("addPermission")
     @ResponseBody
-    public ControllerStatusVO addPermission(Jur jur){
+    public ControllerStatusVO addPermission(Permission permission){
         logger.info("超级管理员新增权限");
         try {
-            permissionService.addPermission(jur);
+            permissionService.addPermission(permission);
             return ControllerStatusVO.status(ControllerStatusEnum.PERMISSION_ADD_SUCCESS);
         }catch (Exception e){
             logger.error("超级管理员新增权限失败"+e.getMessage());
@@ -52,10 +51,11 @@ public class PermissionController {
 
     @RequestMapping("updatePermission")
     @ResponseBody
-    public ControllerStatusVO updatePermission(Jur jur) {
+    public ControllerStatusVO updatePermission(Permission permission) {
         logger.info("超级管理员修改权限");
         try {
-            permissionService.updatePermission(jur);
+
+            permissionService.updatePermission(permission);
             return ControllerStatusVO.status(ControllerStatusEnum.PERMISSION_UPDATE_SUCCESS);
         }catch (Exception e){
             logger.error("超级管理员修改权限失败"+e.getMessage());

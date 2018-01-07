@@ -33,19 +33,19 @@ $('#mytab').bootstrapTable({
         },
         {
             title: '权限Id',
-            field: 'jid',
+            field: 'id',
             align: 'center',
             sortable: true
         },
         {
             title: '权限url',
-            field: 'jurl',
+            field: 'url',
             align: 'center',
             sortable: true
         },
         {
             title: '权限描述',
-            field: 'content',
+            field: 'desZh',
             align: 'center',
             sortable: true
         },
@@ -54,7 +54,7 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.jid + '\'" data-target="#myModal" onclick="return edit(\'' + row.jid + '\',\'' + row.jurl + '\',\'' + row.content + '\',)"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\',)"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
                 return e;
             }
         }
@@ -77,16 +77,16 @@ $('#mytab').bootstrapTable({
 
 //请求服务数据时所传参数
 function queryParams(params) {
-    var content = "";
-    $("#content").each(function () {
-        content = $(this).val();
+    var desZh = "";
+    $("#desZh").each(function () {
+        desZh = $(this).val();
     });
     return {
         //每页多少条数据
         pageSize: this.pageSize,
         //请求第几页
         pageIndex: this.pageNumber,
-        content: content
+        desZh: desZh
     }
 }
 
@@ -97,10 +97,10 @@ function refush() {
 
 //按条件查询
 function doSearchContent() {
-    var content = $("#content").val();
+    var desZh = $("#desZh").val();
     var options = $("#mytab").bootstrapTable('refresh', {
         url: '/permission/permissionCriteriaQuery',
-        query: {content: content}
+        query: {desZh: desZh}
     });
 }
 
@@ -113,7 +113,7 @@ $('#formadd').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        jurl: {
+        url: {
             message: '权限url验证失败',
             validators: {
                 notEmpty: {
@@ -122,7 +122,7 @@ $('#formadd').bootstrapValidator({
 
             }
         },
-        content: {
+        desZh: {
             message: '权限描述验证失败',
             validators: {
                 notEmpty: {
@@ -146,8 +146,8 @@ $('#formadd').bootstrapValidator({
             }
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
-            $("#addJurl").val("");
-            $("#addContent").val("");
+            $("#addUrl").val("");
+            $("#addDesZh").val("");
             refush();
         }, "json"
     );
@@ -155,10 +155,11 @@ $('#formadd').bootstrapValidator({
 
 
 //修改前填充数据到模态框
-function edit(jid,jurl,content) {
-    $("#jid").val(jid);
-    $("#updateJurl").val(jurl);
-    $("#updateContent").val(content);
+function edit(id,url,desZh) {
+
+    $("#id").val(id);
+    $("#updateUrl").val(url);
+    $("#updateDesZh").val(desZh);
 }
 
 //权限修改
@@ -170,7 +171,7 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        jurl: {
+        url: {
             message: '权限URL验证失败',
             validators: {
                 notEmpty: {
@@ -179,7 +180,7 @@ $('#updateForm').bootstrapValidator({
 
             }
         },
-        content: {
+        desZh: {
             message: '权限描述验证失败',
             validators: {
                 notEmpty: {
@@ -204,8 +205,9 @@ $('#updateForm').bootstrapValidator({
             }
             refush();
             $("#myModal").modal('hide');
-            $("#updateJurl").val("");
-            $("#updateContent").val("");
+            $("#updateForm").data('bootstrapValidator').resetForm();
+            $("#updateUrl").val("");
+            $("#updateDeszh").val("");
         }, "json"
     );
 });

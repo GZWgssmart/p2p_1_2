@@ -2,7 +2,7 @@ package top.zzh.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.zzh.bean.Jur;
+import top.zzh.bean.Permission;
 import top.zzh.common.Pager;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface PermissionDAO extends BaseDAO {
 
     List<Object> permissionListPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
     Long permissionCountCriteria(@Param("query") Object obj);
-    void addPermission(Jur jur);
-    void updatePermission(Jur jur);
+    void addPermission(Permission permission);
+    void updatePermission(Permission permission);
 
 }

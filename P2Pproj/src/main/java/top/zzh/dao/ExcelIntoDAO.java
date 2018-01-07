@@ -1,7 +1,7 @@
 package top.zzh.dao;
 
 import org.springframework.stereotype.Repository;
-import top.zzh.bean.Jur;
+import top.zzh.bean.Permission;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ExcelIntoDAO extends BaseDAO{
 
-    void intoDB(List<Jur> jurList);
-    void saveJur(Jur jur);
+    void intoDB(List<Permission> permissionList);
+    void saveJur(Permission permission);
 }

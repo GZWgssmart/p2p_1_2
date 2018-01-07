@@ -93,8 +93,9 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/authManage/permissionPage">权限管理</a></li>
-                        <li><a a class="J_menuItem" href="">角色管理</a></li>
+                        <li><a class="J_menuItem" href="<%=path%>/permission/permissionPage">权限管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path%>/role/rolePage">角色管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path%>/rolePermission/rolePermissionPage">角色权限管理</a></li>
                         <li><a a class="J_menuItem" href="">用户角色管理</a></li>
                     </ul>
                 </li>

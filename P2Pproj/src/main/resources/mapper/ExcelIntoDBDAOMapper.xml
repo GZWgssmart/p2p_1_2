@@ -6,16 +6,16 @@
 
     <insert id="intoDB" parameterType="java.util.List">
         <![CDATA[
-          insert into t_jur(jid, jurl, content) values
+          insert into t_permission(id,url,des_zh) values
         ]]>
         <foreach collection ="list" item="jur" separator =",">
-           (#{jur.id},#{jur.jurl},#{jur.content})
+           (#{id},#{url},#{desZh})
         </foreach >
     </insert>
 
-    <insert id="saveJur" parameterType="top.zzh.bean.Jur">
+    <insert id="saveJur" parameterType="top.zzh.bean.Permission">
         <![CDATA[
-          insert into t_jur(jurl, content) values (#{jurl},#{content});
+          insert into t_permission(url, des_zh) values (#{url},#{desZh});
         ]]>
     </insert>
 </mapper>

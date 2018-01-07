@@ -3,10 +3,9 @@ package top.zzh.bean;
 //角色表
 public class Role {
     private Long rid;
-
     private String rname;//角色名称
-
     private String content;//角色描述
+    private Integer status; //1：激活  2：冻结
 
     public Role(Long rid, String rname, String content) {
         this.rid = rid;
