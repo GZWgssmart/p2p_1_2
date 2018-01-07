@@ -82,8 +82,7 @@ public class SwayController {
             Sway sway = new Sway();
             sway.setSid(id);
             sway.setState(state);
-            System.out.println(id);
-            System.out.println(state);
+
             swayService.updateState(sway);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_UPDATE_STATE_FAIL);

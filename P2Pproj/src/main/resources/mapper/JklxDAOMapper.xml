@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Jklx">
         <![CDATA[
-          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},#{state})
+          insert into t_jklx(lxid,lxname,state) values(#{lxid},#{lxname},0)
         ]]>
     </insert>
 
@@ -44,5 +44,11 @@
         <![CDATA[
           select * from t_jklx
         ]]>
+    </select>
+
+    <select id="getById" resultType="top.zzh.bean.Jklx" >
+        <![CDATA[
+        select * from t_jklx where lxid = #{lxid}
+    ]]>
     </select>
 </mapper>

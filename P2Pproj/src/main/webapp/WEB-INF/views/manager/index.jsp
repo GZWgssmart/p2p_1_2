@@ -177,8 +177,22 @@
                         </li>
                         <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="#">最新公告管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告管理</a>
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-desktop"></i>
+                        <span class="nav-label">最新公告</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告列表</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/add">新增最新公告</a>
+                        </li>
+
                     </ul>
                 </li>
                 <li>

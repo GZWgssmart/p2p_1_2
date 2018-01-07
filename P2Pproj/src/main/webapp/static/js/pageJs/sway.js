@@ -252,7 +252,7 @@ $('#updateForm').bootstrapValidator({
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假理由不能为空'
+                    message: '还款方式不能为空'
                 },
 
             }
@@ -261,7 +261,7 @@ $('#updateForm').bootstrapValidator({
             message: '请假天数验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假天数不能为空'
+                    message: '还款方式算法不能为空'
                 }
 
             }
@@ -302,7 +302,7 @@ $('#formadd').bootstrapValidator({
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假理由不能为空'
+                    message: '还款方式不能为空'
                 },
 
             }
@@ -311,7 +311,7 @@ $('#formadd').bootstrapValidator({
             message: '请假天数验证失败',
             validators: {
                 notEmpty: {
-                    message: '请假天数不能为空'
+                    message: '还款方式算法不能为空'
                 }
 
             }

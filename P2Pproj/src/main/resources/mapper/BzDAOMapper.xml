@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Bz">
         <![CDATA[
-          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},#{state})
+          insert into t_bz(bzid,bzname,state) values(#{bzid},#{bzname},0)
         ]]>
     </insert>
 
@@ -44,5 +44,11 @@
         <![CDATA[
           select * from t_bz where 1=1
         ]]>
+    </select>
+
+    <select id="getById" resultType="top.zzh.bean.Bz" >
+        <![CDATA[
+        select * from t_bz where bzid = #{bzid}
+    ]]>
     </select>
 </mapper>
