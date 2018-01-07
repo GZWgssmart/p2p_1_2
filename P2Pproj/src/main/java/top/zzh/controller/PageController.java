@@ -59,7 +59,7 @@ public class PageController {
     //管理员主界面
     @RequestMapping("managerindex")
     public String managerindex() {
-        return "common/managerindex";
+        return "manager/welcome";
     }
 
     @RequestMapping("users")

@@ -142,7 +142,7 @@
                                 <div class="album" id="album">
                                     <div class="album-show">
                                         <div class="loading" style="display: none;"></div>
-                                        <img src="<%=path%>/static/images/news.jpg"> </div>
+                                        <img src="<%=path%>/static/uploads/${borrow.fpic}"> </div>
                                     <div class="album-thumb"> <a href="javascript:;" class="btn btn-prev"></a> <a href="javascript:;" class="btn btn-next"></a>
                                         <div style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 1070px;" class="container" id="albumThumb">
                                             <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 1926px; left: 0px;">
