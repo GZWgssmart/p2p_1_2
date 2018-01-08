@@ -42,15 +42,15 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">媒体报道标题：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="title" class="title"/>
+                        <input type="text" class="form-control" name="title" id="title"/>
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">报道时间：</label>
                     <div class="col-sm-2">
-                        <input type="date" class="form-control" name="date" class="date"/>
+                        <input type="date" class="form-control" name="date" id="date"/>
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">报道地址：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="url" class="url"/>
+                        <input type="text" class="form-control" name="url" id="url"/>
                     </div>
 
                     <div class="col-sm-1 col-sm-offset-1">
@@ -60,10 +60,10 @@
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-                <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#mediaAdd">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>新增报道
+                <button id="btn_add" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span><a a class="J_menuItem" style="color: white" href="<%=path%>/media/initAdd">新增报道</a>
                 </button>
-                <button id="btn_shenhe" type="button" onclick="return getAccounts();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#mediaUpdate">
+                <button id="btn_update" type="button" onclick="update();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#mediaUpdate">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>更改报道
                 </button>
                 <button id="btn_deleteMany" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
@@ -87,18 +87,18 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal"  id="updateForm">
-                    <input type="text" name="mid" id="mid"/>
-                    <input type="text" name="state" id="state"/>
+                    <input type="hidden" name="mid"/>
+                    <input type="hidden" name="state"/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">标题</label>
                         <div class="col-sm-10">
-                            <input type="text" id="title" name ="title"  value="${media.title}" placeholder="" class="form-control">
+                            <input type="text" name ="title" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">内容</label>
                         <div class="col-sm-10">
-                            <textarea id="content" name="content" style="height: 250px;width: 700px"autofocus>${media.content}</textarea>
+                            <textarea id="editor" name="content" style="height: 250px;width: 700px">${media.content}</textarea>
                         </div>
                     </div>
                     <input type="hidden" id="pic" name="pic"/>
@@ -108,8 +108,8 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="picx">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo1">
-                                    <p id="demoText"value="${media.pic}"></p>
+                                    <img class="layui-upload-img" style="width: 150px;height: 150px" id="demo1">
+                                    <p id="demoText"></p>
                                 </div>
                             </div>
                         </div>
@@ -117,14 +117,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">报道日期</label>
                         <div class="col-sm-10">
-                            <input id="date" name="date" type="date" placeholder="" class="form-control">
+                            <input name="date" type="date" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">报道地址</label>
                         <div class="col-sm-10">
-                            <input type="text" id="url" name="url" value="${media.date}" placeholder="" class="form-control">
+                            <input type="text" name="url" class="form-control">
                         </div>
                     </div>
 
@@ -147,7 +147,7 @@
 <script type="text/javascript" charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
-    var ue = UE.getEditor('content');
+    var ue = UE.getEditor('editor').getContentTxt();
 </script>
 <%--layui上传图片--%>
 <script src="<%=path%>/static/layui/layui.js" charset="utf-8"></script>
@@ -193,6 +193,5 @@
     });
 </script>
 <script src="<%=path%>/static/js/pageJs/media.js"></script>
-
 </body>
 </html>

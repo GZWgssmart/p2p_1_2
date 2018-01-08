@@ -35,29 +35,35 @@
     <!--公司动态的分页查询-->
     <sql id="dynamic_query_criteria">
         <if test="query != null and query.title != null">
-           and title = #{query.title}
+            and title like concat("%",#{query.title},"%")
         </if>
-        <if test="date != null and query.date != null">
-            and date <![CDATA[<=]]> = #{query.date},
-        </if>
-        <if test="content != null and query.content != null">
-           and content = #{query.content},
+        <if test="query != null and query.date != null and query.date != ''">
+            and date <![CDATA[<=]]> #{query.date}
         </if>
     </sql>
 
     <select id="listPagerCriteria" resultType="dynamic">
-        select * from t_dynamic
-         limit #{pager.beginIndex},#{pager.pageSize}
+        select * from t_dynamic where 1=1
+        <include refid="dynamic_query_criteria"/>
+        order by date desc
+        limit #{pager.beginIndex},#{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="long">
-        select count(dyid) from t_dynamic
+        select count(dyid) from t_dynamic where 1=1
+        <include refid="dynamic_query_criteria"/>
     </select>
 
     <select id="listAll" resultType="dynamic">
         <![CDATA[
           select * from t_dynamic where 1=1
+          order by date desc
+          limit #{pager.beginIndex},#{pager.pageSize}
         ]]>
+    </select>
+
+    <select id="getById" parameterType="long" resultType="dynamic">
+        select * from t_dynamic where dyid = #{dyid}
     </select>
     
 </mapper>

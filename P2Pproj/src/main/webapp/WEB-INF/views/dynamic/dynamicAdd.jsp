@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">内容</label>
                     <div class="col-sm-10">
-                        <textarea id="content"  name="content" style="height: 250px;width: 825px"autofocus></textarea>
+                        <textarea id="editor"  name="content" style="height: 250px;width: 825px"autofocus></textarea>
                     </div>
                 </div>
                 <input type="hidden" id="pic" name="pic"/>
@@ -90,7 +90,7 @@
 <script type="text/javascript" charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
-    var ue = UE.getEditor('content');
+    var ue = UE.getEditor('editor');
 </script>
 <%--layui上传图片--%>
 <script src="<%=path%>/static/layui/layui.js" charset="utf-8"></script>
