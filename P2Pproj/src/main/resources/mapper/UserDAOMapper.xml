@@ -44,7 +44,7 @@
     </select>
 
 
-    <update id="updateZpwd" parameterType="string">
+    <update id="updatepwd" parameterType="string">
         <![CDATA[
            update t_user set zpwd=#{zpwd} where uname=#{uname}
         ]]>
@@ -65,6 +65,11 @@
         <![CDATA[
            update t_user set phone=#{phone},idno=#{idno},email=#{email},
             rname=#{rname},sex=#{sex}  where uname=#{uname}
+        ]]>
+    </update>
+    <update id="updatezpwd" parameterType="user">
+        <![CDATA[
+           update t_user set zpwd=#{zpwd}  where uid=#{uid}
         ]]>
     </update>
 

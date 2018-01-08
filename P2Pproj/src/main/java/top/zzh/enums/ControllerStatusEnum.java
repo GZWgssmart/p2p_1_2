@@ -113,7 +113,10 @@ public enum ControllerStatusEnum {
     TICKET_UPDATE_FAIL(1129,"error","修改失败"),
     TICKET_GETBYID_SUCCESS(1130,"ok","获取信息成功"),
     TICKET_GETBYID_FAIL(1131,"error","获取信息失败"),
-    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败")
+    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败"),
+    UERS_BANK_FAIL(1142,"fail","银行卡已经绑定,不允许绑定多张银行卡！"),
+    UERS_BANK_SUCCESS(1143,"ok","银行卡绑定成功!"),
+    UERS_ERROR_FAIL(1142,"error","银行卡绑定失败！"),
 
     ;
 
