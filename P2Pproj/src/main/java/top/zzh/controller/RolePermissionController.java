@@ -42,7 +42,6 @@ public class RolePermissionController {
     @RequestMapping("role")
     @ResponseBody
     public List<Select2> role(HttpSession session){
-        System.out.println("+++++++++++++++++++++++roleId:"+session.getAttribute("roleId"));
         List<Select2> list = rolePermissionService.listRole();
         session.removeAttribute("roleId");
         return list;

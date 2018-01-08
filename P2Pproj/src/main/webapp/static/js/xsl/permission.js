@@ -160,9 +160,9 @@ $('#formadd').bootstrapValidator({
         $("#formadd").serialize(),
             function (data) {
             if (data.result == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message, "新增权限成功","success");
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message, "新增权限失败","error");
             }
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
@@ -209,7 +209,7 @@ $('#updateForm').bootstrapValidator({
             }
         },
     }
-}).on('success.form.bv', function(e) {//点击提交之后
+}).on('success.form.bv', function(e) {  //点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
@@ -217,10 +217,10 @@ $('#updateForm').bootstrapValidator({
         "/permission/updatePermission",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                swal(data.message,"可对权限进行修改操作","success");
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message, "发生错误","error");
             }
             refush();
             $("#myModal").modal('hide');
