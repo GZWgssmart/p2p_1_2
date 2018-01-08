@@ -62,6 +62,8 @@
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
                         </li>
+						<li><a class="J_menuItem" href="<%=path%>/option/page">用户反馈</a>
+                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
@@ -341,7 +343,6 @@
             </div>
         </div>
     </div>
-
     <jsp:include page="../common/js.jsp"/>
 </body>
 </html>
