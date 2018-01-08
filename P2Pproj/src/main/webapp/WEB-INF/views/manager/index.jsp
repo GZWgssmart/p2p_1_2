@@ -180,7 +180,6 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/notice/add">新增最新公告</a>
                         </li>
-
                     </ul>
                 </li>
                 <li>
@@ -193,6 +192,8 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息列表</a>
                         </li>
                     </ul>
                 </li>
