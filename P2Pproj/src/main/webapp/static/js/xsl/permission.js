@@ -50,12 +50,32 @@ $('#mytab').bootstrapTable({
             sortable: true
         },
         {
+            title: '状态',
+            field: 'status',
+            align: 'center',
+            formatter: function (value, row, index) {
+                if(value == 1){
+                    return "激活";
+                }else if(value ==2){
+                    return "冻结";
+                }
+
+            }
+        },
+        {
             title: '操作',
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\',)"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                return e;
+
+                if(row.status == 1){
+                    var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\')">修改</a> ';
+                    var f = '<a title="状态修改" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\', \'' + 2 + '\')"></i>冻结</a> ';
+                }else if(row.status == 2){
+                    var e = '';
+                    var f = '<a title="状态修改" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\',\'' + 1 + '\')"></i>激活</a> ';
+                }
+                return e + f;
             }
         }
     ],
@@ -156,7 +176,6 @@ $('#formadd').bootstrapValidator({
 
 //修改前填充数据到模态框
 function edit(id,url,desZh) {
-
     $("#id").val(id);
     $("#updateUrl").val(url);
     $("#updateDesZh").val(desZh);
@@ -211,3 +230,20 @@ $('#updateForm').bootstrapValidator({
         }, "json"
     );
 });
+
+function updateStatus(permissionId,status) {
+    $.post(
+        "/permission/updateStatus",
+        {permissionId:permissionId,status:status},
+        function (data) {
+            if(data.result == "ok"){
+                refush();
+                layer.msg(data.message, {icon: 1, time: 1000});
+            }else{
+                layer.msg(data.message, {icon: 2, time: 1000});
+
+            }
+        },
+        "json"
+    );
+}

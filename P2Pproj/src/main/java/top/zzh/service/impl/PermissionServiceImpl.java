@@ -39,4 +39,9 @@ public class PermissionServiceImpl extends AbstractService implements Permission
     public void updatePermission(Permission permission) {
         permissionDAO.updatePermission(permission);
     }
+
+    @Override
+    public void updateStatus(int permissionId,int status) {
+        permissionDAO.updateStatus(permissionId,status);
+    }
 }

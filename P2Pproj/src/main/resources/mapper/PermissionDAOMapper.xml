@@ -12,7 +12,7 @@
     </sql>
 
     <select id="permissionListPagerCriteria" resultType="permission">
-        select id,url,des_zh from t_permission where 1=1
+        select id,url,des_zh,status from t_permission where 1=1
         <include refid="cash_query_criteria"/>
         order by id DESC limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
@@ -24,7 +24,7 @@
 
     <insert id="addPermission" parameterType="top.zzh.bean.Permission">
         <![CDATA[
-          insert into t_permission(url, des_zh) values (#{url},#{desZh});
+          insert into t_permission(url, des_zh,status) values (#{url},#{desZh},1);
         ]]>
     </insert>
 
@@ -41,6 +41,12 @@
             </if>
         </set>
         where id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        <![CDATA[
+            update t_permission set status = #{status} where id = #{permissionId}
+        ]]>
     </update>
 
 </mapper>

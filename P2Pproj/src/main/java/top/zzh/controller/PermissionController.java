@@ -63,6 +63,20 @@ public class PermissionController {
         }
     }
 
+    @RequestMapping("updateStatus")
+    @ResponseBody
+    public ControllerStatusVO updateStatus(String permissionId,String status){
+        try{
+            permissionService.updateStatus(Integer.parseInt(permissionId),Integer.parseInt(status));
+            return ControllerStatusVO.status(ControllerStatusEnum.PERMISSION_UPDATE_STATUS_SUCCESS);
+        }catch (Exception e){
+            logger.error("超级管理员修改状态失败"+e.getMessage());
+            return ControllerStatusVO.status(ControllerStatusEnum.PERMISSION_UPDATE_STATUS_FAIL);
+        }
+
+
+    }
+
 
 
 

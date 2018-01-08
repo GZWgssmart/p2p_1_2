@@ -17,5 +17,6 @@ public interface PermissionDAO extends BaseDAO {
     Long permissionCountCriteria(@Param("query") Object obj);
     void addPermission(Permission permission);
     void updatePermission(Permission permission);
+    void updateStatus(@Param("permissionId") int permissionId,@Param("status") int status);
 
 }

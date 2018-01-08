@@ -8,8 +8,7 @@ public class Permission {
     private String url;
     private String desZh;
     private Integer moduleId;
-    private Integer status;     // 1：激活  2：冻结
-    private Integer sign;   //标记有没有该权限有没有被分配角色
+    private Integer status;  // 1：可用  2：不可用
 
     public Integer getId() {
         return id;
@@ -51,11 +50,4 @@ public class Permission {
         this.status = status;
     }
 
-    public Integer getSign() {
-        return sign;
-    }
-
-    public void setSign(Integer sign) {
-        this.sign = sign;
-    }
 }

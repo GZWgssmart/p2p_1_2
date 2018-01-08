@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.Permission;
 import top.zzh.common.Pager;
 
@@ -13,5 +14,6 @@ public interface PermissionService extends BaseService{
     Pager permissionListPagerCriteria(int pageNo, int pageSize, Object obj);
     void addPermission(Permission permission);
     void updatePermission(Permission permission);
+    void updateStatus(int permissionId,int status);
 
 }
