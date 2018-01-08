@@ -233,7 +233,7 @@
 
             function chongzhi() {
                 $.post(
-                    "/userMoney/chongzhi",
+                    "/bankcard/save",
                     $("#form").serialize(),
                     function (data) {
                         if (data.result == "ok") {
@@ -248,9 +248,6 @@
                 );
             }
 
-            function refush() {
-                $('#form').bootstrapTable('refresh', {url: '/userMoney/chongzhi'});
-            }
 
             function refush() {
                 $('#form\\:actualMoney1').val("");
@@ -258,13 +255,13 @@
 
             function options() {
                 var kym = $('#form\\:actualMoney1').val();
-                layer.confirm('你确定要充值' + kym, {
+                layer.confirm('你确定要绑定这张银行卡？', {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
-                    layer.msg('正在充值中。。', {icon: 1});
+                    layer.msg('正在绑定中。。', {icon: 1});
                     chongzhi();
                 }, function () {
-                    layer.msg('取消中。。。', {
+                    layer.msg('取消绑定中。。。', {
                         time: 20000, //20s后自动关闭
                         btn: ['明白了', '知道了']
                     });
@@ -349,7 +346,7 @@
                         <div class="quick-pay-wrap">
                             <div class="fl quick-info">
                                 <div class="info-2"><span class="info-tit">银行卡号</span> <span class="info2-input">
-                  <input id="bankCardNo" type="text" name="kahao" class="tx-txt">
+                  <input id="bankCardNo" type="text" name="cardno" class="tx-txt">
                   <em class="info2-bank" style="display: none;">
                   <label id="defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="ankCardError"></span></div>
@@ -361,51 +358,33 @@
                   </em> </span> <span class="quick-error3" id="bankCardError"></span></div>
                                 <div class="pay-bank" id="pay-bank">
                                     <h6>请选择绑定银行</h6>
-                                    <span id="showpay" style="display:none;">icbc</span>
                                     <ul id="paysSpan" style="height:150px;">
-                                        <li><img src="<%=path%>/static/images/logo_abc.png" property1="icbc" class="on"><em></em><i></i>
+                                        <li><input type="radio" name="type" value="1" checked><img src="<%=path%>/static/images/logo_abc.png">
                                         </li>
-                                        <li><img src="<%=path%>/static/images/1.jpg" property1="abc"><em></em>
+                                        <li><input type="radio" name="type" value="2" checked><img src="<%=path%>/static/images/1.jpg" >
                                         </li>
-                                        <li><img src="<%=path%>/static/images/2.jpg" property1="boc"><em></em>
+                                        <li><input type="radio" name="type" value="3"><img src="<%=path%>/static/images/2.jpg" >
                                         </li>
-                                        <li><img src="<%=path%>/static/images/3.jpg" property1="ccb"><em></em>
+                                        <li><input type="radio" name="radiobutton" value="4"><img src="<%=path%>/static/images/3.jpg">
                                         </li>
-                                        <li><img src="<%=path%>/static/images/4.jpg" property1="hxb"><em></em>
+                                        <li><input type="radio" name="type" value="5"><img src="<%=path%>/static/images/4.jpg" >
                                         </li>
-                                        <li><img src="<%=path%>/static/images/5.jpg" property1="comm"><em></em>
+                                        <li><input type="radio" name="type" value="6"><img src="<%=path%>/static/images/5.jpg" >
                                         </li>
-                                        <li><img src="<%=path%>/static/images/6.jpg" property1="cmb"><em></em>
+                                        <li><input type="radio" name="type" value="7"><img src="<%=path%>/static/images/6.jpg">
                                         </li>
-                                        <li><img src="<%=path%>/static/images/7.jpg" property1="ceb"><em></em>
+                                        <li><input type="radio" name="type" value="8"><img src="<%=path%>/static/images/7.jpg">
                                         </li>
-                                        <li><img src="<%=path%>/static/images/8.jpg" property1="cncb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/9.jpg" property1="cmsb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/10.jpg" property1="cgb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/logo_abc.png" property1="shb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/logo_abc.png" property1="bjb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/logo_abc.png" property1="rcb"><em></em>
-                                        </li>
-                                        <li><img src="<%=path%>/static/images/logo_abc.png" property1="cib"><em></em>
+                                        <li><input type="radio" name="type" value="9"><img src="<%=path%>/static/images/8.jpg" >
                                         </li>
                                     </ul>
-                                    <span class="pay-other"><span class="paytxt">选择其他银行卡</span><i
-                                            class="paydown"></i></span></div>
+                                   </div>
                                 <div class="bank-check" id="bank-check2"><b class="selected"
                                                                             id="bankProtocol1"></b><span
                                         class="bank-agree">我同意并接受<a href="#"
                                                                     target="_blank">《亿人宝投资咨询与管理服务电子协议》</a></span> <span
                                         class="error" id="" style="display:none;margin-top:-3px;">请同意协议内容！</span></div>
                                 <input type="button" name="" value="绑定银行卡" class="btn-paycz" onclick="options()">
-                            </div>
-                            <div class="fr bank-info">
-                                <p class="bank-tit">已开通银行：</p>
-                                <div class="bank-pic"></div>
                             </div>
                         </div>
                     </form>

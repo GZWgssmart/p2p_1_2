@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.BankCard;
 
 /**
@@ -9,4 +10,7 @@ public interface BankCardService extends BaseService{
 
     //修改绑定银行卡状态
     void updateState(BankCard bankCard);
+    Long countDank(Long uid);
+
+    String getDank(Long uid);
 }

@@ -22,7 +22,11 @@ public class Home {
 
     private String l4;//链接4
 
-    public Home(Long hid, String pic1, String pic2, String pic3, String ewm, String phone, String l1, String l2, String l3, String l4) {
+    private Byte state;//状态
+
+    private String date;//创建时间
+
+    public Home(Long hid, String pic1, String pic2, String pic3, String ewm, String phone, String l1, String l2, String l3, String l4,Byte state,String date) {
         this.hid = hid;
         this.pic1 = pic1;
         this.pic2 = pic2;
@@ -33,6 +37,8 @@ public class Home {
         this.l2 = l2;
         this.l3 = l3;
         this.l4 = l4;
+        this.state = state;
+        this.date = date;
     }
 
     public Home() {
@@ -117,5 +123,21 @@ public class Home {
 
     public void setL4(String l4) {
         this.l4 = l4 == null ? null : l4.trim();
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

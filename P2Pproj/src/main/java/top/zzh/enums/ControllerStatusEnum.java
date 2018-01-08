@@ -97,6 +97,14 @@ public enum ControllerStatusEnum {
     DYNAMIC_DELETE_FAIL(538,"error","删除失败"),
     DYNAMIC_UPDATE_STATE_SUCCESS(539,"ok","修改状态成功"),
     DYNAMIC_UPDATE_STATE_FAIL(540,"error","修改状态失败"),
+    HOME_SAVE_SUCCESS(541,"ok","添加成功"),
+    HOME_SAVE_FAIL(542,"error","添加失败"),
+    HOME_UPDATE_SUCCESS(543,"ok","修改成功"),
+    HOME_UPDATE_FAIL(544,"error","修改失败"),
+    HOME_DELETE_SUCCESS(545,"ok","删除成功"),
+    HOME_DELETE_FAIL(546,"error","删除失败"),
+    HOME_UPDATE_STATE_SUCCESS(547,"ok","修改状态成功"),
+    HOME_UPDATE_STATE_FAIL(548,"error","修改状态失败"),
     UESR_CHONG_SUCCESS(225,"ok","充值成功"),
     UESR_CHONG_FAIL(226,"error","充值失败"),
     TICKET_SAVE_SUCCESS(1125,"ok","保存成功"),
@@ -105,7 +113,12 @@ public enum ControllerStatusEnum {
     TICKET_UPDATE_FAIL(1129,"error","修改失败"),
     TICKET_GETBYID_SUCCESS(1130,"ok","获取信息成功"),
     TICKET_GETBYID_FAIL(1131,"error","获取信息失败"),
-    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败")
+    UERS_MONEY_FAIL(1132,"error","余额不足！审核失败"),
+    UERS_BANK_FAIL(1142,"fail","银行卡已经绑定,不允许绑定多张银行卡！"),
+    UERS_BANK_SUCCESS(1143,"ok","银行卡绑定成功!"),
+    UERS_ERROR_FAIL(1142,"error","银行卡绑定失败！"),
+    UERS_BANK_ERROR(1144,"error","银行卡号错误，请重新输入!"),
+    UERS_ERROR_ERROR(1145,"error","支付密码错误，请重新输入！")
 
     ;
 

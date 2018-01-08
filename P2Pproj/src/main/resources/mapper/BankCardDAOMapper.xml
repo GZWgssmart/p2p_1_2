@@ -10,6 +10,19 @@
 		where u.uid = b.uid
 		]]>
     </select>
+    <select id="countDank" resultType="long">
+        <![CDATA[
+		select count(*) from t_bankcard
+		where uid = #{uid}
+		]]>
+    </select>
+
+    <select id="getDank" resultType="string">
+        <![CDATA[
+		select cardno from t_bankcard
+		where uid = #{uid}
+		]]>
+    </select>
 
     <insert id="save" parameterType="top.zzh.bean.BankCard">
         <![CDATA[

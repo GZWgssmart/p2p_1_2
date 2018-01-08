@@ -185,6 +185,7 @@ function edit(mid) {
             function (data) {
                 $("#updateForm").autofill(data);
                 $("#demo1").attr("src","/"+data.pic);
+                var ue = UE.getEditor('editor');
                 },
             "json"
         );

@@ -1,5 +1,6 @@
 package top.zzh.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.BankCard;
 
@@ -12,4 +13,7 @@ public interface BankCardDAO extends BaseDAO {
 
     //修改银行卡状态
     void updateState(BankCard bankCard);
+    Long countDank(@Param("uid") Long uid);
+
+    String getDank(@Param("uid") Long uid);
 }
