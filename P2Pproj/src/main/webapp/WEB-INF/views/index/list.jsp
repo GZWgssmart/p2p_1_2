@@ -107,7 +107,7 @@
                         <ul>
                             <li class="col-150"><a style="color: red">${d.bzname}</a></li>
                             <li class="col-150"><a href="<%=path%>/page/info/${d.baid}" style="size: 3px;color: #00a0e9">${d.cpname}</a></li>
-                            <li class="col-150">${d.kymoney}/${d.zmoney}</li>
+                            <li class="col-150">${d.money-d.tzmoney}/${d.money}</li>
                             <li class="col-150"><span class="f20 c-orange">${d.nprofit}% </span></li>
                             &nbsp;&nbsp;&nbsp;
                             <li class="col-150"> <span class="f20 c-333">${d.term}</span>个月 </li>
@@ -116,12 +116,21 @@
                                 <div class="circle">
                                     <div class="left progress-bar">
                                         <div class="progress-bgPic progress-bfb10">
-                                            <div class="show-bar">${(d.kymoney/d.zmoney)*100}% </div>
+                                            <div class="show-bar">${(d.tzmoney/d.money)*100}% </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="col-120-2"> <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a> </li>
+                            <c:if test="${d.tzmoney<d.money}">
+                                <li class="col-120-2">
+                                    <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${d.tzmoney==d.money}">
+                                <li class="col-120-2">
+                                    <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">还款中</a>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                 </c:forEach>

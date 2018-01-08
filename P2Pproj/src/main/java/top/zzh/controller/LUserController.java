@@ -89,6 +89,7 @@ public class LUserController {
                         sessionShiro.setAttribute(Constants.USER_ID_SESSION, userid);
 
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
+
                         session.setAttribute("userObj", userObj);
                     } catch (AuthenticationException e) {
                         statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_FAIL);
@@ -113,6 +114,7 @@ public class LUserController {
         User user = userService.getByface(name);
         request.setAttribute("time", time);
         request.setAttribute("face", user.getFace());
+        request.setAttribute("name",name);
         return "/user/userindex";
     }
 

@@ -32,7 +32,7 @@
             <div class="data">
                 <ul>
                     <li> <span class="f16">募集总金额</span><br>
-                        <span class="f30 c-333" id="account">${borrow.zmoney}</span>元 </li>
+                        <span class="f30 c-333" id="account">${borrow.money}</span>元 </li>
                     <li class="relative"><span class="f16">年利率</span><br>
                         <span class="f30 c-orange">${borrow.nprofit}%</span> </li>
                     <li><span class="f16">借款期限</span><br>
@@ -41,31 +41,48 @@
                     <li><span class="c-888">最小投标金额：</span> 100.00元 </li>
                     <li><span class="c-888">借款用途：</span>${borrow.mpurpose}</li>
                     <li class="colspan"> <span class="c-888 fl">投标进度：</span>
-                        <div class="progress-bar fl"> <span style="width:${(borrow.kymoney/borrow.zmoney)*100}%"></span> </div>
-                        <span class="c-green">${(borrow.kymoney/borrow.zmoney)*100}%</span> </li>
+                        <div class="progress-bar fl"> <span style="width:${(borrow.tzmoney/borrow.money)*100}%"></span> </div>
+                        <span class="c-green">${(borrow.tzmoney/borrow.money)*100}%</span>
+                    </li>
+                    <li> <span class="c-888">最大投标金额：</span> <span > ${borrow.money-borrow.tzmoney}元</span> </li>
                     <li> <span class="c-888">可投标时间：</span> <span id="account_range"> ${borrow.deadline}</span> </li>
                 </ul>
             </div>
             <div class="mod-right mod-status">
                 <div class="inner">
-                    <div class="text"> 可用金额：<span class="f24 c-333">${borrow.kymoney}</span>元<br></div>
-                    <div class="input">
-                        <input type="text" style="display: none" id="kymoney" value="${borrow.kymoney}">
-                        <input type="text" style="display: none" id="nprofit" value="${borrow.nprofit}">
-                        <input type="text" style="display: none" id="term" value="${borrow.term}">
-                        <input type="text" style="display: none" id="sid" value="${borrow.sid}">
-                        <input type="text" placeholder="请输入投资金额"  onkeyup="reckon()" >
-                        <button type="button" id="pushAll">全投</button>
+                    <p class="text">
+                    <div class="subject-s-r-c">
+                        <p>可用余额：<span class="f24 c-333">${borrow.kymoney}</span>元</p>
+                        <P>预期收益：<span class="color">0.00</span></P>
                     </div>
-                </div>
+                    <div class="subject-s-r-c">
+                        <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.tzmoney}</span>元</p>
+                    </div>
+                    <div class="input">
+                        <form method="post" action="">
+                            <input type="text" style="display: none" id="kymoney" value="${borrow.kymoney}">
+                            <input type="text" style="display: none" id="nprofit" value="${borrow.nprofit}">
+                            <input type="text" style="display: none" id="term" value="${borrow.term}">
+                            <input type="text" style="display: none" id="sid" value="${borrow.sid}">
+                            <input type="text" class="pay-txt" placeholder="请输入投资金额" >
+                            <c:if test="${borrow.tzmoney<borrow.money}">
+                                <button class="btn"  type="button">投标</button>
+                            </c:if>
+                            <c:if test="${borrow.tzmoney==borrow.money}">
+                                <button class="btn disabled" id="investBtn" type="button">还款中</button>
+                            </c:if>
+                            <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
+                        </form>
+                    </div>
+            </div>
         </div>
     </div>
     <div class="item-detail-body clearfix mrt30 ui-tab">
         <div class="ui-tab-nav hd"> <i class="icon-cur" style="left: 39px;"></i>
             <ul>
-                <li class="nav_li active" id="nav_1"><a href="javascript:;">借款信息</a></li>
-                <li class="nav_li" id="nav_2"><a href="javascript:;">投资记录</a> <i class="icon icon-num1" style="margin-left: -15px;"> <span id="tender_times">23</span> <em></em> </i> </li>
-                <li class="nav_li" id="nav_3"><a href="javascript:;">还款列表</a></li>
+                <li class="nav_li active" id="nav_1"><a href="javascript:void(0);">借款信息</a></li>
+                <li class="nav_li" id="nav_2"><a href="javascript:void(0);">投资记录</a> <i class="icon icon-num1" style="margin-left: -15px;"> <span id="tender_times">23</span> <em></em> </i> </li>
+                <li class="nav_li" id="nav_3"><a href="javascript:void(0);">还款列表</a></li>
             </ul>
         </div>
         <div class="bd">
@@ -101,8 +118,6 @@
                                         身份证</li>
                                     <li><i class="icon icon-5"></i><br>
                                         户口本</li>
-                                    <li><i class="icon icon-6"></i><br>
-                                        结婚证</li>
                                     <li><i class="icon icon-7"></i><br>
                                         工作证明</li>
                                     <li><i class="icon icon-8"></i><br>
@@ -135,14 +150,15 @@
                     </dl>
                     <dl class="item">
                         <dt>
-                        <h3>相关文件</h3>
+                            <h3>相关文件</h3>
                         </dt>
+                    </dl>
                         <dd>
                             <div class="warrant"> <span class="f14 c-888">（注：为保护借款人的个人隐私信息，实物材料对部分信息进行了隐藏处理,下面展示法人身份证，营业执照副本，企业银行账户，其他资料）</span>
                                 <div class="album" id="album">
                                     <div class="album-show">
                                         <div class="loading" style="display: none;"></div>
-                                        <img src="<%=path%>/static/uploads/${borrow.fpic}"> </div>
+                                        <img src="<%=path%>/static/uploads/${borrow.ypic}"> </div>
                                     <div class="album-thumb"> <a href="javascript:;" class="btn btn-prev"></a> <a href="javascript:;" class="btn btn-next"></a>
                                         <div style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 1070px;" class="container" id="albumThumb">
                                             <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 1926px; left: 0px;">

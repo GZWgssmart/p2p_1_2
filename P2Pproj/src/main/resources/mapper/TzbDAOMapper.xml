@@ -5,9 +5,12 @@
 <mapper namespace="top.zzh.dao.TzbDAO">
 
     <insert id="save" parameterType="top.zzh.bean.Tzb">
+        <selectKey keyColumn="tzid" keyProperty="tzid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
         <![CDATA[
           insert into t_tzb(uid,juid,money,time,nprofit,cpname,baid)
-          values(#{uid},#{juid},#{money},#{time},#{nprofit},#{cpname},#{baid})
+          values(#{uid},#{juid},#{money},CURRENT_TIME,#{nprofit},#{cpname},#{baid})
         ]]>
     </insert>
 

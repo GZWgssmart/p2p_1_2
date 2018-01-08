@@ -54,8 +54,6 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/tz/page">用户投资详情列表</a>
-                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/luser/userList">用户信息</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
@@ -63,6 +61,8 @@
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
                 </li>
@@ -78,11 +78,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/rzvip/rzvipList">认证审核</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
-                        </li>
-
-                        <li><a a class="J_menuItem" href="">论坛</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">代码编辑器</a>
                         </li>
                     </ul>
                 </li>
@@ -112,7 +107,11 @@
                         </li>
                         <li><a a class="J_menuItem" href="">用户还款管理</a>
                         </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
+                        </li>
                         <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">优惠券管理</a>
                         </li>
                     </ul>
                 </li>
@@ -120,7 +119,7 @@
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span class="nav-label">图表</span>
+                        <span class="nav-label">平台报表</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -148,17 +147,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
-                        </li>
-                    </ul>
-                </li>
-				 <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-star"></i>
-                        <span class="nav-label">劵的管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">发布的劵</a>
                         </li>
                     </ul>
                 </li>
@@ -205,21 +193,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-table"></i>
-                        <span class="nav-label">系统设置</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">数据表格(DataTables)</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">jqGrid</a>
                         </li>
                     </ul>
                 </li>
