@@ -16,4 +16,5 @@ public interface BankCardDAO extends BaseDAO {
     Long countDank(@Param("uid") Long uid);
 
     String getDank(@Param("uid") Long uid);
+    String getType(@Param("uid") Long uid);
 }

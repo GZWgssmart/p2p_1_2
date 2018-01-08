@@ -45,6 +45,12 @@ public class PageController {
     @Autowired
     private TzbService tzbService;
 
+    @Autowired
+    private  BankCardService bankCardService;
+
+    @Autowired
+    private  BankService bankService;
+
     //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
@@ -92,6 +98,11 @@ public class PageController {
         Long id =(Long)session.getAttribute(Constants.USER_ID_SESSION);
         User user=(User)userService.getById(id);
         session.setAttribute("users",user);
+        String cardno =(String)bankCardService.getDank(id);//银行卡号
+        session.setAttribute("cardno",cardno);
+        String type =bankCardService.getType(id);//所属银行
+        String deposit=bankService.getDeposit(type);
+        session.setAttribute("deposit",deposit);
         return "user/disanfang";
     }
 
@@ -286,15 +297,5 @@ public class PageController {
     @RequestMapping("zifei")
     public String zifei() {
         return "index/zifei";
-    }
-
-	@RequestMapping("rundata")
-    public String rundata() {
-        return "index/rundata";
-    }
-
-    @RequestMapping("feedBackAdd")
-    public String feedBackAdd() {
-        return "user/feedBackAdd";
     }
 }

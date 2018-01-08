@@ -359,26 +359,57 @@
                                 <div class="pay-bank" id="pay-bank">
                                     <h6>请选择绑定银行</h6>
                                     <ul id="paysSpan" style="height:150px;">
-                                        <li><input type="radio" name="type" value="1" checked><img src="<%=path%>/static/images/logo_abc.png">
+                                        <li><input type="radio" name="type" value="1" checked><img
+                                                src="<%=path%>/static/images/logo_abc.png">
                                         </li>
-                                        <li><input type="radio" name="type" value="2" checked><img src="<%=path%>/static/images/1.jpg" >
+                                        <li><input type="radio" name="type" value="2" checked><img
+                                                src="<%=path%>/static/images/1.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="3"><img src="<%=path%>/static/images/2.jpg" >
+                                        <li><input type="radio" name="type" value="3"><img
+                                                src="<%=path%>/static/images/2.jpg">
                                         </li>
-                                        <li><input type="radio" name="radiobutton" value="4"><img src="<%=path%>/static/images/3.jpg">
+                                        <li><input type="radio" name="radiobutton" value="4"><img
+                                                src="<%=path%>/static/images/3.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="5"><img src="<%=path%>/static/images/4.jpg" >
+                                        <li><input type="radio" name="type" value="5"><img
+                                                src="<%=path%>/static/images/4.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="6"><img src="<%=path%>/static/images/5.jpg" >
+                                        <li><input type="radio" name="type" value="6"><img
+                                                src="<%=path%>/static/images/5.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="7"><img src="<%=path%>/static/images/6.jpg">
+                                        <li><input type="radio" name="type" value="7"><img
+                                                src="<%=path%>/static/images/6.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="8"><img src="<%=path%>/static/images/7.jpg">
+                                        <li><input type="radio" name="type" value="8"><img
+                                                src="<%=path%>/static/images/7.jpg">
                                         </li>
-                                        <li><input type="radio" name="type" value="9"><img src="<%=path%>/static/images/8.jpg" >
+                                        <li><input type="radio" name="type" value="9"><img
+                                                src="<%=path%>/static/images/8.jpg">
                                         </li>
                                     </ul>
-                                   </div>
+                                </div>
+                                <div class="pay-bank">
+                                    <div class="accordion" id="accordion2">
+                                        <div class="accordion-group">
+                                            <div class="accordion-heading">
+                                                <a class="accordion-toggle" data-toggle="collapse"
+                                                   data-parent="#accordion2" href="#collapseOne">
+                                                    绑定的银行卡
+                                                </a>
+                                            </div>
+                                            <div id="collapseOne" class="accordion-body collapse in">
+                                                <div class="accordion-inner">
+                                                    <ul>
+                                                    <li><img src="<%=path%>/static/images/${deposit}"></br>
+                                                        <span>${cardno}</span>
+                                                    </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="bank-check" id="bank-check2"><b class="selected"
                                                                             id="bankProtocol1"></b><span
                                         class="bank-agree">我同意并接受<a href="#"
