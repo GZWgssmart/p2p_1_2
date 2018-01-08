@@ -61,6 +61,12 @@ public class TicketController {
         if((ticketvo.getTkmoney()==null||ticketvo.getTkmoney().equals(""))&&(ticketvo.getTkmoney5()!=null && !ticketvo.getTkmoney5().equals(""))){
             ticketvo.setTkmoney(ticketvo.getTkmoney5());
         }
+        if((ticketvo.getTname()==null||ticketvo.getTname().equals(""))&&(ticketvo.getTname3()!=null && !ticketvo.getTname3().equals(""))){
+            ticketvo.setTname(ticketvo.getTname3());
+        }
+        if((ticketvo.getTintro()==null||ticketvo.getTintro().equals(""))&&(ticketvo.getTintro3()!=null && !ticketvo.getTintro3().equals(""))){
+            ticketvo.setTintro(ticketvo.getTintro3());
+        }
         ControllerStatusVO statusVO=null;
         try{
             ticketService.update(ticketvo);
