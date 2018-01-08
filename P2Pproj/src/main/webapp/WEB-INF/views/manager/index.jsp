@@ -54,8 +54,6 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/tz/page">用户投资详情列表</a>
-                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/luser/userList">用户信息</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
@@ -63,6 +61,8 @@
                         <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
                 </li>
@@ -79,11 +79,6 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
                         </li>
-
-                        <li><a a class="J_menuItem" href="">论坛</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">代码编辑器</a>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -93,8 +88,9 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/authManage/permissionPage">权限管理</a></li>
-                        <li><a a class="J_menuItem" href="">角色管理</a></li>
+                        <li><a class="J_menuItem" href="<%=path%>/permission/permissionPage">权限管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path%>/role/rolePage">角色管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path%>/rolePermission/rolePermissionPage">角色权限管理</a></li>
                         <li><a a class="J_menuItem" href="">用户角色管理</a></li>
                     </ul>
                 </li>
@@ -105,15 +101,17 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/page/users">申请借款列表</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/borrowdetail/detail_page">借款详情列表</a>
+                        <li><a class="J_menuItem" href="<%=path%>/page/users">用户借款列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
                         </li>
                         <li><a a class="J_menuItem" href="">用户还款管理</a>
                         </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
+                        </li>
                         <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">优惠券管理</a>
                         </li>
                     </ul>
                 </li>
@@ -121,7 +119,7 @@
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span class="nav-label">图表</span>
+                        <span class="nav-label">平台报表</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -152,17 +150,6 @@
                         </li>
                     </ul>
                 </li>
-				 <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-star"></i>
-                        <span class="nav-label">卷的管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">发布的卷</a>
-                        </li>
-                    </ul>
-                </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-star"></i>
@@ -178,8 +165,22 @@
                         </li>
                         <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="#">最新公告管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告管理</a>
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-desktop"></i>
+                        <span class="nav-label">最新公告</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告列表</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/notice/add">新增最新公告</a>
+                        </li>
+
                     </ul>
                 </li>
                 <li>
@@ -192,21 +193,6 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-table"></i>
-                        <span class="nav-label">系统设置</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">数据表格(DataTables)</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">jqGrid</a>
                         </li>
                     </ul>
                 </li>

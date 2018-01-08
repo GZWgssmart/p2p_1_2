@@ -97,7 +97,9 @@ public class DynamicController {
     @RequestMapping("findDynamic/{dyid}")
     @ResponseBody
     public Dynamic findMedia(@PathVariable("dyid")Long dyid){
-        return (Dynamic) dynamicService.getById(dyid);
+        Dynamic dynamic = new Dynamic();
+        dynamic = (Dynamic) dynamicService.getById(dyid);
+        return dynamic;
     }
 
     @RequestMapping("update")

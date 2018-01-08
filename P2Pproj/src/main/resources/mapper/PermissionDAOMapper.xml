@@ -6,41 +6,47 @@
 
     <!--条件查询【权限描述】-->
     <sql id="cash_query_criteria">
-        <if test="query != null and query.content != null and query.content != ''">
-            and content like concat('%', #{query.content}, '%')
+        <if test="query != null and query.desZh != null and query.desZh != ''">
+            and des_zh like concat('%', #{query.desZh}, '%')
         </if>
     </sql>
 
-    <select id="permissionListPagerCriteria" resultType="jur">
-        select jid,jurl,content from t_jur where 1=1
+    <select id="permissionListPagerCriteria" resultType="permission">
+        select id,url,des_zh,status from t_permission where 1=1
         <include refid="cash_query_criteria"/>
-        order by jid DESC limit #{pager.beginIndex}, #{pager.pageSize}
+        order by id DESC limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="permissionCountCriteria" resultType="long">
-        select count(jid) from t_jur where 1=1
+        select count(id) from t_permission where 1=1
         <include refid="cash_query_criteria"/>
     </select>
 
-    <insert id="addPermission" parameterType="top.zzh.bean.Jur">
+    <insert id="addPermission" parameterType="top.zzh.bean.Permission">
         <![CDATA[
-          insert into t_jur(jurl, content) values (#{jurl},#{content});
+          insert into t_permission(url, des_zh,status) values (#{url},#{desZh},1);
         ]]>
     </insert>
 
-    <update id="updatePermission" parameterType="jur">
+    <update id="updatePermission" parameterType="permission">
         <![CDATA[
-          update t_jur
+          update t_permission
         ]]>
         <set>
-            <if test="jurl != null and  jurl != ''">
-                jurl = #{jurl},
+            <if test="url != null and  url != ''">
+                url = #{url},
             </if>
-            <if test="content != null and content != '' ">
-                content = #{content},
+            <if test="desZh != null and desZh != '' ">
+                des_zh = #{desZh},
             </if>
         </set>
-        where jid = #{jid}
+        where id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        <![CDATA[
+            update t_permission set status = #{status} where id = #{permissionId}
+        ]]>
     </update>
 
 </mapper>

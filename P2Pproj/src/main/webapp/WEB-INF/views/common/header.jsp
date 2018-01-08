@@ -1,5 +1,9 @@
+<%@ page import="top.zzh.common.Constants" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    String username = (String)session.getAttribute(Constants.USER_IN_SESSION);
+%>
 <header>
     <div class="header-top min-width">
         <div class="container fn-clear"> <strong class="fn-left">咨询热线：400-668-6698<span class="s-time">服务时间：9:00 - 18:00</span></strong>
@@ -18,19 +22,26 @@
                     <div class=""><a href="<%=path%>/page/register" class="c-orange" title="免费注册">免费注册</a></div>
                 </li>
                 <li>
-                    <div>
-                        <a href="<%=path%>/page/login" class="js-login" title="登录">登录</a>
-                    </div>
+                    <c:if test="${name==null}">
+                        <a href="<%=path%>/page/login"  title="登录">登录</a>
+                    </c:if>
+                    <c:if test="${name!=null}">
+                        <a href="<%=path%>/page/user"  title="用户名">${name}</a>
+                    </c:if>
                 </li>
             </ul>
         </div>
     </div>
     <div class="header min-width">
         <div class="container">
-            <div class="fn-left logo"> <a class="" href="http://localhost:8080"> <img src="<%=path%>/static/images/logo.png"  title=""> </a> </div>
+            <div class="fn-left logo">
+                <a class="" href="http://localhost:8080">
+                    <img src="<%=path%>/static/images/logo.png"  title="亿人宝">
+                </a>
+            </div>
             <ul class="top-nav fn-clear">
                 <li class="on"> <a href="http://localhost:8080">首页</a> </li>
-                <li> <a href="<%=path%>/page/list" class="">我要投资</a> </li>
+                <li> <a href="<%=path%>/page/list" class="">投资理财</a> </li>
                 <li> <a href="<%=path%>/page/help">安全保障</a> </li>
                 <li class="top-nav-safe"> <a href="<%=path%>/page/user">我的账户</a> </li>
                 <li> <a href="<%=path%>/page/about">关于我们</a> </li>

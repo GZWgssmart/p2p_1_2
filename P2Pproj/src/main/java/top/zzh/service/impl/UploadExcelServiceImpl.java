@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import top.zzh.bean.Jur;
+import top.zzh.bean.Permission;
 import top.zzh.common.PathUtil;
-import top.zzh.controller.UploadExcel;
+import top.zzh.controller.UploadExcelController;
 import top.zzh.dao.ExcelIntoDAO;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.AbstractService;
@@ -37,7 +37,7 @@ import java.util.List;
 @Service
 public class UploadExcelServiceImpl extends AbstractService implements UploadExcelService {
 
-    private Logger logger = LoggerFactory.getLogger(UploadExcel.class);
+    private Logger logger = LoggerFactory.getLogger(UploadExcelController.class);
 
     @Autowired
     private ExcelIntoDAO excelIntoDAO;
@@ -51,10 +51,8 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
                 file.transferTo(new File(PathUtil.uploadDir(request) + "/" + file.getOriginalFilename()));
                 String excelDir = getExcelRootPath(request);
                 String excelFile = getExcelType(excelDir);
-                List<Jur> jurList =  judgeFileTypeAndReadExcel(excelDir + excelFile);
-                for (Jur jur : jurList) {
-                    excelIntoDAO.saveJur(jur);
-                }
+                List<Permission> permissionList =  judgeFileTypeAndReadExcel(excelDir + excelFile);
+                excelIntoDAO.intoDB(permissionList);
                 deleteExcel(excelDir + excelFile);
                 return ControllerStatusVO.status(ControllerStatusEnum.UPLOAD_EXCEL_SUCCESS);
             } catch (IOException e) {
@@ -72,15 +70,15 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
     }
 
 
-    private List<Jur> judgeFileTypeAndReadExcel(String excelPath) {
-        List<Jur> jurList = null;
+    private List<Permission> judgeFileTypeAndReadExcel(String excelPath) {
+        List<Permission> permissionList = null;
         if(excelPath.endsWith(".xls")) {
-            jurList = readXLSContact(excelPath);
+            permissionList = readXLSContact(excelPath);
         }
         if(excelPath.endsWith(".xlsx")) {
-            jurList = readXLSXContact(excelPath);
+            permissionList = readXLSXContact(excelPath);
         }
-        return jurList;
+        return permissionList;
     }
 
 
@@ -96,52 +94,52 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
         return excel;
     }
 
-    private List<Jur> readXLSContact(String xlsPath) {
-        List<Jur> JurList = new ArrayList<Jur>();
+    private List<Permission> readXLSContact(String xlsPath) {
+        List<Permission> permissionList = new ArrayList<Permission>();
         try {
             HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(new File(xlsPath)));
             HSSFSheet sheet = workbook.getSheet("Sheet1");
             for (int row = 2; row <= sheet.getLastRowNum(); row++) {
                 HSSFRow hssfRow = sheet.getRow(row);
-                Jur jur = new Jur();
+                Permission permission = new Permission();
                 for (int cell = 0; cell <= hssfRow.getLastCellNum(); cell++) {
                     HSSFCell hssfCell = hssfRow.getCell(cell);
                     if (cell == 0) {
-                        jur.setJurl(hssfCell.getStringCellValue());
+                        permission.setUrl(hssfCell.getStringCellValue());
                     } else if (cell == 1) {
-                        jur.setContent(hssfCell.getStringCellValue());
+                        permission.setDesZh(hssfCell.getStringCellValue());
                     }
                 }
-                JurList.add(jur);
+                permissionList.add(permission);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return JurList;
+        return permissionList;
     }
 
-    private List<Jur> readXLSXContact(String xlsxPath) {
-        List<Jur> JurList = new ArrayList<Jur>();
+    private List<Permission> readXLSXContact(String xlsxPath) {
+        List<Permission> permissionList = new ArrayList<Permission>();
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(new File(xlsxPath)));
             XSSFSheet sheet = workbook.getSheet("Sheet1");
             for (int row = 2; row <= sheet.getLastRowNum(); row++) {
                 XSSFRow xssfRow = sheet.getRow(row);
-                Jur jur = new Jur();
+                Permission permission = new Permission();
                 for (int cell = 0; cell <= xssfRow.getLastCellNum(); cell++) {
                     XSSFCell xssfCell = xssfRow.getCell(cell);
                     if (cell == 0) {
-                        jur.setJurl(xssfCell.getStringCellValue());
+                        permission.setUrl(xssfCell.getStringCellValue());
                     } else if (cell == 1) {
-                        jur.setContent(xssfCell.getStringCellValue());
+                        permission.setDesZh(xssfCell.getStringCellValue());
                     }
                 }
-                JurList.add(jur);
+                permissionList.add(permission);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return JurList;
+        return permissionList;
     }
 
 }

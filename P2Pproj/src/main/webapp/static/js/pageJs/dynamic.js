@@ -47,7 +47,10 @@ $('#mytab').bootstrapTable({
             title: '封面图片',
             field: 'pic',
             align: 'center',
-            sortable: true
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width: 100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
         }
         ,
         {
@@ -134,7 +137,10 @@ function queryParams(params) {
 }
 //查询按钮事件
 $('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/dynamic/pager_criteria'});
+    var title = $('#title').val();
+    var date = $('#date').val();
+    $('#mytab').bootstrapTable('refresh', {url: '/dynamic/pager_criteria',
+    query:{title:title,date:date}});
 })
 function refush() {
     $('#mytab').bootstrapTable('refresh', {url: '/dynamic/pager_criteria'});
@@ -170,7 +176,7 @@ function edit(dyid) {
          $.post("/dynamic/findDynamic/" + dyid,
             function (data) {
                 $("#updateForm").autofill(data);
-
+                $("#demo1").attr("src","/"+data.pic);
             },
             "json"
         );

@@ -245,7 +245,7 @@ $('#updateForm').bootstrapValidator({
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '标种名称不能为空'
+                    message: '类型名称不能为空'
                 },
 
             }
@@ -286,7 +286,7 @@ $('#formadd').bootstrapValidator({
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '标种名称不能为空'
+                    message: '类型名称不能为空'
                 },
 
             }

@@ -36,6 +36,7 @@ public class HUserController {
         session.invalidate();
         return "manager/login";
     }
+
     //后台用户中心页面
     @RequestMapping("page")
     @ResponseBody

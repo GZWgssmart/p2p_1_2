@@ -9,6 +9,10 @@
     <title>权限管理</title>
     <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
     <link href="<%=path%>/static/css/jquery.datetimepicker.css" rel="stylesheet">
+
+    <!--弹出框样式-->
+    <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
+    <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
     <style>
         .fileinput-button {
             position: relative;
@@ -38,13 +42,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">权限URL：</label>
                     <div class="col-sm-8">
-                        <input type="text" id="addJurl" name="jurl" class="form-control" required="" aria-required="true"/>
+                        <input type="text" id="addUrl" name="url" class="form-control" required="" aria-required="true"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">权限描述：</label>
                     <div class="col-sm-8">
-                        <input type="text" id="addContent"  name="content" class="form-control" required="" aria-required="true"/>
+                        <input type="text" id="addDesZh"  name="desZh" class="form-control" required="" aria-required="true"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -67,17 +71,17 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal"  id="updateForm">
-                    <input type="hidden" name="jid" id="jid"/>
+                    <input type="hidden" name="id" id="id"/>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">权限URL:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="updateJurl" name="jurl"  class="form-control" required="" aria-required="true"/>
+                            <input type="text" id="updateUrl" name="url"  class="form-control" required="" aria-required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">权限描述:</label>
                         <div class="col-sm-8">
-                            <input type="text" id="updateContent" name="content" class="form-control" required="" aria-required="true"/>
+                            <input type="text" id="updateDesZh" name="desZh" class="form-control" required="" aria-required="true"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -119,7 +123,7 @@
                 <div class="panel-body form-group" style="margin-bottom:0px;">
                     <label class="col-sm-2 control-label" style="text-align: right; margin-top:5px">权限描述：</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" name="content" id="content"/>
+                        <input type="text" class="form-control" name="desZh" id="desZh"/>
                     </div>
 
                     <div class="col-sm-6">
@@ -178,15 +182,15 @@
         if(responseText.result == 'error'){  //文件类型错误
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "文件类型错误","error");
         } else if(responseText.result == 'ok'){ //上传成功
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "导入权限成功！","success");
         } else if(responseText.result == 'error') {  //服务器繁忙
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "服务器繁忙！","error");
         }
     }
 

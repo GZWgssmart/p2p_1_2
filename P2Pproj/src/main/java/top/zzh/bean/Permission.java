@@ -5,9 +5,10 @@ package top.zzh.bean;
  */
 public class Permission {
     private Integer id;
-    private String permission;
+    private String url;
     private String desZh;
     private Integer moduleId;
+    private Integer status;  // 1：可用  2：不可用
 
     public Integer getId() {
         return id;
@@ -17,12 +18,12 @@ public class Permission {
         this.id = id;
     }
 
-    public String getPermission() {
-        return permission;
+    public String getUrl() {
+        return url;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getDesZh() {
@@ -40,4 +41,13 @@ public class Permission {
     public void setModuleId(Integer moduleId) {
         this.moduleId = moduleId;
     }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
 }

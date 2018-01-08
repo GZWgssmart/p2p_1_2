@@ -64,8 +64,8 @@ public class MediaController {
                 dir.mkdirs();
             }
             file.transferTo(dir);
-            fileVo.setFilePath("/upload/"+fileName);
-            System.out.println("保存到数据库的图片地址:/upload/"+fileName);
+            fileVo.setFilePath("upload/"+fileName);
+            System.out.println("保存到数据库的图片地址:upload/"+fileName);
             fileVo.setCode(0);
         }catch (Exception e){
             e.printStackTrace();
@@ -98,7 +98,9 @@ public class MediaController {
     @RequestMapping("findMedia/{mid}")
     @ResponseBody
     public Media findMedia(@PathVariable("mid")Long mid){
-        return (Media) mediaService.getById(mid);
+        Media media = new Media();
+        media = (Media) mediaService.getById(mid);
+        return media;
     }
     //修改媒体报道
     @RequestMapping("update")

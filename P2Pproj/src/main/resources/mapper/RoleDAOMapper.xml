@@ -22,7 +22,7 @@
 
     <insert id="addRole" parameterType="role">
         <![CDATA[
-            insert into t_role(rname, content) values(#{rname},#{content})
+            insert into t_role(rname, content,status) values(#{rname},#{content},1)
         ]]>
     </insert>
 
@@ -43,7 +43,7 @@
 
     <select id="listPager" resultType="role">
         <![CDATA[
-            select rid,rname,content from t_role order by rid desc limit #{pager.beginIndex}, #{pager.pageSize}
+            select rid,rname,content,status from t_role order by rid desc limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
@@ -52,6 +52,12 @@
             select count(rid) from t_role
         ]]>
     </select>
+
+    <update id="updateStatus" >
+        <![CDATA[
+            update t_role set status = #{status} where rid = #{roleId}
+        ]]>
+    </update>
 
 </mapper>
 

@@ -1,27 +1,26 @@
 package top.zzh.controller;
 
-import javafx.scene.layout.BackgroundImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import top.zzh.bean.LogMoney;
+import top.zzh.bean.Bz;
 import top.zzh.bean.User;
 import top.zzh.common.Constants;
-import top.zzh.service.LogMoneyService;
-import top.zzh.service.LoginLogService;
-import top.zzh.service.UserMoneyService;
-import top.zzh.service.UserService;
-import top.zzh.vo.ControllerStatusVO;
+import top.zzh.service.*;
+import top.zzh.vo.BorrowDetailVO;
+import top.zzh.vo.TzbVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
-
+import java.util.*;
 @Controller
 @RequestMapping("/page")
 public class PageController {
 
+    private Logger logger = LoggerFactory.getLogger(PageController.class);
     @Autowired
     private LoginLogService loginLogService;
 
@@ -33,6 +32,18 @@ public class PageController {
 
     @Autowired
     private LogMoneyService logMoneyService;
+
+    @Autowired
+    private BorrowApplyService borrowApplyService;
+
+    @Autowired
+    private BorrowDetailService borrowDetailService;
+
+    @Autowired
+    private BzService bzService;
+
+    @Autowired
+    private TzbService tzbService;
 
     //前台投资理财计算器
     @RequestMapping("cal")
@@ -48,7 +59,7 @@ public class PageController {
     //管理员主界面
     @RequestMapping("managerindex")
     public String managerindex() {
-        return "common/managerindex";
+        return "manager/welcome";
     }
 
     @RequestMapping("users")
@@ -83,6 +94,14 @@ public class PageController {
         session.setAttribute("users",user);
         return "user/disanfang";
     }
+
+
+    @RequestMapping("guodu")
+    public String guodu(HttpSession session) {
+
+        return "user/guodu";
+    }
+
 
     @RequestMapping("history")
     public String history() {
@@ -219,13 +238,23 @@ public class PageController {
         return "index/hezuo";
     }
 
-    @RequestMapping("info")
-    public String info() {
+    @RequestMapping("info/{baid}")
+    public String info(HttpServletRequest request, @PathVariable("baid") Long baid) {
+        logger.info("首页查看投标详情");
+        BorrowDetailVO borrow = borrowDetailService.findDetails(baid);
+        List<TzbVO> tzbVOList = (List)tzbService.listAll();
+        request.setAttribute("borrow",borrow);
+        request.setAttribute("tzbVOList",tzbVOList);
         return "index/info";
     }
 
     @RequestMapping("list")
-    public String list() {
+    public String list(HttpServletRequest request) {
+        logger.info("首页投资列表信息");
+        List<Bz> bzList = (List)bzService.listAll();
+        List<BorrowDetailVO> borrowDetailVO = (List) borrowApplyService.listAll();
+        request.setAttribute("borrowDetailVO",borrowDetailVO);
+        request.setAttribute("bzList",bzList);
         return "index/list";
     }
 

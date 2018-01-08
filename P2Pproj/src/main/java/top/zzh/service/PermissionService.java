@@ -1,8 +1,7 @@
 package top.zzh.service;
 
-import org.springframework.stereotype.Service;
-import top.zzh.bean.Jur;
-import top.zzh.bean.Role;
+import org.apache.ibatis.annotations.Param;
+import top.zzh.bean.Permission;
 import top.zzh.common.Pager;
 
 /**
@@ -13,7 +12,8 @@ public interface PermissionService extends BaseService{
 
     //权限
     Pager permissionListPagerCriteria(int pageNo, int pageSize, Object obj);
-    void addPermission(Jur jur);
-    void updatePermission(Jur jur);
+    void addPermission(Permission permission);
+    void updatePermission(Permission permission);
+    void updateStatus(int permissionId,int status);
 
 }

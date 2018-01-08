@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.Jur;
 import top.zzh.bean.Role;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
@@ -55,14 +54,27 @@ public class RoleController {
     public ControllerStatusVO updatePermission(Role role) {
         logger.info("超级管理员修改角色");
         try {
-            System.out.println("-------------------------");
-            System.out.println(role.getRid()+ role.getRname() +role.getContent());
             roleService.updateRole(role);
             return ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_SUCCESS);
         }catch (Exception e){
             logger.error("超级管理员修改角色失败"+e.getMessage());
             return ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_FAIL);
         }
+    }
+
+    @RequestMapping("updateStatus")
+    @ResponseBody
+    public ControllerStatusVO updateStatus(String roleId,String status){
+        logger.info("超级管理员修改角色状态");
+        try{
+            roleService.updateStatus(Long.valueOf(roleId),Integer.parseInt(status));
+            return ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_STATUS_SUCCESS);
+        }catch (Exception e){
+            logger.error("超级管理员修改角色状态失败："+e.getMessage());
+            return ControllerStatusVO.status(ControllerStatusEnum.ROLE_UPDATE_STATUS_FAIL);
+        }
+
+
     }
 
 

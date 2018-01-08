@@ -14,6 +14,7 @@
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
     <script src="<%=path%>/static/js/user.js" type="text/javascript"></script>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body>
 <!-- 网站头部-->
@@ -32,17 +33,15 @@
         <script type="text/javascript">
 
         function disanfang(){
-            $.post("",
-                function (date) {
-                    if (data.result == "ok") {
-
-                        layer.msg(data.message, {icon: 1, time: 1000});
-                    } else {
-                        layer.msg(data.message, {icon: 2, time: 1000});
-                    }
-                },"json"
-            );
-
+            layer.open({
+                type: 2,
+                title: '绑定银行卡',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: <%=path%>'/page/guodu'
+            });
         }
 
 
@@ -86,7 +85,7 @@
                                 <label>${users.phone}</label>
                             </li>
                             <li>
-                                <input type="button" name="" value="开户" onclick="" style="border:none;" class="btn-paykh">
+                                <input type="button" name="" value="开户" onclick="disanfang()" style="border:none;" class="btn-paykh">
                             </li>
                         </ul>
                     </div>
@@ -206,5 +205,6 @@
 </div>
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
 </body>
 </html>

@@ -18,6 +18,7 @@ public interface BzDAO extends BaseDAO{
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 
-
+    @Override
+    Object getById(Long id);
     void updateState(Bz bz);
 }

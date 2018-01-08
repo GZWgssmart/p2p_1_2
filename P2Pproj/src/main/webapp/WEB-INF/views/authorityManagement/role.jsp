@@ -9,6 +9,10 @@
     <title>角色管理</title>
     <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
     <link href="<%=path%>/static/css/jquery.datetimepicker.css" rel="stylesheet">
+
+    <!--弹出框样式-->
+    <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
+    <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
 </head>
 <body class="gray-bg">
 <!--角色 新增 模态框开始-->

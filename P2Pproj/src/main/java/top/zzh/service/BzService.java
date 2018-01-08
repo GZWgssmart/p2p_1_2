@@ -10,4 +10,5 @@ import top.zzh.bean.Bz;
  */
 public interface BzService extends BaseService {
     void updateState(Bz bz);
+    Object getById(Long id);
 }

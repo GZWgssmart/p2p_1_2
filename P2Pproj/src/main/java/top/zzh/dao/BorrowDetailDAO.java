@@ -2,8 +2,8 @@ package top.zzh.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.zzh.bean.BorrowDetail;
 import top.zzh.common.Pager;
+import top.zzh.vo.BorrowDetailVO;
 
 import java.util.List;
 
@@ -25,6 +25,9 @@ public interface BorrowDetailDAO extends BaseDAO{
 
     //修改图片
     void updateTupian(Object obj);
+
+    //查看详情
+    BorrowDetailVO findDetails(@Param("baid")Long baid);
 
     @Override
     void update(Object obj);

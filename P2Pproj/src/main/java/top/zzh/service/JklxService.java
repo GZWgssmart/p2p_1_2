@@ -12,4 +12,5 @@ import top.zzh.bean.Jklx;
 @Service
 public interface JklxService extends BaseService {
     void updateState(Jklx jklx);
+    Object getById(Long id);
 }

@@ -1,21 +1,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--谢山林-->
+
 <mapper namespace="top.zzh.dao.ExcelIntoDAO">
 
-    <insert id="intoDB" parameterType="java.util.List">
+    <insert id="intoDB">
         <![CDATA[
-          insert into t_jur(jid, jurl, content) values
+          insert into t_permission(id,url,des_zh,status) values
         ]]>
-        <foreach collection ="list" item="jur" separator =",">
-           (#{jur.id},#{jur.jurl},#{jur.content})
+        <foreach collection ="permissionList" item="permission" separator =",">
+           (#{permission.id},#{permission.url},#{permission.desZh},1)
         </foreach >
-    </insert>
-
-    <insert id="saveJur" parameterType="top.zzh.bean.Jur">
-        <![CDATA[
-          insert into t_jur(jurl, content) values (#{jurl},#{content});
-        ]]>
     </insert>
 </mapper>

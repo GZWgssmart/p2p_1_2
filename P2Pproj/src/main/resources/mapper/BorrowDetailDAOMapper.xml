@@ -79,4 +79,13 @@
         select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
         from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
     </select>
+
+    <select id="findDetails" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+            select ba.baid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
+            bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
+            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um
+            where ba.bzid =b.bzid and  ba.baid = bd.baid and ba.money = bd.money and s.sid = bd.sid and ba.uid = um.uid and ba.baid = #{baid}
+        ]]>
+    </select>
 </mapper>
