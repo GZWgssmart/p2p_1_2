@@ -25,4 +25,6 @@ public interface UserService extends BaseService {
 
     void updateState(Long uid,Integer state);
 
+    void  updatepwd(Long uid,String zpwd);
+
 }

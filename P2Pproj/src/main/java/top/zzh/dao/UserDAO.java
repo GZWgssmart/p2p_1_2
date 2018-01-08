@@ -35,4 +35,6 @@ public interface UserDAO extends BaseDAO {
 
     void updateState(@Param("uid")Long uid,@Param("state")Integer state);
 
+    void  updatepwd(@Param("uid")Long uid,@Param("zpwd")String zpwd);
+
 }
