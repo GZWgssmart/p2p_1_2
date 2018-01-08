@@ -114,5 +114,7 @@
     <orderEntry type="library" name="Maven: org.logback-extensions:logback-ext-spring:0.1.4" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="ueditor" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.8.0" level="project" />
   </component>
 </module>
