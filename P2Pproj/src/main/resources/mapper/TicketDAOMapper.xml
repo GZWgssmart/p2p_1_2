@@ -13,18 +13,21 @@
         <if test="query!=null and query.tktime!=null and query.tktime!=''">
             and tktime<![CDATA[<=]]>#{query.tktime}
         </if>
+        <if test="query!=null and query.tname!=null and query.tname!=''">
+            and tname like concat("%",#{query.tname},"%")
+        </if>
     </sql>
     <select id="listPager" parameterType="top.zzh.common.Pager" resultType="ticket">
-        select kid,type,tkmoney,tktime from t_ticket order by tktime desc limit #{beginIndex}, #{pageSize}
+        select kid,type,tkmoney,tktime,tname,tintro from t_ticket order by tktime desc limit #{beginIndex}, #{pageSize}
     </select>
     <select id="count" parameterType="top.zzh.common.Pager" resultType="long">
         select count(kid) from t_ticket
     </select>
     <select id="getById" parameterType="long" resultType="top.zzh.vo.TicketVo">
-        select kid,type,tkmoney,tktime from t_ticket where kid=#{kid}
+        select kid,type,tkmoney,tktime,tname,tintro from t_ticket where kid=#{kid}
     </select>
     <select id="listPagerCriteria" resultType="ticket">
-        select kid,type,tkmoney,tktime from t_ticket where 1=1
+        select kid,type,tkmoney,tktime,tname,tintro from t_ticket where 1=1
         <include refid="query_common_sql"></include>
         order by tktime desc limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
@@ -35,7 +38,7 @@
 
     <insert id="save" parameterType="top.zzh.vo.TicketVo">
         <![CDATA[
-			insert into t_ticket(type,tkmoney,tktime) values(#{type},#{tkmoney},#{tktime} )
+			insert into t_ticket(type,tkmoney,tktime,tname,tintro) values(#{type},#{tkmoney},#{tktime},#{tname},#{tintro} )
 		]]>
     </insert>
 
@@ -52,6 +55,12 @@
             </if>
             <if test="tktime!= null">
                 tktime = #{tktime},
+            </if>
+            <if test="tname!= null and tname.trim()!=''">
+                tname = #{tname},
+            </if>
+            <if test="tintro!= null and tintro.trim()!=''">
+                tintro = #{tintro},
             </if>
         </set>
         where kid = #{kid}
