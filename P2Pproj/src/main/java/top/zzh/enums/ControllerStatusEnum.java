@@ -23,6 +23,7 @@ public enum ControllerStatusEnum {
     USER_LOGIN_ERROR_EXIST_POWER(002, "error", "账户不存在或者权限不足！"),
     USER_LOGIN_ERROR_EXIST(003, "error", "账户不存在！"),
     USER_LOGIN_ERROR_ALREADYEXIST(004, "error", "账户已存在！"),
+    USER_REGISTER_FAIL(901,"error","手机号已存在！"),
     USER_LOGIN_ERROR_ALREADY_EXIST(005, "error", "用户名已存在！"),
     USER_SUCCESS(007,"success","成功！"),
     CASH_SAVE_SUCCESS(103, "ok", "添加成功"),

@@ -3,30 +3,30 @@ var check="";
 
 function checkPhone() {
 
-    $.post(path + '/luser/checkPhone',
-        $('#registerForm').serialize(),
-        function (data) {
-            if (data.result === 'ok' || data.result==='logined') {
-                // window.location.href = path + "/luser/userindex";
-            } else {
-                swal(data.message,"","error");
-
-                if(data.message!=null){
-                    check=data.message;
-                }
-            }
-        },
-        'json'
-    );
+    // $.post(path + '/luser/checkPhone',
+    //     $('#registerForm').serialize(),
+    //     function (data) {
+    //         if (data.result === 'ok' || data.result==='logined') {
+    //             // window.location.href = path + "/luser/userindex";
+    //         } else {
+    //             swal(data.message,"","error");
+    //
+    //             if(data.message!=null){
+    //                 check=data.message;
+    //             }
+    //         }
+    //     },
+    //     'json'
+    // );
 }
 
 
 function register() {
 
-    if(check!=null && check!=""){
-        swal(check,"","error");
-        return;
-    }
+    // if(check!=null && check!=""){
+    //     swal(check,"","error");
+    //     return;
+    // }
 
 
     var name=document.getElementById("uname").value;
