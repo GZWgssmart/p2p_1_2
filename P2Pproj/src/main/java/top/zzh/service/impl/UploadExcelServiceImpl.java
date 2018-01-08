@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.Permission;
 import top.zzh.common.PathUtil;
-import top.zzh.controller.UploadExcel;
+import top.zzh.controller.UploadExcelController;
 import top.zzh.dao.ExcelIntoDAO;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.AbstractService;
@@ -37,7 +37,7 @@ import java.util.List;
 @Service
 public class UploadExcelServiceImpl extends AbstractService implements UploadExcelService {
 
-    private Logger logger = LoggerFactory.getLogger(UploadExcel.class);
+    private Logger logger = LoggerFactory.getLogger(UploadExcelController.class);
 
     @Autowired
     private ExcelIntoDAO excelIntoDAO;
@@ -52,9 +52,7 @@ public class UploadExcelServiceImpl extends AbstractService implements UploadExc
                 String excelDir = getExcelRootPath(request);
                 String excelFile = getExcelType(excelDir);
                 List<Permission> permissionList =  judgeFileTypeAndReadExcel(excelDir + excelFile);
-                for (Permission permission : permissionList) {
-                    excelIntoDAO.saveJur(permission);
-                }
+                excelIntoDAO.intoDB(permissionList);
                 deleteExcel(excelDir + excelFile);
                 return ControllerStatusVO.status(ControllerStatusEnum.UPLOAD_EXCEL_SUCCESS);
             } catch (IOException e) {

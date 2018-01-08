@@ -206,8 +206,21 @@ public class LUserController {
 
     @PostMapping("registerSave")
     @ResponseBody
-    public ControllerStatusVO registerSave(User user, String userCode) {
+    public ControllerStatusVO registerSave(HttpSession session,User user, String userCode) {
         ControllerStatusVO statusVO = null;
+        User user1 = userService.getByPhone(user.getPhone());
+        User user2=userService.getByface(user.getUname());
+        if(user2!=null){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_ERROR_ALREADY_EXIST);
+            return statusVO;
+        }
+        if (user1!=null) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_REGISTER_FAIL);
+            return statusVO;
+        }
+
+
+
         User userToRecommend = null;
         if (userCode != null && !userCode.equals("")) {
             userToRecommend = (User) recommendService.getByTzm(userCode);
@@ -246,6 +259,7 @@ public class LUserController {
             recommend.setRname(user.getUname());
             recommendService.save(recommend);
         }
+        session.setAttribute("uname",user.getUname());
         return statusVO;
     }
 

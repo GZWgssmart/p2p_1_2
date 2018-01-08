@@ -9,6 +9,10 @@
     <title>权限管理</title>
     <jsp:include page="../common/bootstraptablecss.jsp"></jsp:include>
     <link href="<%=path%>/static/css/jquery.datetimepicker.css" rel="stylesheet">
+
+    <!--弹出框样式-->
+    <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/>
+    <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
     <style>
         .fileinput-button {
             position: relative;
@@ -178,15 +182,15 @@
         if(responseText.result == 'error'){  //文件类型错误
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "文件类型错误","error");
         } else if(responseText.result == 'ok'){ //上传成功
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "导入权限成功！","success");
         } else if(responseText.result == 'error') {  //服务器繁忙
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
-            alert(responseText.message);
+            swal(responseText.message, "服务器繁忙！","error");
         }
     }
 

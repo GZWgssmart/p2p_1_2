@@ -23,6 +23,7 @@ public interface RoleDAO  extends BaseDAO {
     List<Object> listPager(@Param("pager") Pager pager);
     @Override
     Long count();
+    void updateStatus(@Param("roleId") Long roleId,@Param("status") Integer status);
 
 
 }

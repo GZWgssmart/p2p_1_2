@@ -2,8 +2,10 @@ package top.zzh.enums;
 
 
 public enum ControllerStatusEnum {
-    PERMISSION_UPDATE_STATUS_SUCCESS(85,"ok","修改状态成功"),
-    PERMISSION_UPDATE_STATUS_FAIL(86,"error","修改状态失败"),
+    ROLE_UPDATE_STATUS_FAIL(83,"error","修改角色状态失败"),
+    ROLE_UPDATE_STATUS_SUCCESS(84,"ok","修改角色状态成功"),
+    PERMISSION_UPDATE_STATUS_SUCCESS(85,"ok","修改权限状态成功"),
+    PERMISSION_UPDATE_STATUS_FAIL(86,"error","修改权限状态失败"),
     ROLE_PERMISSION_SAVE_FAIL(87,"error","保存失败"),
     ROLE_PERMISSION_SAVE_SUCCESS(88,"ok","保存成功！"),
     ROLE_ADD_SUCCESS(89,"ok","角色新增成功！"),
@@ -26,6 +28,7 @@ public enum ControllerStatusEnum {
     USER_LOGIN_ERROR_EXIST_POWER(002, "error", "账户不存在或者权限不足！"),
     USER_LOGIN_ERROR_EXIST(003, "error", "账户不存在！"),
     USER_LOGIN_ERROR_ALREADYEXIST(004, "error", "账户已存在！"),
+    USER_REGISTER_FAIL(901,"error","手机号已存在！"),
     USER_LOGIN_ERROR_ALREADY_EXIST(005, "error", "用户名已存在！"),
     CASH_SAVE_SUCCESS(103, "ok", "添加成功"),
     CASH_SAVE_FAIL(104, "error", "添加失败，稍候再试"),

@@ -55,9 +55,9 @@ $('#mytab').bootstrapTable({
             align: 'center',
             formatter: function (value, row, index) {
                 if(value == 1){
-                    return "激活";
+                    return '<label style="color:green">激活</label>';
                 }else if(value ==2){
-                    return "冻结";
+                    return '<label style="color:red">冻结</label>';
                 }
 
             }
@@ -69,11 +69,11 @@ $('#mytab').bootstrapTable({
             formatter: function (value, row, index) {
 
                 if(row.status == 1){
-                    var e = '<a title="编辑" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\')">修改</a> ';
-                    var f = '<a title="状态修改" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\', \'' + 2 + '\')"></i>冻结</a> ';
+                    var e = '<a title="修改" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:chartreuse"></i></a> ';
+                    var f = '<a title="冻结" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\', \'' + 2 + '\')"><i class="glyphicon glyphicon-remove" alt="冻结" style="color:red"></i></a> ';
                 }else if(row.status == 2){
                     var e = '';
-                    var f = '<a title="状态修改" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\',\'' + 1 + '\')"></i>激活</a> ';
+                    var f = '<a title="激活" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\',\'' + 1 + '\')"><i class="glyphicon glyphicon-ok" alt="激活" style="color:green"></i></a> ';
                 }
                 return e + f;
             }
@@ -232,16 +232,46 @@ $('#updateForm').bootstrapValidator({
 });
 
 function updateStatus(permissionId,status) {
+    if(status == 1){
+        swal({
+                title: "确定激活吗？",
+                text: "激活后该角色可进行修改操作！",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText:"取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定激活",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("激活！", "角色已被激活。", "success");
+                postUpdateStatus(permissionId,status);
+            });
+    }else if(status == 2){
+        swal({
+                title: "确定冻结吗？冻结后该角色将不可用",
+                text: "冻结后可激活,激活后可用！",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText:"取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定冻结",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("冻结！", "角色已被冻结。", "success");
+                postUpdateStatus(permissionId,status);
+            });
+    }
+}
+
+function postUpdateStatus(permissionId,status) {
     $.post(
         "/permission/updateStatus",
         {permissionId:permissionId,status:status},
         function (data) {
             if(data.result == "ok"){
                 refush();
-                layer.msg(data.message, {icon: 1, time: 1000});
-            }else{
-                layer.msg(data.message, {icon: 2, time: 1000});
-
             }
         },
         "json"
