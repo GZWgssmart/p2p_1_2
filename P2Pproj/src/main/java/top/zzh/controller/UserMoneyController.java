@@ -5,16 +5,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.LogMoney;
+import top.zzh.bean.User;
 import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
+import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
+import top.zzh.service.BankCardService;
 import top.zzh.service.LogMoneyService;
 import top.zzh.service.UserMoneyService;
+import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.UserMoneyVO;
 
@@ -33,7 +38,13 @@ public class UserMoneyController {
     @Autowired
     private LogMoneyService logMoneyService;
 
+    @Autowired
+    private BankCardService bankCardService;
+
     private ControllerStatusVO statusVO;
+
+    @Autowired
+    private UserService userService;
 
     private Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
 
@@ -50,13 +61,29 @@ public class UserMoneyController {
         return statusVO;
     }
 
-    @PostMapping("chongzhi")
+    @PostMapping("chongzhi/{pass}")
     @ResponseBody
-    public ControllerStatusVO chongzhi(HttpSession session, UserMoney userMoney){
+    public ControllerStatusVO chongzhi(HttpSession session, UserMoney userMoney, @PathVariable("pass")String pass){
         logger.info("充值！");
+
         //获取用户Id
         Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         System.out.println("ID:"+id);
+        User user=(User)userService.getById(id);
+        String cardao=bankCardService.getDank(id);
+        String p =user.getZpwd().toString();
+        String pa=EncryptUtils.md5(pass);
+        String c=userMoney.getZmoney().toString();
+        System.out.println(cardao);
+        System.out.println(p);
+        System.out.println(pa);
+        if (!p.equals(pa)){//密码错误
+            statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
+            return statusVO;
+        }else if(!c.equals(cardao)){//银行卡错误
+            statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_ERROR);
+            return statusVO;
+        }
         try {
             if(userMoneyService.getMoney(id.toString())!=null){
                 //用户当前可用余额
