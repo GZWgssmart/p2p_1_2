@@ -21,11 +21,9 @@ import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
 import top.zzh.query.LoginLogQuery;
 import top.zzh.query.UserQuery;
-import top.zzh.service.LoginLogService;
-import top.zzh.service.RecommendService;
-import top.zzh.service.RoleService;
-import top.zzh.service.UserService;
+import top.zzh.service.*;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.OptionVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,6 +52,9 @@ public class LUserController {
 
     @Autowired
     private RecommendService recommendService;
+
+    @Autowired
+    private OptionService optionService;
 
     private LoginLogQuery loginLogQuery;
 
