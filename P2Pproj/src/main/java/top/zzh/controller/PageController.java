@@ -287,4 +287,14 @@ public class PageController {
     public String zifei() {
         return "index/zifei";
     }
+
+	@RequestMapping("rundata")
+    public String rundata() {
+        return "index/rundata";
+    }
+
+    @RequestMapping("feedBackAdd")
+    public String feedBackAdd() {
+        return "user/feedBackAdd";
+    }
 }
