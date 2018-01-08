@@ -406,5 +406,18 @@ public class LUserController {
         return statusVO;
     }
 
+	@PostMapping("feedback")
+    @ResponseBody
+    public ControllerStatusVO feedback(OptionVo optionVo){
+        ControllerStatusVO controllerStatusVO=null;
+        try{
+            optionService.save(optionVo);
+            controllerStatusVO=ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
+        }catch (RuntimeException run){
+            controllerStatusVO=ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_FAIL);
+        }
+        return  controllerStatusVO;
+    }
+
 
 }
