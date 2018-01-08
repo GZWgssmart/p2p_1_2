@@ -7,23 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.*;
+import top.zzh.bean.Reward;
+import top.zzh.bean.Tzb;
+import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
 import top.zzh.common.JLff;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
-import top.zzh.service.RewardService;
-import top.zzh.service.TzbService;
-import top.zzh.service.UserMoneyService;
+import top.zzh.service.*;
+import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.TzbVO;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 /**
  * Created by 曾志湖 on 2017/12/26.
@@ -40,30 +41,56 @@ public class TzbController {
     @Autowired
     private RewardService rewardService;
 
+    private BorrowApplyService borrowApplyService;
+    @Autowired
+    private BorrowDetailService borrowDetailService;
     @Autowired
     private UserMoneyService userMoneyService;
 
     @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(User user, Tzb tzb, HttpSession session, BorrowDetail borrowDetail){
-        User user1 = (User)session.getAttribute(Constants.USER_IN_SESSION);
-        logger.info("用户"+user1.getRname()+"正在开始投资");
-        ControllerStatusVO statusVO = null;
-        Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
-        //获取当前投资用户的id
-        tzb.setUid(userid);
-        tzb.setJuid(borrowDetail.getBaid());
-        tzb.setMoney(tzb.getMoney());
-        tzb.setTime(new Date());
-        tzb.setNprofit(borrowDetail.getNprofit());
-        tzb.setCpname(borrowDetail.getCpname());
-        tzb.setBaid(borrowDetail.getBaid());
-        tzbService.save(tzb);
-        //用户进行投资时，更新投资人的用户资金表，总金额减，可用余额减，投资总额加，待收总额加，更新借款人的用户资金表，总资产加， 可用余额不动，冻结金额加
-        
+    public String save(Tzb tzb, HttpSession session,Object obj){
+        //用户如果没有登录则跳转到登录页面，如果登录则可以进行投资
+        if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
+            return "user/nopower";
+        }else{
+            String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
+            logger.info("用户"+name+"正在开始投资");
+            ControllerStatusVO statusVO = null;
+            Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
+            TzbVO tzbVO = (TzbVO)obj;
+            BorrowDetailVO borrowDetailVO = (BorrowDetailVO)borrowDetailService.getById(tzbVO.getBaid());
+            if (borrowDetailVO.getUid().equals(tzbVO.getUid())){
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_TZ_FAIL);
+            }
+            tzbVO.setJuid(borrowDetailVO.getUid());
+            tzbVO.setCpname(borrowDetailVO.getCpname());
+            tzbVO.setNprofit(borrowDetailVO.getNprofit());
+            tzb.setUid(userid);
+            tzbService.save(tzb);
+            //用户进行投资时，更新投资人的用户资金表，总金额减，可用余额减，投资总额加，待收总额加，更新借款人的用户资金表，总资产加， 可用余额不动，冻结金额加
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_SUCCESS);
+            //修改投资人的资产
+            UserMoney userMoney =(UserMoney) userMoneyService.getById(tzbVO.getUid());
+            //如果可用余额小于投资余额，则用户进行充值
+            if(userMoney.getKymoney().compareTo(tzbVO.getMoney())==-1){
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_MONEY_ENOUGH);
+            }
+            userMoney.setTzmoney(userMoney.getTzmoney().add(tzbVO.getMoney()));
+            //获取投资总额所对应的投资奖励百分比，系统自动添加
 
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_SUCCESS);
-        return statusVO;
+            //添加投资奖励
+
+            //更新用户资产
+            userMoney.setKymoney(userMoney.getKymoney().subtract(tzbVO.getMoney()));
+            //初始化收益
+            Float yearNporofit = borrowDetailVO.getNprofit();
+            //月利率
+            Float monthNprofit = yearNporofit/12;
+            BigDecimal symoney = BigDecimal.valueOf(0);
+            //一次还清和先息后本的用户收益计息方式
+            
+            return "user/userindex";
+        }
     }
     
     @RequestMapping("pager_criteria")
