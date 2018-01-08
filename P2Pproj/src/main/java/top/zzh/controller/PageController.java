@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Bz;
 import top.zzh.bean.User;
 import top.zzh.common.Constants;
 import top.zzh.service.*;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.TzbVO;
+import top.zzh.vo.UserTicketVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,6 +46,9 @@ public class PageController {
 
     @Autowired
     private TzbService tzbService;
+
+    @Autowired
+    private UserTicketService userTicketService;
 
     //前台投资理财计算器
     @RequestMapping("cal")
@@ -109,8 +114,22 @@ public class PageController {
     }
 
     @RequestMapping("hongbao")
-    public String hongbao() {
-        return "user/hongbao";
+    public ModelAndView hongbao(HttpSession session) {
+        List<UserTicketVo> unuseList=userTicketService.unuse((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        List<UserTicketVo> usedList=userTicketService.used((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        List<UserTicketVo> overList=userTicketService.overed((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        Integer unuseCount=userTicketService.unuseCount((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        Integer useCount=userTicketService.usedCount((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        Integer overCount=userTicketService.overedCount((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("unuseList",unuseList);
+        mv.addObject("usedList",usedList);
+        mv.addObject("overList",overList);
+        mv.addObject("unuseCount",unuseCount);
+        mv.addObject("usedCount",useCount);
+        mv.addObject("overCount",overCount);
+        mv.setViewName("user/hongbao");
+        return mv;
     }
 
     @RequestMapping("huikuan")
