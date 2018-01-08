@@ -7,17 +7,39 @@ import java.util.Date;
 public class Ticket {
     private Integer kid;
 
-    private Byte type;//优惠券类型，如现金劵，代金券，体验金
+    private Byte type;//优惠券类型，如现金劵，代金券，体验金,加息券
 
     private BigDecimal tkmoney;//优惠券金额
 
     private Date tktime;//有效时间
 
-    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime) {
+    private String tname;//优惠卷名称
+
+    private String tintro;//优惠卷简介
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public String getTintro() {
+        return tintro;
+    }
+
+    public void setTintro(String tintro) {
+        this.tintro = tintro;
+    }
+
+
+    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime, String tname, String tintro) {
         this.kid = kid;
         this.type = type;
         this.tkmoney = tkmoney;
         this.tktime = tktime;
+        this.tname = tname;
+        this.tintro = tintro;
     }
 
     public Ticket() {
