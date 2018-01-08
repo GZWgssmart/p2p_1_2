@@ -35,6 +35,13 @@ $('#mytab').bootstrapTable({
             align: 'center',
             valign: 'middle'
         },
+        {
+            title: '券的名称',
+            field: 'tname',
+            align: 'center',
+            sortable: true
+        },
+
 
         {
             title: '券的类别',
@@ -61,6 +68,19 @@ $('#mytab').bootstrapTable({
             title: '面值',
             field: 'tkmoney',
             align: 'center',
+            sortable: true,
+            formatter: function (value, row, index) {
+               if(row.type==4){
+                   return value+"%";
+               }else{
+                   return value;
+               }
+            }
+        },
+        {
+            title: '简介',
+            field: 'tintro',
+            align: 'center',
             sortable: true
         },
         {
@@ -84,8 +104,10 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
+                var d=  '<a title="点击查看内容" href="javascript:void(0);"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#seeContentModel" onclick="seeContent(\'' + row.tintro + '\')"><i class="glyphicon glyphicon-zoom-in" style="color:green"></i></a> ';
+
                 var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#myModal" onclick="return edit(\'' + row.kid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                return e;
+                return d+e;
             }
         }
     ],
@@ -119,70 +141,24 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function del(bzid, state) {
-    if (state == 0) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
-        return;
-    }
-    layer.confirm('确认要删除吗？', function (index) {
-        $.ajax({
-            type: 'POST',
-            url: '/bz/delete/' + bzid,
-            dataType: 'json',
-            success: function (data) {
-                if (data.message == 'ok') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                }
-                refush();
-            },
-            error: function (data) {
-                console.log(data.msg);
-            },
-        });
-    });
-}
-
-function deleteMany() {
-    var state = "";
-    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        if (row.state == 0) {
-            state += row.state;
-        }
-        return row.bzid;
-    });
-    if (row == "") {
-        layer.msg('删除失败，请勾选数据!', {
-            icon: 2,
-            time: 2000
-        });
-        return;
-    }
 
 
-    $("#bzid").val(row);
-    layer.confirm('确认要删除数据吗？', function (index) {
-        $.post(
-            "/bz/delete/" +$("#bzid").val(),
-            function (data) {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                    refush();
-                } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                }
-                refush();
-            }, "json"
-        );
-    });
-
-}
 
 function edit(kid) {
     $.post("/ticket/getById/" + kid,
         function (data) {
             $("#updateForm").autofill(data);
+            if(data.type==4){
+                $(".tkmoneychange").hide();
+                $(".tkmoneychange2").show();
+                $("#tkmoney5").val(data.tkmoney);
+                $("#tkmoney2").val(null);
+            }else{
+                $(".tkmoneychange").show();
+                $(".tkmoneychange2").hide();
+            }
+            $("#tname3").val(data.tname);
+            $("#tintro3").val(data.tintro);
         },
         "json"
     );
@@ -191,9 +167,18 @@ function edit(kid) {
 
 //查询按钮事件
 $('#search_btn').click(function () {
+    var ticket=$("#tkmoney3").val();
+    if(ticket==null||ticket==""){
+        ticket=$("#tkmoney6").val();
+    }
     $('#mytab').bootstrapTable('refresh', {url: '/ticket/pager',
-        query:{type:$("#type3").val(),tktime:$("#tktime3").val(),tkmoney:$("#tkmoney3").val()}});
-})
+        query:{
+                type:$("#type3").val(),
+                tktime:$("#tktime3").val(),
+                tkmoney:ticket,
+                tname:$("#tname2").val()
+    }});
+});
 function refush() {
     $('#mytab').bootstrapTable('refresh', {url: '/ticket/pager'});
 }
@@ -260,9 +245,6 @@ $('#formadd').bootstrapValidator({
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
-    alert($("#tkmoney").val());
-    alert($("#tkmoney4").val());
-    alert($(".tkmoney").val());
     $.post(
         "/ticket/save",
         $("#formadd").serialize(),
@@ -285,16 +267,49 @@ $("#webAdd").on("hidden.bs.modal", function() {
 $("#myModal").on("hidden.bs.modal", function() {
     $(this).removeData("bs.modal");
 });
-$("#type1").change(function () {
-    if($("#type1").val()==4){
+$("#type3").change(function () {
+    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
         $(".tkmoneychange").hide();
         $(".tkmoneychange2").show();
-        alert("aaa");
+        $("#tkmoney2").val(null);
+        $("#tkmoney3").val(null);
     }else{
         $(".tkmoneychange").show();
         $(".tkmoneychange2").hide();
-
-        alert("bbbbb")
+        $("#tkmoney5").val(null);
+        $("#tkmoney6").val(null);
     }
 });
+$("#type1").change(function () {
+    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
+        $(".tkmoneychange3").hide();
+        $(".tkmoneychange4").show();
+        $("#tkmoney2").val(null);
+        $("#tkmoney3").val(null);
+    }else{
+        $(".tkmoneychange3").show();
+        $(".tkmoneychange4").hide();
+        $("#tkmoney5").val(null);
+        $("#tkmoney6").val(null);
+    }
+});
+$("#type2").change(function () {
+    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
+        $(".tkmoneychange5").hide();
+        $(".tkmoneychange6").show();
+        $("#tkmoney2").val(null);
+        $("#tkmoney3").val(null);
+    }else{
+        $(".tkmoneychange5").show();
+        $(".tkmoneychange6").hide();
+        $("#tkmoney5").val(null);
+        $("#tkmoney6").val(null);
+    }
+});
+
+function seeContent(content) {
+    $("#contentSpan").html(content);
+}
+
+
 
