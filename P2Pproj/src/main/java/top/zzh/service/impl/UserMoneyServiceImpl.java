@@ -2,9 +2,12 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.UserMoney;
 import top.zzh.dao.UserMoneyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.UserMoneyService;
+
+import java.math.BigDecimal;
 
 /**
  * @author 陈桢
@@ -29,5 +32,15 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     @Override
     public void updateMoney(String money, String uid) {
         userMoneyDAO.updateMoney(money,uid);
+    }
+
+    @Override
+    public UserMoney findJlmoney(Long uid) {
+        return userMoneyDAO.findJlmoney(uid);
+    }
+
+    @Override
+    public void updateJlmoney(BigDecimal jlmoney, Long uid) {
+        userMoneyDAO.updateJlmoney(jlmoney, uid);
     }
 }

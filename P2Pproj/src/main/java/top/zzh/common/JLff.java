@@ -42,11 +42,14 @@ public class JLff {
         return result;
     }
 
+
     public static void main(String []a){
 
         JLff jLff=new JLff();
         BigDecimal results=jLff.jlj(BigDecimal.valueOf(99.8));
         System.out.println(results);
+        
+
     }
 
 }

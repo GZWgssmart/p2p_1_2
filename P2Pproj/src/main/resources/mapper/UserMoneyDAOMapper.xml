@@ -110,4 +110,18 @@
     ]]]>
     </select>
 
+    <!--查找奖励金-->
+    <select id="findJlmoney" resultType="top.zzh.bean.UserMoney">
+        <![CDATA[
+        select jlmoney from t_usermoney where  uid=#{uid}
+       ]]>
+    </select>
+
+    <!--修改奖励金-->
+    <update id="updateJlmoney">
+        <![CDATA[
+          update t_usermoney set jlmoney=#{jlmoney} where uid=#{uid}
+         ]]>
+    </update>
+
 </mapper>

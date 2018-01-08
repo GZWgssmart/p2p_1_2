@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.RewardDAO">
+    
+    <resultMap id="rewardMap" type="reward">
+
+    </resultMap>
+
+    <select id="findTmoney" resultMap="rewardMap">
+        <![CDATA[
+          select tmoney,money  from t_reward where uid=#{uid}
+        ]]>
+    </select>
+
+    <insert id="save" parameterType="reward">
+        <![CDATA[
+           insert into t_reward (uid,tmoney,money,state,date) values(#{uid},#{tmoney},#{money},#{state},#{date})
+        ]]>
+    </insert>
+
+
+    <update id="updateState" parameterType="reward">
+        <![CDATA[
+           update t_reward set state=#{state},date=#{date} where  uid=#{uid}
+        ]]>
+
+    </update>
+
+    <update id="updateTjmoney" parameterType="reward">
+        <![CDATA[
+           update t_reward set tmoney=#{tmoney},money=#{money} where  uid=#{uid}
+        ]]>
+
+    </update>
+
+</mapper>
+
