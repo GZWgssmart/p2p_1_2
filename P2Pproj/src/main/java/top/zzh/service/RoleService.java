@@ -14,5 +14,6 @@ public interface RoleService extends BaseService {
 
     void addRole(Role role);
     void updateRole(Role role);
+    void updateStatus(Long roleId,Integer status);
 
 }

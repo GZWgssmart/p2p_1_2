@@ -34,6 +34,11 @@ public class RoleServiceImpl implements RoleService {
         roleDAO.updateRole(role);
     }
 
+    @Override
+    public void updateStatus(Long roleId, Integer status) {
+        roleDAO.updateStatus(roleId,status);
+    }
+
 
     @Override
     public void save(Object obj) {

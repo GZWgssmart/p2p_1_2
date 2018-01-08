@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import top.zzh.common.PathUtil;
-import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.UploadExcelService;
 import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by XIE Shanlin on 2017.12.25.<br/>
@@ -23,9 +19,9 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping("/excel")
-public class UploadExcel {
+public class UploadExcelController {
 
-    private Logger logger = LoggerFactory.getLogger(UploadExcel.class);
+    private Logger logger = LoggerFactory.getLogger(UploadExcelController.class);
 
     @Autowired
     private UploadExcelService uploadExcelService;
