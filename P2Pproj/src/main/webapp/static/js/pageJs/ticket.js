@@ -149,13 +149,13 @@ function edit(kid) {
         function (data) {
             $("#updateForm").autofill(data);
             if(data.type==4){
-                $(".tkmoneychange").hide();
-                $(".tkmoneychange2").show();
+                $(".tkmoneychange5").hide();
+                $(".tkmoneychange6").show();
                 $("#tkmoney5").val(data.tkmoney);
                 $("#tkmoney2").val(null);
             }else{
-                $(".tkmoneychange").show();
-                $(".tkmoneychange2").hide();
+                $(".tkmoneychange5").show();
+                $(".tkmoneychange6").hide();
             }
             $("#tname3").val(data.tname);
             $("#tintro3").val(data.tintro);
@@ -261,49 +261,48 @@ $('#formadd').bootstrapValidator({
 });
 
 
-$("#webAdd").on("hidden.bs.modal", function() {
-    $(this).removeData("bs.modal");
-});
-$("#myModal").on("hidden.bs.modal", function() {
-    $(this).removeData("bs.modal");
-});
+
 $("#type3").change(function () {
-    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
+    if($("#type3").val()==4){
         $(".tkmoneychange").hide();
         $(".tkmoneychange2").show();
-        $("#tkmoney2").val(null);
         $("#tkmoney3").val(null);
     }else{
         $(".tkmoneychange").show();
         $(".tkmoneychange2").hide();
-        $("#tkmoney5").val(null);
         $("#tkmoney6").val(null);
     }
 });
+$("#webAdd").on('hidden.bs.modal', function (e) {
+    $(".tkmoneychange3").show();
+    $(".tkmoneychange4").hide();
+    // do something...
+});
+$("#myModal").on('hidden.bs.modal', function (e) {
+    $(".tkmoneychange5").show();
+    $(".tkmoneychange6").hide();
+    // do something...
+});
 $("#type1").change(function () {
-    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
+    if($("#type1").val()==4){
         $(".tkmoneychange3").hide();
         $(".tkmoneychange4").show();
-        $("#tkmoney2").val(null);
-        $("#tkmoney3").val(null);
+        $("#tkmoney1").val(null);
     }else{
         $(".tkmoneychange3").show();
         $(".tkmoneychange4").hide();
-        $("#tkmoney5").val(null);
-        $("#tkmoney6").val(null);
+        $("#tkmoney4").val(null);
     }
 });
 $("#type2").change(function () {
-    if($("#type1").val()==4||$("#type2").val()==4||$("#type3").val()==4){
+    if($("#type2").val()==4){
         $(".tkmoneychange5").hide();
         $(".tkmoneychange6").show();
         $("#tkmoney2").val(null);
-        $("#tkmoney3").val(null);
     }else{
         $(".tkmoneychange5").show();
         $(".tkmoneychange6").hide();
         $("#tkmoney5").val(null);
-        $("#tkmoney6").val(null);
     }
 });
 
