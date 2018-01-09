@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 public class UserMoney {
     private Long umid;
 
-    private Integer uid;//用户id
+    private Long uid;//用户id
 
     private BigDecimal zmoney;//总资产
 
@@ -22,7 +22,7 @@ public class UserMoney {
 
     private BigDecimal jlmoney;//奖励金额
 
-    public UserMoney(Long umid, Integer uid, BigDecimal zmoney, BigDecimal kymoney, BigDecimal symoney, BigDecimal tzmoney, BigDecimal djmoney, BigDecimal dsmoney, BigDecimal jlmoney) {
+    public UserMoney(Long umid, Long uid, BigDecimal zmoney, BigDecimal kymoney, BigDecimal symoney, BigDecimal tzmoney, BigDecimal djmoney, BigDecimal dsmoney, BigDecimal jlmoney) {
         this.umid = umid;
         this.uid = uid;
         this.zmoney = zmoney;
@@ -46,11 +46,11 @@ public class UserMoney {
         this.umid = umid;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

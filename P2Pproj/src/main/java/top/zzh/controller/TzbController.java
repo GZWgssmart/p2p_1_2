@@ -7,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.*;
+import top.zzh.bean.Reward;
+import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
 import top.zzh.common.JLff;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
-import top.zzh.service.LogMoneyService;
 import top.zzh.service.RewardService;
 import top.zzh.service.TzbService;
 import top.zzh.service.UserMoneyService;
@@ -22,9 +22,9 @@ import top.zzh.vo.TzbVO;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 /**
  * Created by 曾志湖 on 2017/12/26.
@@ -44,32 +44,30 @@ public class TzbController {
     @Autowired
     private UserMoneyService userMoneyService;
 
-    @Autowired
-    private LogMoneyService logMoneyService;
 
     @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(User user, Tzb tzb, HttpSession session, BorrowDetail borrowDetail){
-        User user1 = (User)session.getAttribute(Constants.USER_IN_SESSION);
-        logger.info("用户"+user1.getRname()+"正在开始投资");
-        ControllerStatusVO statusVO = null;
+    public String save(TzbVO tzb,HttpSession session){
         Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
-        //获取当前投资用户的id
-        tzb.setUid(userid);
-        tzb.setJuid(borrowDetail.getBaid());
-        tzb.setMoney(tzb.getMoney());
-        tzb.setTime(new Date());
-        tzb.setNprofit(borrowDetail.getNprofit());
-        tzb.setCpname(borrowDetail.getCpname());
-        tzb.setBaid(borrowDetail.getBaid());
-        tzbService.save(tzb);
-        //用户进行投资时，更新投资人的用户资金表，总金额减，可用余额减，投资总额加，待收总额加，更新借款人的用户资金表，总资产加， 可用余额不动，冻结金额加
-        
-
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_SUCCESS);
-        return statusVO;
+        String user = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        logger.info("用户正在开始投资");
+        ControllerStatusVO statusVO = null;
+        //用户如果没有登录则跳转到登录页面，如果登录则可以进行投资
+        if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
+            return "user/nopower";
+        }else{
+            if(user!=null){
+                tzb.setUid(userid);
+                //判断是否为自己的标
+                if(tzb.getJuid().equals(userid)) {
+                    statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
+                }
+                tzbService.add(tzb);
+            }
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
+            return "user/userindex";
+        }
     }
-    
+
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex,int pageSize, TzbVO tzbVO) {
@@ -106,9 +104,8 @@ public class TzbController {
 
         Timer timer=new Timer();
         Calendar calendar=Calendar.getInstance();
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)
-                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1,0);//calendar.get(Calendar.SECOND)秒
-
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
+                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
         JLff jLff=new JLff();
         Reward reward1=new Reward();
         BigDecimal ymoney=null;
@@ -169,11 +166,6 @@ public class TzbController {
                         yjlmoney=userMoney.getJlmoney();
                         jlmoney=yjlmoney.add(xjlmoney);
                     }
-                    LogMoney logMoney=new LogMoney();
-                    logMoney.setUid(uid);
-                    logMoney.setType((byte)3);
-                    logMoney.setIn(xjlmoney);
-                    logMoneyService.save(logMoney);
 
                     userMoneyService.updateJlmoney(jlmoney,uid);
                 }

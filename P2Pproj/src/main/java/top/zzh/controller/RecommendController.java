@@ -7,14 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.Recommend;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.RecommendService;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.RecommendData;
 import top.zzh.vo.RecommendVO;
+import top.zzh.vo.RecommendViewVO;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 谢学培 on 2017/12/21.
@@ -41,7 +46,26 @@ public class RecommendController {
         m.addObject("tzm",tzm);
         return m;
     }
+    @RequestMapping("listByUid")
+    public ModelAndView listByUid(HttpSession session,int pageNo, RecommendViewVO recommend) {
+        //long uid=(long)session.getAttribute(Constants.USER_ID_SESSION);O
 
+        recommend.setUid(36);
+        if (pageNo==0){
+            pageNo=1;
+        }
+        Pager obj=(Pager)recommendService.listPagerUid(pageNo, 3, recommend);
+        List<RecommendData> recommendList=new ArrayList<>();
+        for(Object o:obj.getRows()){
+            RecommendData recommend2 =(RecommendData)o;
+            recommendList.add(recommend2);
+        }
+        ModelAndView m=new ModelAndView();
+        m.setViewName("user/recommendList");
+        m.addObject("obj",recommendList);
+        m.addObject("page",obj);
+        return m;
+    }
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int pageIndex, int pageSize, RecommendVO recommend) {

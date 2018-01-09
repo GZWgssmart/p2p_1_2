@@ -63,7 +63,7 @@
 
     <select id="listAll" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-          select ba.baid,ba.bzid,ba.rname,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+          select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
         where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
 				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
@@ -117,4 +117,6 @@
             where h.huid = ba.huid and ba.uid = u.uid and ba.uid = #{uid}
         ]]>
     </select>
+
+
 </mapper>

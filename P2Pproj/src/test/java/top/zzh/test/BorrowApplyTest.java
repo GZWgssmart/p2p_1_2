@@ -9,7 +9,6 @@ import top.zzh.common.Pager;
 import top.zzh.dao.BorrowApplyDAO;
 import top.zzh.service.BorrowDetailService;
 import top.zzh.service.ShBorrowService;
-import top.zzh.vo.BorrowDetailVO;
 
 import java.math.BigDecimal;
 import java.util.Date;

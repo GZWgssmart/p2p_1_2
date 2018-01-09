@@ -32,16 +32,24 @@
         </style>
         <script type="text/javascript">
 
-        function disanfang(){
-            layer.open({
-                type: 2,
-                title: '绑定银行卡',
-                shadeClose: true,
-                shade: false,
-                maxmin: true, //开启最大化最小化按钮
-                area: ['893px', '600px'],
-                content: <%=path%>'/page/guodu'
-            });
+        function disanfang() {
+            var rname = $("#rname").val();
+            var idno = $("#idno").val();
+            if (rname=='') {
+                layer.alert('请输入您的真实姓名',{icon: 3});
+            } else if (idno=='') {
+                layer.alert('请输入您的身份证号码',{icon: 3});
+            } else {
+                layer.open({
+                    type: 2,
+                    title: '绑定银行卡',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: <%=path%>'/page/guodu'
+                });
+            }
         }
 
 
@@ -60,12 +68,12 @@
                         <ul>
                             <li>
                                 <label >真实姓名</label>
-                                <input type="text"  class="pay-txt" maxlength="16" value="${users.rname} "placeholder="您的真实姓名">
+                                <input type="text" id="rname" class="pay-txt" maxlength="16" value="${users.rname} "placeholder="您的真实姓名">
                                 <div id="realnameErrorDiv"></div>
                             </li>
                             <li>
                                 <label >身份证号</label>
-                                <input type="text" class="pay-txt" maxlength="18" value="${users.idno}" placeholder="您的身份证号">
+                                <input type="text" id="idno" class="pay-txt" maxlength="18" value="${users.idno}" placeholder="您的身份证号">
                                 <div id="idCardErrorDiv">
                                     <p style="margin-top:10px;">身份证信息认证后将不可修改，请您仔细填写</p>
                                 </div>

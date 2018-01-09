@@ -9,5 +9,6 @@ public interface BorrowDetailService extends BaseService {
 
     //修改图片
     void updateTupian(Object obj);
+    void updateBybaid(Object obj);
     BorrowDetailVO findDetails(Long baid);
 }

@@ -17,22 +17,22 @@ public class UserMoneyTest extends BaseTest {
     @Autowired
     private UserMoneyDAO userMoneyDAO;
 
-    @Test
-    public void save(){
-        UserMoney userMoney =new UserMoney();
-        userMoney.setUid(1);
-        userMoney.setZmoney(BigDecimal.valueOf(10000));
-        userMoneyDAO.save(userMoney);
-    }
-
-    @Test
-    public void update(){
-        UserMoney userMoney =new UserMoney();
-        BigDecimal bigDecimal=new BigDecimal(10000);
-        userMoney.setUid(1);
-        userMoney.setTzmoney(bigDecimal);
-        userMoneyDAO.update(userMoney);
-    }
+//    @Test
+//    public void save(){
+//        UserMoney userMoney =new UserMoney();
+//        userMoney.setUid(1);
+//        userMoney.setZmoney(BigDecimal.valueOf(10000));
+//        userMoneyDAO.save(userMoney);
+//    }
+//
+//    @Test
+//    public void update(){
+//        UserMoney userMoney =new UserMoney();
+//        BigDecimal bigDecimal=new BigDecimal(10000);
+//        userMoney.setUid(1);
+//        userMoney.setTzmoney(bigDecimal);
+//        userMoneyDAO.update(userMoney);
+//    }
 
     @Test
     public void listPager(){

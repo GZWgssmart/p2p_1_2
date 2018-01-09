@@ -2,11 +2,9 @@ package top.zzh.test;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.zzh.bean.BorrowApply;
 import top.zzh.bean.BorrowDetail;
 import top.zzh.common.Pager;
 import top.zzh.dao.BorrowDetailDAO;
-import top.zzh.service.BorrowDetailService;
 import top.zzh.vo.BorrowApplyVO;
 
 import java.math.BigDecimal;

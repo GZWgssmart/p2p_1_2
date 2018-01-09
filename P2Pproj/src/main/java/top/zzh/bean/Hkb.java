@@ -47,14 +47,16 @@ public class Hkb {
 
     private Date yustartime;//逾期执行时间
 
+    private Integer djq;//还款第几期
     private Long huid;//贷后负责人
 
     private Long int1;
 
     private String str1;
 
-    public Hkb(Long hkid, Long uid, String rname, String cpname, Integer rnum, Integer tnum, Date ytime, Date rtime, String bzname, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, BigDecimal yfx, BigDecimal rfx, Integer yucount, Byte state, Long baid, Date yustartime, Long huid, Long int1, String str1) {
+    public Hkb(Integer djq,Long hkid, Long uid, String rname, String cpname, Integer rnum, Integer tnum, Date ytime, Date rtime, String bzname, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, BigDecimal yfx, BigDecimal rfx, Integer yucount, Byte state, Long baid, Date yustartime, Long huid, Long int1, String str1) {
         this.hkid = hkid;
+        this.djq = djq;
         this.uid = uid;
         this.rname = rname;
         this.cpname = cpname;
@@ -83,6 +85,15 @@ public class Hkb {
     public Hkb() {
         super();
     }
+
+    public void setDjq(Integer djq) {
+        this.djq = djq;
+    }
+
+    public Integer getDjq() {
+        return djq;
+    }
+
 
     public Long getHkid() {
         return hkid;

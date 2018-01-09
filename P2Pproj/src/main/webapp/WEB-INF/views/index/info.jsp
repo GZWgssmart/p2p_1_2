@@ -41,10 +41,10 @@
                     <li><span class="c-888">最小投标金额：</span> 100.00元 </li>
                     <li><span class="c-888">借款用途：</span>${borrow.mpurpose}</li>
                     <li class="colspan"> <span class="c-888 fl">投标进度：</span>
-                        <div class="progress-bar fl"> <span style="width:${(borrow.tzmoney/borrow.money)*100}%"></span> </div>
-                        <span class="c-green">${(borrow.tzmoney/borrow.money)*100}%</span>
+                        <div class="progress-bar fl"> <span style="width:${(borrow.mmoney/borrow.money)*100}%"></span> </div>
+                        <span class="c-green">${(borrow.mmoney/borrow.money)*100}%</span>
                     </li>
-                    <li> <span class="c-888">最大投标金额：</span> <span > ${borrow.money-borrow.tzmoney}元</span> </li>
+                    <li> <span class="c-888">最大投标金额：</span> <span > ${borrow.money-borrow.mmoney}元</span> </li>
                     <li> <span class="c-888">可投标时间：</span> <span id="account_range"> ${borrow.deadline}</span> </li>
                 </ul>
             </div>
@@ -53,23 +53,24 @@
                     <p class="text">
                     <div class="subject-s-r-c">
                         <p>可用余额：<span class="f24 c-333">${borrow.kymoney}</span>元</p>
-                        <P>预期收益：<span class="color">0.00</span></P>
                     </div>
                     <div class="subject-s-r-c">
-                        <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.tzmoney}</span>元</p>
+                        <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.mmoney}</span>元</p>
                     </div>
                     <div class="input">
-                        <form method="post" action="">
+                        <form method="post" action="<%=path%>/tz/save">
                             <input type="text" style="display: none" id="kymoney" value="${borrow.kymoney}">
                             <input type="text" style="display: none" id="nprofit" value="${borrow.nprofit}">
                             <input type="text" style="display: none" id="term" value="${borrow.term}">
                             <input type="text" style="display: none" id="sid" value="${borrow.sid}">
-                            <input type="text" class="pay-txt" placeholder="请输入投资金额" >
-                            <c:if test="${borrow.tzmoney<borrow.money}">
-                                <button class="btn"  type="button">投标</button>
+                            <input type="text" style="display: none" id="baid" value="${borrow.baid}">
+                            <input type="text" style="display: none" id="juid" name="juid" value="${borrow.juid}">
+                            <input type="text" name="money" id="money" placeholder="请输入投标金额" >
+                            <c:if test="${borrow.mmoney<borrow.money}">
+                                <input class="btn"  type="submit" value="投标">
                             </c:if>
-                            <c:if test="${borrow.tzmoney==borrow.money}">
-                                <button class="btn disabled" id="investBtn" type="button">还款中</button>
+                            <c:if test="${borrow.mmoney==borrow.money}">
+                                <input  class="btn disabled" id="investBtn" type="submit" value="还款中">
                             </c:if>
                             <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
                         </form>
@@ -176,8 +177,8 @@
                 </div>
             </div>
             <div class="ui-tab-item" style="display: none;">
-                <div class="repayment-list"> 目前投标总额：<span class="c-orange">40,000.00 元</span>&nbsp;&nbsp;
-                    剩余投标金额：<span class="c-orange">0.00 元</span>
+                <div class="repayment-list"> 目前投标总额：<span class="c-orange">${borrow.money} 元</span>&nbsp;&nbsp;
+                    剩余可投标金额：<span class="c-orange">${borrow.money-borrow.mmoney} 元</span>
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tbody>
                         <tr>
@@ -240,6 +241,7 @@
         </div>
     </div>
 </div>
+
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
 </body>

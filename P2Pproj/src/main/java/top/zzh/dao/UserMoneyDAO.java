@@ -26,4 +26,7 @@ public interface UserMoneyDAO extends BaseDAO {
     UserMoney findJlmoney(@Param("uid") Long uid);
 
     void updateJlmoney(@Param("jlmoney")BigDecimal jlmoney,@Param("uid")Long uid);
+
+    Object getByUserId(Long id);
+
 }

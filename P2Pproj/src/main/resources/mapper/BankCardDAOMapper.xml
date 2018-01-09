@@ -51,7 +51,7 @@
 
     <delete id="removeById" parameterType="java.lang.Long">
         <![CDATA[
-            delete from t_bankcard where bcid = #{bcid}
+            delete from t_bankcard where uid = #{bcid}
         ]]>
     </delete>
 </mapper>

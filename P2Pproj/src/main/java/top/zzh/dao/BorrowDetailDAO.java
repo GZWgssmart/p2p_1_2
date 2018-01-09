@@ -26,6 +26,7 @@ public interface BorrowDetailDAO extends BaseDAO{
     //修改图片
     void updateTupian(Object obj);
 
+    void updateBybaid(Object obj);
     //查看详情
     BorrowDetailVO findDetails(@Param("baid")Long baid);
 

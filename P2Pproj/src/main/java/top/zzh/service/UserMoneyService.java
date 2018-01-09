@@ -16,4 +16,5 @@ public interface UserMoneyService extends BaseService {
     UserMoney findJlmoney(Long uid);
 
     void updateJlmoney(BigDecimal jlmoney,Long uid);
+    Object getByUserId(Long id);
 }
