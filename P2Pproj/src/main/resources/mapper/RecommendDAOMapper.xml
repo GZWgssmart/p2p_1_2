@@ -42,13 +42,13 @@
         <include refid="cash_query_criteria"/>
     </select>
 
-    <select id="listPagerUid" resultType="recommend">
-        select id,uid,rname,`date` from t_recommend where tid=#{tid}
+    <select id="listPagerUid" resultType="top.zzh.vo.RecommendData">
+        select id,uid,rname,`date` from t_recommend where tid=#{query.uid}
         <include refid="cash_query_criteria"/>
         order by `date` desc limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countByUid" resultType="long">
-        select count(id) from t_recommend where tid=#{tid}
+        select count(id) from t_recommend where tid=#{query.uid}
         <include refid="cash_query_criteria"/>
     </select>
     <delete id="remove" parameterType="recommend">

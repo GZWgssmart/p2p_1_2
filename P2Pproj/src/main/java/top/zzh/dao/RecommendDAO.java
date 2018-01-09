@@ -4,6 +4,7 @@ package top.zzh.dao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.common.Pager;
+import top.zzh.vo.RecommendViewVO;
 
 import java.util.List;
 
@@ -26,4 +27,8 @@ public interface RecommendDAO extends BaseDAO {
     Object getByTzm(@Param("tzm")String tzm);
 
     String getByUid(@Param("uid")long uid);
+
+    List<Object> listPagerUid(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    Long countByUid(@Param("query") Object obj);
 }

@@ -4,8 +4,8 @@ public class RecommendVO {
     private long id;
     private String tname;
     private String rname;
+    private String date;
     private String startTime;
-
     private String endTime;
     private long ci;
 
@@ -17,6 +17,13 @@ public class RecommendVO {
         this.ci = ci;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public long getId() {
         return id;

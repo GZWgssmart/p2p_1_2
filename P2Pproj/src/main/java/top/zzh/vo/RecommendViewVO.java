@@ -1,18 +1,27 @@
 package top.zzh.vo;
 
 public class RecommendViewVO {
-    private long id;
+    private long uid;
+    private String tname;
     private String rname;
     private String startTime;
 
     private String endTime;
 
-    public long getId() {
-        return id;
+    public String getTname() {
+        return tname;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public String getRname() {

@@ -33,7 +33,7 @@
                         <p style="font-size: 18px;">尊敬的用户，你的推荐码是:
                             <span style="color:orange">${tzm}</span>
                         </p><br/>
-                        活动时间：2017年12月1日至2018年12月31日<br/>
+                        活动时间：2017年12月31日至2018年1月31日<br/>
                         活动对象：活动期间新注册用户的推荐人<br/>
                         活动说明：<br/>
                         <span style="padding-left: 50px">
@@ -69,7 +69,7 @@
 
 <script src="<%=path%>/static/js/jquery.datetimepicker.js" type="text/javascript"></script>
 <script src="<%=path%>/static/js/datepicker.js" type="text/javascript"></script>
-<script src="<%=path%>/static/js/pageJs/tab.js" type="text/javascript"></script>
+<script src="<%=path%>/static/js/pageJs/page.js" type="text/javascript"></script>
 <script>
     function myCopy() {
         var ele = document.getElementById("text");
