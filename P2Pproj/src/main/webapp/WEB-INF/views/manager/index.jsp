@@ -103,6 +103,8 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<%=path%>/reward/rewardList">奖励信息</a>
+                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/page/users">用户借款列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>

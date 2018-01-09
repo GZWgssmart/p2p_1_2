@@ -48,7 +48,7 @@ public class JLff {
         JLff jLff=new JLff();
         BigDecimal results=jLff.jlj(BigDecimal.valueOf(99.8));
         System.out.println(results);
-        
+
 
     }
 
