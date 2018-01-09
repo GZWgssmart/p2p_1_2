@@ -54,12 +54,18 @@ public class BankCardController {
         }
 
         User user =(User)session.getAttribute("users");
+
+        if(user.getRname()==null || user.getIdno()==null){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_KEREN_ERROR);
+            return  statusVO;
+        }
         bankCard.setUid(uid);
         bankCard.setRname(user.getRname());
         bankCard.setIdno(user.getIdno());
         bankCard.setState((byte)0);
         try{
             bankCardService.save(bankCard);
+            System.out.println(pwd);
             userService.updatepwd(uid,EncryptUtils.md5(pwd));//支付密码
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_SUCCESS);
         }catch (RuntimeException e){
@@ -70,15 +76,16 @@ public class BankCardController {
 
     @RequestMapping("remove")
     @ResponseBody
-    public ControllerStatusVO remove(@PathVariable("bcid") Long bcid){
+    public ControllerStatusVO remove(HttpSession session){
         logger.info("删除绑定的银行卡");
+        Long uid=(Long) session.getAttribute(Constants.USER_ID_SESSION);
         ControllerStatusVO statusVO = null;
         try{
-            bankCardService.removeById(bcid);
+            bankCardService.removeById(uid);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum. UERS_JCDIN_SUCCESS);
         }catch (RuntimeException e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_JCDIN_ERROR);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_DELETE_SUCCESS);
         return statusVO;
     }
 

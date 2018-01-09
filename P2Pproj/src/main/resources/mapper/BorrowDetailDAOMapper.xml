@@ -10,8 +10,8 @@
         </selectKey>
         <![CDATA[
           insert into t_borrowdetail(mpurpose,hksource,suggest,
-          xmdescrip,guarantee,money,nprofit,sid,cpname,baid) values(#{mpurpose},
-            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{sid},#{cpname},#{baid})
+          xmdescrip,guarantee,nprofit,sid,cpname,baid) values(#{mpurpose},
+            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{nprofit},#{sid},#{cpname},#{baid})
         ]]>
     </insert>
 
@@ -20,6 +20,13 @@
         <![CDATA[
           update t_borrowdetail set mpurpose = #{mpurpose},hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},
           guarantee = #{guarantee},nprofit = #{nprofit},sid = #{sid} where bdid = #{bdid}
+        ]]>
+    </update>
+
+    <update id="updateBybaid" parameterType="top.zzh.bean.BorrowDetail">
+        <![CDATA[
+         update t_borrowdetail set money= #{money}
+           where baid = #{baid}
         ]]>
     </update>
 
@@ -76,16 +83,25 @@
     </select>
 
     <select id="listAll" resultType="top.zzh.bean.BorrowDetail">
-        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.way,bd.cpname,ba.rname
-        from t_borrowdetail bd,t_borrowapply ba where ba.baid = bd.baid and ba.money = bd.money
+        select bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,bd.nprofit,bd.sid,s.way,bd.cpname,ba.baid,ba.rname
+        from t_borrowdetail bd,t_borrowapply ba,t_sway s where ba.baid = bd.baid and ba.money = bd.money and bd.sid = s.sid
     </select>
 
     <select id="findDetails" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-            select ba.baid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
-            bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
-            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um
-            where ba.bzid =b.bzid and  ba.baid = bd.baid and ba.money = bd.money and s.sid = bd.sid and ba.uid = um.uid and ba.baid = #{baid}
+          select ba.baid,ba.uid,bd.bdid,t.juid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
+            bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
+            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um,t_tzb t
+            where ba.bzid =b.bzid and  ba.baid = bd.baid and ba.uid = t.uid and  s.sid = bd.sid and ba.uid = um.uid and ba.baid = #{baid}
         ]]>
     </select>
+
+    <select id="getById" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+           select b.uid,b.baid,b.money,bd.money as mmoney from t_borrowapply as b,t_borrowdetail as bd
+            where b.baid = bd.baid and b.baid = #{baid}
+        ]]>
+    </select>
+
+
 </mapper>

@@ -52,14 +52,8 @@ public enum ControllerStatusEnum {
     USER_TZ_SUCCESS(119,"ok","恭喜你，投资成功！"),
     CHECK_TZ_FAIL(120,"error","投资失败，不能给自己投资"),
     USER_TZ_FAIL(121,"error","投资失败，请稍候再试"),
+    CHECK_TZ_FAILED(123,"error","未投满"),
     USER_MONEY_ENOUGH(122,"error","用户余额不足，请立即充值"),
-    USER_UNREPAY_FAIL(123,"error","未还款"),
-    USER_REPAYED_FAIL(124,"error","已还款"),
-    USER_TIMEOUT_FAIL(125,"error","已逾期"),
-    EQUAL_BX(126,"ok", "等额本息"),
-    EQUAL_BJ(127,"ok", "等额本金"),
-    XIAN_XI(128, "ok","先息后本"),
-    PAYOFF_ONCE(129,"ok", "一次还清"),
     SWAY_SAVE_SUCCESS(500,"ok","添加成功"),
     SWAY_SAVE_FAIL(501,"error","添加失败"),
     SWAY_UPDATE_SUCCESS(503,"ok","修改成功"),
@@ -129,8 +123,10 @@ public enum ControllerStatusEnum {
     UERS_BANK_SUCCESS(1143,"ok","银行卡绑定成功!"),
     UERS_ERROR_FAIL(1142,"error","银行卡绑定失败！"),
     UERS_BANK_ERROR(1144,"error","银行卡号错误，请重新输入!"),
-    UERS_ERROR_ERROR(1145,"error","支付密码错误，请重新输入！")
-
+    UERS_ERROR_ERROR(1145,"error","支付密码错误，请重新输入！"),
+    UERS_KEREN_ERROR(1146,"error","资料不足无法绑定银行卡，请完善个人资料！"),
+    UERS_JCDIN_SUCCESS(1200,"ok","银行卡解绑成功！"),
+    UERS_JCDIN_ERROR(1201,"error","银行卡解绑失败！")
     ;
 
     private Integer code;

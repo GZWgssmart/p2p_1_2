@@ -150,25 +150,6 @@
                 }
             }
 
-            //验证输入银行卡号的合法性
-            /*
-            function checkBankCardNo() {
-                //$("#form\\:defaultBankName").text("");
-                var cardNo = $("#form\\:bankCardNo").val();
-                var reg = /^\d{16,19}$/g; // 以19位数字开头，以19位数字结尾
-                if( !reg.test(cardNo) )
-                {
-                    //$(".info2-bank").css({"display":"none"});
-                    var $span = "<em></em>银行卡号输入错误";
-                    $("#bankCardError").html($span);
-                    return false;
-                } else{
-                    //$(".info2-bank").css({"display":"block"});
-                    $("#bankCardError").html("");
-                }
-                return true;
-            }
-            */
             function checkBank() {
                 $("#form\\:defaultBankName").text("");
                 var cardNo = $("#form\\:bankCardNo").val();
@@ -248,27 +229,6 @@
                 }
                 return true;
             }
-
-            function getShowPayVal1(){
-                var rechargeFlag=checkRecharge1();
-                var bankCardFlag = checkBankCardNo();
-                var agreeFlag=validateAgree2();
-                var payflag=rechargeFlag && bankCardFlag && agreeFlag;
-                var defaultBankName = $("#form\\:defaultBankName").text();
-                if(defaultBankName.replace(/(^\s*)|(\s*$)/g, "")=="此银行暂不支持"){
-                    var $span = "<em></em>此银行暂不支持";
-                    $(".quick-error3").html($span);
-                    return false;
-                }
-                /*$("#recharge\\:rechargeWay").val($("#showpay").html());
-                 var bankProtocol = $("#bankProtocol").attr('class');
-                 if(!bankProtocol)
-                 {
-                 $("#bankProtocol_message").show();
-                 return false;
-                 }*/
-                return payflag;
-            }
             
             function prompt() {
                 layer.prompt({title: '支付密码', formType: 1}, function(pass, index){
@@ -294,9 +254,6 @@
                 );
             }
             function refush() {
-                $('#form').bootstrapTable('refresh', {url: '/userMoney/chongzhi'});
-            }
-            function refush() {
                 $('#form\\:actualMoney1').val("");
             }
 
@@ -314,98 +271,15 @@
                     });
                 });
             }
-            function checkRecharge2() {
-                var moneyRegex="^(([1-9]+[0-9]*)|((([1-9]+[0-9]*)|0)\\.[0-9]{1,2}))$";
-                var money = $("#form2\\:actualMoney2").val();
-                var nullFlag=(money=="")||money<=0;
-                var numberFlag=isNaN(money);
-                //如果输入为空
-                if(nullFlag)
-                {
-                    var $span = "<em></em>请输入充值金额";
-                    $("#quick-error2").html($span);
-                    return false;
-                }
-                else
-                {
-                    $("#quick-error2").html("");
-                }
-                //如果输入的不是数字
-                if(numberFlag)
-                {
-                    var $span = "<em></em>请输入数字";
-                    $("#quick-error2").html($span);
-                    return false;
-                }
-                else
-                {
-                    $("#quick-error2").html("");
-                }
-                //输入金额是否合法
-                var moneyPattern = new RegExp(moneyRegex);
-                var legalFlag=moneyPattern.test(money);
-                if(!legalFlag)
-                {
-                    var $span = "<em></em>金额必须大于0且为整数或小数，小数点后不超过2位";
-                    $("#quick-error2").html($span);
-                    return false;
-                }
-                else
-                {
-                    $("#quick-error2").html("");
-                }
 
-                if(parseInt(money) > 50000){
-                    var $span = "<em></em>充值金额超过50000元";
-                    $("#quick-error2").html($span);
-                    return false;
-                }else
-                {
-                    $("#quick-error2").html("");
-                }
-                return true;
-            }
 
-            function getShowPayVal2(){
-                var rechargeFlag=checkRecharge2();
-                var agreeFlag=validateAgree2();
-                var payflag=rechargeFlag && agreeFlag;
-                /*$("#recharge\\:rechargeWay").val($("#showpay").html());
-                 var bankProtocol = $("#bankProtocol").attr('class');
-                 if(!bankProtocol)
-                 {
-                 $("#bankProtocol_message").show();
-                 return false;
-                 }*/
-                return payflag;
-            }
 
-            /* function showSpan(op){
-             $("body").append("<div id='maskCommon'></div>");
-             $("#maskCommon").addClass("mask1").css("display","block");
-             $("#"+op).css("display","block");
-             } */
-
-            /* function displaySpan(op){
-             $("#alert-ClickDialog").hide();
-             $("#maskCommon").hide();
-             } */
-
-            $(document).ready(function(){
-                if("false"=='true'){
-                    showSpan("alert-ClickDialog");
-                }
-                if("false"=='true'){
-                    showSpan("alert-unbindMsgDialog");
-                }
-            });
-            //]]>
         </script>
         <div class="personal-main">
             <div class="personal-pay">
                 <h3><i>充值</i></h3>
                 <div class="quick-pay-wrap">
-                    <h4> <span class="quick-tit pay-cur"><em>快捷支付</em></span> <span class="online-tit"><em>网银充值</em></span> </h4>
+                    <h4> <span class="quick-tit pay-cur"><em>快捷支付</em></span> </h4>
                     <form id="form" name="form" method="post" action="" >
                         <div class="quick-main">
                             <div class="fl quick-info">
@@ -414,7 +288,7 @@
                   <em>元</em> </span> <span class="quick-error"> </span> </div>
                                 <div class="info-tips">亿人宝提醒您：充值金额超过50000元时，请切换到网银充值</div>
                                 <div class="info-2"> <span class="info-tit">银行卡号</span> <span class="info2-input">
-                  <input id="form:bankCardNo" type="text" name="zmoney" class="tx-txt">
+                  <input  type="text" name="zmoney"  value="${cardno}" class="tx-txt">
                   <em class="info2-bank" style="display: none;">
                   <label id="form:defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="bankCardError"></span> </div>
@@ -423,84 +297,15 @@
                             </div>
                             <div class="fr bank-info">
                                 <p class="bank-tit">快捷支付支持银行：</p>
-                                <div class="bank-pic"></div>
+                                <div class="bank-pic">
+                                    <ul>
+                                        <li><img src="<%=path%>/static/images/${deposit}"></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </form>
-                    <div class="online-main" style="display:none;">
-                        <form id="recharge" name="recharge" method="post" action="#" target="_blank">
-                            <div class="online-mar">
-                                <div class="quick-info quick-info-width">
-                                    <div class="info-1"> <span class="info-tit">充值金额</span> <span class="info1-input">
-                    <input id="recharge:actualMoney" type="text" name="recharge:actualMoney" class="pay-money-txt" maxlength="10" onblur="checkRecharge()" onkeydown="amount(this);keyUpcheck()" onkeyup="amount(this);keyUpcheck()">
-                    <em>元</em> </span> <span id="actualMoneyErrorDiv" class="quick-error2"> </span> </div>
-                                </div>
-                            </div>
-                            <div> <span><font style=" color:#848484;font-weight:bold; margin-left:80px; height:32px; line-height:32px; font-size:12px;">亿人宝提醒您：充值前，请核实您的可用支付额度！</font></span> </div>
-                            <div class="pay-bank" id="pay-bank">
-                                <h6>请选择充值银行</h6>
-                                <span id="showpay" style="display:none;">icbc</span>
-                                <ul id="paysSpan" style="height:150px;">
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="icbc" class="on"><em></em><i></i></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="abc"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="boc"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="ccb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="hxb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="comm"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="cmb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="ceb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="cncb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="cmsb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="cgb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="shb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="bjb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="rcb"><em></em></li>
-                                    <li><img src="<%=path%>/static/images/logo_abc.png" property1="cib"><em></em></li>
-                                </ul>
-                                <span class="pay-other"><span class="paytxt">选择其他银行卡</span><i class="paydown"></i></span> </div>
-                            <div class="pay-bankstate"> <span class="bankstate-head"><i class="fl">请关注您的充值金额是否超限：</i><i class="fr" id="show-pay-hotLine">工商银行客服热线：95588</i></span>
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td>单笔限额（元）</td>
-                                        <td>每日限额（元）</td>
-                                        <td>需要满足条件</td>
-                                        <td>备注</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="15%">5000</td>
-                                        <td width="15%">5000</td>
-                                        <td width="20%">工银e支付</td>
-                                        <td width="50%" rowspan="5">请到中国工商银行各营业网点办理成为个人网上银行客户并开通网上支付功能（静态密码用户进行网上支付如超过累计金额请直接到营业网点申领电子口令卡或USB Key）；</td>
-                                    </tr>
-                                    <tr>
-                                        <td>500</td>
-                                        <td>1000</td>
-                                        <td>电子口令卡</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2000</td>
-                                        <td>5000</td>
-                                        <td>短信认证</td>
-                                    </tr>
-                                    <tr>
-                                        <td>50万</td>
-                                        <td>100万</td>
-                                        <td>电子密码</td>
-                                    </tr>
-                                    <tr>
-                                        <td>100万</td>
-                                        <td>100万</td>
-                                        <td>U盾</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="bank-check" id="bank-check"> <b class="selected" id="bankProtocol"></b><span class="bank-agree">我同意并接受<a href="javascript:void(0);" target="_blank">《亿人宝金融投资咨询与管理服务电子协议》</a></span> <span class="error" id="bankProtocol_message" style="display:none;margin-top:-3px;">请同意协议内容！</span> </div>
-                            <input type="submit" name="recharge:j_idt96" value="充值" class="btn-paycz" onclick="return getShowPayVal()">
-                            <input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState">
-                        </form>
-                    </div>
+
                     <div class="pay-tipcon" style="display:none;"> <b>充值提示：</b><br>
                         1．亿人宝充值过程免费，不向用户收取任何手续费。<br>
                         2．为了您的账户安全，请在充值前进行身份认证、手机绑定以及交易密码设置。<br>
@@ -518,35 +323,7 @@
                     </div>
                 </div>
             </div>
-            <div class="alert-450 alert-h220" id="alert-rechargeFailture" style="display:none;">
-                <div class="alert-title">
-                    <h3>登录网上银行充值</h3>
-                    <span class="alert-close" onclick="displaySpan('alert-rechargeFailture')"></span></div>
-                <div class="alert-main">
-                    <form id="rechargeFailtureForm">
-                        <p class="msg1"><i class="no-icon"></i><i class="msgtxt">充值失败</i>您可以：<a href="#"><font color="#28A7E1">选择其他银行充值</font></a>或查看<a href="#"><font color="#28A7E1">充值帮助</font></a></p>
-                    </form>
-                </div>
-            </div>
-            <div class="clear"></div>
-            <div class="alert-400 alert-h220" id="alert-ClickDialog" style="display:none;">
-                <div class="alert-title">
-                    <h3>消息</h3>
-                </div>
-                <div class="alert-main">
-                    <p class="msg4"> </p>
-                    <p class="msg-a"><a class="btn-ok btn-145" onclick="displaySpan('alert-ClickDialog')" href="#">关 闭</a></p>
-                </div>
-            </div>
-            <div class="alert-400 alert-h220" id="alert-unbindMsgDialog" style="display:none;">
-                <div class="alert-title">
-                    <h3>消息</h3>
-                </div>
-                <div class="alert-main">
-                    <p class="msg4"> </p>
-                    <p class="msg-a"><a class="btn-ok btn-145" onclick="displaySpan('alert-unbindMsgDialog')" href="#">关 闭</a></p>
-                </div>
-            </div>
+
             <script type="text/javascript">
                 $("#recharge\\:actualMoney").val("单笔大于0元");
                 var value = "单笔大于0元";

@@ -90,7 +90,6 @@ public class BorrowApplyController {
         borrowApplyService.save(borrowApply);
         borrowDetail.setCpname("YRB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
-        borrowDetail.setMoney(borrowApply.getMoney());
         borrowDetailService.save(borrowDetail);
         Date time = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");

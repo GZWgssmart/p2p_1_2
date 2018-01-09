@@ -64,7 +64,7 @@
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <input type="hidden" value=""  id="deleteId"/>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-                <button id="btn_delete" onclick="delMany('recommend/delMany');" type="button" class="btn btn-primary"
+                <button id="btn_delete" onclick="delMany('/recommend/delMany');" type="button" class="btn btn-primary"
                         style="margin-left:5px">
                     <i class="glyphicon glyphicon-remove"></i>批量删除
                 </button>

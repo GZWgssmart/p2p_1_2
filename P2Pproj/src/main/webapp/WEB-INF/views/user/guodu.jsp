@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
 %>
@@ -237,9 +238,8 @@
                     $("#form").serialize(),
                     function (data) {
                         if (data.result == "ok") {
-
                             layer.msg(data.message, {icon: 1, time: 1000});
-                            refush();
+                            window.location.href="<%=path%>/page/gu";
                         } else {
                             layer.msg(data.message, {icon: 2, time: 1000});
                             refush();
@@ -262,6 +262,32 @@
                     chongzhi();
                 }, function () {
                     layer.msg('取消绑定中。。。', {
+                        time: 20000, //20s后自动关闭
+                        btn: ['明白了', '知道了']
+                    });
+                });
+            }
+
+            function jiebang() {
+                layer.confirm('你确定要解绑这张银行卡？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    layer.msg('正在解绑中。。', {icon: 1});
+                    $.post(
+                        "/bankcard/remove",
+                        function (data) {
+                            if (data.result == "ok") {
+                                layer.msg(data.message, {icon: 1, time: 1000});
+                                window.location.href="<%=path%>/page/gu";
+                            } else {
+                                layer.msg(data.message, {icon: 2, time: 1000});
+                                refush();
+                            }
+                        }, "json"
+                    );
+
+                }, function () {
+                    layer.msg('取消解绑中。。。', {
                         time: 20000, //20s后自动关闭
                         btn: ['明白了', '知道了']
                     });
@@ -399,11 +425,14 @@
                                             </div>
                                             <div id="collapseOne" class="accordion-body collapse in">
                                                 <div class="accordion-inner">
+                                                    <c:if test="${cardno!=null}">
                                                     <ul>
                                                     <li><img src="<%=path%>/static/images/${deposit}"></br>
                                                         <span>${cardno}</span>
                                                     </li>
+                                                        <li><a href="#" onclick="jiebang()">解绑</a></li>
                                                     </ul>
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>

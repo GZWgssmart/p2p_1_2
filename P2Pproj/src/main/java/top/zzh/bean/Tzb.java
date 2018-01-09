@@ -21,11 +21,11 @@ public class Tzb {
 
     private Long baid;//借款id
 
-    private Long int1;
-
+    private Integer int1;
+    private Integer int2;
     private String str1;
 
-    public Tzb(Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, Long int1, String str1) {
+    public Tzb(Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, Integer int1,Integer int2, String str1) {
         this.tzid = tzid;
         this.uid = uid;
         this.juid = juid;
@@ -35,6 +35,7 @@ public class Tzb {
         this.cpname = cpname;
         this.baid = baid;
         this.int1 = int1;
+        this.int2 = int2;
         this.str1 = str1;
     }
 
@@ -106,12 +107,20 @@ public class Tzb {
         this.baid = baid;
     }
 
-    public Long getInt1() {
+    public Integer getInt1() {
         return int1;
     }
 
-    public void setInt1(Long int1) {
+    public void setInt1(Integer int1) {
         this.int1 = int1;
+    }
+
+    public void setInt2(Integer int2) {
+        this.int2 = int2;
+    }
+
+    public Integer getInt2() {
+        return int2;
     }
 
     public String getStr1() {

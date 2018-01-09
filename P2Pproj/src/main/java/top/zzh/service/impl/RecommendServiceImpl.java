@@ -7,6 +7,8 @@ import top.zzh.dao.RecommendDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.RecommendService;
 
+import java.util.List;
+
 /**
  * Created by 谢学培 on 2017/12/21.
  */
@@ -56,5 +58,18 @@ public class RecommendServiceImpl extends AbstractService implements RecommendSe
     @Override
     public String getByUid(long uid) {
         return recommendDAO.getByUid(uid);
+    }
+
+    @Override
+    public Pager listPagerUid(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(recommendDAO.listPagerUid(pager, obj));
+        pager.setTotal(recommendDAO.countByUid(obj));
+        return pager;
+    }
+
+    @Override
+    public Long countByUid(Object obj) {
+        return recommendDAO.countByUid(obj);
     }
 }

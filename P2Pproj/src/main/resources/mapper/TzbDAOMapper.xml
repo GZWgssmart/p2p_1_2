@@ -4,15 +4,22 @@
 
 <mapper namespace="top.zzh.dao.TzbDAO">
 
-    <insert id="save" parameterType="top.zzh.bean.Tzb">
+    <insert id="save" parameterType="top.zzh.vo.TzbVO">
         <selectKey keyColumn="tzid" keyProperty="tzid" resultType="long" order="AFTER">
             SELECT LAST_INSERT_ID();
         </selectKey>
         <![CDATA[
           insert into t_tzb(uid,juid,money,time,nprofit,cpname,baid)
-          values(#{uid},#{juid},#{money},CURRENT_TIME,#{nprofit},#{cpname},#{baid})
+          values(#{uid},#{juid},#{money},CURRENT_TIME ,#{nprofit},#{cpname},#{baid})
         ]]>
     </insert>
+
+    <update id="update" parameterType="top.zzh.vo.TzbVO">
+        <![CDATA[
+         update t_tzb set money = #{money}
+           where tzid = #{tzid}
+        ]]>
+    </update>
 
     <!-- 投资金额，投资产品-->
     <sql id="cash_query_criteria">
@@ -68,9 +75,24 @@
 
     <select id="listAll" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
-              select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+              select b.uid,b.baid,u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
           from t_tzb t,t_user u,t_borrowapply b
           where t.uid = u.uid and b.baid = t.baid
+        ]]>
+    </select>
+
+    <select id="listTzb" resultType="top.zzh.vo.TzbVO">
+        <![CDATA[
+          select * from t_tzb  where uid = #{uid} and baid = #{baid}
+        ]]>
+    </select>
+
+    <select id="getById" resultType="long">
+        <![CDATA[
+           select ba.baid,ba.uid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
+            bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
+            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um,t_tzb t,t_user u
+            where t.uid = u.uid and ba.baid = t.baid and ba.bzid =b.bzid and  ba.baid = bd.baid and s.sid = bd.sid and ba.uid = um.uid and u.uid = #{uid}
         ]]>
     </select>
 </mapper>

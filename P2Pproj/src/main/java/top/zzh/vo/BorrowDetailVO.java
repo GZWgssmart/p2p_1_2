@@ -30,31 +30,39 @@ public class BorrowDetailVO {
     private String xmdescrip;//项目描述
     private String guarantee;//保障措施
     private Float nprofit;//年化收益
+    private Long juid;
     private Long lxid;
     private String lxname;
     private Long sid;
+    private Long huid;
     private String way;//收益方式
     private String cpname;//产品名称
     private String bzname;//标种名称
     private String uname;//用户名
-    private String zmoney;//总资产
-    private String kymoney;//可用余额
-    private String tzmoney;//投资总金额
+    private BigDecimal zmoney;//总资产
+    private BigDecimal kymoney;//可用余额
+    private BigDecimal tzmoney;//投资总金额
+    private BigDecimal ytmoney;
+    private BigDecimal mmoney;
 
     public BorrowDetailVO() {
     }
 
-    public BorrowDetailVO(String zmoney,String kymoney,String tzmoney,Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
+    public BorrowDetailVO(Long juid,Long huid,BigDecimal ytmoney,BigDecimal mmoney,BigDecimal zmoney,BigDecimal kymoney,BigDecimal tzmoney,Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
         this.baid = baid;
+        this.mmoney = mmoney;
+        this.huid = huid;
         this.zmoney = zmoney;
         this.kymoney = kymoney;
         this.tzmoney = tzmoney;
+        this.ytmoney = ytmoney;
         this.sid = sid;
         this.lxid = lxid;
         this.lxname = lxname;
         this.rname = rname;
         this.money = money;
         this.uid = uid;
+        this.juid = juid;
         this.bzid = bzid;
         this.time = time;
         this.state = state;
@@ -78,28 +86,60 @@ public class BorrowDetailVO {
         this.uname = uname;
     }
 
-    public void setZmoney(String zmoney) {
+    public void setJuid(Long juid) {
+        this.juid = juid;
+    }
+
+    public Long getJuid() {
+        return juid;
+    }
+
+    public void setHuid(Long huid) {
+        this.huid = huid;
+    }
+
+    public Long getHuid() {
+        return huid;
+    }
+
+    public void setMmoney(BigDecimal mmoney) {
+        this.mmoney = mmoney;
+    }
+
+    public BigDecimal getMmoney() {
+        return mmoney;
+    }
+
+    public void setZmoney(BigDecimal zmoney) {
         this.zmoney = zmoney;
     }
 
-    public String getZmoney() {
+    public BigDecimal getZmoney() {
         return zmoney;
     }
 
-    public void setKymoney(String kymoney) {
+    public void setKymoney(BigDecimal kymoney) {
         this.kymoney = kymoney;
     }
 
-    public String getKymoney() {
+    public BigDecimal getKymoney() {
         return kymoney;
     }
 
-    public void setTzmoney(String tzmoney) {
+    public void setTzmoney(BigDecimal tzmoney) {
         this.tzmoney = tzmoney;
     }
 
-    public String getTzmoney() {
+    public BigDecimal getTzmoney() {
         return tzmoney;
+    }
+
+    public void setYtmoney(BigDecimal ytmoney) {
+        this.ytmoney = ytmoney;
+    }
+
+    public BigDecimal getYtmoney() {
+        return ytmoney;
     }
 
     public void setSid(Long sid) {
