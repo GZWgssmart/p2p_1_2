@@ -41,9 +41,9 @@
             //]]>
         </script>
         <script type="text/javascript">
-            function tixian() {
+            function tixian(pass) {
                 $.post(
-                    "/logTx/tixian",
+                    "/logTx/tixian/"+pass,
                     $("#form").serialize(),
                     function (data) {
                         if (data.result == "ok") {
@@ -60,14 +60,19 @@
             function refush() {
                 $('#form\\:actualMoney').val("");
             }
-
-            function options(){
+            function prompt() {
+                layer.prompt({title: '支付密码', formType: 1}, function(pass, index){
+                    layer.close(index);
+                    options(pass)
+                });
+            }
+            function options(pass){
                 var kym =$('#form\\:actualMoney').val();
                 layer.confirm('你确定要提现'+kym, {
                     btn: ['确定','取消'] //按钮
                 }, function(){
                     layer.msg('正在提现中。。', {icon: 1});
-                    tixian();
+                    tixian(pass);
                 }, function(){
                     layer.msg('取消中。。。', {
                         time: 20000, //20s后自动关闭
@@ -95,7 +100,7 @@
 
                             <li>
                                 <input type="button" name="form:j_idt78" value="提现" class="btn-depositok"
-                                       onclick="options()">
+                                       onclick="prompt()">
                             </li>
                         </ul>
                     </div>

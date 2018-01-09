@@ -6,16 +6,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.LogTx;
 import top.zzh.bean.TxCheck;
+import top.zzh.bean.User;
 import top.zzh.common.Constants;
+import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.LogTxService;
 import top.zzh.service.TxcheckService;
+import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.LogTxVO;
 
@@ -35,6 +39,9 @@ public class LogTXController {
     @Autowired
     private TxcheckService txcheckService;
 
+    @Autowired
+    private UserService userService;
+
     private ControllerStatusVO statusVO;
 
     private org.slf4j.Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
@@ -52,10 +59,17 @@ public class LogTXController {
         return statusVO;
     }
 
-    @RequestMapping("tixian")
+    @RequestMapping("tixian/{pass}")
     @ResponseBody
-    public ControllerStatusVO tixian(HttpSession session, String actualMoney) {
+    public ControllerStatusVO tixian(HttpSession session, String actualMoney, @PathVariable("pass")String pass) {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        User user=(User)userService.getById(id);
+        String p =user.getZpwd().toString();
+        String pa= EncryptUtils.md5(pass);
+        if (!p.equals(pa)){//密码错误
+            statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
+            return statusVO;
+        }
         try{
             LogTx logTx=new LogTx();
             logTx.setMoney(BigDecimal.valueOf(Long.valueOf(actualMoney)));
