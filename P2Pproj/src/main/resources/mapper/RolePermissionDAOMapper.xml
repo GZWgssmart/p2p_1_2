@@ -21,14 +21,14 @@
 
     <select id="listPermission" resultType="list" resultMap="permissionMap">
         <![CDATA[
-            select id,des_zh from t_permission
+            select id,des_zh from t_permission where status = 1
         ]]>
     </select>
 
 
     <delete id="deleteRolePermission">
         <![CDATA[
-            truncate table t_role_permission
+            delete from t_role_permission where role_id = #{roleId}
         ]]>
     </delete>
 
@@ -41,6 +41,13 @@
             (#{roleId},#{permissionId})
         </foreach>
     </insert>
+
+    <select id="initSelectedP" resultMap="permissionMap">
+        <![CDATA[
+            select p.id,p.des_zh from t_permission p,t_role_permission rp
+            where p.id = rp.permission_id and rp.role_id = #{roleId}
+        ]]>
+    </select>
 
 </mapper>
 

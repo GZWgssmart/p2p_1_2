@@ -162,9 +162,9 @@ $('#formadd').bootstrapValidator({
         $("#formadd").serialize(),
             function (data) {
             if (data.result == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message, "新增角色成功","success");
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message, "发生错误","error");
             }
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
@@ -183,7 +183,7 @@ function edit(rid,rname,content) {
     $("#updateContent").val(content);
 }
 
-//权限修改
+//角色修改
 $('#updateForm').bootstrapValidator({
     message: 'This value is not valid',
     feedbackIcons: {
@@ -219,10 +219,10 @@ $('#updateForm').bootstrapValidator({
         "/role/updateRole",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                swal(data.message,"可对角色进行修改操作","success");
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                swal(data.message,"发生错误","error");
             }
             $("#updateForm").data('bootstrapValidator').resetForm();
             $("#myModal").modal('hide');
@@ -248,7 +248,7 @@ function updateStatus(roleId,status) {
                 closeOnConfirm: false
             },
             function(){
-                swal("冻结！", "角色已被冻结。", "success");
+                swal("冻结！", "角色已被冻结", "success");
                 postUpdateStatus(roleId,status);
             });
     }else if(status == 1){
