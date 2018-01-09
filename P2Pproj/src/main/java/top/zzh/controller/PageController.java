@@ -89,7 +89,15 @@ public class PageController {
     }
 
     @RequestMapping("chongzhi")
-    public String chongzhi() {
+    public String chongzhi(HttpSession session) {
+        Long id =(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        User user=(User)userService.getById(id);
+        session.setAttribute("users",user);
+        String cardno =(String)bankCardService.getDank(id);//银行卡号
+        session.setAttribute("cardno",cardno);
+        String type =bankCardService.getType(id);//所属银行
+        String deposit=bankService.getDeposit(type);//银行商标
+        session.setAttribute("deposit",deposit);
         return "user/chongzhi";
     }
 
@@ -101,9 +109,21 @@ public class PageController {
         String cardno =(String)bankCardService.getDank(id);//银行卡号
         session.setAttribute("cardno",cardno);
         String type =bankCardService.getType(id);//所属银行
-        String deposit=bankService.getDeposit(type);
+        String deposit=bankService.getDeposit(type);//银行商标
         session.setAttribute("deposit",deposit);
         return "user/disanfang";
+    }
+    @RequestMapping("gu")
+    public String guod(HttpSession session) {
+        Long id =(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        User user=(User)userService.getById(id);
+        session.setAttribute("users",user);
+        String cardno =(String)bankCardService.getDank(id);//银行卡号
+        session.setAttribute("cardno",cardno);
+        String type =bankCardService.getType(id);//所属银行
+        String deposit=bankService.getDeposit(type);//银行商标
+        session.setAttribute("deposit",deposit);
+        return "user/guodu";
     }
 
 
