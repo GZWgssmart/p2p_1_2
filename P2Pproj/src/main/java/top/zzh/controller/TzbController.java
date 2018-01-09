@@ -102,8 +102,8 @@ public class TzbController {
 
         Timer timer=new Timer();
         Calendar calendar=Calendar.getInstance();
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)
-                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1,0);//calendar.get(Calendar.SECOND)秒
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
+                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
         System.out.println(calendar.getTime().toLocaleString());
         JLff jLff=new JLff();
         Reward reward1=new Reward();
@@ -142,29 +142,33 @@ public class TzbController {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+
                 System.out.println("定时任务启动！");
-                Reward reward4=new Reward();
-                reward4.setUid(uid);
-                reward4.setState((byte)0);
-                reward4.setDate(calendar.getTime());
-                rewardService.updateState(reward4);
+                Reward reward5=rewardService.findTmoney(uid);
+                if(reward5.getState()==1){
+                    Reward reward4=new Reward();
+                    reward4.setUid(uid);
+                    reward4.setState((byte)2);
+                    reward4.setDate(calendar.getTime());
+                    rewardService.updateState(reward4);
 
-                UserMoney userMoney=userMoneyService.findJlmoney(uid);
-                BigDecimal xjlmoney=jLff.jlj(money);
-                BigDecimal yjlmoney=null;
-                BigDecimal jlmoney=null;
-                if(userMoney==null){
-                    yjlmoney=BigDecimal.valueOf(0);
-                    jlmoney=yjlmoney.add(xjlmoney);
+                    UserMoney userMoney=userMoneyService.findJlmoney(uid);
+                    BigDecimal xjlmoney=jLff.jlj(money);
+                    BigDecimal yjlmoney=null;
+                    BigDecimal jlmoney=null;
+                    if(userMoney==null){
+                        yjlmoney=BigDecimal.valueOf(0);
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    if(userMoney!=null){
+                        yjlmoney=userMoney.getJlmoney();
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    userMoneyService.updateJlmoney(jlmoney,uid);
                 }
 
-                if(userMoney!=null){
-                    yjlmoney=userMoney.getJlmoney();
-                    jlmoney=yjlmoney.add(xjlmoney);
-                }
-
-                userMoneyService.updateJlmoney(jlmoney,uid);
-                System.out.println(jLff.jlj(money));
             }
         },calendar.getTime());
 
