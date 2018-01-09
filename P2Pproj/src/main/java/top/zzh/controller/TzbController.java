@@ -12,6 +12,7 @@ import top.zzh.common.Constants;
 import top.zzh.common.JLff;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
+import top.zzh.service.LogMoneyService;
 import top.zzh.service.RewardService;
 import top.zzh.service.TzbService;
 import top.zzh.service.UserMoneyService;
@@ -42,6 +43,9 @@ public class TzbController {
 
     @Autowired
     private UserMoneyService userMoneyService;
+
+    @Autowired
+    private LogMoneyService logMoneyService;
 
     @RequestMapping("save")
     @ResponseBody
@@ -102,9 +106,9 @@ public class TzbController {
 
         Timer timer=new Timer();
         Calendar calendar=Calendar.getInstance();
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
-                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
-        System.out.println(calendar.getTime().toLocaleString());
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)
+                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1,0);//calendar.get(Calendar.SECOND)秒
+
         JLff jLff=new JLff();
         Reward reward1=new Reward();
         BigDecimal ymoney=null;
@@ -165,6 +169,11 @@ public class TzbController {
                         yjlmoney=userMoney.getJlmoney();
                         jlmoney=yjlmoney.add(xjlmoney);
                     }
+                    LogMoney logMoney=new LogMoney();
+                    logMoney.setUid(uid);
+                    logMoney.setType((byte)3);
+                    logMoney.setIn(xjlmoney);
+                    logMoneyService.save(logMoney);
 
                     userMoneyService.updateJlmoney(jlmoney,uid);
                 }
