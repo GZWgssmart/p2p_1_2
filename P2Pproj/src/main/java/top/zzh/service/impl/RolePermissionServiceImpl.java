@@ -58,6 +58,11 @@ public class RolePermissionServiceImpl extends AbstractService implements RolePe
         rolePermissionDAO.deleteRolePermission(roleIdz);
     }
 
+    @Override
+    public List<Permission> initSelectedP(String roleId) {
+        return rolePermissionDAO.initSelectedP(Long.valueOf(roleId).longValue());
+    }
+
 
     private List<Long> getPermissionId(String permissionIds){
         List<Long> permissionIdList = new ArrayList<>();
