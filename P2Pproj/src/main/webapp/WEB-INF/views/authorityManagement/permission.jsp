@@ -164,7 +164,7 @@
     function toSave(){
         var ant = $("#file").val();
         if(ant == null || ant == ''){
-            alert("请选择需要导入的excel文件");
+            swal("请选择Excel文件", "您未选择Excel文件！","error");
         }else {
             $("#btn").attr("disabled",true);
             $("#upload").submit();

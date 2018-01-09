@@ -67,7 +67,6 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-
                 if(row.status == 1){
                     var e = '<a title="修改" href="javascript:void(0);" id="modify"  data-toggle="modal" data-id="\'' + row.id + '\'" data-target="#myModal" onclick="return edit(\'' + row.id + '\',\'' + row.url + '\',\'' + row.desZh + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:chartreuse"></i></a> ';
                     var f = '<a title="冻结" href="javascript:void(0);" onclick="updateStatus(\'' + row.id + '\', \'' + 2 + '\')"><i class="glyphicon glyphicon-remove" alt="冻结" style="color:red"></i></a> ';

@@ -22,5 +22,6 @@ public interface RolePermissionDAO extends BaseDAO{
 
     void saveRolePermission(@Param("roleId") Long roleId, @Param("permissionIdList") List<Long> permissionIdList);
     void deleteRolePermission(@Param("roleId") Long roleId);
+    List<Permission> initSelectedP(@Param("roleId") Long roleId);
 
 }
