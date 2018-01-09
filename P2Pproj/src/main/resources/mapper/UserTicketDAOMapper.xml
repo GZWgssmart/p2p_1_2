@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.zzh.dao.UserTicketDAO">
+    <sql id="usertick_query_common">
+    <![CDATA[
+        select ut.ukid,ut.uid,ut.kid,ut.tktime as uttime,ut.usestatus,
+        t.kid,t.type,t.tkmoney,t.tktime,t.tname,t.tintro
+        from t_userticket ut inner join t_ticket t where ut.kid=t.kid  and ut.uid=#{uid}
+         ]]>
+    </sql>
+    <sql id="usertickcount_query_common">
+        <![CDATA[
+        select count(ut.ukid)
+        from t_userticket ut inner join t_ticket t where ut.kid=t.kid  and ut.uid=#{uid}
+         ]]>
+    </sql>
+    <select id="unuse" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
+        <include refid="usertick_query_common"></include>
+        <![CDATA[
+        and CURRENT_DATE <= t.tktime and ut.usestatus=0
+        ]]>
+    </select>
+    <select id="unuseCount" parameterType="long" resultType="int">
+        <include refid="usertickcount_query_common"></include>
+        <![CDATA[
+        and CURRENT_DATE <= t.tktime and ut.usestatus=0
+        ]]>
+    </select>
+    <select id="used" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
+        <include refid="usertick_query_common"></include>
+        <![CDATA[
+        and ut.usestatus=1
+        ]]>
+    </select>
+    <select id="usedCount" parameterType="long" resultType="int">
+        <include refid="usertickcount_query_common"></include>
+        <![CDATA[
+        and ut.usestatus=1
+        ]]>
+    </select>
+    <select id="overed" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
+        <include refid="usertick_query_common"></include>
+        <![CDATA[
+        and CURRENT_DATE > t.tktime and ut.usestatus=0
+        ]]>
+    </select>
+    <select id="overedCount" parameterType="long" resultType="int">
+        <include refid="usertickcount_query_common"></include>
+        <![CDATA[
+        and CURRENT_DATE > t.tktime and ut.usestatus=0
+        ]]>
+    </select>
+
+</mapper>

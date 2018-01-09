@@ -11,4 +11,8 @@ public interface BankCardService extends BaseService{
     //修改绑定银行卡状态
     void updateState(BankCard bankCard);
     Long countDank(Long uid);
+
+    String getDank(Long uid);
+
+    String getType(Long uid);
 }

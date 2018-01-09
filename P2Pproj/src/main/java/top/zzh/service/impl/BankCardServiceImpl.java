@@ -33,4 +33,14 @@ public class BankCardServiceImpl extends AbstractService implements BankCardServ
     public Long countDank(Long uid) {
         return bankCardDAO.countDank(uid);
     }
+
+    @Override
+    public String getDank(Long uid) {
+        return bankCardDAO.getDank(uid);
+    }
+
+    @Override
+    public String getType(Long uid) {
+        return bankCardDAO.getType(uid);
+    }
 }

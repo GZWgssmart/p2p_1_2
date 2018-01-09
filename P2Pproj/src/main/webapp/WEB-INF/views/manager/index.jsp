@@ -62,6 +62,8 @@
                         </li>
                         <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
                         </li>
+						<li><a class="J_menuItem" href="<%=path%>/option/page">用户反馈</a>
+                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                         </li>
                     </ul>
@@ -101,6 +103,8 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<%=path%>/reward/rewardList">奖励信息</a>
+                        </li>
                         <li><a class="J_menuItem" href="<%=path%>/page/users">用户借款列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
@@ -341,7 +345,6 @@
             </div>
         </div>
     </div>
-
     <jsp:include page="../common/js.jsp"/>
 </body>
 </html>

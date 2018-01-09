@@ -57,7 +57,7 @@
 
 
     <select id="getById" resultMap="userMap">
-        select uname,upwd,phone,tzm,idtype,idno,email,rname,face,sex,isvip,create_time from t_user
+        select uname,upwd,phone,tzm,idtype,zpwd,idno,email,rname,face,sex,isvip,create_time from t_user
         where uid=#{uid}
     </select>
 

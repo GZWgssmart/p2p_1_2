@@ -269,9 +269,17 @@
                  }*/
                 return payflag;
             }
-            function chongzhi(){
+            
+            function prompt() {
+                layer.prompt({title: '支付密码', formType: 1}, function(pass, index){
+                    layer.close(index);
+                    options(pass)
+                });
+            }
+            
+            function chongzhi(pass){
                 $.post(
-                    "/userMoney/chongzhi",
+                    "/userMoney/chongzhi/"+pass,
                     $("#form").serialize(),
                     function (data) {
                         if (data.result == "ok") {
@@ -292,13 +300,13 @@
                 $('#form\\:actualMoney1').val("");
             }
 
-            function options(){
+            function options(pass){
                 var kym =$('#form\\:actualMoney1').val();
                 layer.confirm('你确定要充值'+kym, {
                     btn: ['确定','取消'] //按钮
                 }, function(){
                     layer.msg('正在充值中。。', {icon: 1});
-                    chongzhi();
+                    chongzhi(pass);
                 }, function(){
                     layer.msg('取消中。。。', {
                         time: 20000, //20s后自动关闭
@@ -411,7 +419,7 @@
                   <label id="form:defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="bankCardError"></span> </div>
                                 <div class="bank-check" id="bank-check2"> <b class="selected" id="bankProtocol1"></b><span class="bank-agree">我同意并接受<a href="#" target="_blank">《亿人宝投资咨询与管理服务电子协议》</a></span> <span class="error" id="bankProtocol_message" style="display:none;margin-top:-3px;">请同意协议内容！</span> </div>
-                                <input type="button" name="" value="充值" class="btn-paycz" onclick="options()">
+                                <input type="button" name="" value="充值" class="btn-paycz" onclick=" prompt()">
                             </div>
                             <div class="fr bank-info">
                                 <p class="bank-tit">快捷支付支持银行：</p>

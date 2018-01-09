@@ -117,6 +117,8 @@ public enum ControllerStatusEnum {
     UERS_BANK_FAIL(1142,"fail","银行卡已经绑定,不允许绑定多张银行卡！"),
     UERS_BANK_SUCCESS(1143,"ok","银行卡绑定成功!"),
     UERS_ERROR_FAIL(1142,"error","银行卡绑定失败！"),
+    UERS_BANK_ERROR(1144,"error","银行卡号错误，请重新输入!"),
+    UERS_ERROR_ERROR(1145,"error","支付密码错误，请重新输入！")
 
     ;
 

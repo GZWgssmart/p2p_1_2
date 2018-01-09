@@ -4,20 +4,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.BorrowDetail;
-import top.zzh.bean.Tzb;
-import top.zzh.bean.User;
+import top.zzh.bean.*;
 import top.zzh.common.Constants;
+import top.zzh.common.JLff;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
+import top.zzh.service.RewardService;
 import top.zzh.service.TzbService;
+import top.zzh.service.UserMoneyService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.TzbVO;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by 曾志湖 on 2017/12/26.
@@ -31,6 +37,11 @@ public class TzbController {
     @Autowired
     private TzbService tzbService;
 
+    @Autowired
+    private RewardService rewardService;
+
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     @RequestMapping("save")
     @ResponseBody
@@ -77,4 +88,93 @@ public class TzbController {
         logger.info("管理员查看用户投资情况");
         return "manager/tz";
     }
+
+    @RequestMapping("ltzView")
+    public String ltzView(){
+        return "user/tzMoney";
+    }
+
+    @PostMapping("ltzSave")
+    public String ltzSave(BigDecimal money,HttpSession session){
+
+        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        Reward reward=rewardService.findTmoney(uid);
+
+        Timer timer=new Timer();
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
+                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
+        System.out.println(calendar.getTime().toLocaleString());
+        JLff jLff=new JLff();
+        Reward reward1=new Reward();
+        BigDecimal ymoney=null;
+        BigDecimal tmoney=null;
+        if(reward==null){
+            ymoney=BigDecimal.valueOf(0);
+            tmoney=ymoney.add(money);
+            reward1.setUid(uid);
+            reward1.setMoney(jLff.jlj(money));
+            reward1.setState((byte) 1);
+            reward1.setTmoney(tmoney);
+            reward1.setDate(calendar.getTime());
+            rewardService.save(reward1);
+        }
+
+        if(reward!=null){
+            Reward reward3=new Reward();
+            reward3.setUid(uid);
+            reward3.setState((byte)1);
+            reward3.setDate(calendar.getTime());
+            rewardService.updateState(reward3);
+            ymoney=reward.getTmoney();
+            tmoney= ymoney.add(money);
+            Reward reward2=new Reward();
+            reward2.setUid(uid);
+            reward2.setTmoney(tmoney);
+            BigDecimal jl=reward.getMoney();
+            BigDecimal zjl=jl.add(jLff.jlj(money));
+            reward2.setMoney(zjl);
+            rewardService.updateTjmoney(reward2);
+        }
+
+
+        System.out.println("奖励金=="+jLff.jlj(money));
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                System.out.println("定时任务启动！");
+                Reward reward5=rewardService.findTmoney(uid);
+                if(reward5.getState()==1){
+                    Reward reward4=new Reward();
+                    reward4.setUid(uid);
+                    reward4.setState((byte)2);
+                    reward4.setDate(calendar.getTime());
+                    rewardService.updateState(reward4);
+
+                    UserMoney userMoney=userMoneyService.findJlmoney(uid);
+                    BigDecimal xjlmoney=jLff.jlj(money);
+                    BigDecimal yjlmoney=null;
+                    BigDecimal jlmoney=null;
+                    if(userMoney==null){
+                        yjlmoney=BigDecimal.valueOf(0);
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    if(userMoney!=null){
+                        yjlmoney=userMoney.getJlmoney();
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    userMoneyService.updateJlmoney(jlmoney,uid);
+                }
+
+            }
+        },calendar.getTime());
+
+
+        return "user/login";
+    }
+
+
 }
