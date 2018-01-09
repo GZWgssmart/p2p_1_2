@@ -24,6 +24,13 @@
 		]]>
     </select>
 
+    <select id="getType" resultType="string">
+        <![CDATA[
+		select type from t_bankcard
+		where uid = #{uid}
+		]]>
+    </select>
+
     <insert id="save" parameterType="top.zzh.bean.BankCard">
         <![CDATA[
           insert into t_bankcard(uid,cardno,rname,idno,type,state,date) values(#{uid},#{cardno},#{rname},#{idno},#{type},#{state},CURRENT_TIME )

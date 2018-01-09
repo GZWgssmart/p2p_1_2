@@ -13,4 +13,6 @@ public interface BankCardService extends BaseService{
     Long countDank(Long uid);
 
     String getDank(Long uid);
+
+    String getType(Long uid);
 }
