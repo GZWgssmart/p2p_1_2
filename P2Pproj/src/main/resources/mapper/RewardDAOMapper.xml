@@ -10,7 +10,7 @@
 
     <select id="findTmoney" resultMap="rewardMap">
         <![CDATA[
-          select tmoney,money  from t_reward where uid=#{uid}
+          select state,tmoney,money  from t_reward where uid=#{uid}
         ]]>
     </select>
 
@@ -34,6 +34,33 @@
         ]]>
 
     </update>
+
+    <sql id="rewardQuery_pager_common">
+        <if test="query!=null and query.uname!=null and query.uname!=''">
+            and u.uname like concat('%',#{query.uname},'%')
+        </if>
+        <if test="query!=null and query.state!=null and query.state!=''">
+            and r.state like concat('%',#{query.state},'%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="top.zzh.query.RewardQuery">
+        <![CDATA[
+         select r.rwid,r.uid,u.uname,r.tmoney,r.money,r.state,r.date from t_user u,t_reward r
+          where u.uid=r.uid
+        ]]>
+        <include refid="rewardQuery_pager_common"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+          select  count(r.uid) from t_user u,t_reward r
+          where u.uid=r.uid
+        ]]>
+        <include refid="rewardQuery_pager_common"/>
+    </select>
 
 </mapper>
 

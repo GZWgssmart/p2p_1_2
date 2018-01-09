@@ -16,4 +16,5 @@ public interface RolePermissionService {
 
     void saveRolePermission(String roleId,String permissionIds);
     void deleteRolePermission(String roleId);
+    List<Permission> initSelectedP(String roleId);
 }
