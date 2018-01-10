@@ -27,14 +27,13 @@
 <div class="wrapper wbgcolor">
     <div class="w1200 personal">
         <%@include file="../common/leftList.jsp" %>
-        <label id="typeValue" style="display:none;"> </label>
         <div class="personal-main">
             <div class="personal-back">
                 <div style="position: relative;font-size: 18px;color: #333;border-bottom: 1px solid #DCDCDC;width: 880px;padding-top: 25px;height: 35px;">
                         <span style="font-size: 18px;padding-right: 15px;">
                             <a href="/recommend/tuijian/">推荐好友</a>
                         </span>
-                    <span style="font-size:18px;border-bottom: 2px solid #28A7E1;padding-bottom: 10px;">
+                    <span style="font-size:18px;border-bottom: 2px solid #28A7E1;padding-bottom: 20px;">
                             <a href="/recommend/listByUid?pageNo=1">推荐列表</a>
                         </span>
                 </div>
@@ -62,6 +61,8 @@
                         <!--<div style=" width:760px;height:200px;padding-top:100px; text-align:center;color:#d4d4d4; font-size:16px;">
                                                       <img src="images/nondata.png" width="60" height="60"><br><br>
                                                      暂无回款计划</div>-->
+                        <c:if test="${page.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
+                        <c:if test="${page.total>0}">
                         <li>
                             <div align="center">
                                 <font size="2">页码${page.pageNo}/${page.pages} </font>
@@ -96,6 +97,7 @@
                                 <font size="2">共${page.total}个好友 </font>
                             </div>
                         </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
