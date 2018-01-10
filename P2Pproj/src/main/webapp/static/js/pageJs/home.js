@@ -2,7 +2,7 @@
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/dynamic/pager_criteria",//要请求数据的文件路径
+    url: "/home/pager_criteria",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -37,20 +37,78 @@ $('#mytab').bootstrapTable({
         },
 
         {
-            title: '报道标题',
-            field: 'title',
-            align: 'center',
-            sortable: true
-        }
-        ,
-        {
-            title: '封面图片',
-            field: 'pic',
+            title: '轮播图1',
+            field: 'pic1',
             align: 'center',
             sortable: true,
             formatter: function (value) {
                 return  "<img style='width: 100px;height:50px' src='http://localhost:8080/"+value+"'>";
             }
+        }
+        ,
+        {
+            title: '轮播图2',
+            field: 'pic2',
+            align: 'center',
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width: 100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
+        }
+        ,
+        {
+            title: '轮播图3',
+            field: 'pic3',
+            align: 'center',
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width: 100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
+        }
+        ,
+        {
+            title: '二维码',
+            field: 'ewm',
+            align: 'center',
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width: 100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
+        }
+        ,
+        {
+            title: '手机号码',
+            field: 'phone',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '链接1',
+            field: 'l1',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '链接2',
+            field: 'l2',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '链接3',
+            field: 'l3',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '链接4',
+            field: 'l4',
+            align: 'center',
+            sortable: true
         }
         ,
         {
@@ -91,13 +149,13 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.dyid + '\'" data-target="#dynamicUpdate" onclick="return edit(\'' + row.dyid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.dyid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.hid + '\'" data-target="#homeUpdate" onclick="return edit(\'' + row.hid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.hid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
                 if (row.state == 0) {
-                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.dyid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
+                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.hid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
                 } else if (row.state == 1) {
-                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.dyid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
+                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.hid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
                 }
 
 
@@ -139,15 +197,16 @@ function queryParams(params) {
 $('#search_btn').click(function () {
     var title = $('#title').val();
     var date = $('#date').val();
-    $('#mytab').bootstrapTable('refresh', {url: '/dynamic/pager_criteria',
-    query:{title:title,date:date}});
-})
+    var url = $('#url').val();
+    $('#mytab').bootstrapTable('refresh', {url: '/home/pager_criteria',
+        query:{title:title,date:date,url:url}});
+  })
 function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/dynamic/pager_criteria'});
+    $('#mytab').bootstrapTable('refresh', {url: '/home/pager_criteria'});
 }
 
 //单个删除
-function del(dyid, state) {
+function del(hid, state) {
     if (state == 0) {
         layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
         return;
@@ -155,10 +214,10 @@ function del(dyid, state) {
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: '/dynamic/delete/' + dyid,
+            url: '/home/delete/'+ hid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == 'ok!') {
+                if (data.message == 'ok') {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
                     layer.msg(data.message, {icon: 2, time: 1000});
@@ -172,18 +231,19 @@ function del(dyid, state) {
     });
 }
 //编辑
-function edit(dyid) {
-         $.post("/dynamic/findDynamic/" + dyid,
+function edit(hid) {
+         $.post("/home/findHome/" + hid,
             function (data) {
                 $("#updateForm").autofill(data);
                 $("#demo1").attr("src","/"+data.pic);
-            },
+                var ue = UE.getEditor('editor');
+                },
             "json"
         );
 }
 $("#update").click(function () {
     $.post(
-        "/dynamic/update",
+        "/home/update",
         $("#updateForm").serialize(),
         function (data) {
             if (data.message == "ok") {
@@ -192,13 +252,13 @@ $("#update").click(function () {
                 layer.msg(data.message, {icon: 2, time: 1000});
             }
             refush();
-            $("#dynamicUpdate").modal('hide');
+            $("#homeUpdate").modal('hide');
         }, "json"
     );
 });
 function update() {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        return row.dyid;
+        return row.hid;
     });
     if (row == "") {
         layer.msg('修改失败，请勾选数据!', {
@@ -208,7 +268,7 @@ function update() {
         return ;
 
     }else {
-        $.post("/dynamic/findDynamic/" + $("#dyid").val(),
+        $.post("/home/findHome/" + $("#hid").val(),
             function (data) {
                 if (data == "ok") {
                     $("#updateForm").autofill(data);
@@ -222,8 +282,8 @@ function update() {
     }
 }
 
-function updatestatus(dyid, state) {
-    $.post("/dynamic/updateStatus/" + dyid + "/" + state,
+function updatestatus(hid, state) {
+    $.post("/home/updateStatus/" + hid + "/" + state,
         function (data) {
             if (state == 1) {
                 if (data.message == "ok") {
@@ -244,7 +304,7 @@ function updatestatus(dyid, state) {
     );
 }
 //新增
-$('#dynamicAdd').bootstrapValidator({
+$('#homeAdd').bootstrapValidator({
     message: 'This value is not valid',
     feedbackIcons: {
         valid: 'glyphicon glyphicon-ok',
@@ -252,24 +312,79 @@ $('#dynamicAdd').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        title: {
-            message: '标题验证失败',
+        phone: {
             validators: {
                 notEmpty: {
-                    message: '请输入标题'
+                    message: '手机号码不能为空'
+                },
+                stringLength: {
+                    min: 11,
+                    max: 11,
+                    message: '请输入11位手机号码'
+                },
+                regexp: {
+                    regexp: /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/,
+                    message: '请输入正确的手机号码格式'
+                }
+            }
+        },
+        l1: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接1'
                 },
                 stringLength: {
                     min: 1,
-                    max: 20,
-                    message: '标题长度必须在1到20之间'
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l2: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接2'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l3: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接3'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l4: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接4'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
                 }
             }
         },
         date: {
-             message: '时间验证失败',
+             message: '报道时间验证失败',
              validators: {
                  notEmpty: {
-                     message: '请选择时间'
+                     message: '请选择报道时间'
                  },
                  date:{
                      format : 'YYYY/MM/DD',
@@ -284,20 +399,22 @@ $('#dynamicAdd').bootstrapValidator({
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
      $.post(
-        "/dynamic/save",
-        $('#dynamicAdd').serialize(),
+        "/home/save",
+        $('#homeAdd').serialize(),
         function (data) {
             if (data.message == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
                 layer.msg(data.message, {icon: 2, time: 1000});
             }
-            $("#dynamicAdd").data('bootstrapValidator').resetForm();
-            $("#title").val("");
-            $("#content").val("");
-            $("#pic").val("");
+            $("#homeAdd").data('bootstrapValidator').resetForm();
+            $("#l1").val("");
+            $("#l2").val("");
+            $("#l3").val("");
+            $("#l4").val("");
+            $("#phone").val("");
             $("#date").val("");
-             refush();
+            refush();
         },
         "json"
     );
@@ -311,16 +428,71 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        title: {
-            message: '标题验证失败',
+        phone: {
             validators: {
                 notEmpty: {
-                    message: '请输入标题'
+                    message: '手机号码不能为空'
+                },
+                stringLength: {
+                    min: 11,
+                    max: 11,
+                    message: '请输入11位手机号码'
+                },
+                regexp: {
+                    regexp: /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/,
+                    message: '请输入正确的手机号码格式'
+                }
+            }
+        },
+        l1: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接1'
                 },
                 stringLength: {
                     min: 1,
-                    max: 20,
-                    message: '标题长度必须在1到20之间'
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l2: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接2'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l3: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接3'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
+                }
+            }
+        },
+        l4: {
+            message: '链接验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请输入链接4'
+                },
+                stringLength: {
+                    min: 1,
+                    max: 50,
+                    message: '链接长度必须在1到50之间'
                 }
             }
         },
@@ -344,7 +516,7 @@ $('#updateForm').bootstrapValidator({
     var bv = $form.data('bootstrapValidator');
 
     $.post(
-        "/dynamic/update",
+        "/home/update",
         $('#updateForm').serialize(),
         function (data) {
             if (data.message == "ok") {
@@ -352,12 +524,14 @@ $('#updateForm').bootstrapValidator({
             } else {
                 layer.msg(data.message, {icon: 2, time: 1000});
             }
-            $("#dynamicUpdate").modal('hide');
-            $("#title").val("");
-            $("#content").val("");
-            $("#pic").val("");
+            $("#homeUpdate").modal('hide');
+            $("#l1").val("");
+            $("#l2").val("");
+            $("#l3").val("");
+            $("#l4").val("");
+            $("#phone").val("");
             $("#date").val("");
-             refush();
+            refush();
         },
         "json"
     );
@@ -388,7 +562,7 @@ function deleteMany() {
     $("#deleteId").val(row);
     layer.confirm('确认要执行批量删除媒体报道数据吗？', function (index) {
         $.post(
-            "/dynamic/deleteMany",
+            "/home/deleteMany",
             {
                 "manyId": $("#deleteId").val()
             },

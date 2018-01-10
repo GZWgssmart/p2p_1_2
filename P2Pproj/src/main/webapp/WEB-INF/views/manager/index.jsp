@@ -199,6 +199,8 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息列表</a>
                         </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/home/initAdd">新增首页信息</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

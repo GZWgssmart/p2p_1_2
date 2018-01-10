@@ -42,7 +42,7 @@ public class HomeController {
     }
     @RequestMapping("initAdd")
     public String initAdd(){
-        return "home/homeList";
+        return "home/homeAdd";
     }
 
     @RequestMapping("upload")
@@ -70,13 +70,7 @@ public class HomeController {
         fileVo.setMsg("上传成功!");
         return  fileVo;
     }
-    //重命名文件名称
-    private synchronized String getFileName(String filename) {
-        int position = filename.lastIndexOf(".");
-        String ext = filename.substring(position);
-        return System.nanoTime() + ext;
-    }
-    //新增首页信息
+      //新增首页信息
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Home home) {
@@ -125,7 +119,9 @@ public class HomeController {
         return statusVO;
     }
     //单个删除
-    public ControllerStatusVO delete(@PathVariable("mid")Long id){
+    @RequestMapping("delete/{hid}")
+    @ResponseBody
+    public ControllerStatusVO delete(@PathVariable("hid")Long id){
         try {
             homeService.remove(id);
         }catch (Exception e){

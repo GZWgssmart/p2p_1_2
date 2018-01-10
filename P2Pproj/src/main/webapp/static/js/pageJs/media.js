@@ -166,7 +166,7 @@ function del(mid, state) {
             url: '/media/delete/' + mid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == '删除成功!') {
+                if (data.message == 'ok') {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
                     layer.msg(data.message, {icon: 2, time: 1000});
@@ -195,7 +195,7 @@ $("#update").click(function () {
         "/media/update",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "修改成功!") {
+            if (data.message == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
                 layer.msg(data.message, {icon: 2, time: 1000});
@@ -238,13 +238,13 @@ function updatestatus(mid, state) {
                 if (data.message == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
             } else {
                 if (data.message == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
             }
             refush();
@@ -312,7 +312,7 @@ $('#mediaAdd').bootstrapValidator({
             if (data.message == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 1000});
             }
             $("#mediaAdd").data('bootstrapValidator').resetForm();
             $("#title").val("");
@@ -386,7 +386,7 @@ $('#updateForm').bootstrapValidator({
             if (data.message == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 1000});
             }
             $("#mediaUpdate").modal('hide');
             $("#title").val("");
