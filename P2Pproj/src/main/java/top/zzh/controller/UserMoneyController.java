@@ -74,9 +74,6 @@ public class UserMoneyController {
         String p =user.getZpwd().toString();
         String pa=EncryptUtils.md5(pass);
         String c=userMoney.getZmoney().toString();
-        System.out.println(cardao);
-        System.out.println(p);
-        System.out.println(pa);
         if (!p.equals(pa)){//密码错误
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
             return statusVO;
@@ -89,12 +86,16 @@ public class UserMoneyController {
                 //用户当前可用余额
                 Long kymoney=userMoneyService.getMoney(id.toString());
                 kymoney=userMoney.getKymoney().longValue()+kymoney;
+                //用户总资产
+                Long zmoney=userMoneyService.getZmoney(id.toString());
+                zmoney=userMoney.getKymoney().longValue()+zmoney;
                 System.out.println(kymoney.toString());
-                userMoneyService.updateMoney(kymoney.toString(),id.toString());//充值
+                userMoneyService.updateMoney(kymoney.toString(),zmoney.toString(),id.toString());//充值
             }else {
-
-                userMoneyService.updateMoney(userMoney.getKymoney().toString(),id.toString());//充值
-
+                //用户总资产
+                Long zmoney=userMoneyService.getZmoney(id.toString());
+                zmoney=userMoney.getKymoney().longValue()+zmoney;
+                userMoneyService.updateMoney(userMoney.getKymoney().toString(),zmoney.toString(),id.toString());//充值
             }
 
             //用户资金流向

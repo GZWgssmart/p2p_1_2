@@ -21,7 +21,9 @@ public interface UserMoneyDAO extends BaseDAO {
 
     Long getMoney(@Param("uid") String uid);
 
-    void updateMoney(@Param("money") String money,@Param("uid") String uid);
+    Long getZmoney(@Param("uid") String uid);
+
+    void updateMoney(@Param("money") String money,@Param("zmoney") String zmoney,@Param("uid") String uid);
 
     UserMoney findJlmoney(@Param("uid") Long uid);
 

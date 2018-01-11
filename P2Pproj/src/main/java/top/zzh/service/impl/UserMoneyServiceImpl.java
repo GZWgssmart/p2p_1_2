@@ -30,9 +30,15 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     }
 
     @Override
-    public void updateMoney(String money, String uid) {
-        userMoneyDAO.updateMoney(money,uid);
+    public Long getZmoney(String uid) {
+        return userMoneyDAO.getZmoney(uid);
     }
+
+    @Override
+    public void updateMoney(String money, String zmoney, String uid) {
+        userMoneyDAO.updateMoney(money,zmoney,uid);
+    }
+
 
     @Override
     public UserMoney findJlmoney(Long uid) {

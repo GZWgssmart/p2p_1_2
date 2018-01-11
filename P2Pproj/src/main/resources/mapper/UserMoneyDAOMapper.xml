@@ -56,7 +56,7 @@
     <insert id="save" parameterType="userMoney">
         <![CDATA[
           insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
-        values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
+        values(#{uid},0,0,0,0,0,0,0)
    ]]>
     </insert>
     <update id="update" parameterType="userMoney">
@@ -94,9 +94,13 @@
         select kymoney  from t_usermoney   where uid=#{uid}
     </select>
 
+    <select id="getZmoney" resultType="long">
+        select zmoney  from t_usermoney   where uid=#{uid}
+    </select>
+
     <update id="updateMoney">
         <![CDATA[
-          update t_usermoney set kymoney=#{money} where uid =#{uid}
+          update t_usermoney set kymoney=#{money},zmoney=#{zmoney} where uid =#{uid}
            ]]>
     </update>
 

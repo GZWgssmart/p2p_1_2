@@ -11,7 +11,9 @@ public interface UserMoneyService extends BaseService {
 
     Long getMoney(String uid);
 
-    void updateMoney(String money,String uid);
+    Long getZmoney( String uid);
+
+    void updateMoney( String money, String zmoney,String uid);
 
     UserMoney findJlmoney(Long uid);
 

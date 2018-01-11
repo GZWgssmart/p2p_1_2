@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import top.zzh.bean.LoginLog;
-import top.zzh.bean.Recommend;
-import top.zzh.bean.User;
-import top.zzh.bean.UserRole;
+import top.zzh.bean.*;
 import top.zzh.common.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
@@ -55,6 +52,9 @@ public class LUserController {
 
     @Autowired
     private OptionService optionService;
+
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     private LoginLogQuery loginLogQuery;
 
@@ -246,6 +246,10 @@ public class LUserController {
             }
         }
         userService.register(user);
+        UserMoney userMoney =new UserMoney();
+        userMoney.setUid(Integer.valueOf(user.getUid().toString()));
+        userMoneyService.save(userMoney);
+
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
         UserRole userRole = new UserRole();
         userRole.setRoleId(3);
