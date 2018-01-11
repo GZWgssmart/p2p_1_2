@@ -247,7 +247,7 @@ public class LUserController {
         }
         userService.register(user);
         UserMoney userMoney =new UserMoney();
-        userMoney.setUid(Integer.valueOf(user.getUid().toString()));
+        userMoney.setUid(user.getUid());
         userMoneyService.save(userMoney);
 
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.CASH_SAVE_SUCCESS);
