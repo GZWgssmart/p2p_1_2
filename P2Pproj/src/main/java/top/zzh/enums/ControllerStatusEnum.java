@@ -2,7 +2,8 @@ package top.zzh.enums;
 
 
 public enum ControllerStatusEnum {
-
+    HUSER_ROLE_MODIFY_SUCCESS(81,"ok","修改成功！"),
+    HUSER_ROLE_SAVE_SUCCESS(82,"ok","保存成功！"),
     ROLE_UPDATE_STATUS_FAIL(83,"error","修改角色状态失败"),
     ROLE_UPDATE_STATUS_SUCCESS(84,"ok","修改角色状态成功"),
     PERMISSION_UPDATE_STATUS_SUCCESS(85,"ok","修改权限状态成功"),
