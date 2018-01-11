@@ -118,7 +118,7 @@ function del(lxid, state) {
             url: '/jklx/delete/' + lxid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == 'ok') {
+                if (data.result == 'ok') {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
                     layer.msg(data.message, {icon: 1, time: 1000});
@@ -154,7 +154,7 @@ function deleteMany() {
         $.post(
             "/jklx/delete/" +$("#lxid").val(),
             function (data) {
-                if (data.message == "ok") {
+                if (data.result == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                     refush();
                 } else {
@@ -208,13 +208,13 @@ function updatestatus(lxid, state) {
     $.post("/jklx/updateState/" + lxid + "/" + state,
         function (data) {
             if (state == 1) {
-                if (data.message == "ok") {
+                if (data.result == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 }
             } else {
-                if (data.message == "ok") {
+                if (data.result == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                 } else {
                     layer.msg(data.message, {icon: 1, time: 1000});
@@ -260,7 +260,7 @@ $('#updateForm').bootstrapValidator({
         "/jklx/update",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "ok") {
+            if (data.result == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
                 layer.msg(data.message, {icon: 1, time: 1000});
@@ -301,7 +301,7 @@ $('#formadd').bootstrapValidator({
         "/jklx/save",
         $("#formadd").serialize(),
         function (data) {
-            if (data.message == "ok") {
+            if (data.result == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
                 layer.msg(data.message, {icon: 1, time: 1000});

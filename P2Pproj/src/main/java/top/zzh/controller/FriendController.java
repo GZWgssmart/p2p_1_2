@@ -5,12 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import sun.misc.Request;
 import top.zzh.bean.Bz;
 import top.zzh.bean.Friend;
 import top.zzh.common.Pager;
+import top.zzh.common.PathUtil;
+import top.zzh.common.PathUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.FriendService;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.FileVo;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @version :1.0
@@ -29,9 +38,34 @@ public class FriendController {
         return friendService.listPager(pageIndex,pageSize);
     }
 
-    @RequestMapping("bz")
+    @RequestMapping("friend")
     public String init() {
-        return "bz/bz";
+        return "friend/friend";
+    }
+
+
+    @RequestMapping("upload")
+    @ResponseBody
+    public FileVo fileUp(MultipartFile file, HttpServletRequest request){
+        FileVo fileVo = new FileVo();
+        String fileName =  getFileName(file.getOriginalFilename());
+        try{
+            file.transferTo(new File(PathUtils.uploadDir(request) + "/" +fileName));
+            fileVo.setFilePath( "static/uploads/" + fileName);
+            fileVo.setCode(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fileVo.setCode(1);
+    }
+        fileVo.setMsg("上传成功!");
+        return  fileVo;
+    }
+
+    //重命名文件名称
+    private synchronized String getFileName(String filename) {
+        int position = filename.lastIndexOf(".");
+        String ext = filename.substring(position);
+        return System.nanoTime() + ext;
     }
 
     @RequestMapping("save")
@@ -42,16 +76,18 @@ public class FriendController {
             friendService.save(friend);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_SAVE_FAIL);
-        }
+         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_SAVE_SUCCESS);
         return statusVO;
     }
 
     @RequestMapping("update")
     @ResponseBody
-    public ControllerStatusVO update(Friend friend){
+    public ControllerStatusVO update(Friend friend,HttpServletRequest request){
         ControllerStatusVO statusVO = null;
         try {
+            friend.setFpic(request.getParameter("fPic1"));
+            System.out.println( friend.getFpic());
             friendService.update(friend);
         } catch (RuntimeException e) {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_UPDATE_FAIL);

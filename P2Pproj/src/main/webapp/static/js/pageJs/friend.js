@@ -1,9 +1,10 @@
 //生成用户数据
 var modal;
+var localhostPaht= window.location.host;
 $('#mytab').bootstrapTable({
     method: 'post',
     contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-    url: "/sway/pager",//要请求数据的文件路径
+    url: "/friend/pager",//要请求数据的文件路径
     toolbar: '#toolbar',//指定工具栏
     striped: true, //是否显示行间隔色
     dataField: "res",
@@ -38,31 +39,18 @@ $('#mytab').bootstrapTable({
         },
 
         {
-            title: '还款方式',
-            field: 'way',
+            title: '合作伙伴链接',
+            field: 'furl',
             align: 'center',
             sortable: true
         },
 
         {
-            title: '算法',
-            field: 'fw',
+            title: '图片',
+            field: 'fpic',
             align: 'center',
-            sortable: true
-        }
-        ,
-        {
-            title: '状态',
-            field: 'state',
-            align: 'center',
-            formatter: function (value, row, index) {
-                if (value == 0) {
-                    //表示激活状态
-                    return '<span style="color:red" >冻结</span>';
-                } else {
-                    //表示冻结状态
-                    return '<span style="color:green">激活</span>';
-                }
+            formatter: function (value,row,index){
+                return   '<img  src=../'+value+'   width="200" height="50"  >';
             }
         }
         ,
@@ -72,15 +60,9 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.sid + '\'" data-target="#myModal" onclick="return edit(\'' + row.sid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.sid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
-                var f = '';
-                if (row.state == 0) {
-                    f = '<a title="激活" href="javascript:void(0);" onclick="updatestatus(' + row.sid + ',' + 1 + ')"><i class="glyphicon glyphicon-ok-sign" style="color:green"></i></a> ';
-                } else if (row.state == 1) {
-                    f = '<a title="冻结" href="javascript:void(0);" onclick="updatestatus(' + row.sid + ',' + 0 + ')"><i class="glyphicon glyphicon-remove-sign"  style="color:red"></i></a> ';
-                }
-                return e + d + f;
+                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.fid + '\'" data-target="#myModal" onclick="return edit(\'' + row.fid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.fid +')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
+                return e + d ;
             }
         }
     ],
@@ -114,21 +96,19 @@ function queryParams(params) {
         searchVal: title
     }
 }
-function del(sid, state) {
-    if (state == 1) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
-        return;
-    }
+function del(fid) {
+
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: '/sway/delete/' + sid,
+            url: '/friend/delete/' + fid,
             dataType: 'json',
             success: function (data) {
                 if (data.result == 'ok') {
                     layer.msg(data.message, {icon: 1, time: 1000});
+                    refush();
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
                 refush();
             },
@@ -140,12 +120,8 @@ function del(sid, state) {
 }
 
 function deleteMany() {
-    var state = "";
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        if (row.state == 0) {
-            state += row.state;
-        }
-        return row.sid;
+        return row.fid;
     });
     if (row == "") {
         layer.msg('删除失败，请勾选数据!', {
@@ -156,16 +132,16 @@ function deleteMany() {
     }
 
 
-    $("#sid").val(row);
+    $("#fid").val(row);
     layer.confirm('确认要删除数据吗？', function (index) {
         $.post(
-            "/sway/delete/" +$("#sid").val(),
+            "/friend/delete/" +$("#fid").val(),
             function (data) {
                 if (data.result == "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                     refush();
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 1000});
                 }
                 refush();
             }, "json"
@@ -174,9 +150,10 @@ function deleteMany() {
 
 }
 
-function edit(sid) {
-    $.post("/sway/findSway/" + sid,
+function edit(fid) {
+    $.post("/friend/findFriend/" + fid,
         function (data) {
+            $('#demo11').attr('src', '../'+data.fpic);
             $("#updateForm").autofill(data);
 
         },
@@ -186,7 +163,7 @@ function edit(sid) {
 
 function update() {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        return row.sid;
+        return row.fid;
     });
     if (row == "") {
         layer.msg('修改失败，请勾选数据!', {
@@ -196,10 +173,11 @@ function update() {
         return ;
 
     }else {
-            $.post("/sway/findSway/" + $("#sid").val(),
+            $.post("/friend/findFriend/" + $("#fid").val(),
                 function (data) {
-                    if (data == "ok") {
+                    if (data.result == "ok") {
                         $("#updateForm").autofill(data);
+                        $('#demo1').attr('src', data.fpic);
                     } else {
                         layer.msg(data.message, {icon: 2, time: 1000});
                     }
@@ -210,34 +188,12 @@ function update() {
     }
 }
 
-function updatestatus(sid, state) {
-
-    $.post("/sway/updateState/" + sid + "/" + state,
-        function (data) {
-            if (state == 1) {
-                if (data.result == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                }
-            } else {
-                if (data.result == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
-                }
-            }
-            refush();
-        },
-        "json"
-    );
-}
 //查询按钮事件
 $('#search_btn').click(function () {
-    $('#mytab').bootstrapTable('refresh', {url: '/sway/pager'});
+    $('#mytab').bootstrapTable('refresh', {url: '/friend/pager'});
 })
 function refush() {
-    $('#mytab').bootstrapTable('refresh', {url: '/sway/pager'});
+    $('#mytab').bootstrapTable('refresh', {url: '/friend/pager'});
 }
 
 $('#updateForm').bootstrapValidator({
@@ -248,43 +204,47 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        way: {
+        furl: {
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '还款方式不能为空'
+                    message: '合作伙伴链接不能为空'
                 },
 
             }
         },
-        fw: {
-            message: '请假天数验证失败',
+        fpic1: {
+            message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '还款方式算法不能为空'
-                }
+                    message: '合作伙伴图片不能为空'
+                },
 
             }
         },
+
     }
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/sway/update",
+        "/friend/update",
         $("#updateForm").serialize(),
         function (data) {
             if (data.result == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 1000});
 
             }
             refush();
             $("#myModal").modal('hide');
-            $("#way").val("");
-            $("#fw").val("");
+            $("#updateForm").data('bootstrapValidator').resetForm();
+            $("#furl").val("");
+            $("#fPic1").val("");
+            $("#demoText1").val("");
+            $('#demo11').attr('src', null);
         }, "json"
     );
 });
@@ -298,44 +258,47 @@ $('#formadd').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        way: {
+        furl: {
             message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '还款方式不能为空'
+                    message: '合作伙伴链接不能为空'
                 },
 
             }
         },
-        fw: {
-            message: '请假天数验证失败',
+        fpic: {
+            message: '请假理由验证失败',
             validators: {
                 notEmpty: {
-                    message: '还款方式算法不能为空'
-                }
+                    message: '合作伙伴图片不能为空'
+                },
 
             }
         },
+
     }
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
     var bv = $form.data('bootstrapValidator');
     $.post(
-        "/sway/save",
+        "/friend/save",
         $("#formadd").serialize(),
         function (data) {
             if (data.result == "ok") {
                 layer.msg(data.message, {icon: 1, time: 1000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 1000});
 
             }
 
             $("#webAdd").modal('hide');
             $("#formadd").data('bootstrapValidator').resetForm();
-            $("#way").val("");
-            $("#fw").val("");
+            $("#furl").val("");
+            $("#fpic").val("");
+            $("#demoText").val("");
+            $('#demo1').attr('src', null);
             refush();
         }, "json"
     );

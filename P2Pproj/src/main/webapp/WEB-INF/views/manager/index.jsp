@@ -167,9 +167,7 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/friend/friend">合作伙伴管理</a>
                         </li>
                     </ul>
                 </li>

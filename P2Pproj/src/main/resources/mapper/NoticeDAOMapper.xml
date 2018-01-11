@@ -41,4 +41,10 @@
           select * from t_notice where 1=1
         ]]>
     </select>
+
+    <select id="getById" resultType="top.zzh.bean.Notice">
+    <![CDATA[
+        select * from t_notice where nid = #{nid}
+    ]]>
+    </select>
 </mapper>

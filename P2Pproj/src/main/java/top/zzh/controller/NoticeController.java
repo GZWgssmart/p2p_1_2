@@ -12,6 +12,8 @@ import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.NoticeService;
 import top.zzh.vo.ControllerStatusVO;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @version :1.0
  * CREATE TIME :2018/1/2 11:16
@@ -23,6 +25,7 @@ public class NoticeController {
 
     @Autowired
     private NoticeService noticeService;
+
 
     @RequestMapping("pager")
     @ResponseBody
@@ -40,30 +43,35 @@ public class NoticeController {
         return "notice/noticeAdd";
     }
 
+    @RequestMapping("initUpdate/{nid}")
+    public String initUpdate(@PathVariable("nid") Long nid  ,HttpServletRequest request) {
+        Notice notice = (Notice) noticeService.getById(nid);
+        request.setAttribute("notice",notice);
+        return "notice/noticeUpdate";
+    }
+
+
+
     @RequestMapping("save")
-    @ResponseBody
-    public ControllerStatusVO save(Notice notice){
-        ControllerStatusVO statusVO = null;
-        try {
-            noticeService.save(notice);
-        } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_SAVE_FAIL);
-        }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_SAVE_SUCCESS);
-        return statusVO;
+    public String save(Notice notice, HttpServletRequest request){
+        noticeService.save(notice);
+        request.setAttribute("statusVO", "新增成功");
+        return "notice/notice";
     }
 
     @RequestMapping("update")
-    @ResponseBody
-    public ControllerStatusVO update(Notice notice){
+    public String update(Notice notice, HttpServletRequest request){
+
         ControllerStatusVO statusVO = null;
         try {
             noticeService.update(notice);
         } catch (RuntimeException e) {
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_UPDATE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.NOTICE_SAVE_FAIL);
+            request.setAttribute("statusVO", statusVO);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.FRIEND_UPDATE_SUCCESS);
-        return statusVO;
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.NOTICE_SAVE_SUCCESS);
+        request.setAttribute("statusVO", "修改成功");
+        return "notice/notice";
     }
 
     @RequestMapping("delete/{nid}")
@@ -80,11 +88,6 @@ public class NoticeController {
     }
 
 
-    @RequestMapping("findNotice/{nid}")
-    @ResponseBody
-    public Friend findNotice(@PathVariable("nid") Long fid){
-        return  (Friend) noticeService.getById(fid);
-    }
 
 
 }

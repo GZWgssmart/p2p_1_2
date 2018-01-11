@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="ibox-content">
-            <form method="post" id="mediaAdd" class="form-horizontal">
+            <form method="post" id="mediaAdd" class="form-horizontal" >
                 <div class="form-group">
                     <label class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-10">

@@ -1,6 +1,10 @@
 package top.zzh.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import top.zzh.common.Pager;
+
+import java.util.List;
 
 /**
  * @version :1.0
@@ -9,4 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FriendDAO extends BaseDAO {
+    @Override
+    List<Object> listPager(@Param("pager") Pager pager);
+
 }
