@@ -61,17 +61,33 @@
                 $('#form\\:actualMoney').val("");
             }
             function prompt() {
-                layer.prompt({title: '支付密码', formType: 1}, function(pass, index){
-                    layer.close(index);
-                    options(pass)
-                });
+                var actualMoney=$("#form\\:actualMoney").val();
+                var kymoney=$("#kymoney").val();
+                if(actualMoney==0) {
+                    layer.alert('单笔交易需要大于0元',{icon: 3});
+                }else if(isNaN(actualMoney)){
+                    layer.alert('输入的金额不是数字！请正确填写？',{icon: 3});
+                }else if(parseInt(actualMoney)>parseInt(kymoney)){
+                    layer.alert('余额不足！无法提现？',{icon: 3});
+                }else if(actualMoney>500000){
+                    layer.alert('提现金额不能超过500000元!',{icon: 3});
+                }else {
+                    layer.prompt({title: '支付密码', formType: 1}, function (pass, index) {
+                        layer.close(index);
+                        options(pass)
+                    });
+                }
             }
             function options(pass){
                 var kym =$('#form\\:actualMoney').val();
                 layer.confirm('你确定要提现'+kym, {
                     btn: ['确定','取消'] //按钮
                 }, function(){
-                    layer.msg('正在提现中。。', {icon: 1});
+                    layer.load();
+                    //此处演示关闭
+                    setTimeout(function () {
+                        layer.closeAll('loading');
+                    }, 1000);
                     tixian(pass);
                 }, function(){
                     layer.msg('取消中。。。', {
@@ -92,7 +108,7 @@
                         <ul>
                             <li><span class="deposit-formleft">可用金额</span> <span class="deposit-formright"> <i>
                 <label id="form:blance">${kymoney}</label>
-                </i>元 </span></li>
+                </i>元 </span><input class="hidden" id="kymoney" value="${kymoney}"></li>
                             <li><span class="deposit-formleft">提现金额</span> <span class="deposit-formright">
                 <input id="form:actualMoney" type="text" name="actualMoney" class="deposite-txt" maxlength="10">
                 元 </span> <span id="actualMoneyErrorDiv"><span id="actualMoney_message" style="display:none"

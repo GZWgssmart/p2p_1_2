@@ -193,9 +193,8 @@ public class PageController {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         //用户当前可用余额
         Long bigDecimal = userMoneyService.getMoney(id.toString());
-        Double kymoney = Double.valueOf(bigDecimal);
         System.out.println(bigDecimal);
-        session.setAttribute("kymoney",kymoney);
+        session.setAttribute("kymoney",bigDecimal);
         return "user/tixian";
     }
 

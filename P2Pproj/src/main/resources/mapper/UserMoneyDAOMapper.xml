@@ -111,7 +111,7 @@
          um.tzmoney,um.dsmoney,um.djmoney,um.jlmoney
           from t_usermoney as um ,t_user as u
           where  u.uid=#{uid}
-    ]]]>
+    ]]>
     </select>
 
     <!--查找奖励金-->

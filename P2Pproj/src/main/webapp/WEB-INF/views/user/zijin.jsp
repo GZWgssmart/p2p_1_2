@@ -26,9 +26,8 @@
             <div class="personal-money">
                 <h3><i>资金记录</i></h3>
 
-          <div >
-                 <table id="mytab" name="mytab" class="table table-hover"></table>
-            <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+          <div>
+
           </div>
             </div>
         </div>
