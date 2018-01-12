@@ -12,13 +12,6 @@
     <%--layui上传图片--%>
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css"  media="all">
     <jsp:include page="../common/bootstraptablecss.jsp"/>
-    <style>
-        .layui-upload-img {
-            width: 150px;
-            height: 130px;
-            background-color: white;
-        }
-    </style>
 </head>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
@@ -48,33 +41,47 @@
                     查询条件
                 </div>
                 <div class="panel-body form-group" style="margin-bottom:0px;">
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">媒体报道标题：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">链接1：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="title" id="title"/>
+                        <input type="text" class="form-control" name="l1" id="l1"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">报道时间：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">链接2：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="l2" id="l2"/>
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">链接3：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="l3" id="l3"/>
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">链接4：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="l4" id="l4"/>
+                    </div>
+                </div>
+                <div class="panel-body form-group" style="margin-bottom:0px;">
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">手机号码：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="phone" id="phone"/>
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">创建时间：</label>
                     <div class="col-sm-2">
                         <input type="date" class="form-control" name="date" id="date"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">报道地址：</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="url" id="url"/>
-                    </div>
-
                     <div class="col-sm-1 col-sm-offset-1">
                         <button class="btn btn-primary" id="search_btn">查询</button>
                     </div>
                 </div>
-            </div>
+
+                </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
                 <button id="btn_add" type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span><a a class="J_menuItem" style="color: white" href="<%=path%>/media/initAdd">新增报道</a>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span><a a class="J_menuItem" style="color: white" href="<%=path%>/home/initAdd">新增报道</a>
                 </button>
-                <button id="btn_update" type="button" onclick="update();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#mediaUpdate">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>更改报道
+                <button id="btn_update" type="button" onclick="update();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#homeUpdate">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>删除
                 </button>
-                <button id="btn_deleteMany" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
+                <button id="btn_delete" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>批量删除
                 </button>
             </div>
@@ -82,7 +89,7 @@
     </div>
 </div>
 <%--网站信息的修改--%>
-<div class="modal inmodal fade" id="mediaUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal inmodal fade" id="homeUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -94,7 +101,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal"  id="updateForm">
+                <form class="form-horizontal" id="updateForm">
                     <input type="hidden" name="hid"/>
                     <input type="hidden" name="state"/>
                     <input type="hidden" id="pic1" name="pic1"/>
@@ -104,7 +111,7 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="test1">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo1">
+                                    <img style="width: 150px;height: 150px" id="demo1">
                                     <p id="demoText1"></p>
                                 </div>
                             </div>
@@ -123,7 +130,7 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="test2">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo2">
+                                    <img style="width: 150px;height: 150px" id="demo2">
                                     <p id="demoText2"></p>
                                 </div>
                             </div>
@@ -142,7 +149,7 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="test3">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo3">
+                                    <img style="width: 150px;height: 150px" id="demo3">
                                     <p id="demoText3"></p>
                                 </div>
                             </div>
@@ -161,7 +168,7 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="test4">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo4">
+                                    <img style="width: 150px;height: 150px" id="demo4">
                                     <p id="demoText4"></p>
                                 </div>
                             </div>

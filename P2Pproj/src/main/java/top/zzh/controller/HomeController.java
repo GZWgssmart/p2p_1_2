@@ -115,7 +115,7 @@ public class HomeController {
         }catch (Exception e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.HOME_UPDATE_STATE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DYNAMIC_UPDATE_STATE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.HOME_UPDATE_STATE_SUCCESS);
         return statusVO;
     }
     //单个删除
@@ -125,9 +125,9 @@ public class HomeController {
         try {
             homeService.remove(id);
         }catch (Exception e){
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.DYNAMIC_DELETE_FAIL);
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.HOME_DELETE_FAIL);
         }
-        statusVO = ControllerStatusVO.status(ControllerStatusEnum.DYNAMIC_DELETE_SUCCESS);
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.HOME_DELETE_SUCCESS);
         return statusVO;
     }
     //批量删除

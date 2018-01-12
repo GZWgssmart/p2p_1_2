@@ -12,13 +12,6 @@
     <%--layui上传图片--%>
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css"  media="all">
     <jsp:include page="../common/bootstraptablecss.jsp"/>
-    <style>
-        .layui-upload-img {
-            width: 150px;
-            height: 130px;
-            background-color: white;
-        }
-    </style>
  </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -52,7 +45,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test1">上传图片</button>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img" id="demo1">
+                                <p id="image1">
                                 <p id="demoText1"></p>
                             </div>
                         </div>
@@ -71,7 +64,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test2">上传图片</button>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img" id="demo2">
+                                <p id="image2">
                                 <p id="demoText2"></p>
                             </div>
                         </div>
@@ -90,7 +83,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test3">上传图片</button>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img" id="demo3">
+                                <p id="image3">
                                 <p id="demoText3"></p>
                             </div>
                         </div>
@@ -109,7 +102,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test4">上传图片</button>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img" id="demo4">
+                                <p id="image4">
                                 <p id="demoText4"></p>
                             </div>
                         </div>

@@ -12,13 +12,6 @@
     <%--layui上传图片--%>
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css"  media="all">
     <jsp:include page="../common/bootstraptablecss.jsp"/>
-    <style>
-        .layui-upload-img {
-            width: 150px;
-            height: 130px;
-            background-color: white;
-        }
-    </style>
  </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -54,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">内容</label>
                     <div class="col-sm-10">
-                        <textarea id="editor"  name="content" style="height: 250px;width: 825px"autofocus></textarea>
+                        <textarea id="editor" name="content" style="height: 250px;width: 825px"autofocus></textarea>
                     </div>
                 </div>
                 <input type="hidden" id="pic" name="pic"/>
@@ -64,7 +57,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="picx">上传图片</button>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img"  id="demo1">
+                                <p id="demo"></p>
                                 <p id="demoText"></p>
                             </div>
                         </div>

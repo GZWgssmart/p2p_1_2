@@ -10,13 +10,6 @@
     <%--layui上传图片--%>
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css"  media="all">
     <jsp:include page="../common/bootstraptablecss.jsp"/>
-    <style>
-        .layui-upload-img {
-            width: 150px;
-            height: 130px;
-            background-color: white;
-        }
-    </style>
  </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -115,7 +108,7 @@
                             <div class="layui-upload">
                                 <button type="button" class="layui-btn" id="picx">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" id="demo1">
+                                    <img style="width: 150px;height: 150px" id="demo1">
                                     <p id="demoText"></p>
                                 </div>
                             </div>
@@ -156,6 +149,7 @@
 <script type="text/javascript">
     var ue = UE.getEditor('editor').getContentTxt();
 </script>
+
 <%--layui上传图片--%>
 <script src="<%=path%>/static/layui/layui.js" charset="utf-8"></script>
 <script src="<%=path%>/static/js/pageJs/upload.js"></script>

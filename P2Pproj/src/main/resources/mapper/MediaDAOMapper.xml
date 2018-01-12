@@ -37,7 +37,7 @@
         <if test="query != null and query.title != null">
           and title like concat("%",#{query.title},"%")
         </if>
-       <if test="query != null and query.date != null and query.date != ''">
+        <if test="query != null and query.date != null and query.date != ''">
           and date <![CDATA[<=]]> #{query.date}
         </if>
         <if test="query != null and query.url != null">

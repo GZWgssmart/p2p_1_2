@@ -22,7 +22,7 @@ $('#mytab').bootstrapTable({
     buttonsAlign: 'right',//按钮对齐方式
     toolbar: '#toolbar',
     search: true,
-    uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+    uniqueId: "hid",                     //每一行的唯一标识，一般为主键列
     showExport: true,
     exportDataType: 'all',
     columns: [
@@ -195,11 +195,14 @@ function queryParams(params) {
 }
 //查询按钮事件
 $('#search_btn').click(function () {
-    var title = $('#title').val();
+    var l1 = $('#l1').val();
+    var l2 = $('#l2').val();
+    var l3 = $('#l3').val();
+    var l4 = $('#l4').val();
+    var phone = $("#phone").val();
     var date = $('#date').val();
-    var url = $('#url').val();
     $('#mytab').bootstrapTable('refresh', {url: '/home/pager_criteria',
-        query:{title:title,date:date,url:url}});
+        query:{l1:l1,l2:l2,l3:l3,l4:l4,phone:phone,date:date}});
   })
 function refush() {
     $('#mytab').bootstrapTable('refresh', {url: '/home/pager_criteria'});
@@ -208,7 +211,7 @@ function refush() {
 //单个删除
 function del(hid, state) {
     if (state == 0) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
+        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 3000});
         return;
     }
     layer.confirm('确认要删除吗？', function (index) {
@@ -217,10 +220,10 @@ function del(hid, state) {
             url: '/home/delete/'+ hid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == 'ok') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == 'ok') {
+                    layer.msg(data.message, {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
                 refush();
             },
@@ -232,30 +235,17 @@ function del(hid, state) {
 }
 //编辑
 function edit(hid) {
-         $.post("/home/findHome/" + hid,
+         $.post("/home/findHome/"+ hid,
             function (data) {
                 $("#updateForm").autofill(data);
-                $("#demo1").attr("src","/"+data.pic);
-                var ue = UE.getEditor('editor');
+                $("#demo1").attr("src","/"+data.pic1);
+                $("#demo2").attr("src","/"+data.pic2);
+                $("#demo3").attr("src","/"+data.pic3);
+                $("#demo4").attr("src","/"+data.ewm);
                 },
             "json"
         );
 }
-$("#update").click(function () {
-    $.post(
-        "/home/update",
-        $("#updateForm").serialize(),
-        function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
-            } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
-            }
-            refush();
-            $("#homeUpdate").modal('hide');
-        }, "json"
-    );
-});
 function update() {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
         return row.hid;
@@ -263,7 +253,7 @@ function update() {
     if (row == "") {
         layer.msg('修改失败，请勾选数据!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return ;
 
@@ -273,7 +263,7 @@ function update() {
                 if (data == "ok") {
                     $("#updateForm").autofill(data);
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
 
             },
@@ -286,16 +276,16 @@ function updatestatus(hid, state) {
     $.post("/home/updateStatus/" + hid + "/" + state,
         function (data) {
             if (state == 1) {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("已冻结", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
             } else {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("已激活", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
             }
             refush();
@@ -402,10 +392,10 @@ $('#homeAdd').bootstrapValidator({
         "/home/save",
         $('#homeAdd').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                 layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#homeAdd").data('bootstrapValidator').resetForm();
             $("#l1").val("");
@@ -414,6 +404,14 @@ $('#homeAdd').bootstrapValidator({
             $("#l4").val("");
             $("#phone").val("");
             $("#date").val("");
+            $("#demo1").attr("src",'');
+            $("#demo2").attr("src",'');
+            $("#demo3").attr("src",'');
+            $("#demo4").attr("src",'');
+            $("#image1").html('');
+            $("#image2").html('');
+            $("#image3").html('');
+            $("#image4").html('');
             refush();
         },
         "json"
@@ -519,10 +517,10 @@ $('#updateForm').bootstrapValidator({
         "/home/update",
         $('#updateForm').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#homeUpdate").modal('hide');
             $("#l1").val("");
@@ -542,38 +540,33 @@ function deleteMany() {
         if (row.state == 0) {
             isactivity += row.state;
         }
-        return row.id;
+        return row.hid;
     });
     if (row == "") {
         layer.msg('删除失败，请勾选数据!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return;
     }
     if (isactivity != "") {
         layer.msg('删除失败，已经激活的不允许删除!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return;
 
     }
-    $("#deleteId").val(row);
+    $("#hid").val(row);
     layer.confirm('确认要执行批量删除媒体报道数据吗？', function (index) {
         $.post(
-            "/home/deleteMany",
+             "/home/deleteMany",
             {
-                "manyId": $("#deleteId").val()
+                "manyId":  $("#hid").val()
             },
             function (data) {
-                if (data.message == "删除成功!") {
-                    layer.msg("批量删除成功", {icon: 1, time: 1000});
-                    refush();
-                } else {
-                    layer.msg("批量删除失败", {icon: 2, time: 1000});
-                }
                 refush();
+                layer.msg("批量删除成功！", {icon: 2, time: 3000});
             }, "json"
         );
     });

@@ -157,7 +157,7 @@ function refush() {
 //单个删除
 function del(mid, state) {
     if (state == 0) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
+        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 3000});
         return;
     }
     layer.confirm('确认要删除吗？', function (index) {
@@ -166,10 +166,10 @@ function del(mid, state) {
             url: '/media/delete/' + mid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == 'ok') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == 'ok') {
+                    layer.msg(data.message, {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
                 refush();
             },
@@ -185,7 +185,6 @@ function edit(mid) {
             function (data) {
                 $("#updateForm").autofill(data);
                 $("#demo1").attr("src","/"+data.pic);
-                var ue = UE.getEditor('editor');
                 },
             "json"
         );
@@ -195,10 +194,10 @@ $("#update").click(function () {
         "/media/update",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             refush();
             $("#mediaUpdate").modal('hide');
@@ -212,17 +211,17 @@ function update() {
     if (row == "") {
         layer.msg('修改失败，请勾选数据!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return ;
 
     }else {
         $.post("/media/findMedia/" + $("#mid").val(),
             function (data) {
-                if (data == "ok") {
+                if (data.result == "ok") {
                     $("#updateForm").autofill(data);
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
 
             },
@@ -235,16 +234,16 @@ function updatestatus(mid, state) {
     $.post("/media/updateStatus/" + mid + "/" + state,
         function (data) {
             if (state == 1) {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("已冻结", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon:2, time: 3000});
                 }
-            } else {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+            } else{
+                if (data.result == "ok") {
+                    layer.msg("已激活", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon:2, time: 3000});
                 }
             }
             refush();
@@ -309,17 +308,19 @@ $('#mediaAdd').bootstrapValidator({
         "/media/save",
         $('#mediaAdd').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#mediaAdd").data('bootstrapValidator').resetForm();
             $("#title").val("");
-            $("#content").val("");
             $("#pic").val("");
             $("#date").val("");
             $("#url").val("");
+            $("#demo1").attr("src",'');
+            $("#demo").html('');
+            ue.setContent('');
             refush();
         },
         "json"
@@ -383,17 +384,18 @@ $('#updateForm').bootstrapValidator({
         "/media/update",
         $('#updateForm').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#mediaUpdate").modal('hide');
             $("#title").val("");
-            $("#content").val("");
             $("#pic").val("");
             $("#date").val("");
             $("#url").val("");
+            ue.setContent('');
+            $("#demo1").attr("src",'');
             refush();
         },
         "json"
@@ -410,14 +412,14 @@ function deleteMany() {
     if (row == "") {
         layer.msg('删除失败，请勾选数据!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return;
     }
     if (isactivity != "") {
         layer.msg('删除失败，已经激活的不允许删除!', {
             icon: 2,
-            time: 2000
+            time: 3000
         });
         return;
 
@@ -430,11 +432,11 @@ function deleteMany() {
                 "manyId": $("#deleteId").val()
             },
             function (data) {
-                if (data.message == "删除成功!") {
-                    layer.msg("批量删除成功", {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("批量删除成功", {icon: 1, time: 3000});
                     refush();
                 } else {
-                    layer.msg("批量删除失败", {icon: 2, time: 1000});
+                    layer.msg("批量删除失败", {icon: 2, time: 3000});
                 }
                 refush();
             }, "json"
