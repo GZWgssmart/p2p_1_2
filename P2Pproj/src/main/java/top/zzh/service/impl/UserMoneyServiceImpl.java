@@ -6,6 +6,7 @@ import top.zzh.bean.UserMoney;
 import top.zzh.dao.UserMoneyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.UserMoneyService;
+import top.zzh.vo.UserMoneyVO;
 
 import java.math.BigDecimal;
 
@@ -45,7 +46,9 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     }
 
     @Override
-    public Object getByUserId(Long id) {
-        return userMoneyDAO.getByUserId(id);
+    public void updateZmoney(UserMoneyVO userMoneyVO) {
+        userMoneyDAO.updateZmoney(userMoneyVO);
     }
+
+
 }

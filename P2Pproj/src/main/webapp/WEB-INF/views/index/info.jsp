@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
+    Long userId=(Long)session.getAttribute(Constants.USER_ID_SESSION);
 %>
 <html>
 <head>
@@ -17,11 +18,21 @@
     <script type="text/javascript"  src="<%=path%>/static/js/ablumn.js"></script>
     <script type="text/javascript"  src="<%=path%>/static/js/plugins.js"></script>
     <script type="text/javascript"  src="<%=path%>/static/js/detail.js"></script>
+    <link href="<%=path%>/static/plugin/bootstrap/css/style.min.css?v=4.0.0" rel="stylesheet">
+
+
 </head>
 <body>
 <!-- 网站头部-->
 <%@include file="../common/header.jsp"%>
 <!--信息详细-->
+
+
+
+<input type="hidden" id="uid" name="uid" value="${borrow.uid}">
+<input type="hidden" id="userId" name="userId" value="<%=userId%>">
+<input type="hidden" id="maxMoney" name="maxMoney" value="${borrow.money-borrow.mmoney}">
+
 <div class="item-detail wrap">
     <div class="breadcrumbs"> <a href="../index.jsp">首页</a>&gt; <a href="#">投资列表</a>&gt; <span class="cur">项目详情</span> </div>
     <div class="item-detail-head clearfix" data-target="sideMenu">
@@ -51,23 +62,29 @@
             <div class="mod-right mod-status">
                 <div class="inner">
                     <p class="text">
-                    <div class="subject-s-r-c">
-                        <p>可用余额：<span class="f24 c-333">${borrow.kymoney}</span>元</p>
-                    </div>
-                    <div class="subject-s-r-c">
+                        <div class="subject-s-r-c">
+                            <c:if test="${users==null}">
+                                <p>可用余额：<span >登录后才可查看余额</span></p>
+                            </c:if>
+                            <c:if test="${users!=null}">
+                                <p>可用余额：<span class="f24 c-333">${users.kymoney}</span>元</p>
+                            </c:if>
+                            <p>已投金额：<span class="f24 c-333">${borrow.mmoney}</span>元</p>
+                        </div>
+
+                <div class="subject-s-r-c">
                         <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.mmoney}</span>元</p>
                     </div>
                     <div class="input">
-                        <form method="post" action="<%=path%>/tz/save">
+                        <form method="post" action="">
                             <input type="text" style="display: none" id="kymoney" value="${borrow.kymoney}">
                             <input type="text" style="display: none" id="nprofit" value="${borrow.nprofit}">
                             <input type="text" style="display: none" id="term" value="${borrow.term}">
                             <input type="text" style="display: none" id="sid" value="${borrow.sid}">
-                            <input type="text" style="display: none" id="baid" value="${borrow.baid}">
+                            <input type="text" style="display: none" id="baid" name="baid" value="${borrow.baid}">
                             <input type="text" style="display: none" id="juid" name="juid" value="${borrow.juid}">
-                            <input type="text" name="money" id="money" placeholder="请输入投标金额" >
                             <c:if test="${borrow.mmoney<borrow.money}">
-                                <input class="btn"  type="submit" value="投标">
+                                <input style="width: 60px;height: 23px;background-color:#66ffff;size: 14px"  type="button" value="投标" onclick="prompt()">
                             </c:if>
                             <c:if test="${borrow.mmoney==borrow.money}">
                                 <input  class="btn disabled" id="investBtn" type="submit" value="还款中">
@@ -146,9 +163,11 @@
                                     <li class="no"><i class="icon icon-4"></i>发布借款</li>
                                 </ul>
                             </div>
-                            <div class="conclusion f16"> 结论：经风控部综合评估， <span class="c-orange">同意放款${borrow.money}元；</span> <i class="icon icon-status icon-status1"></i> </div>
+                            <div class="conclusion f16"> 结论：经风控部综合评估， <span class="c-orange">同意放款${borrow.money}元；</span>
+                                <i class="icon icon-status icon-status1"></i> </div>
                         </dd>
                     </dl>
+
                     <dl class="item">
                         <dt>
                             <h3>相关文件</h3>
@@ -245,4 +264,71 @@
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
 </body>
+
+<script src="<%=path%>/static/plugin/bootstrap/js/plugins/layer/layer.js"></script>
+<script  type="text/javascript">
+    function prompt() {
+       var userId =$('#userId').val();
+
+        if(userId=="null"){
+            window.location.href = "/page/user";
+        }else{
+            layer.prompt({title: '输入投资金额', formType: 3}, function(money, index){
+                layer.close(index);
+                var xmoney=money;
+                layer.prompt({title: '支付密码', formType: 1}, function(pass, index){
+                    layer.close(index);
+                    options(pass,xmoney);
+                });
+            });
+        }
+
+
+    }
+
+
+    function options(pass,xmoney){
+        var uid =$('#uid').val();
+        var maxMoney =$('#maxMoney').val();
+        var baid=$('#baid').val();
+        layer.confirm('你确定要投资', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            layer.msg('正在投资中。。', {icon: 1});
+            touzi(uid,pass,xmoney,maxMoney,baid);
+        }, function(){
+            layer.msg('取消中。。。', {
+                time: 20000, //2s后自动关闭
+                btn: ['明白了', '知道了']
+            });
+        });
+    }
+
+    function touzi(uid,pass,xmoney,maxMoney,baid) {
+
+        if(xmoney<100){
+            layer.msg("投资金额不能少于100！", {icon: 2, time: 2000});
+            return;
+        }
+
+
+        $.post(
+            "/tz/save/"+uid+"/"+xmoney+"/"+pass+"/"+maxMoney+"/"+baid,
+            function (data) {
+                if (data.result == "ok") {
+
+                    layer.msg(data.message, {icon: 1, time: 2000});
+
+                }else if(data.result == "login"){
+                    window.location.href ="/page/login";
+                }else {
+                    layer.msg(data.message, {icon: 2, time: 2000});
+
+                }
+            }, "json"
+        );
+    }
+
+</script>
 </html>
+

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import top.zzh.bean.Tzb;
 import top.zzh.common.Pager;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.TzbVO;
 
 import java.util.List;
 
@@ -28,7 +29,10 @@ public interface TzbDAO extends BaseDAO {
 
     Long countById(@Param("id") Long id);
 
-    List<Tzb> listTzb(@Param("uid") Long uid, @Param("baid") Long baid);
+    TzbVO listTzb(@Param("uid") Long uid, @Param("baid") Long baid);
 
     ControllerStatusVO add(Object obj);
+
+    @Override
+    void save(Object obj);
 }

@@ -6,6 +6,7 @@ import top.zzh.bean.User;
 import top.zzh.dao.UserDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.UserService;
+import top.zzh.vo.UserVO;
 
 /**
  * Created by 曾志湖 on 2017/12/21.
@@ -77,6 +78,11 @@ public class UserServiceImpl extends AbstractService implements UserService{
     @Override
     public void updatepwd(Long uid, String zpwd) {
         userDAO.updatepwd(uid,zpwd);
+    }
+
+    @Override
+    public UserVO getByUid(Long uid) {
+        return userDAO.getByUid(uid);
     }
 
     @Override

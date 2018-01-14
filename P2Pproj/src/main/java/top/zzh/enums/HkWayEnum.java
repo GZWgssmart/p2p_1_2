@@ -8,7 +8,7 @@ public enum HkWayEnum {
     EQUAL_BX("1", "等额本息"),
     EQUAL_BJ("2", "等额本金"),
     XIAN_XI("3", "先息后本"),
-    PAYOFF_ONCE("4", "一次还清");
+    PAYOFF_ONCE("4", "一次性还本付息");
 
     private String code;
     private String way;

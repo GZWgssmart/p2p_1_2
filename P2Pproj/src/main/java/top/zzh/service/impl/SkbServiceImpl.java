@@ -58,35 +58,34 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
             //如果当前借款的目标金额和已筹金额相等
             if(borrowDetailVO.getMoney().compareTo(borrowDetailVO.getMmoney())==0){
                 //则查询出该用户对该借款投资了几次
-                List<Tzb> tzbList = tzbDAO.listTzb(uid,baid);
+                TzbVO tzbList = tzbDAO.listTzb(uid,baid);
                 //计算出总投资金额
                 //计算出总投资金额
                 BigDecimal money = new BigDecimal(0);
-                for (Tzb tzb : tzbList) {
-                    money = money.add(tzb.getMoney());
-                }
-                Tzb tzb = tzbList.get(0);
-                if(tzb.getInt2() == 1) {
-                    ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
-                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-                }else if(tzb.getInt2() == 2){
-                    ACMLoanCalculator calculator = new ACMLoanCalculator();
-                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-                }
-                for (LoanByMonth loanByMonth : loan.getAllLoans()) {
-                    Skb skb = new Skb();
-                    skb.setUid(uid);
-                    skb.setJuid(tzb.getJuid());
-                    skb.setBaid(baid);
-                    skb.setYbx(loanByMonth.getRepayment());
-                    skb.setRbx(new BigDecimal(0));
-                    skb.setYlx(loanByMonth.getInterest());
-                    skb.setRlx(new BigDecimal(0));
-                    skb.setYbj(loanByMonth.getPayPrincipal());
-                    skb.setRbj(new BigDecimal(0));
-                    skb.setTnum(tzb.getInt1());
-                    skbList.add(skb);
-                }
+
+                money = money.add(tzbList.getMoney());
+
+//                if(tzb.getInt2() == 1) {
+//                    ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
+//                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
+//                }else if(tzb.getInt2() == 2){
+//                    ACMLoanCalculator calculator = new ACMLoanCalculator();
+//                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
+//                }
+//                for (LoanByMonth loanByMonth : loan.getAllLoans()) {
+//                    Skb skb = new Skb();
+//                    skb.setUid(uid);
+//                    skb.setJuid(tzb.getJuid());
+//                    skb.setBaid(baid);
+//                    skb.setYbx(loanByMonth.getRepayment());
+//                    skb.setRbx(new BigDecimal(0));
+//                    skb.setYlx(loanByMonth.getInterest());
+//                    skb.setRlx(new BigDecimal(0));
+//                    skb.setYbj(loanByMonth.getPayPrincipal());
+//                    skb.setRbj(new BigDecimal(0));
+//                    skb.setTnum(tzb.getInt1());
+//                    skbList.add(skb);
+//                }
                 skbDAO.saveList(skbList);
 
             }

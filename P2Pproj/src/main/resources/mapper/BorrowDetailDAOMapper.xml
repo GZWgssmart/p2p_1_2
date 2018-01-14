@@ -10,8 +10,8 @@
         </selectKey>
         <![CDATA[
           insert into t_borrowdetail(mpurpose,hksource,suggest,
-          xmdescrip,guarantee,nprofit,sid,cpname,baid) values(#{mpurpose},
-            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{nprofit},#{sid},#{cpname},#{baid})
+          xmdescrip,guarantee,money,nprofit,sid,cpname,baid) values(#{mpurpose},
+            #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{sid},#{cpname},#{baid})
         ]]>
     </insert>
 
@@ -89,10 +89,10 @@
 
     <select id="findDetails" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-          select ba.baid,ba.uid,bd.bdid,t.juid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
+          select ba.huid,ba.baid,ba.uid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
             bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
-            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um,t_tzb t
-            where ba.bzid =b.bzid and  ba.baid = bd.baid and ba.uid = t.uid and  s.sid = bd.sid and ba.uid = um.uid and ba.baid = #{baid}
+            from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um
+            where ba.bzid =b.bzid and  ba.baid = bd.baid  and  s.sid = bd.sid and ba.uid = um.uid and ba.baid = #{baid}
         ]]>
     </select>
 

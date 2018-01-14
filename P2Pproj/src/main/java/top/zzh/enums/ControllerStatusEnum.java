@@ -32,6 +32,11 @@ public enum ControllerStatusEnum {
     USER_LOGIN_ERROR_ALREADYEXIST(004, "error", "账户已存在！"),
     USER_REGISTER_FAIL(901,"error","手机号已存在！"),
     USER_LOGIN_ERROR_ALREADY_EXIST(005, "error", "用户名已存在！"),
+    TZ_LOGIN_FAIL(902,"login","请登录！"),
+    TZ_SAVE_maxMoney_FAIL(903,"error","投资金额不能超过最大投标金额！"),
+
+
+
     CASH_SAVE_SUCCESS(103, "ok", "添加成功"),
     CASH_SAVE_FAIL(104, "error", "添加失败，稍候再试"),
     CASH_UPDATE_SUCCESS(105, "ok", "修改成功"),
@@ -52,6 +57,7 @@ public enum ControllerStatusEnum {
     USER_TZ_SUCCESS(119,"ok","恭喜你，投资成功！"),
     CHECK_TZ_FAIL(120,"error","投资失败，不能给自己投资"),
     USER_TZ_FAIL(121,"error","投资失败，请稍候再试"),
+    CHECK_TZ_SUCCESS(124,"ok","投资成功，欢迎您再次投标"),
     CHECK_TZ_FAILED(123,"error","未投满"),
     USER_MONEY_ENOUGH(122,"error","用户余额不足，请立即充值"),
     SWAY_SAVE_SUCCESS(500,"ok","添加成功"),

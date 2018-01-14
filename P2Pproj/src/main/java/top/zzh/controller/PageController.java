@@ -14,6 +14,7 @@ import top.zzh.service.*;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.TzbVO;
 import top.zzh.vo.UserTicketVo;
+import top.zzh.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -289,13 +290,18 @@ public class PageController {
     }
 
     @RequestMapping("info/{baid}")
-    public String info(HttpServletRequest request, @PathVariable("baid") Long baid) {
+    public ModelAndView info(HttpSession session, HttpServletRequest request, @PathVariable("baid") Long baid) {
         logger.info("首页查看投标详情");
+        ModelAndView modelAndView = new ModelAndView();
         BorrowDetailVO borrow = borrowDetailService.findDetails(baid);
         List<TzbVO> tzbVOList = (List)tzbService.listAll();
-        request.setAttribute("borrow",borrow);
-        request.setAttribute("tzbVOList",tzbVOList);
-        return "index/info";
+        Long userid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        UserVO users = (UserVO) userService.getByUid(userid);
+        modelAndView.addObject("borrow",borrow);
+        modelAndView.addObject("tzbVOList",tzbVOList);
+        modelAndView.addObject("users",users);
+        modelAndView.setViewName("index/info");
+        return modelAndView;
     }
 
     @RequestMapping("list")

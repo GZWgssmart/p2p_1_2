@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.User;
 import top.zzh.common.Pager;
+import top.zzh.vo.UserVO;
 
 import java.util.List;
 
@@ -37,4 +38,5 @@ public interface UserDAO extends BaseDAO {
 
     void  updatepwd(@Param("uid")Long uid,@Param("zpwd")String zpwd);
 
+    UserVO getByUid(@Param("uid")Long uid);
 }

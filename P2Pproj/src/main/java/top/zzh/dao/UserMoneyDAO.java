@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.UserMoney;
 import top.zzh.common.Pager;
+import top.zzh.vo.UserMoneyVO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,6 +28,7 @@ public interface UserMoneyDAO extends BaseDAO {
 
     void updateJlmoney(@Param("jlmoney")BigDecimal jlmoney,@Param("uid")Long uid);
 
-    Object getByUserId(Long id);
+    UserMoneyVO getByUid(@Param("uid")Long uid);
 
+    void updateZmoney(UserMoneyVO userMoneyVO);
 }

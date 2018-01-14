@@ -1,7 +1,7 @@
 package top.zzh.vo;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author 曾志湖 on 2017/12/28.
@@ -21,49 +21,6 @@ public class TzbVO {
     private Integer int1;
     private Integer int2;
     private String str1;
-
-    public TzbVO() {
-    }
-
-    public TzbVO(Integer int1,Integer int2,String str1,Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, String rname, String uname) {
-        this.tzid = tzid;
-        this.uid = uid;
-        this.int1 = int1;
-        this.int2 = int2;
-        this.str1 = str1;
-        this.juid = juid;
-        this.money = money;
-        this.time = time;
-        this.nprofit = nprofit;
-        this.cpname = cpname;
-        this.baid = baid;
-        this.rname = rname;
-        this.uname = uname;
-    }
-
-    public void setInt1(Integer int1) {
-        this.int1 = int1;
-    }
-
-    public Integer getInt1() {
-        return int1;
-    }
-
-    public void setInt2(Integer int2) {
-        this.int2 = int2;
-    }
-
-    public Integer getInt2() {
-        return int2;
-    }
-
-    public void setStr1(String str1) {
-        this.str1 = str1;
-    }
-
-    public String getStr1() {
-        return str1;
-    }
 
     public Long getTzid() {
         return tzid;
@@ -143,5 +100,29 @@ public class TzbVO {
 
     public void setUname(String uname) {
         this.uname = uname;
+    }
+
+    public Integer getInt1() {
+        return int1;
+    }
+
+    public void setInt1(Integer int1) {
+        this.int1 = int1;
+    }
+
+    public Integer getInt2() {
+        return int2;
+    }
+
+    public void setInt2(Integer int2) {
+        this.int2 = int2;
+    }
+
+    public String getStr1() {
+        return str1;
+    }
+
+    public void setStr1(String str1) {
+        this.str1 = str1;
     }
 }

@@ -59,13 +59,11 @@
         values(#{uid},#{zmoney},#{kymoney},#{sysmoney},#{tzmoney},#{djmoney},#{dsmoney},#{jlmoney})
    ]]>
     </insert>
-    <update id="update" parameterType="userMoney">
+    <update id="update" parameterType="top.zzh.vo.UserMoneyVO">
         <![CDATA[
-          update t_usermoney
-           ]]>
-        <set>
-          <include refid="money"/>
-        </set>
+             update t_usermoney set zmoney = #{zmoney},kymoney = #{kymoney},symoney = #{symoney},
+             tzmoney = #{tzmoney},djmoney = #{djmoney},dsmoney = #{dsmoney},jlmoney=#{jlmoney} where uid = #{uid}
+          ]]>
     </update>
 
     <select id="listPager" resultType="userMoney">
@@ -107,13 +105,13 @@
          um.tzmoney,um.dsmoney,um.djmoney,um.jlmoney
           from t_usermoney as um ,t_user as u
           where  u.uid=#{uid}
-    ]]]>
+      ]]>
     </select>
 
     <!--查找奖励金-->
     <select id="findJlmoney" resultType="top.zzh.bean.UserMoney">
         <![CDATA[
-        select jlmoney from t_usermoney where  uid=#{uid}
+        select jlmoney,zmoney,kymoney from t_usermoney where  uid=#{uid}
        ]]>
     </select>
 
@@ -122,6 +120,29 @@
         <![CDATA[
           update t_usermoney set jlmoney=#{jlmoney} where uid=#{uid}
          ]]>
+    </update>
+
+    <!--查找用户资金-->
+    <select id="getByUid" resultType="top.zzh.vo.UserMoneyVO">
+        <![CDATA[
+         select uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney from t_usermoney  where  uid =#{uid}
+       ]]>
+    </select>
+
+    <!--修改可用余额和总资产-->
+    <update id="updateZmoney" parameterType="top.zzh.vo.UserMoneyVO">
+        <![CDATA[
+          update t_usermoney
+        ]]>
+        <set>
+            <if test="zmoney!=null and zmoney!=''">
+                zmoney =#{zmoney},
+            </if>
+            <if test="kymoney!=null and kymoney!=''">
+                kymoney=#{kymoney},
+            </if>
+        </set>
+        where uid=#{uid}
     </update>
 
 </mapper>

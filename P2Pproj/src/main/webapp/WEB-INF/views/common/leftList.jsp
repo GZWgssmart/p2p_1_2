@@ -24,7 +24,6 @@
         </li>
         <li><span><a href="${request.getContextPath}/page/zhanghu"><i class="dot dot09"></i>账户设置</a></span></li>
         <li><span><a href="${request.getContextPath}/page/feedBackAdd"><i class="dot dot09"></i>我要反馈</a></span></li>
-        <li><span><a href="${request.getContextPath}/luser/logout"><i class="dot dot10"></i>安全退出</a></span></li>
         <br/><br/>
         <li><a href="${request.getContextPath}/recommend/tuijian/"><img src="${request.getContextPath}/static/images/tuijian.png"/></a></li>
     </ul>
