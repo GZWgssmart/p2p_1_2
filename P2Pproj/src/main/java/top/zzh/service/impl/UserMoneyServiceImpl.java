@@ -3,11 +3,13 @@ package top.zzh.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.bean.UserMoney;
+import top.zzh.common.Pager;
 import top.zzh.dao.UserMoneyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.UserMoneyService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author 陈桢
@@ -54,4 +56,19 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     public Object getByUserId(Long id) {
         return userMoneyDAO.getByUserId(id);
     }
+
+    @Override
+    public Pager listPagerUid(int pageNo, int pageSize, Object obj) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(userMoneyDAO.listPagerUid(pager, obj));
+        pager.setTotal(userMoneyDAO.getCount(obj));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return userMoneyDAO.getCount(obj);
+    }
+
+
 }

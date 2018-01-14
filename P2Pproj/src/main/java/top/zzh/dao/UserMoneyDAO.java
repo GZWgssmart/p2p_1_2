@@ -31,4 +31,8 @@ public interface UserMoneyDAO extends BaseDAO {
 
     Object getByUserId(Long id);
 
+    List<Object> listPagerUid(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    Long getCount( @Param("query") Object obj);
+
 }

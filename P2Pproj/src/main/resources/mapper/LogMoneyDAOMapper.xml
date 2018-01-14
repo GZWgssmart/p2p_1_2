@@ -60,4 +60,16 @@
         t_logmoney where  uid=#{id}
     </select>
 
+    <select id="listPagerUid" resultType="top.zzh.vo.LogMoneydate">
+        <![CDATA[
+           select * from
+        t_logmoney  where uid=#{query.uid}
+          limit #{pager.beginIndex}, #{pager.pageSize}
+       ]]>
+    </select>
+    <select id="getCount" resultType="long">
+        select count(uid) from
+        t_logmoney where uid=#{query.uid}
+    </select>
+
 </mapper>

@@ -79,7 +79,8 @@
                             <div class="col-sm-8">
                                 <select class="form-control"  name="state" id="state">
                                     <option value="0">审核通过</option>
-                                    <option value="1">审核不通过</option>
+                                    <option value="1">未审核</option>
+                                    <option value="3">审核不通过</option>
                                 </select>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
     <ul>
         <li class="pleft-cur"><span><a href="${request.getContextPath}/page/user"><i class="dot dot1"></i>账户总览</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
-                     href="${request.getContextPath}/page/zijin">资金记录</a></span></li>
+                     href="${request.getContextPath}/page/zijin?pageNo=1">资金记录</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                      href="${request.getContextPath}/page/touzi">投资记录</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"

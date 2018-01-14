@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Bz;
+import top.zzh.bean.LogMoney;
 import top.zzh.bean.User;
+import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
+import top.zzh.common.Pager;
 import top.zzh.service.*;
-import top.zzh.vo.BorrowDetailVO;
-import top.zzh.vo.TzbVO;
-import top.zzh.vo.UserTicketVo;
+import top.zzh.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -243,8 +244,23 @@ public class PageController {
     }
 
     @RequestMapping("zijin")
-    public String zijin() {
-        return "user/zijin";
+    public ModelAndView zijin(HttpSession session,int pageNo, LogMoney logMoney) {
+        long uid=(long)session.getAttribute(Constants.USER_ID_SESSION);
+        logMoney.setUid(uid);
+        if (pageNo==0){
+            pageNo=1;
+        }
+        Pager obj=(Pager)logMoneyService.listPagerUid(pageNo, 5, logMoney);
+        List<LogMoneydate> logMoneyList=new ArrayList<>();
+        for(Object o:obj.getRows()){
+            LogMoneydate logMoney1 =(LogMoneydate)o;
+            logMoneyList.add(logMoney1);
+        }
+        ModelAndView m=new ModelAndView();
+        m.setViewName("user/zijin");
+        m.addObject("obj",logMoneyList);
+        m.addObject("page",obj);
+        return m;
     }
 
     @RequestMapping("about")

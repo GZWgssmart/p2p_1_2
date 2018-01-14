@@ -128,4 +128,19 @@
          ]]>
     </update>
 
+    <select id="listPagerUid" resultType="top.zzh.bean.UserMoney">
+            <![CDATA[
+          select u.rname,um.uid,um.zmoney,um.kymoney,um.symoney,
+           um.tzmoney,um.dsmoney,um.djmoney,um.jlmoney
+          from t_usermoney as um ,t_user as u
+          where u.uid=um.uid
+          limit #{pager.beginIndex}, #{pager.pageSize}
+       ]]>
+    </select>
+    <select id="getCount" resultType="long">
+         select count(um.uid) from t_usermoney as um ,t_user as u
+          where  u.uid=um.uid
+          limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
 </mapper>

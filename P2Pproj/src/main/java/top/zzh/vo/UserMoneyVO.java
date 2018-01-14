@@ -19,6 +19,7 @@ public class UserMoneyVO {
 
     private BigDecimal jlmoney;//奖励金额
     public UserMoneyVO() {
+
     }
 
     public UserMoneyVO(String uid, String rname, BigDecimal zmoney, BigDecimal kymoney, BigDecimal symoney, BigDecimal tzmoney, BigDecimal djmoney, BigDecimal dsmoney, BigDecimal jlmoney) {

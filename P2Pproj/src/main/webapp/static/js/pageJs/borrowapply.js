@@ -120,12 +120,15 @@ $('#mytab').bootstrapTable({
             field: 'state',
             align: 'center',
             formatter: function (value, row, index) {
-                if (value == 0) {
+                if (value === 0) {
                     //表示激活状态
-                    return '<span style="color:green" >已审核</span>';
-                } else if(value==1){
+                    return '<span style="color:green" >审核通过</span>';
+                } else if(value===1){
                     //表示激活状态
-                    return '<span style="color:red">未审核</span>';
+                    return '<span style="color:blue">未审核</span>';
+                }else if(value===3){
+                    //表示激活状态
+                    return '<span style="color:red">审核不通过</span>';
                 }
             }
         }
@@ -136,7 +139,7 @@ $('#mytab').bootstrapTable({
             field: '',
             formatter: function (value, row, index) {
                 var g='';
-                g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+','+row.state+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
                 return g;
             }
         }
@@ -190,13 +193,13 @@ function findDetails() {
 }
 
 
-function shenhe(id,state) {
+function shenhe(id) {
     $("#shenhe").click(function () {
         $.post(
-            "/borrowapply/updateState/" + id + "/" + state,
+            "/borrowapply/updateState/" + id,
             $("#shenheform").serialize(),
             function (data) {
-                if (data.result == "ok") {
+                if (data.result === "ok") {
                     layer.msg(data.message, {icon: 1, time: 1000});
                     refush();
                 } else {

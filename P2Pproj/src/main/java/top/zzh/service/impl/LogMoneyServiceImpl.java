@@ -31,4 +31,17 @@ public class LogMoneyServiceImpl extends AbstractService implements LogMoneyServ
         pager.setTotal(logMoneyDAO.countById(id));
         return pager;
     }
+
+    @Override
+    public Pager listPagerUid(int pageNo, int pageSize, Object obj) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(logMoneyDAO.listPagerUid(pager, obj));
+        pager.setTotal(logMoneyDAO.getCount(obj));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return logMoneyDAO.getCount(obj);
+    }
 }
