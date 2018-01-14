@@ -80,7 +80,7 @@ public class BorrowApplyController {
         //默认状态为未审核,其他默认写死
         borrowApply.setState((byte)1);
         borrowApply.setHuid(1L);
-        borrowApply.setReason("审核不通过");
+        borrowApply.setReason("未审核");
         borrowApply.setTime(new Date());
         Calendar cal = Calendar.getInstance();
         Date date = new Timestamp(cal.getTime().getTime());
@@ -132,18 +132,18 @@ public class BorrowApplyController {
         String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
         User user=userService.getByface(name);
         BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
+        List<Bz> bzList = (List)bzService.listAll();
+        List<Jklx> jklxList = (List)jklxService.listAll();
+        List<Sway> swayList = (List)swayService.listAll();
+        request.setAttribute("bzList",bzList);
+        request.setAttribute("jklxList",jklxList);
+        request.setAttribute("swayList",swayList);
         //如果为空则跳转到申请借款页面
         if(borrowDetailVO==null){
             return "user/borrowapply";
         }
         //如果不为空则跳转到修改页面进行修改操作
         if(borrowDetailVO.getUid()!=null){
-            List<Bz> bzList = (List)bzService.listAll();
-            List<Jklx> jklxList = (List)jklxService.listAll();
-            List<Sway> swayList = (List)swayService.listAll();
-            request.setAttribute("bzList",bzList);
-            request.setAttribute("jklxList",jklxList);
-            request.setAttribute("swayList",swayList);
             request.setAttribute("borrowDetailVO",borrowDetailVO);
             return "user/update_borrow";
         }
@@ -167,16 +167,16 @@ public class BorrowApplyController {
         return "user/userindex";
     }
 
-    @RequestMapping("updateState/{id}/{state}")
+    @RequestMapping("updateState/{id}")
     @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("id") Long id,@PathVariable("state") int state ,BorrowApply borrowApply,HttpSession session){
+    public ControllerStatusVO updateState(@PathVariable("id") Long id,BorrowApply borrowApply,HttpSession session){
         logger.info("后台管理员审核借款人");
         ControllerStatusVO statusVO = null;
         HUser HUser = (HUser)session.getAttribute("HUser");
         borrowApply.setHuid(HUser.getHuid());
         borrowApply.setReason(borrowApply.getReason());
         borrowApply.setBaid(id);
-        borrowApply.setState((byte)state);
+        borrowApply.setState(borrowApply.getState());
         try {
             borrowApplyService.updateState(borrowApply);
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_USER_SUCCESS);

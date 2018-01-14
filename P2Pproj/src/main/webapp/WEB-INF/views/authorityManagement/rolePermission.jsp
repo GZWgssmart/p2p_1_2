@@ -88,7 +88,7 @@
                 });
             }
             //设置该角色拥有的权限勾选
-            getSelected($("#role").select2("data")[0].id)
+            getSelected($("#role").select2("data")[0].id);
         });
 
 
@@ -103,7 +103,6 @@
                 }
             });
             batchSaveRP(roleId,permissionIds);
-            getSelected(roleId);
         });
 
 

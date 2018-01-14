@@ -10,8 +10,8 @@
     <!--首页信息的新增-->
     <insert id="save" parameterType="home">
       <![CDATA[
-        insert into t_home(hid,pic1,pic2,pic3,ewm,phone,l1,l2,l3,l4,state)
-        values(#{hid},#{pic1},#{pic2},#{pic3},#{ewm},#{phone},#{l1},#{l2},#{l3},#{l4},#{state})
+        insert into t_home(hid,pic1,pic2,pic3,ewm,phone,l1,l2,l3,l4,state,date)
+        values(#{hid},#{pic1},#{pic2},#{pic3},#{ewm},#{phone},#{l1},#{l2},#{l3},#{l4},#{state},#{date})
       ]]>
     </insert>
 
@@ -51,6 +51,9 @@
             <if test="state != null and state != ''">
                 state = #{state},
             </if>
+            <if test="date != null and date != ''">
+                date = #{date},
+            </if>
         </set>
         where hid = #{hid}
     </update>
@@ -85,6 +88,9 @@
         <if test="query != null and query.l4 != null">
             and l4 like concat("%",#{query.l4},"%")
         </if>
+        <if test="query != null and query.date != null and query.date != ''">
+            and date <![CDATA[<=]]> #{query.date}
+        </if>
     </sql>
     <select id="listPagerCriteria" resultType="home">
         select * from t_home where 1=1
@@ -101,7 +107,7 @@
     <select id="listAll" resultType="home">
         <![CDATA[
           select * from t_home where 1=1
-          order by date desc
+           order by date desc
           limit #{pager.beginIndex},#{pager.pageSize}
         ]]>
     </select>

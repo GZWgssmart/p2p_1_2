@@ -12,7 +12,7 @@
 
     <insert id="save" parameterType="top.zzh.bean.Notice">
         <![CDATA[
-          insert into t_notice(nid,content,title,date) values(#{nid},#{content},#{title},#{date})
+          insert into t_notice(nid,content,title,date) values(#{nid},#{content},#{title},CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -40,5 +40,11 @@
         <![CDATA[
           select * from t_notice where 1=1
         ]]>
+    </select>
+
+    <select id="getById" resultType="top.zzh.bean.Notice">
+    <![CDATA[
+        select * from t_notice where nid = #{nid}
+    ]]>
     </select>
 </mapper>

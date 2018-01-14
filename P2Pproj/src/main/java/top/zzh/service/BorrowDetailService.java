@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.vo.BorrowDetailVO;
 
 /**
@@ -11,4 +12,5 @@ public interface BorrowDetailService extends BaseService {
     void updateTupian(Object obj);
     void updateBybaid(Object obj);
     BorrowDetailVO findDetails(Long baid);
+    BorrowDetailVO find(Long baid);
 }

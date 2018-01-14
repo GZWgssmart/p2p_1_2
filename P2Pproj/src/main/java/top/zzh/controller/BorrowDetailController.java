@@ -42,11 +42,11 @@ public class BorrowDetailController {
             for(int i=0;i<rowString.length;i++){
                 baid = rowString[i];
             }
-            BorrowDetailVO borrowDetailVO = borrowDetailService.findDetails(Long.valueOf(baid));
+            BorrowDetailVO borrowDetailVO = borrowDetailService.find(Long.valueOf(baid));
             request.setAttribute("borrowDetailVO",borrowDetailVO);
             return "manager/borrowdetail";
         }
-        BorrowDetailVO borrowDetailVO = borrowDetailService.findDetails(Long.valueOf(row));
+        BorrowDetailVO borrowDetailVO = borrowDetailService.find(Long.valueOf(row));
         request.setAttribute("borrowDetailVO",borrowDetailVO);
         return "manager/borrowdetail";
     }

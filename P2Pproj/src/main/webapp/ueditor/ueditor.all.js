@@ -4303,7 +4303,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
      */
     function updateCollapse(range) {
         range.collapsed =
-            range.startContainer && range.endContainer &&
+           range.startContainer && range.endContainer &&
                 range.startContainer === range.endContainer &&
                 range.startOffset == range.endOffset;
     }
@@ -8054,7 +8054,7 @@ UE.Editor.defaultOptions = function(editor){
         autoClearEmptyNode: true,
         fullscreen: false,
         readonly: false,
-        zIndex: 13990,
+        zIndex: 11111,
         imagePopup: true,
         enterTag: 'p',
         customDomain: false,

@@ -11,5 +11,8 @@ import java.util.List;
  */
 public interface LogMoneyService extends BaseService {
     Pager listPagerById(int pageNo,int pageSize,Long id);
+    Pager listPagerUid(int pageNo,int pageSize, Object obj);
+
+    Long getCount(Object obj);
 
 }

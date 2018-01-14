@@ -17,6 +17,7 @@ import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
+import top.zzh.service.BankCardService;
 import top.zzh.service.LogTxService;
 import top.zzh.service.TxcheckService;
 import top.zzh.service.UserService;
@@ -41,6 +42,9 @@ public class LogTXController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BankCardService bankCardService;
 
     private ControllerStatusVO statusVO;
 
@@ -71,15 +75,18 @@ public class LogTXController {
             return statusVO;
         }
         try{
+            String candno=bankCardService.getDank(id);
+            String type =bankCardService.getType(id);
             LogTx logTx=new LogTx();
             logTx.setMoney(BigDecimal.valueOf(Long.valueOf(actualMoney)));
             logTx.setUid(id);
-            logTx.setBanktype("建设银行");
-            logTx.setBankcard("110221330");
+            logTx.setBanktype(type);
+            logTx.setBankcard(candno);
             logTxService.save(logTx);
             TxCheck txCheck =new TxCheck();
             txCheck.setHuid(id);
             txCheck.setTxid(logTx.getId());
+            txCheck.setIsok((byte)2);
             txcheckService.save(txCheck);
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.BORROW_SAVE_WAIT);
         }catch (Exception e){

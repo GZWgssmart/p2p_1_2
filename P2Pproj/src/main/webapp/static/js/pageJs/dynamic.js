@@ -149,7 +149,7 @@ function refush() {
 //单个删除
 function del(dyid, state) {
     if (state == 0) {
-        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 1000});
+        layer.msg("删除失败，已经激活的不允许删除!", {icon: 2, time: 3000});
         return;
     }
     layer.confirm('确认要删除吗？', function (index) {
@@ -158,10 +158,10 @@ function del(dyid, state) {
             url: '/dynamic/delete/' + dyid,
             dataType: 'json',
             success: function (data) {
-                if (data.message == '删除成功!') {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == 'ok!') {
+                    layer.msg(data.message, {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
                 refush();
             },
@@ -186,10 +186,10 @@ $("#update").click(function () {
         "/dynamic/update",
         $("#updateForm").serialize(),
         function (data) {
-            if (data.message == "修改成功!") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 2, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             refush();
             $("#dynamicUpdate").modal('hide');
@@ -210,10 +210,10 @@ function update() {
     }else {
         $.post("/dynamic/findDynamic/" + $("#dyid").val(),
             function (data) {
-                if (data == "ok") {
+                if (data.result == "ok") {
                     $("#updateForm").autofill(data);
                 } else {
-                    layer.msg(data.message, {icon: 2, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
 
             },
@@ -226,16 +226,16 @@ function updatestatus(dyid, state) {
     $.post("/dynamic/updateStatus/" + dyid + "/" + state,
         function (data) {
             if (state == 1) {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("已冻结", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
             } else {
-                if (data.message == "ok") {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("已激活", {icon: 1, time: 3000});
                 } else {
-                    layer.msg(data.message, {icon: 1, time: 1000});
+                    layer.msg(data.message, {icon: 2, time: 3000});
                 }
             }
             refush();
@@ -287,16 +287,18 @@ $('#dynamicAdd').bootstrapValidator({
         "/dynamic/save",
         $('#dynamicAdd').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#dynamicAdd").data('bootstrapValidator').resetForm();
             $("#title").val("");
-            $("#content").val("");
             $("#pic").val("");
             $("#date").val("");
+            $("#demo1").attr("src",'');
+            $("#demo").html('');
+            ue.setContent('');
              refush();
         },
         "json"
@@ -347,16 +349,17 @@ $('#updateForm').bootstrapValidator({
         "/dynamic/update",
         $('#updateForm').serialize(),
         function (data) {
-            if (data.message == "ok") {
-                layer.msg(data.message, {icon: 1, time: 1000});
+            if (data.result == "ok") {
+                layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                layer.msg(data.message, {icon: 1, time: 1000});
+                layer.msg(data.message, {icon: 2, time: 3000});
             }
             $("#dynamicUpdate").modal('hide');
             $("#title").val("");
-            $("#content").val("");
             $("#pic").val("");
             $("#date").val("");
+            ue.setContent('');
+            $("#demo1").attr("src",'');
              refush();
         },
         "json"
@@ -393,11 +396,11 @@ function deleteMany() {
                 "manyId": $("#deleteId").val()
             },
             function (data) {
-                if (data.message == "删除成功!") {
-                    layer.msg("批量删除成功", {icon: 1, time: 1000});
+                if (data.result == "ok") {
+                    layer.msg("批量删除成功", {icon: 1, time: 3000});
                     refush();
                 } else {
-                    layer.msg("批量删除失败", {icon: 2, time: 1000});
+                    layer.msg("批量删除失败", {icon: 2, time: 3000});
                 }
                 refush();
             }, "json"

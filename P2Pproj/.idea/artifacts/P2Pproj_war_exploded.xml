@@ -86,6 +86,7 @@
           <element id="library" level="project" name="Maven: org.logback-extensions:logback-ext-spring:0.1.4" />
           <element id="library" level="project" name="json" />
           <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="editor" />
         </element>
       </element>
       <element id="directory" name="META-INF">

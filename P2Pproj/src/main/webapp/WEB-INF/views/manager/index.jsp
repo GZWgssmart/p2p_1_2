@@ -90,10 +90,10 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/permission/permissionPage">权限管理</a></li>
-                        <li><a a class="J_menuItem" href="<%=path%>/role/rolePage">角色管理</a></li>
-                        <li><a a class="J_menuItem" href="<%=path%>/rolePermission/rolePermissionPage">角色权限管理</a></li>
-                        <li><a a class="J_menuItem" href="">用户角色管理</a></li>
+                        <li><a class="J_menuItem" href="<%=path %>/permission/permissionPage">权限管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path %>/role/rolePage">角色管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path %>/rolePermission/rolePermissionPage">角色权限管理</a></li>
+                        <li><a a class="J_menuItem" href="<%=path %>/hUserRole/hUserRolePage">后台用户角色管理</a></li>
                     </ul>
                 </li>
                 <li>
@@ -167,9 +167,7 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="#">合作伙伴管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/friend/friend">合作伙伴管理</a>
                         </li>
                     </ul>
                 </li>
@@ -198,6 +196,8 @@
                         <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息列表</a>
+                        </li>
+                        <li><a a class="J_menuItem" href="<%=path%>/home/initAdd">新增首页信息</a>
                         </li>
                     </ul>
                 </li>

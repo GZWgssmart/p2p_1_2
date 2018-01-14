@@ -61,8 +61,11 @@ public class TxCheckController {
         HUser hUser =(HUser)session.getAttribute("HUser");
         txCheck.setHuid(hUser.getHuid());
         //用户当前可用余额
-        Long bigDecimal = userMoneyService.getMoney(txCheck.getHuid().toString());
+        Long bigDecimal = userMoneyService.getMoney(txCheck.getTxid().toString());
         Double kymoney = Double.valueOf(bigDecimal);
+        //用户总资产
+        Long zmoney=userMoneyService.getZmoney(txCheck.getTxid().toString());
+        Double zmone = Double.valueOf(zmoney);
         Double mone=Double.valueOf(money);
         if(txCheck.getIsok()==(byte)0) {
             if (kymoney < mone) {
@@ -73,7 +76,8 @@ public class TxCheckController {
         try {
             txcheckService.update(txCheck);
             kymoney = kymoney - mone;
-            userMoneyService.updateMoney(kymoney.toString(),txCheck.getHuid().toString());
+            zmone=zmone - mone;
+            userMoneyService.updateMoney(kymoney.toString(),zmone.toString(),txCheck.getTxid().toString());
             LogTx logTx=new LogTx();
             logTx.setState((byte)0);
             logTx.setId(txCheck.getTxid());

@@ -96,13 +96,14 @@
     }
 
     var v = parseUrl();//解析所有参数
-    var userCode = v['userCode'];//就是你要的结果
+    var userCode = v['userCode'].substr(0,5);//就是你要的结果
     if(userCode==null){
         userCode="";
     }else{
         $("#userCode").attr("readOnly",true);
     }
     var oText=document.getElementById('userCode');
+//    oText=oText.substr(1,5);
     oText.value=userCode;//给文本框赋值并显示
 </script>
 </html>

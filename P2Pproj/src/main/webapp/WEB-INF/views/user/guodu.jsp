@@ -239,7 +239,7 @@
                     function (data) {
                         if (data.result == "ok") {
                             layer.msg(data.message, {icon: 1, time: 1000});
-                            window.location.href="<%=path%>/page/gu";
+                            window.location.href = "<%=path%>/page/gu";
                         } else {
                             layer.msg(data.message, {icon: 2, time: 1000});
                             refush();
@@ -254,18 +254,27 @@
             }
 
             function options() {
-                var kym = $('#form\\:actualMoney1').val();
-                layer.confirm('你确定要绑定这张银行卡？', {
-                    btn: ['确定', '取消'] //按钮
-                }, function () {
-                    layer.msg('正在绑定中。。', {icon: 1});
-                    chongzhi();
-                }, function () {
-                    layer.msg('取消绑定中。。。', {
-                        time: 20000, //20s后自动关闭
-                        btn: ['明白了', '知道了']
+                var bankCardNo = $('#bankCardNo').val();
+                var bankpwd = $('#bankpwd').val();
+                if (bankCardNo==""){
+                    layer.alert('银行卡号不能为空！请输入银行卡号？',{icon: 3});
+                }else if (isNaN(bankCardNo)){
+                    layer.alert('请输入正确的银行卡号？',{icon: 3});
+                }else if (bankpwd==""){
+                    layer.alert('支付密码不能为空！请输入支付密码？',{icon: 3});
+                }else {
+                    layer.confirm('你确定要绑定这张银行卡？', {
+                        btn: ['确定', '取消'] //按钮
+                    }, function () {
+                        layer.msg('正在绑定中。。', {icon: 1});
+                        chongzhi();
+                    }, function () {
+                        layer.msg('取消绑定中。。。', {
+                            time: 20000, //20s后自动关闭
+                            btn: ['明白了', '知道了']
+                        });
                     });
-                });
+                }
             }
 
             function jiebang() {
@@ -278,7 +287,7 @@
                         function (data) {
                             if (data.result == "ok") {
                                 layer.msg(data.message, {icon: 1, time: 1000});
-                                window.location.href="<%=path%>/page/gu";
+                                window.location.href = "<%=path%>/page/gu";
                             } else {
                                 layer.msg(data.message, {icon: 2, time: 1000});
                                 refush();
@@ -378,7 +387,7 @@
                   </em> </span> <span class="quick-error3" id="ankCardError"></span></div>
 
                                 <div class="info-2"><span class="info-tit">支付密码</span> <span class="info2-input">
-                  <input id="form:bankCardNo" type="password" name="pwd" class="tx-txt">
+                  <input id="bankpwd" type="password" name="pwd" class="tx-txt">
                   <em class="info2-bank" style="display: none;">
                   <label id="form:defaultBankName" style="font-size:16px;"> </label>
                   </em> </span> <span class="quick-error3" id="bankCardError"></span></div>
@@ -426,12 +435,12 @@
                                             <div id="collapseOne" class="accordion-body collapse in">
                                                 <div class="accordion-inner">
                                                     <c:if test="${cardno!=null}">
-                                                    <ul>
-                                                    <li><img src="<%=path%>/static/images/${deposit}"></br>
-                                                        <span>${cardno}</span>
-                                                    </li>
-                                                        <li><a href="#" onclick="jiebang()">解绑</a></li>
-                                                    </ul>
+                                                        <ul>
+                                                            <li><img src="<%=path%>/static/images/${deposit}"></br>
+                                                                <span>${cardno}</span>
+                                                            </li>
+                                                            <li><a href="#" onclick="jiebang()">解绑</a></li>
+                                                        </ul>
                                                     </c:if>
                                                 </div>
                                             </div>

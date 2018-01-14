@@ -116,5 +116,7 @@
     <orderEntry type="library" name="json" level="project" />
     <orderEntry type="library" name="ueditor" level="project" />
     <orderEntry type="library" name="commons-beanutils-1.8.0" level="project" />
+    <orderEntry type="library" name="editor" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.8.0 (2)" level="project" />
   </component>
 </module>

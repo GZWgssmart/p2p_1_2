@@ -16,13 +16,13 @@ public class RecommendData {
     private String rname;//被推荐人姓名
 
     private Date date;//推荐时间
-
     private String dateToStr;
 
     public String getDateToStr(){
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(date);
     }
+
 
     public Date getDate() {
         return date;
