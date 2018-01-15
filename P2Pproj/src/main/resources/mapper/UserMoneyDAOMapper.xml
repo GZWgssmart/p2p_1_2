@@ -53,19 +53,20 @@
             and um.jlmoney<![CDATA[<=]]>#{query.jlmoney}
         </if>
     </sql>
+
     <insert id="save" parameterType="userMoney">
         <![CDATA[
           insert into t_usermoney(uid,zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney)
         values(#{uid},0,0,0,0,0,0,0)
    ]]>
     </insert>
+
     <update id="update" parameterType="userMoney">
         <![CDATA[
-          update t_usermoney
-           ]]>
-        <set>
-          <include refid="money"/>
-        </set>
+          update t_usermoney set zmoney = #{zmoney},kymoney = #{kymoney},symoney = #{symoney},tzmoney = #{tzmoney},
+          djmoney = #{djmoney},dsmoney = #{dsmoney},#{jlmoney} where uid = #{uid}
+
+        ]]>
     </update>
 
     <select id="listPager" resultType="userMoney">

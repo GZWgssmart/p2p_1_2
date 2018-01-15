@@ -2,6 +2,7 @@ package top.zzh.vo;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * @author 曾志湖 on 2017/12/28.
@@ -18,15 +19,18 @@ public class TzbVO {
     private Long baid;//借款id
     private String rname;//借款人姓名
     private String uname;//前台用户姓名
+    private BigDecimal mmoney;
     private Integer int1;
     private Integer int2;
     private String str1;
+    private String dateToStr;
 
     public TzbVO() {
     }
 
-    public TzbVO(Integer int1,Integer int2,String str1,Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, String rname, String uname) {
+    public TzbVO(BigDecimal mmoney,Integer int1,Integer int2,String str1,Long tzid, Long uid, Long juid, BigDecimal money, Date time, Float nprofit, String cpname, Long baid, String rname, String uname) {
         this.tzid = tzid;
+        this.mmoney = mmoney;
         this.uid = uid;
         this.int1 = int1;
         this.int2 = int2;
@@ -39,6 +43,19 @@ public class TzbVO {
         this.baid = baid;
         this.rname = rname;
         this.uname = uname;
+    }
+
+    public String getDateToStr(){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(time);
+    }
+
+    public void setMmoney(BigDecimal mmoney) {
+        this.mmoney = mmoney;
+    }
+
+    public BigDecimal getMmoney() {
+        return mmoney;
     }
 
     public void setInt1(Integer int1) {

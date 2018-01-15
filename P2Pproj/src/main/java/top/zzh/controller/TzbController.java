@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,19 +38,18 @@ public class TzbController {
     private Logger logger = LoggerFactory.getLogger(TzbController.class);
     @Autowired
     private TzbService tzbService;
-
     @Autowired
     private RewardService rewardService;
-
     @Autowired
     private UserMoneyService userMoneyService;
 
 
-    @RequestMapping("save")
-    public String save(TzbVO tzb,HttpSession session){
+    @RequestMapping("save/{uid}/{xmoney}/{pass}")
+    public String save(@PathVariable("uid")Long uid,@PathVariable("xmoney")BigDecimal xmoney,@PathVariable("pass") String pass,
+                       TzbVO tzb, HttpSession session){
         Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
         String user = (String) session.getAttribute(Constants.USER_IN_SESSION);
-        logger.info("用户正在开始投资");
+        logger.info("用户"+user+"正在开始投资");
         ControllerStatusVO statusVO = null;
         //用户如果没有登录则跳转到登录页面，如果登录则可以进行投资
         if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
@@ -67,6 +67,7 @@ public class TzbController {
             return "user/userindex";
         }
     }
+
 
     @RequestMapping("pager_criteria")
     @ResponseBody
@@ -98,10 +99,9 @@ public class TzbController {
 
     @PostMapping("ltzSave")
     public String ltzSave(BigDecimal money,HttpSession session){
-
+        logger.info("启动定时任务");
         Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         Reward reward=rewardService.findTmoney(uid);
-
         Timer timer=new Timer();
         Calendar calendar=Calendar.getInstance();
         calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
@@ -120,7 +120,6 @@ public class TzbController {
             reward1.setDate(calendar.getTime());
             rewardService.save(reward1);
         }
-
         if(reward!=null){
             Reward reward3=new Reward();
             reward3.setUid(uid);
@@ -137,13 +136,10 @@ public class TzbController {
             reward2.setMoney(zjl);
             rewardService.updateTjmoney(reward2);
         }
-
-
         System.out.println("奖励金=="+jLff.jlj(money));
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 System.out.println("定时任务启动！");
                 Reward reward5=rewardService.findTmoney(uid);
                 if(reward5.getState()==1){
@@ -152,7 +148,6 @@ public class TzbController {
                     reward4.setState((byte)2);
                     reward4.setDate(calendar.getTime());
                     rewardService.updateState(reward4);
-
                     UserMoney userMoney=userMoneyService.findJlmoney(uid);
                     BigDecimal xjlmoney=jLff.jlj(money);
                     BigDecimal yjlmoney=null;
@@ -161,21 +156,15 @@ public class TzbController {
                         yjlmoney=BigDecimal.valueOf(0);
                         jlmoney=yjlmoney.add(xjlmoney);
                     }
-
                     if(userMoney!=null){
                         yjlmoney=userMoney.getJlmoney();
                         jlmoney=yjlmoney.add(xjlmoney);
                     }
-
                     userMoneyService.updateJlmoney(jlmoney,uid);
                 }
-
             }
         },calendar.getTime());
-
-
         return "user/login";
     }
-
 
 }

@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -90,6 +91,8 @@ public class BorrowApplyController {
         borrowApplyService.save(borrowApply);
         borrowDetail.setCpname("YRB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
+        //申请借款时，已投金额默认为0
+        borrowDetail.setMoney(BigDecimal.valueOf(0));
         borrowDetailService.save(borrowDetail);
         Date time = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -126,8 +129,10 @@ public class BorrowApplyController {
 
     @RequestMapping("/update_page")
     public String updatePage(HttpServletRequest request,HttpSession session){
+        ControllerStatusVO statusVO = null;
         String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
         User user=userService.getByface(name);
+        logger.info("用户"+user+"正在操作借款信息");
         BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
@@ -139,8 +144,8 @@ public class BorrowApplyController {
         if(borrowDetailVO==null){
             return "user/borrowapply";
         }
-        //如果不为空则跳转到修改页面进行修改操作
-        if(borrowDetailVO.getUid()!=null){
+        //如果不为空并且审核未通过才能跳转到修改页面进行修改操作
+        if(borrowDetailVO.getUid()!=null && borrowDetailVO.getState() == 3){
             request.setAttribute("borrowDetailVO",borrowDetailVO);
             return "user/update_borrow";
         }
@@ -166,7 +171,7 @@ public class BorrowApplyController {
 
     @RequestMapping("updateState/{id}")
     @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("id") Long id,BorrowApply borrowApply,HttpSession session){
+    public ControllerStatusVO updateState(@PathVariable("id") Long id, BorrowApply borrowApply,HttpSession session){
         logger.info("后台管理员审核借款人");
         ControllerStatusVO statusVO = null;
         HUser HUser = (HUser)session.getAttribute("HUser");

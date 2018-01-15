@@ -67,6 +67,7 @@
           limit #{pager.beginIndex}, #{pager.pageSize}
        ]]>
     </select>
+
     <select id="getCount" resultType="long">
         select count(uid) from
         t_logmoney where uid=#{query.uid}

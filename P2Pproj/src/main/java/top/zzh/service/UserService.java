@@ -2,6 +2,7 @@ package top.zzh.service;
 
 import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.User;
+import top.zzh.vo.UserVO;
 
 /**
  * Created by 曾志湖 on 2017/12/21.
@@ -27,4 +28,5 @@ public interface UserService extends BaseService {
 
     void  updatepwd(Long uid,String zpwd);
 
+    UserVO getByUid(Long uid);
 }

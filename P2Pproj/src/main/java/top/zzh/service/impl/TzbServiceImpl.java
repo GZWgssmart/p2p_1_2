@@ -15,6 +15,7 @@ import top.zzh.common.Pager;
 import top.zzh.dao.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.enums.HkStateEnum;
+import top.zzh.enums.HkWayEnum;
 import top.zzh.service.AbstractService;
 import top.zzh.service.TzbService;
 import top.zzh.vo.BorrowDetailVO;
@@ -55,12 +56,27 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         return pager;
     }
 
-    @Transactional
     @Override
+    public Pager listPagerByUId(int pageNo, int pageSize, Object obj) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(tzbDAO.listPagerByUId(pager, obj));
+        pager.setTotal(tzbDAO.getCount(obj));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return tzbDAO.getCount(obj);
+    }
+
+
+    @Override
+    @Transactional
     public ControllerStatusVO add(Object obj) {
         TzbVO tzb = (TzbVO) obj;
         ControllerStatusVO statusVO = null;
         BigDecimal money = tzb.getMoney();
+        BorrowDetailVO borrow = borrowDetailDAO.findDetails(tzb.getBaid());
         //判断是否已经投过这个标
         TzbVO tzb1 = (TzbVO) tzbDAO.listTzb(tzb.getUid(), tzb.getBaid());
         if (tzb1 == null) {
@@ -72,15 +88,19 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
         }
         //修改自己的资产
-        UserMoney userMoney = (UserMoney) userMoneyDAO.getByUserId(tzb.getUid());
+        UserMoney userMoney = (UserMoney) userMoneyDAO.getById(tzb.getUid());
         userMoney.setKymoney(userMoney.getKymoney().subtract(money));
         userMoney.setZmoney(userMoney.getZmoney().subtract(money));
         userMoney.setTzmoney(userMoney.getTzmoney().add(money));
         userMoney.setUid(tzb.getUid());
+        //当用户可用余额小于投资金额时，提醒用户充值
+        if(userMoney.getKymoney().compareTo(tzb.getMoney())==-1){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_MONEY_ENOUGH);
+        }
         //判断该标是否满标，如未满标则修改已投金额
         BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowDetailDAO.getById(tzb.getBaid());
         BorrowDetailVO borrowDetail = new BorrowDetailVO();
-        borrowDetail.setYtmoney(borrowDetailVO.getYtmoney().add(money));
+        borrowDetail.setMoney(borrowDetailVO.getMoney().add(money));
         borrowDetail.setBaid(borrowDetailVO.getBaid());
         borrowDetailDAO.updateBybaid(borrowDetail);
         //还款期数
@@ -91,23 +111,23 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         Float monthNpro = nprofit / 12;
         BigDecimal syMoney = BigDecimal.valueOf(0);
         //一次还清和先息后本
-        if (borrowDetailVO.getWay().equals("一次性还本付息") || borrowDetailVO.getWay().equals("先息后本")) {
+        if (borrowDetailVO.getWay().equals(HkWayEnum.PAYOFF_ONCE.getCode()) || borrowDetailVO.getWay().equals(HkWayEnum.XIAN_XI.getCode())) {
             //投资金额乘以年利率
             syMoney = tzb.getMoney().multiply(BigDecimal.valueOf(monthNpro / 100)).multiply(new BigDecimal(term)).setScale(2, BigDecimal.ROUND_HALF_UP);
         }
         //等额本息
-        if (borrowDetailVO.getWay().equals("等额本息")) {
+        if (borrowDetailVO.getWay().equals(HkWayEnum.EQUAL_BX.getCode())) {
             syMoney = new ACPIMLoanCalculator().calLoan(money, term, nprofit, LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
         }
         // 等额本金
-        if (borrowDetailVO.getWay().equals("等额本金")) {
+        if (borrowDetailVO.getWay().equals(HkWayEnum.EQUAL_BJ.getCode())) {
             syMoney = new ACMLoanCalculator().calLoan(money, term, nprofit, LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
         }
         userMoney.setDsmoney(userMoney.getDsmoney().add(money.add(syMoney)));
         userMoney.setZmoney(userMoney.getZmoney().add(syMoney));
         userMoneyDAO.update(userMoney);
         //修改借款人的冻结金额
-        UserMoney juserMoney = (UserMoney) userMoneyDAO.getByUserId(tzb.getJuid());
+        UserMoney juserMoney = (UserMoney) userMoneyDAO.getById(tzb.getJuid());
         juserMoney.setZmoney(juserMoney.getZmoney().add(money));
         juserMoney.setUid(tzb.getJuid());
         if (borrowDetail.getYtmoney().compareTo(borrowDetailVO.getMoney()) == 0) {
@@ -123,7 +143,7 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
             //一次还清的还款清单
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(Calendar.getInstance().getTime());
-            if (borrowDetailVO.getWay().equals("一次性还本付息")) {
+            if (borrowDetailVO.getWay().equals(HkWayEnum.PAYOFF_ONCE.getCode())) {
                 Hkb hkb = new Hkb();
                 hkb.setBzname(borrowDetailVO.getBzname());
                 hkb.setCpname(borrowDetailVO.getCpname());
@@ -139,7 +159,6 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
                 hkb.setHuid(huid);
                 hkb.setBaid(tzb.getBaid());
                 hkbDAO.save(hkb);
-
             } else {
                 List <Hkb> hkbList = new ArrayList <>();
                 for (int i = 1; i <= term; i++) {
@@ -157,7 +176,7 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
                     //每月利息金额
                     BigDecimal bigMonthNpro = BigDecimal.valueOf(monthNpro);
                     //先息后本还款表
-                    if (borrowDetailVO.getWay().equals("先息后本")) {
+                    if (borrowDetailVO.getWay().equals(HkWayEnum.XIAN_XI.getCode())) {
                         //每月利息等于总借款乘以月利率
                         hkb.setYlx(borrowDetailVO.getMoney().multiply(bigMonthNpro));
                         hkb.setYbj(BigDecimal.valueOf(0));
@@ -168,7 +187,7 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
                         }
                     }
                     // 等额本金还款算法
-                    else if (borrowDetailVO.getWay().equals("等额本金")) {
+                    else if (borrowDetailVO.getWay().equals(HkWayEnum.EQUAL_BJ.getCode())) {
                         LoanByMonth loanByMonth = new ACMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR).getAllLoans().get(i - 1);
                         // 月还本金
                         hkb.setYbj(loanByMonth.getPayPrincipal());
@@ -177,7 +196,7 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
 
                     }
                     // 等额本息还款算法
-                    else if (borrowDetailVO.getWay().equals("等额本息")) {
+                    else if (borrowDetailVO.getWay().equals(HkWayEnum.EQUAL_BX.getCode())) {
                         LoanByMonth loanByMonth = new ACPIMLoanCalculator().calLoan(borrowDetailVO.getMoney(), term, nprofit, LoanUtil.RATE_TYPE_YEAR).getAllLoans().get(i - 1);
                         //每月利息
                         hkb.setYlx(loanByMonth.getInterest());

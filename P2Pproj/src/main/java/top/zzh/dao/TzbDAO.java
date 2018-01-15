@@ -26,6 +26,10 @@ public interface TzbDAO extends BaseDAO {
 
     List<Object> listPagerById(@Param("pager") Pager pager,@Param("id") Long id);
 
+    List<Object> listPagerByUId(@Param("pager") Pager pager,@Param("query") Object obj);
+
+    Long getCount( @Param("query") Object obj);
+
     Long countById(@Param("id") Long id);
 
     List<Tzb> listTzb(@Param("uid") Long uid, @Param("baid") Long baid);

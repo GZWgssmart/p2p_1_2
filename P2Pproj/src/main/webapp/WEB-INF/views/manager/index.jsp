@@ -109,7 +109,7 @@
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
                         </li>
-                        <li><a a class="J_menuItem" href="">用户还款管理</a>
+                        <li><a a class="J_menuItem" href="<%=path%>/hk/hk_page">用户还款管理</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
                         </li>

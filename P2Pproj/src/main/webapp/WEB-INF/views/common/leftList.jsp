@@ -8,7 +8,7 @@
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                      href="${request.getContextPath}/page/zijin?pageNo=1">资金记录</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
-                     href="${request.getContextPath}/page/touzi">投资记录</a></span></li>
+                     href="${request.getContextPath}/page/touzi?pageNo=1">投资记录</a></span></li>
         <li><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                      href="${request.getContextPath}/page/huikuan">还款计划</a></span></li>
         <li class=""><span><a href="${request.getContextPath}/page/disanfang"><i class="dot dot02"></i>开通第三方</a> </span></li>
@@ -17,15 +17,14 @@
         <li style="position:relative;" class=""><span> <a href="${request.getContextPath}/page/hongbao"> <i class="dot dot06"></i> 我的红包 </a> </span>
         </li>
         <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
-                              href="${request.getContextPath}/page/history">兑换历史</a></span></li>
+                              href="${request.getContextPath}/page/history">收款还款管理</a></span></li>
         <li class=""><span><a style="font-size:14px;text-align:center;width:115px;padding-right:35px;"
                               href="${request.getContextPath}/borrowapply/update_page">借款管理</a></span></li>
         <li style="position:relative;"><span> <a href="${request.getContextPath}/page/xitong"><i class="dot dot08"></i>系统信息 </a> </span>
         </li>
         <li><span><a href="${request.getContextPath}/page/zhanghu"><i class="dot dot09"></i>账户设置</a></span></li>
         <li><span><a href="${request.getContextPath}/page/feedBackAdd"><i class="dot dot09"></i>我要反馈</a></span></li>
-        <li><span><a href="${request.getContextPath}/luser/logout"><i class="dot dot10"></i>安全退出</a></span></li>
         <br/><br/>
-        <li><a href="${request.getContextPath}/recommend/tuijian/"><img src="${request.getContextPath}/static/images/tuijian.png"/></a></li>
+        <li><a href="${request.getContextPath}/recommend/tuijian"><img src="${request.getContextPath}/static/images/tuijian.png"/></a></li>
     </ul>
 </div>

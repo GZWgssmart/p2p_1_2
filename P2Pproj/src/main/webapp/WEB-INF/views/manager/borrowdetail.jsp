@@ -45,7 +45,7 @@
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-                <label class="col-lg-2 control-label">法人身份证照片</label>
+                <label class="col-lg-2 control-label">法人身份证照</label>
                 <img src="<%=path%>/static/uploads/${borrowDetailVO.fpic}" style="width: 120px;height: 120px">
             </div>
             <div class="hr-line-dashed"></div>
