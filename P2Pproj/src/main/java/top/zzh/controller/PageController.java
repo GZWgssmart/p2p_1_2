@@ -322,7 +322,6 @@ public class PageController {
 
     @RequestMapping("list")
     public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo) {
-        logger.info("首页投资列表信息");
         if(pageNo==0){
             pageNo = 1;
         }
@@ -340,6 +339,19 @@ public class PageController {
         modelAndView.addObject("bzList",bzList);
         return modelAndView;
     }
+
+    @RequestMapping("list/{kid}")
+    public ModelAndView list2(HttpServletRequest request,@PathVariable("kid") Long kid) {
+        List<Bz> bzList = (List)bzService.listAll();
+        List<BorrowDetailVO> borrowDetailVO = (List) borrowApplyService.listAll();
+        request.setAttribute("borrowDetailVO",borrowDetailVO);
+        request.setAttribute("bzList",bzList);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("kid",kid);
+        mv.setViewName("index/list");
+        return mv;
+    }
+
 
     @RequestMapping("managerTuandui")
     public String managerTuandui() {
