@@ -8,6 +8,8 @@ import top.zzh.dao.BorrowApplyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.BorrowApplyService;
 
+import javax.ws.rs.HEAD;
+
 /**
  * Created by 曾志湖 on 2017/12/24.
  */
@@ -37,9 +39,16 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
 
     @Override
     public Pager listPagerByUId(int pageNo, int pageSize) {
-        Pager pager = new Pager(pageNo,pageSize);
+        Pager pager = new Pager(pageNo, pageSize);
         pager.setRows(borrowApplyDAO.listPagerByUId(pager));
         pager.setTotal(borrowApplyDAO.getCount(pager));
+        return pager;
+    }
+
+    public Pager shResult(int pageNo, int pageSize, Long uid) {
+        Pager pager = new Pager(pageNo,pageSize);
+        pager.setRows(borrowApplyDAO.shResult(pager,uid));
+        pager.setTotal(borrowApplyDAO.shCount(uid));
         return pager;
     }
 
@@ -48,8 +57,9 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
         return borrowApplyDAO.getCount(obj);
     }
 
-    @Override
-    public BorrowApply shResult(Long uid) {
-        return borrowApplyDAO.shResult(uid);
+
+    public Long shCount(Long uid) {
+        return borrowApplyDAO.shCount(uid);
     }
+
 }

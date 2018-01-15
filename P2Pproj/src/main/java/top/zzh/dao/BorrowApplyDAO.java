@@ -34,7 +34,9 @@ public interface BorrowApplyDAO extends BaseDAO{
 
     Long countById(@Param("id") Long id);
 
-    BorrowApply shResult(@Param("uid")Long uid);
+    List<Object> shResult(@Param("pager") Pager pager,@Param("uid")Long uid);
+
+    Long shCount(@Param("uid")Long uid);
 
     @Override
     Object getById(Long id);

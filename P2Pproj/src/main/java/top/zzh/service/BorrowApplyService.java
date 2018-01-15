@@ -14,5 +14,7 @@ public interface BorrowApplyService extends BaseService{
     Pager listPagerById(int pageNo, int pageSize, Long id);
     Pager listPagerByUId(int pageNo,int pageSize);
     Long getCount(Object obj);
-    BorrowApply shResult(Long uid);
+    Pager shResult(int pageNo, int pageSize,Long uid);
+
+    Long shCount(Long uid);
 }
