@@ -307,7 +307,6 @@
                             </div>
                         </div>
                     </form>
-
                     <div class="pay-tipcon" style="display:none;"><b>充值提示：</b><br>
                         1．亿人宝充值过程免费，不向用户收取任何手续费。<br>
                         2．为了您的账户安全，请在充值前进行身份认证、手机绑定以及交易密码设置。<br>
@@ -325,8 +324,22 @@
                         7. 充值需开通银行卡网上支付功能，如有疑问请咨询开户行客服。<br>
                     </div>
                 </div>
+                <c:if test="${deposit==null}">
+                <div class="alert-450 alert-h220" id="alert-notOpenAccount" style="display: block;">
+                    <div class="alert-title"><h4>提示</h4></div>
+                    <div class="alert-main">
+                        <form id="notOpenAccountForm">
+                            <p class="msg6" align="center">
+                                用户在充值或提现前，需开通第三方账户。<br>
+                                此页面将在10秒后自动跳转到开通第三方账户页面<br>
+                                <em id="show-number">3</em>
+                            </p>
+                            <a href="<%=path%>/page/disanfang" id="openAccountAId" class="btn-ok txt-center">马上开通第三方账户</a>
+                        </form>
+                    </div>
+                </div>
             </div>
-
+            </c:if>
             <script type="text/javascript">
                 $("#recharge\\:actualMoney").val("单笔大于0元");
                 var value = "单笔大于0元";
@@ -445,6 +458,24 @@
                         }
                     })
             </script>
+            <c:if test="${deposit==null}">
+            <script type="text/javascript">
+
+                var typeValue=$("#typeValue").html().trim();
+                var url=""
+                if(typeValue==1)
+                {
+                    url="/page/disanfang"
+                }
+                else
+                {
+                    url="/page/disanfang"
+                }
+                $("#openAccountAId").attr("href",url);
+                showSpan('alert-notOpenAccount');
+                countDown('show-number',10,url);
+            </script>
+            </c:if>
             <div class="alert-450" id="alert-tyht" style="display:none;">
                 <div class="alert-title">
                     <h3>提示信息</h3>

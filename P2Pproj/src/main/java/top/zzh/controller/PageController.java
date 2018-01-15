@@ -209,8 +209,9 @@ public class PageController {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         //用户当前可用余额
         Long bigDecimal = userMoneyService.getMoney(id.toString());
-        System.out.println(bigDecimal);
+        String cardno =(String)bankCardService.getDank(id);//银行卡号
         session.setAttribute("kymoney",bigDecimal);
+        session.setAttribute("cardno",cardno);
         return "user/tixian";
     }
 
