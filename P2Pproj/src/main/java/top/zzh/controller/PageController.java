@@ -1,6 +1,5 @@
 package top.zzh.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +18,11 @@ import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.TzbVO;
 import top.zzh.vo.UserTicketVo;
 import top.zzh.vo.UserVO;
-
 import top.zzh.vo.*;
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
+
 @Controller
 @RequestMapping("/page")
 public class PageController {
@@ -312,13 +309,24 @@ public class PageController {
     }
 
     @RequestMapping("list")
-    public String list(HttpServletRequest request) {
+    public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo) {
         logger.info("首页投资列表信息");
+        if(pageNo==0){
+            pageNo = 1;
+        }
+        Pager obj = (Pager)borrowApplyService.listPagerByUId(pageNo,5);
+        List<BorrowDetailVO> borrowDetailVOList = new ArrayList <>();
         List<Bz> bzList = (List)bzService.listAll();
-        List<BorrowDetailVO> borrowDetailVO = (List) borrowApplyService.listAll();
-        request.setAttribute("borrowDetailVO",borrowDetailVO);
-        request.setAttribute("bzList",bzList);
-        return "index/list";
+        for(Object o:obj.getRows()){
+            BorrowDetailVO borrowDetailVO = (BorrowDetailVO) o;
+            borrowDetailVOList.add(borrowDetailVO);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index/list");
+        modelAndView.addObject("obj",borrowDetailVOList);
+        modelAndView.addObject("page",obj);
+        modelAndView.addObject("bzList",bzList);
+        return modelAndView;
     }
 
     @RequestMapping("managerTuandui")

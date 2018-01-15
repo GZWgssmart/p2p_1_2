@@ -17,6 +17,10 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 
+    List<Object> listPagerByUId(@Param("pager") Pager pager);
+
+    Long getCount( @Param("query") Object obj);
+
     @Override
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 

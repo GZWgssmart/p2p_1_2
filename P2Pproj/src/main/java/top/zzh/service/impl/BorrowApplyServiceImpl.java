@@ -36,6 +36,19 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
     }
 
     @Override
+    public Pager listPagerByUId(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo,pageSize);
+        pager.setRows(borrowApplyDAO.listPagerByUId(pager));
+        pager.setTotal(borrowApplyDAO.getCount(pager));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return borrowApplyDAO.getCount(obj);
+    }
+
+    @Override
     public BorrowApply shResult(Long uid) {
         return borrowApplyDAO.shResult(uid);
     }

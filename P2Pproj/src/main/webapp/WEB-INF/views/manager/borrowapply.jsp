@@ -38,11 +38,11 @@
                     查询条件
                 </div>
                 <div class="panel-body form-group" style="margin-bottom:0px;">
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请人姓名：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请人：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="rname" id="rname"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请金额：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">金额：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="money" id="money1"/>
                     </div>

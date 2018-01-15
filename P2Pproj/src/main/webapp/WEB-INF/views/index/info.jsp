@@ -29,7 +29,7 @@
 <input type="hidden" id="maxMoney" name="maxMoney" value="${borrow.money-borrow.mmoney}">
 
 <div class="item-detail wrap">
-    <div class="breadcrumbs"> <a href="../index.jsp">首页</a>&gt; <a href="#">投资列表</a>&gt; <span class="cur">项目详情</span> </div>
+    <div class="breadcrumbs"> <a href="<%=path%>/">首页</a>&gt; <a href="#">投资列表</a>&gt; <span class="cur">项目详情</span> </div>
     <div class="item-detail-head clearfix" data-target="sideMenu">
         <div class="hd">
             <h2><a style="color: red">${borrow.bzname}</a>/${borrow.cpname}</h2>
@@ -56,19 +56,6 @@
             </div>
             <div class="mod-right mod-status">
                 <div class="inner">
-                    <p class="text">
-                    <div class="subject-s-r-c">
-                        <c:if test="${users==null}">
-                            <p>可用余额：<span >登录后才可查看余额</span></p>
-                        </c:if>
-                        <c:if test="${users!=null}">
-                            <p>可用余额：<span class="f24 c-333">${users.kymoney}</span>元</p>
-                        </c:if>
-                        <p>已投金额：<span class="f24 c-333">${borrow.mmoney}</span>元</p>
-                    </div>
-                    <div class="subject-s-r-c">
-                        <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.mmoney}</span>元</p>
-                    </div>
                     <div class="input">
                         <div class="subject-s-r-c">
                             <c:if test="${users==null}">
@@ -91,21 +78,13 @@
                             <input type="text" style="display: none" id="sid" value="${borrow.sid}">
                             <input type="text" style="display: none" id="baid" value="${borrow.baid}">
                             <c:if test="${borrow.mmoney<borrow.money}">
-                                <input class="btn"  type="button" value="投标" onclick="prompt();">
-                            <input type="text" style="display: none" id="baid" name="baid" value="${borrow.baid}">
-                            <input type="text" style="display: none" id="juid" name="juid" value="${borrow.juid}">
-                            <c:if test="${borrow.mmoney<borrow.money}">
                                 <input style="width: 60px;height: 23px;background-color:#66ffff;size: 14px"  type="button" value="投标" onclick="prompt()">
                                 <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
                             </c:if>
                             <c:if test="${borrow.mmoney==borrow.money}">
-<<<<<<< HEAD
                                 <font size="6" color="red">正在还款中</font>
-=======
                                 <input  class="btn disabled" id="investBtn" type="button" value="还款中">
->>>>>>> 16af9286d1f5f3bc61e61dfdb273b1c9101ff20d
                             </c:if>
-
                         </form>
                     </div>
             </div>
@@ -230,7 +209,7 @@
                                 <td>${d.uname}</td>
                                 <td><span class="c-orange">￥${d.mmoney}</span>元</td>
                                 <td>${d.nprofit}</td>
-                                <td>${d.time}</td>
+                                <td>${d.dateToStr}</td>
                                 <td>自动</td>
                             </tr>
                         </c:forEach>
@@ -279,14 +258,10 @@
 
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
-
-</body>
-
 <script src="<%=path%>/static/plugin/bootstrap/js/plugins/layer/layer.js"></script>
 <script  type="text/javascript">
     function prompt() {
        var userId =$('#userId').val();
-
         if(userId=="null"){
             window.location.href = "/page/user";
         }else{
@@ -299,10 +274,7 @@
                 });
             });
         }
-
-
     }
-
 
     function options(pass,xmoney){
         var uid =$('#uid').val();
@@ -322,13 +294,10 @@
     }
 
     function touzi(uid,pass,xmoney,maxMoney,baid) {
-
         if(xmoney<100){
             layer.msg("投资金额不能少于100！", {icon: 2, time: 2000});
             return;
         }
-
-
         $.post(
             "/tz/save/"+uid+"/"+xmoney+"/"+pass+"/"+maxMoney+"/"+baid,
             function (data) {
@@ -342,9 +311,10 @@
                     layer.msg(data.message, {icon: 2, time: 2000});
 
                 }
-            }, "json"
+            },
+            "json"
         );
     }
-
 </script>
+</body>
 </html>

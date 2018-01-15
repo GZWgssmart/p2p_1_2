@@ -14,6 +14,7 @@
     <link href="<%=path%>/static/css/detail.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
+    <%--<jsp:include page="../common/bootstraptablecss.jsp"/>--%>
 </head>
 <body>
 <!-- 网站头部-->
@@ -101,8 +102,7 @@
                     </ul>
                 </div>
                 <!------------投资列表-------------->
-
-                <c:forEach items="${borrowDetailVO}" var="d">
+                <c:forEach items="${obj}" var="d">
                     <div class="item">
                         <ul>
                             <li class="col-150"><a style="color: red">${d.bzname}</a></li>
@@ -134,32 +134,68 @@
                         </ul>
                     </div>
                 </c:forEach>
+            </div>
+
             <!------------投资列表-------------->
-            </div>
-            <div class="pagination clearfix mrt30">
-                <span class="page">
-                    <a href="javascript:void(0);" onclick="">首页</a>
-                    <a href="javascript:void(0);" onclick="">上一页</a>&nbsp;
-                    <a class="curr" href="javascript:void(0);">1</a>
-                    <a href="#">2</a> <a href="#">3</a> <a href="#">4</a>
-                    <a href="#">5</a> <a href="javascript:void(0);" >下一页</a>
-                    <a href="javascript:void(0);" >尾页</a>&nbsp;
-                    <em>共2297页&nbsp;</em></span>
-                <dl class="page-select">
-                    <dt><span>1</span><i class="icon icon-down"></i></dt>
-                    <dd style="display: none;">
-                        <ul name="nump" id="jsnump">
-                            <li><a href="##" onclick="">1</a></li>
-                            <li><a href="##" onclick="">2</a></li>
-                            <li><a href="##" onclick="">3</a></li>
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
+            <c:if test="${page.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
+            <c:if test="${page.total>0}">
+                <div class="pagination clearfix mrt30">
+                    <span class="page">
+                        <a href="javascript:void(0);">页码${page.pageNo}/${page.pages} </a>
+                        <a href="javascript:void(0);" onclick="page(1)">首页</a>
+                         <c:choose>
+                             <c:when test="${page.pageNo - 1 > 0}">
+                                 <a  href="javascript:void(0);" onclick="page('${page.pageNo - 1}')">上一页</a>
+                             </c:when>
+                             <c:when test="${page.pageNo - 1 <= 0}">
+                                 <a  href="javascript:void(0);" onclick="page(1)">上一页</a>
+                             </c:when>
+                         </c:choose>
+                        <c:choose>
+                            <c:when test="${page.pages==0}">
+                                <a  href="javascript:void(0);" onclick="page('${page.pageNo}')">下一页</a>
+                            </c:when>
+                            <c:when test="${page.pageNo + 1 < page.pages}">
+                                <a  href="javascript:void(0);" onclick="page('${page.pageNo + 1}')">下一页</a>
+                            </c:when>
+                            <c:when test="${page.pageNo + 1 >= page.pages}">
+                                <a  href="javascript:void(0);" onclick="page('${page.pages}')">下一页</a>
+                            </c:when>
+                        </c:choose>
+                         <c:choose>
+                             <c:when test="${page.pages==0}">
+                                 <a  href="javascript:void(0);" onclick="page('${page.pageNo}')">尾页</a>
+                             </c:when>
+                             <c:otherwise>
+                                 <a  href="javascript:void(0);" onclick="page('${page.pages}')">尾页</a>
+                             </c:otherwise>
+                         </c:choose>
+                        <a href="javascript:void(0);">共${page.total}条</a>
+                        </span>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
+<script>
+    function page(str){
+        if(str==${page.pageNo}&&str==1){
+            layer.msg("当前已经是第一页了哦！", {icon: 2, time: 1000});
+            return false;
+        }
+        if(str==${page.pageNo}&&str==${page.pages}){
+            layer.msg("当前已经是最后一页了哦！", {icon: 2, time: 1000});
+            return false;
+        }
+        $.post("/page/list", {
+                pageNo: str},
+            function(data){
+                window.location.href="/page/list?pageNo="+str;
+            });
+    }
+</script>
 </body>
 </html>
