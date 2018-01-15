@@ -321,7 +321,7 @@ public class PageController {
     }
 
     @RequestMapping("list")
-    public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo) {
+    public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo,Long kid) {
         if(pageNo==0){
             pageNo = 1;
         }
@@ -337,19 +337,10 @@ public class PageController {
         modelAndView.addObject("obj",borrowDetailVOList);
         modelAndView.addObject("page",obj);
         modelAndView.addObject("bzList",bzList);
+        if(kid!=null){
+            modelAndView.addObject("kid",kid);
+        }
         return modelAndView;
-    }
-
-    @RequestMapping("list/{kid}")
-    public ModelAndView list2(HttpServletRequest request,@PathVariable("kid") Long kid) {
-        List<Bz> bzList = (List)bzService.listAll();
-        List<BorrowDetailVO> borrowDetailVO = (List) borrowApplyService.listAll();
-        request.setAttribute("borrowDetailVO",borrowDetailVO);
-        request.setAttribute("bzList",bzList);
-        ModelAndView mv=new ModelAndView();
-        mv.addObject("kid",kid);
-        mv.setViewName("index/list");
-        return mv;
     }
 
 
