@@ -89,7 +89,87 @@ public class TzbController {
             tzb.setMoney(xmoney);
             statusVO=tzbService.add(tzb);
         }
-        
+
+
+        //投资奖励的发放
+        Reward reward=rewardService.findTmoney(uid);
+        Timer timer=new Timer();
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
+                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
+        JLff jLff=new JLff();
+        Reward reward1=new Reward();
+        BigDecimal ymoney=null;
+        BigDecimal tmoney=null;
+        if(reward==null){
+            ymoney=BigDecimal.valueOf(0);
+            tmoney=ymoney.add(xmoney);
+            reward1.setUid(uid);
+            reward1.setMoney(jLff.jlj(xmoney));
+            reward1.setState((byte) 1);
+            reward1.setTmoney(tmoney);
+            reward1.setDate(calendar.getTime());
+            rewardService.save(reward1);
+        }
+
+        if(reward!=null){
+            Reward reward3=new Reward();
+            reward3.setUid(uid);
+            reward3.setState((byte)1);
+            reward3.setDate(calendar.getTime());
+            rewardService.updateState(reward3);
+            ymoney=reward.getTmoney();
+            tmoney= ymoney.add(xmoney);
+            Reward reward2=new Reward();
+            reward2.setUid(uid);
+            reward2.setTmoney(tmoney);
+            BigDecimal jl=reward.getMoney();
+            BigDecimal zjl=jl.add(jLff.jlj(xmoney));
+            reward2.setMoney(zjl);
+            rewardService.updateTjmoney(reward2);
+        }
+
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                System.out.println("定时任务启动！");
+                Reward reward5=rewardService.findTmoney(uid);
+                if(reward5.getState()==1){
+                    Reward reward4=new Reward();
+                    reward4.setUid(uid);
+                    reward4.setState((byte)2);
+                    reward4.setDate(calendar.getTime());
+                    rewardService.updateState(reward4);
+
+                    UserMoney userMoney=userMoneyService.findJlmoney(uid);
+                    BigDecimal xjlmoney=jLff.jlj(xmoney);
+                    BigDecimal yjlmoney=null;
+                    BigDecimal jlmoney=null;
+                    if(userMoney==null){
+                        yjlmoney=BigDecimal.valueOf(0);
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    if(userMoney!=null){
+                        yjlmoney=userMoney.getJlmoney();
+                        jlmoney=yjlmoney.add(xjlmoney);
+                    }
+
+                    userMoneyService.updateJlmoney(jlmoney,uid);
+
+
+                    UserMoneyVO userMoneyVO =new UserMoneyVO();
+                    userMoneyVO.setUid(String.valueOf(uid));
+                    userMoneyVO.setZmoney(jlmoney.add(userMoney.getZmoney()));
+                    userMoneyVO.setKymoney(jlmoney.add(userMoney.getKymoney()));
+                    userMoneyService.updateZmoney(userMoneyVO);
+
+                }
+
+            }
+        },calendar.getTime());
 
         return statusVO;
 
@@ -118,99 +198,6 @@ public class TzbController {
         return "manager/tz";
     }
 
-    @RequestMapping("ltzView")
-    public String ltzView(){
-        return "user/tzMoney";
-    }
-
-    @PostMapping("ltzSave")
-    public String ltzSave(BigDecimal money,HttpSession session){
-
-        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
-        Reward reward=rewardService.findTmoney(uid);
-
-        Timer timer=new Timer();
-        Calendar calendar=Calendar.getInstance();
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+4,calendar.get(Calendar.DAY_OF_MONTH)
-                ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),0);//calendar.get(Calendar.SECOND)秒
-        JLff jLff=new JLff();
-        Reward reward1=new Reward();
-        BigDecimal ymoney=null;
-        BigDecimal tmoney=null;
-        if(reward==null){
-            ymoney=BigDecimal.valueOf(0);
-            tmoney=ymoney.add(money);
-            reward1.setUid(uid);
-            reward1.setMoney(jLff.jlj(money));
-            reward1.setState((byte) 1);
-            reward1.setTmoney(tmoney);
-            reward1.setDate(calendar.getTime());
-            rewardService.save(reward1);
-        }
-
-        if(reward!=null){
-            Reward reward3=new Reward();
-            reward3.setUid(uid);
-            reward3.setState((byte)1);
-            reward3.setDate(calendar.getTime());
-            rewardService.updateState(reward3);
-            ymoney=reward.getTmoney();
-            tmoney= ymoney.add(money);
-            Reward reward2=new Reward();
-            reward2.setUid(uid);
-            reward2.setTmoney(tmoney);
-            BigDecimal jl=reward.getMoney();
-            BigDecimal zjl=jl.add(jLff.jlj(money));
-            reward2.setMoney(zjl);
-            rewardService.updateTjmoney(reward2);
-        }
-
-
-        System.out.println("奖励金=="+jLff.jlj(money));
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                System.out.println("定时任务启动！");
-                Reward reward5=rewardService.findTmoney(uid);
-                if(reward5.getState()==1){
-                    Reward reward4=new Reward();
-                    reward4.setUid(uid);
-                    reward4.setState((byte)2);
-                    reward4.setDate(calendar.getTime());
-                    rewardService.updateState(reward4);
-
-                    UserMoney userMoney=userMoneyService.findJlmoney(uid);
-                    BigDecimal xjlmoney=jLff.jlj(money);
-                    BigDecimal yjlmoney=null;
-                    BigDecimal jlmoney=null;
-                    if(userMoney==null){
-                        yjlmoney=BigDecimal.valueOf(0);
-                        jlmoney=yjlmoney.add(xjlmoney);
-                    }
-
-                    if(userMoney!=null){
-                        yjlmoney=userMoney.getJlmoney();
-                        jlmoney=yjlmoney.add(xjlmoney);
-                    }
-
-                    userMoneyService.updateJlmoney(jlmoney,uid);
-
-
-                    UserMoneyVO userMoneyVO =new UserMoneyVO();
-                    userMoneyVO.setUid(String.valueOf(uid));
-                    userMoneyVO.setZmoney(jlmoney.add(userMoney.getZmoney()));
-                    userMoneyVO.setKymoney(jlmoney.add(userMoney.getKymoney()));
-                    userMoneyService.updateZmoney(userMoneyVO);
-
-                }
-
-            }
-        },calendar.getTime());
-
-
-        return "user/login";
-    }
 
 
 }

@@ -85,11 +85,12 @@
                             <input type="text" style="display: none" id="juid" name="juid" value="${borrow.juid}">
                             <c:if test="${borrow.mmoney<borrow.money}">
                                 <input style="width: 60px;height: 23px;background-color:#66ffff;size: 14px"  type="button" value="投标" onclick="prompt()">
+                                <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
                             </c:if>
                             <c:if test="${borrow.mmoney==borrow.money}">
-                                <input  class="btn disabled" id="investBtn" type="submit" value="还款中">
+                                <font size="6" color="red">正在还款中</font>
                             </c:if>
-                            <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
+
                         </form>
                     </div>
             </div>
@@ -317,7 +318,7 @@
             function (data) {
                 if (data.result == "ok") {
 
-                    layer.msg(data.message, {icon: 1, time: 2000});
+                    layer.msg(data.message, {icon: 2, time: 2000});
 
                 }else if(data.result == "login"){
                     window.location.href ="/page/login";
