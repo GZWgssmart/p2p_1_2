@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.*;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.common.PathUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.*;
+import top.zzh.vo.Borrow;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
 
@@ -148,7 +150,10 @@ public class BorrowApplyController {
         }
         return "user/update_borrow";
     }
-
+    @RequestMapping("borrw")
+    public String borrw(){
+        return "user/borrowapply";
+    }
     @RequestMapping("update")
     public String update(HttpServletRequest request,HttpSession session,BorrowDetailVO borrowDetailVO, BorrowApply borrowApply,BorrowDetail borrowDetail){
         logger.info("修改申请借款资料");
@@ -209,14 +214,22 @@ public class BorrowApplyController {
     }
 
     @RequestMapping("shenqin")
-    public String shenqin(HttpServletRequest request,HttpSession session){
+    public ModelAndView shenqin(HttpSession session, int pageNo){
         Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
-        BorrowApply borrowApply = borrowApplyService.shResult(uid);
-        if(borrowApply.getHuid()!=null){
-            request.setAttribute("borrowApply",borrowApply);
-            return  "user/borrow";
+        if (pageNo==0){
+            pageNo=1;
         }
-        return  "user/borrow";
+        Pager obj=(Pager)borrowApplyService.shResult(pageNo,5,uid);
+        List<Borrow> borrowApplies=new ArrayList<>();
+        for(Object o:obj.getRows()){
+            Borrow borrowApply =(Borrow)o;
+            borrowApplies.add(borrowApply);
+        }
+        ModelAndView m=new ModelAndView();
+        m.setViewName("user/borrow");
+        m.addObject("borrowApply",borrowApplies);
+        m.addObject("page",obj);
+        return m;
     }
 
     @InitBinder
