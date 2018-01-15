@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>最新公告</title>
+    <link rel="stylesheet" href="<%=path%>/static/css/lyj/sweetalert.css"/><script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
     <jsp:include page="../common/bootstraptablecss.jsp"/>
     <!--上传文件及图片-->
-
    </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -85,7 +85,7 @@
       if(title1.length == 0){
           sweetAlert("标题为空！", "请输入标题！","error");
           return false;
-    }
+      }
       if(content.length == 0){
           sweetAlert("内容为空！", "请输入编辑器内容！","error");
           return false;

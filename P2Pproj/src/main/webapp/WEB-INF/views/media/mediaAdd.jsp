@@ -50,7 +50,6 @@
                         <textarea id="editor" name="content" style="height: 250px;width: 825px"autofocus></textarea>
                     </div>
                 </div>
-                <input type="hidden" id="pic" name="pic"/>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">封面图片</label>
                     <div class="col-sm-10">
@@ -58,6 +57,7 @@
                             <button type="button" class="layui-btn" id="picx">上传图片</button>
                             <div class="layui-upload-list">
                                 <p id="demo"></p>
+                                <input type="text" id="pic"  class="form-control" name="pic" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText"></p>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                 <div class="form-group">
                     <div class="col-sm-12 col-sm-offset-9">
                         <button class="btn btn-lg btn-primary " type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
-                        <button class="btn btn-lg btn-default " type="button"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
+                        <button class="btn btn-lg btn-default " type="reset"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
                     </div>
                 </div>
 

@@ -286,6 +286,14 @@ $('#mediaAdd').bootstrapValidator({
                 }
             }
         },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
+                }
+            }
+        },
         date: {
              message: '报道时间验证失败',
              validators: {
@@ -361,6 +369,14 @@ $('#updateForm').bootstrapValidator({
                 }
             }
         },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
+                }
+            }
+        },
         date: {
             message: '报道时间验证失败',
             validators: {
@@ -394,8 +410,8 @@ $('#updateForm').bootstrapValidator({
             $("#pic").val("");
             $("#date").val("");
             $("#url").val("");
-            ue.setContent('');
             $("#demo1").attr("src",'');
+            ue.setContent('');
             refush();
         },
         "json"

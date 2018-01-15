@@ -87,7 +87,7 @@
 #cert .cert-next{width:30px;height:30px;position:absolute;background:url(../images/index.png) no-repeat -75px 0;top:85px;right:10px;cursor:pointer}
 #cert .cert-prev{width:30px;height:30px;position:absolute;background:url(../images/index.png) no-repeat -75px -27px;top:85px;left:10px;cursor:pointer}
 
-.page{padding:10px 10px;width:100%;float:left;text-align:center;font-size:12px;line-height:35px}
+.page{padding:10px 10px;width:100%;float:left;text-align:center;font-size:19px;margin-left:10px;line-height:35px}
 .page .all{float:left;line-height:40px}
 .page .pages span{display:inline-block;height:35px;margin-right:8px;width:35px}
 .page .pages span.currents{background:none repeat scroll 0 0 #15aae1;color:#fff}

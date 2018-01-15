@@ -38,14 +38,14 @@
         </div>
         <div class="ibox-content">
             <form method="post" id="homeAdd" class="form-horizontal">
-                <input type="hidden" id="pic1" name="pic1"/>
-                <div class="form-group">
+                  <div class="form-group">
                     <label  class="col-sm-2 control-label">轮播图1</label>
                     <div class="col-sm-10">
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test1">上传图片</button>
                             <div class="layui-upload-list">
                                 <p id="image1">
+                                    <input type="text" id="pic1"  class="form-control" name="pic1" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText1"></p>
                             </div>
                         </div>
@@ -57,14 +57,14 @@
                         <input type="text" name="l1" class="form-control">
                     </div>
                 </div>
-                <input type="hidden" id="pic2" name="pic2"/>
-                <div class="form-group">
+                 <div class="form-group">
                     <label  class="col-sm-2 control-label">轮播图2</label>
                     <div class="col-sm-10">
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test2">上传图片</button>
                             <div class="layui-upload-list">
                                 <p id="image2">
+                                    <input type="text" id="pic2"  class="form-control" name="pic2" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText2"></p>
                             </div>
                         </div>
@@ -76,7 +76,6 @@
                         <input type="text" name="l2" class="form-control">
                     </div>
                 </div>
-                <input type="hidden" id="pic3" name="pic3"/>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">轮播图3</label>
                     <div class="col-sm-10">
@@ -84,6 +83,8 @@
                             <button type="button" class="layui-btn" id="test3">上传图片</button>
                             <div class="layui-upload-list">
                                 <p id="image3">
+                                    <input type="text" id="pic3"  class="form-control" name="pic3" style="height:0px;border:0px;margin:0px;padding:0px;"/>
+
                                 <p id="demoText3"></p>
                             </div>
                         </div>
@@ -95,7 +96,6 @@
                         <input type="text" name="l3" class="form-control">
                     </div>
                 </div>
-                <input type="hidden" id="ewm" name="ewm"/>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">二维码图片</label>
                     <div class="col-sm-10">
@@ -103,6 +103,7 @@
                             <button type="button" class="layui-btn" id="test4">上传图片</button>
                             <div class="layui-upload-list">
                                 <p id="image4">
+                                <input type="text" id="ewm"  class="form-control" name="ewm" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText4"></p>
                             </div>
                         </div>
@@ -130,7 +131,7 @@
                 <div class="form-group">
                     <div class="col-sm-12 col-sm-offset-9">
                         <button class="btn btn-lg btn-primary " type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
-                        <button class="btn btn-lg btn-default " type="button"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
+                        <button class="btn btn-lg btn-default " type="reset"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
                     </div>
                 </div>
 

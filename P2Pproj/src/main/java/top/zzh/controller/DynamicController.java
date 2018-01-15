@@ -82,6 +82,10 @@ public class DynamicController {
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Dynamic dynamic){
+        logger.info("dynamic.getPic=="+dynamic.getPic());
+        logger.info("dynamic.getPic=="+dynamic.getPic());
+        logger.info("dynamic.getPic=="+dynamic.getPic());
+        logger.info("dynamic.getPic=="+dynamic.getPic());
         try{
             dynamic.getContent();
             dynamic.setState((byte) 0);
