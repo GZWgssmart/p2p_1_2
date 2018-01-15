@@ -167,6 +167,12 @@ public class PageController {
         return mv;
     }
 
+    //前台用户反馈
+    @RequestMapping("feedBackAdd")
+    public String feedBackAdd(){
+        return "user/feedBackAdd";
+    }
+    
     @RequestMapping("huikuan")
     public String huikuan() {
         return "user/huikuan";
