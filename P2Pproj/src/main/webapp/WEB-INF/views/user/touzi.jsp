@@ -40,7 +40,7 @@
                                 <span class="pmain-title2 pmain-height">${d.money}</span>
                                 <span class="pmain-title3 pmain-height">${d.cpname}</span>
                                 <span class="pmain-title4 pmain-height">${d.nprofit}</span>
-                                <span class="pmain-title5 pmain-height">${d.time}</span>
+                                <span class="pmain-title5 pmain-height">${d.dateToStr}</span>
                             </li>
                         </c:forEach>
                         <c:if test="${page.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
