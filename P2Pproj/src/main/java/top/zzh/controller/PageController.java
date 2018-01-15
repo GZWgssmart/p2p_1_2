@@ -61,6 +61,9 @@ public class PageController {
     @Autowired
     private  UserTicketService userTicketService;
 
+    @Autowired
+    private NoticeService noticeService;
+
     //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
@@ -275,7 +278,11 @@ public class PageController {
     }
 
     @RequestMapping("ad")
-    public String ad() {
+    public String ad(HttpServletRequest request) {
+        List<Object> noticeList = new ArrayList<>();
+        noticeList = noticeService.listNotice(0,5);
+
+        request.setAttribute("noticeList",noticeList);
         return "index/ad";
     }
 

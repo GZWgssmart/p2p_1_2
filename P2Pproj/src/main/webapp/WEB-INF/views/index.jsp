@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
   String path = request.getContextPath();
 %>
@@ -363,11 +364,12 @@
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <li><a href="#" title="关于“金融产品”产品的说明">关于“金融产品”产品的说明</a><span class="date">06-19</span></li>
-              <li><a href="#" title="2015年9月10日发标预告">2015年9月10日发标预告</a><span class="date">09-10</span></li>
-              <li><a href="#" title="关于平台“纪念抗战胜利70周年”9月3日***">关于平台“纪念抗战胜利70周年***</a><span class="date">09-02</span></li>
-              <li><a href="#" title="关于P2P理财平台新系统升级的公告">关于P2P理财平台新系统***</a><span class="date">09-02</span></li>
-              <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+              <c:if test="${requestScope.noticeList!=null}">
+                <c:forEach var="a" items="${noticeList}" >
+                  <li><a href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a><span class="date">${a.dateString}</span></li>
+                </c:forEach>
+              </c:if>
+                <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
             </ul>
           </div>
         </div>
@@ -464,12 +466,11 @@
           <div class="img-scroll">
             <div class="container">
               <ul>
-                <li><img src="<%=path%>/static/images/logo_sbcvc.png" width="152" height="52" alt="软银"></li>
-                <li><img src="<%=path%>/static/images/logo_abc.png" width="152" height="52" alt="农业银行"></li>
-                <li><img src="<%=path%>/static/images/logo_wdzj.png" width="152" height="52" alt="网贷之家"></li>
-                <li><img src="<%=path%>/static/images/logo_baidu.png" width="152" height="52" alt="百度"></li>
-                <li><img src="<%=path%>/static/images/logo_aqb.png" width="152" height="52" alt="安全宝"></li>
-                <li><img src="<%=path%>/static/images/logo_gds.png" width="152" height="52" alt="万国数据"></li>
+                <c:if test="${requestScope.friendList!=null}">
+                  <c:forEach var="s" items="${friendList}" >
+                    <li><a href="${s.furl}"><img src="<%=path%>${s.fpic}" width="152" height="52" alt="软银"></a></li>
+                  </c:forEach>
+                </c:if>
               </ul>
             </div>
           </div>

@@ -2,9 +2,12 @@ package top.zzh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.zzh.bean.Friend;
 import top.zzh.dao.FriendDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.FriendService;
+
+import java.util.List;
 
 /**
  * @version :1.0
@@ -21,5 +24,10 @@ public class FriendServiceImpl extends AbstractService implements FriendService 
     public void setFriendDAO(FriendDAO friendDAO) {
         super.setBaseDAO(friendDAO);
         this.friendDAO = friendDAO;
+    }
+
+    @Override
+    public List<Friend> listFriend() {
+        return friendDAO.listFriend();
     }
 }
