@@ -3,6 +3,7 @@ package top.zzh.vo;
 import java.math.BigDecimal;
 
 public class UserMoneyVO {
+
     private String uid;
     private String rname;
     private BigDecimal zmoney;//总资产

@@ -1,8 +1,8 @@
 package top.zzh.vo;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author 曾志湖 on 2017/12/28.
@@ -161,4 +161,5 @@ public class TzbVO {
     public void setUname(String uname) {
         this.uname = uname;
     }
+
 }

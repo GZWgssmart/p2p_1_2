@@ -91,7 +91,11 @@ public class BorrowApplyController {
         borrowApplyService.save(borrowApply);
         borrowDetail.setCpname("YRB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
+<<<<<<< HEAD
         //申请借款时，已投金额默认为0
+=======
+        //已投金额默认新增为0
+>>>>>>> 309369205f218583fbd0e78f15de813d1f5a11e3
         borrowDetail.setMoney(BigDecimal.valueOf(0));
         borrowDetailService.save(borrowDetail);
         Date time = new Date();

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.BorrowApply;
 import top.zzh.common.Pager;
 import top.zzh.service.HkbService;
 import top.zzh.vo.HkbVO;

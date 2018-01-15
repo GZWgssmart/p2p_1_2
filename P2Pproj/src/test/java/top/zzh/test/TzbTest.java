@@ -2,11 +2,10 @@ package top.zzh.test;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.zzh.bean.ShBorrow;
 import top.zzh.bean.Tzb;
 import top.zzh.common.Pager;
 import top.zzh.dao.TzbDAO;
-import top.zzh.vo.ShBorrowVO;
+import top.zzh.vo.TzbVO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -54,6 +53,19 @@ public class TzbTest extends BaseTest {
             Tzb tzb1=(Tzb) obj;
             System.out.println(tzb1.getMoney());
         }
+    }
+
+    @Test
+    public void add(){
+        TzbVO tzb = new TzbVO();
+        tzb.setUid(1L);
+        tzb.setJuid(1L);
+        tzb.setMoney(BigDecimal.valueOf(2000));
+        tzb.setTime(new Date());
+        tzb.setNprofit((float)0.44);
+        tzb.setCpname("YRB1101");
+        tzb.setBaid(2L);
+        tzbDAO.save(tzb);
     }
 
 }

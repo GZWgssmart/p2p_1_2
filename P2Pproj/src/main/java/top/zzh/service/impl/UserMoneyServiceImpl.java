@@ -3,9 +3,11 @@ package top.zzh.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.bean.UserMoney;
+import top.zzh.common.Pager;
 import top.zzh.dao.UserMoneyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.UserMoneyService;
+import top.zzh.vo.UserMoneyVO;
 
 import java.math.BigDecimal;
 
@@ -49,6 +51,30 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     public void updateJlmoney(BigDecimal jlmoney, Long uid) {
         userMoneyDAO.updateJlmoney(jlmoney, uid);
     }
+
+    @Override
+    public void updateZmoney(UserMoneyVO userMoneyVO) {
+        userMoneyDAO.updateZmoney(userMoneyVO);
+    }
+
+    @Override
+    public Object getByUserId(Long id) {
+        return null;
+    }
+
+    @Override
+    public Pager listPagerUid(int pageNo, int pageSize, Object obj) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(userMoneyDAO.listPagerUid(pager, obj));
+        pager.setTotal(userMoneyDAO.getCount(obj));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return userMoneyDAO.getCount(obj);
+    }
+
 
 
 }

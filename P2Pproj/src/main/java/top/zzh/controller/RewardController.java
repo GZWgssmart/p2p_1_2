@@ -16,6 +16,7 @@ import top.zzh.service.LogMoneyService;
 import top.zzh.service.RewardService;
 import top.zzh.service.UserMoneyService;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.UserMoneyVO;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -80,6 +81,12 @@ public class RewardController {
         logMoneyService.save(logMoney);
 
         userMoneyService.updateJlmoney(money,uid);
+
+        UserMoneyVO userMoneyVO =new UserMoneyVO();
+        userMoneyVO.setUid(String.valueOf(uid));
+        userMoneyVO.setZmoney(jlmoney.add(userMoney.getZmoney()));
+        userMoneyVO.setKymoney(jlmoney.add(userMoney.getKymoney()));
+        userMoneyService.updateZmoney(userMoneyVO);
 
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.SWAY_UPDATE_STATE_SUCCESS);
         return statusVO;

@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.Reward;
+import top.zzh.bean.User;
 import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
+import top.zzh.common.EncryptUtils;
 import top.zzh.common.JLff;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.RewardService;
 import top.zzh.service.TzbService;
 import top.zzh.service.UserMoneyService;
+import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.TzbVO;
+import top.zzh.vo.UserMoneyVO;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -43,31 +47,43 @@ public class TzbController {
     @Autowired
     private UserMoneyService userMoneyService;
 
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping("save/{uid}/{xmoney}/{pass}")
-    public String save(@PathVariable("uid")Long uid,@PathVariable("xmoney")BigDecimal xmoney,@PathVariable("pass") String pass,
-                       TzbVO tzb, HttpSession session){
-        Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
-        String user = (String) session.getAttribute(Constants.USER_IN_SESSION);
-        logger.info("用户"+user+"正在开始投资");
+
+    @RequestMapping("save/{uid}/{xmoney}/{pass}/{maxMoney}/{baid}")
+    @ResponseBody
+    public ControllerStatusVO save(@PathVariable("uid") Long uid,@PathVariable("xmoney") BigDecimal xmoney,@PathVariable("pass") String pass,
+    @PathVariable("maxMoney") BigDecimal maxMoney,@PathVariable("baid") Long baid, TzbVO tzb, HttpSession session){
         ControllerStatusVO statusVO = null;
-        //用户如果没有登录则跳转到登录页面，如果登录则可以进行投资
-        if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
-            return "user/nopower";
-        }else{
-            if(user!=null){
-                tzb.setUid(userid);
-                //判断是否为自己的标
-                if(tzb.getJuid().equals(userid)) {
-                    statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
-                }
-                tzbService.add(tzb);
-            }
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
-            return "user/userindex";
+        String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
+        Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
+        //判断投资金额是否大于投标金额
+        if(xmoney.compareTo(maxMoney)==1){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.TZ_SAVE_maxMoney_FAIL);
+            return statusVO;
         }
+        //判断是否是自己发布的标
+        if(uid.equals(userid)) {
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_TZ_FAIL);
+            return statusVO;
+        }
+        String zpwd=userService.getByZpwd(name);
+        String xpwd= EncryptUtils.md5(pass);
+        //判断支付密码是否正确
+        if(!zpwd.equals(xpwd)){
+            statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
+            return statusVO;
+        }
+        logger.info("用户正在开始投资");
+        if(name!=null){
+            tzb.setUid(userid);
+            tzb.setBaid(baid);
+            tzb.setMoney(xmoney);
+            statusVO=tzbService.add(tzb);
+        }
+        return statusVO;
     }
-
 
     @RequestMapping("pager_criteria")
     @ResponseBody
@@ -83,8 +99,6 @@ public class TzbController {
         Long id=(Long)session.getAttribute(Constants.USER_ID_SESSION);
         return tzbService.listPagerById(pageIndex,pageSize,id);
     }
-
-
 
     @RequestMapping("page")
     public String page(){
@@ -161,6 +175,14 @@ public class TzbController {
                         jlmoney=yjlmoney.add(xjlmoney);
                     }
                     userMoneyService.updateJlmoney(jlmoney,uid);
+
+
+                    UserMoneyVO userMoneyVO =new UserMoneyVO();
+                    userMoneyVO.setUid(String.valueOf(uid));
+                    userMoneyVO.setZmoney(jlmoney.add(userMoney.getZmoney()));
+                    userMoneyVO.setKymoney(jlmoney.add(userMoney.getKymoney()));
+                    userMoneyService.updateZmoney(userMoneyVO);
+
                 }
             }
         },calendar.getTime());

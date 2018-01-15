@@ -6,7 +6,7 @@
 
     <insert id="save" parameterType="top.zzh.vo.TzbVO">
         <![CDATA[
-          insert into t_tzb(uid,juid,money,time,nprofit,cpname,baid)
+          insert into t_tzb(uid,juid,money,`time`,nprofit,cpname,baid)
           values(#{uid},#{juid},#{money},CURRENT_TIME,#{nprofit},#{cpname},#{baid})
         ]]>
     </insert>
