@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/12/29
-  Time: 20:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String path=request.getContextPath();%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>关于我们-普金资本-为用户提供详尽安全可靠的投资理财信息，网络贷款、融资服务</title>
+    <title>关于我们-亿人宝</title>
     <link rel="stylesheet" href="<%=path%>/static/css/infoshow/about.css">
 
     <link href="<%=path%>/static/css/common.css" rel="stylesheet" />

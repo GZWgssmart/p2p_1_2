@@ -355,11 +355,11 @@
       </div>
     </div>
     <div class="page-right fn-right" style="top: 0px;">
-      <div class="mod-risk-tip"><i class="icon icon-tip"></i><a href="http://localhost:8080" class="c-orange">收益与风险并存，请理性选择平台</a></div>
+      <div class="mod-risk-tip"><i class="icon icon-tip"></i><a href="<%=path%>/" class="c-orange">收益与风险并存，请理性选择平台</a></div>
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>网站公告</h3>
-          <a href="http://localhost:8080" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
@@ -476,7 +476,7 @@
         </div>
         <div class="ui-tab-item">
           <div class="links">
-            <a target="_blank" href="http://localhost:8080">网贷互联</a>
+            <a target="_blank" href="<%=path%>/">网贷互联</a>
             <a target="_blank" href="http://www.bjzq.com.cn">北京证券网</a>
             <a target="_blank" href="http://v.yidai.com/">易贷微理财</a>
             <a target="_blank" href="http://www.wangdaicaifu.com">P2P</a>

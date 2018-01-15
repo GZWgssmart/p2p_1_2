@@ -172,7 +172,12 @@ public class PageController {
     public String feedBackAdd(){
         return "user/feedBackAdd";
     }
-    
+
+    //前台关于我们里的运营数据页面
+    @RequestMapping("rundata")
+    public String rundata(){
+        return "index/rundata";
+    }
     @RequestMapping("huikuan")
     public String huikuan() {
         return "user/huikuan";
@@ -198,6 +203,7 @@ public class PageController {
     public String registerSuccess() {
         return "user/registerSuccess";
     }
+
     @RequestMapping("tixian")
     public String tixian(HttpSession session) {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);

@@ -31,7 +31,6 @@
                         <a href="<%=path%>/page/user"  title="用户名">${user}</a>
                     </c:if>
                 </li>
-
             </ul>
         </div>
     </div>
