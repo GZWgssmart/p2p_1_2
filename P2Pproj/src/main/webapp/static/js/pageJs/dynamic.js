@@ -265,6 +265,14 @@ $('#dynamicAdd').bootstrapValidator({
                 }
             }
         },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
+                }
+            }
+        },
         date: {
              message: '时间验证失败',
              validators: {
@@ -282,6 +290,7 @@ $('#dynamicAdd').bootstrapValidator({
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
+    alert($("#pic").val());
     var bv = $form.data('bootstrapValidator');
      $.post(
         "/dynamic/save",
@@ -294,10 +303,11 @@ $('#dynamicAdd').bootstrapValidator({
             }
             $("#dynamicAdd").data('bootstrapValidator').resetForm();
             $("#title").val("");
-            $("#pic").val("");
             $("#date").val("");
+            $("#demo2").html('');
             $("#demo1").attr("src",'');
-            $("#demo").html('');
+            $("#demoText").val("");
+            $("#pic").val("");
             ue.setContent('');
              refush();
         },
@@ -323,6 +333,14 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 20,
                     message: '标题长度必须在1到20之间'
+                }
+            }
+        },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
                 }
             }
         },

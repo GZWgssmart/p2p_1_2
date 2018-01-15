@@ -24,39 +24,75 @@
 
         <div class="text-box">
             <div class="text-content" id="text-content">
-                <h1 class="title">网站公告</h1>
-                <ul class="clearfix mt20 new-list">
-                    <li class="clearfix list-item">
-                        <a href="ad1.jsp">9月14日最新理财产品预告</a>
-                        <span>2015-09-12</span>
-                    </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">豆兑换规则</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月12日最新理财产品介绍</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月11日最新理财产品介绍</a>
-                    <span>2015-09-11</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月10日最新理财产品预告</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月9日最新理财产品介绍</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月8日最新理财产品预告</a>
-                    <span>2015-09-07</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月7日最新理财产品预告</a>
-                    <span>2015-09-06</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月6日最新理财产品预告</a>
-                    <span>2015-09-05</span>
-                </li>				</ul>
-                <div class="page">
-                    <span class="all">共有163条信息</span><span class="count"></span><div class="fr pages"><span data-page="1" class="currents">1</span><a data-page="2" href="#">2</a><a data-page="3" href="#">3</a><a data-page="4" href="#">4</a><a data-page="5" href="#">5</a><a data-page="6" href="#">6</a><span>...</span><a data-page="16" href="#">16 </a><a data-page="17" href="#">17 </a><a data-page="2" class="next" href="#">下一页</a><a data-page="17" class="last" href="#">尾页</a></div>
+                <ul class="r-list">
+                    <li class="clearfix">
+                        <a href="">
+                            <img src="<%=path%>/static/images/2015062506.jpg" width="300" height="171">
+                        </a>
+                        <div class="record">
+                            <h5>
+                                <a href="#">服务民生</a>
+                            </h5>
+                            <p class="text">
+                                设立公益书友会，斥资购买图书并向市民免费开放，这也和2015年政府工作报告提出要“倡导全民阅读 ，建设书香社会”的号召不谋而合。公益书友会将是一个交流互动的乐园，书友会将不定期举办多种活动，发挥石狮首家互联网金融公司的所长，帮助市民了解金融法规、投资理财等相关知识，为发展普惠金融做出自己的贡献。
+                            </p>
+                            <p class="time">报道时间：2015年6月</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="">
+                            <img src="<%=path%>/static/images/2015062506.jpg" width="300" height="171">
+                        </a>
+                        <div class="record">
+                            <h5>
+                                <a href="#">服务民生</a>
+                            </h5>
+                            <p class="text">
+                                设立公益书友会，斥资购买图书并向市民免费开放，这也和2015年政府工作报告提出要“倡导全民阅读 ，建设书香社会”的号召不谋而合。公益书友会将是一个交流互动的乐园，书友会将不定期举办多种活动，发挥石狮首家互联网金融公司的所长，帮助市民了解金融法规、投资理财等相关知识，为发展普惠金融做出自己的贡献。
+                            </p>
+                            <p class="time">报道时间：2015年6月</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="">
+                            <img src="<%=path%>/static/images/2015062506.jpg" width="300" height="171">
+                        </a>
+                        <div class="record">
+                            <h5>
+                                <a href="${pageContext.request.contextPath}/views/media/mediaPage.jsp">服务民生</a>
+                            </h5>
+                            <p class="text">
+                                设立公益书友会，斥资购买图书并向市民免费开放，这也和2015年政府工作报告提出要“倡导全民阅读 ，建设书香社会”的号召不谋而合。公益书友会将是一个交流互动的乐园，书友会将不定期举办多种活动，发挥石狮首家互联网金融公司的所长，帮助市民了解金融法规、投资理财等相关知识，为发展普惠金融做出自己的贡献。
+                            </p>
+                            <p class="time">报道时间：2015年6月</p>
+                        </div>
+                    </li>
+                </ul>
+                <%--分页条开始--%>
+                <div class="pagination clearfix mrt30">
+                <span class="page" style="font-size: 19px;">
+                    <a href="javascript:void(0);" onclick="">首页</a>
+                    <a href="javascript:void(0);" style="margin-left: 10px" onclick="">上一页</a>&nbsp;
+                    <a class="curr" style="margin-left: 10px" href="javascript:void(0);">1</a>
+                    <a href="#"style="margin-left: 10px">2</a>
+                    <a href="#" style="margin-left: 10px">3</a>
+                    <a href="#" style="margin-left: 10px">4</a>
+                    <a href="#" style="margin-left: 10px">5</a>
+                    <a href="javascript:void(0);" style="margin-left: 10px">下一页</a>
+                    <a href="javascript:void(0);" style="margin-left: 10px">尾页</a>&nbsp;
+                    <em style="margin-left: 10px">共2297页&nbsp;</em></span>
+                    <dl class="page-select">
+                        <dt><span>1</span><i class="icon icon-down"></i></dt>
+                        <dd style="display: none;">
+                            <ul name="nump" id="jsnump">
+                                <li><a href="##" onclick="">1</a></li>
+                                <li><a href="##" onclick="">2</a></li>
+                                <li><a href="##" onclick="">3</a></li>
+                            </ul>
+                        </dd>
+                    </dl>
                 </div>
+                <%--分页条结束--%>
             </div>
         </div>
     </div>
