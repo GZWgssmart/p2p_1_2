@@ -110,11 +110,18 @@
         t_borrowapply where  uid=#{id}
     </select>
 
-    <select id="shResult" resultType="top.zzh.bean.BorrowApply">
+    <select id="shResult" resultType="top.zzh.vo.Borrow">
         <![CDATA[
-            select ba.reason,ba.state,ba.huid,h.rname as username,ba.rname from
-            t_borrowapply ba,t_user u,t_huser h
-            where h.huid = ba.huid and ba.uid = u.uid and ba.uid = #{uid}
+          select bp.baid,b.bzname,bp.money,bi.cpname,bi.sid,bp.state  from
+          t_borrowapply as bp,t_borrowdetail as bi,t_bz as b where bp.baid=bi.baid and bp.bzid=b.bzid and bp.uid = #{uid}
+           limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="shCount" resultType="long">
+          <![CDATA[
+           select count(bp.baid)from
+           t_borrowapply as bp,t_borrowdetail as bi,t_bz as b where bp.baid=bi.baid and bp.bzid=b.bzid and bp.uid = #{uid}
         ]]>
     </select>
 
