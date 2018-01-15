@@ -31,26 +31,12 @@
     <div class="w1200 personal">
         <%@include file="../common/leftList.jsp"%>
         <div class="personal-main">
-            <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/fileupload.less.css">
-            <style type="text/css">
-                .ui-fileupload-choose{
-                    background:none;
-                    width: 90px; height: 90px;
-                    border:0px none;
-                }
-                .ui-fileupload-choose input{
-                    width:100%;height:100%;
-                }
-                .ui-icon{
-                    background:none;
-                    width:0px;height:0px;
-                }
-            </style>
+
             <div class="pmain-profile">
                 <div class="pmain-welcome"> <span class="fl"><span id="outLogin">晚上好，</span><%=name%>喝一杯下午茶，让心情放松一下~</span> <span class="fr">上次登录时间：<%=time%>
           </span> </div>
                 <div class="pmain-user">
-                    <div class="user-head"> <span id="clickHeadImage" class="head-img" title="点击更换头像">
+                    <div class="user-head"> <span id="clickHeadImage" class="head-img" title="点击更换头像" onclick="header.click()">
 
                   <form  method="post" id="longinForm" name="longinForm" action="" enctype="multipart/form-data">
                   <input type="hidden" name="userPhotoUploadForm" value="userPhotoUploadForm">
@@ -66,7 +52,7 @@
                       <i class="headframe" style="z-index:0;"></i>-
                   <div id="userPhotoUploadForm:shangchuan-btn" class="ui-fileupload ui-widget" style="z-index:0;">
                     <div class="ui-fileupload-buttonbar ui-corner-top"><span class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-fileupload-choose" role="button"><span class="ui-button-icon-left ui-icon ui-c ui-icon-plusthick"></span><span class="ui-button-text ui-c"></span>
-                      <input type="file" id="header" name="header" onmouseleave="check();" style="z-index:0;">
+                      <input type="file" id="header" name="header"  style="display:none">
                       </span></div>
                     <div class="ui-fileupload-content ui-widget-content ui-corner-bottom">
                       <table class="ui-fileupload-files">
@@ -189,7 +175,8 @@
 
 <script type="text/javascript">
 
-    function check(){
+
+    $('#header').on('change', function (e) {
         var file=document.getElementById("header").value;
 
         if(file!=null && file!=""){
@@ -197,7 +184,9 @@
             form.attr('action',''+'/luser/uploadHeader');
             form.submit();
         }
-    }
+    });
+
+
 
 </script>
 
