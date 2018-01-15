@@ -23,26 +23,6 @@
         </foreach>
     </insert>
 
-    <insert id="save" parameterType="hkb">
-        <![CDATA[
-           insert into t_hkb(uid,rname,cpname,tnum,ytime,bzname,ybx,ylx,ybj,state,baid,huid)
-           values(#{uid},#{rname},#{cpname},#{tnum},#{ytime},#{bzname},#{ybx},#{ylx},#{ybj},#{state},#{baid},#{huid})
-        ]]>
-    </insert>
-
-
-    <insert id="saveList" parameterType="list">
-        <![CDATA[
-        insert into t_hkb(uid, rname, cpname, bzname,huid,
-          ybx, ylx, ybj, tnum, baid, ytime, state, djq )
-          values
-      ]]>
-        <foreach collection="list" item="item" index="index" separator="," >
-              (#{item.uid},#{item.rname},#{item.cpname},#{item.bzname},#{item.huid}
-            ,#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.baid},#{item.ytime},#{item.state},#{item.djq})
-        </foreach>
-    </insert>
-
 
     <!-- 还款人项目，贷后负责人-->
     <sql id="cash_query_criteria">
@@ -72,6 +52,5 @@
         ]]>
     </select>
 
-
-
+    
 </mapper>
