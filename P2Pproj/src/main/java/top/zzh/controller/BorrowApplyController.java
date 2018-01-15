@@ -127,13 +127,13 @@ public class BorrowApplyController {
     }
 
 
-    @RequestMapping("/update_page")
-    public String updatePage(HttpServletRequest request,HttpSession session){
+    @RequestMapping("/update_page/{baid}")
+    public String updatePage(HttpServletRequest request,HttpSession session,@PathVariable("baid")Long baid){
         ControllerStatusVO statusVO = null;
         String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
         User user=userService.getByface(name);
         logger.info("用户"+user+"正在操作借款信息");
-        BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
+        BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(baid);
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
         List<Sway> swayList = (List)swayService.listAll();
@@ -152,7 +152,16 @@ public class BorrowApplyController {
         return "user/update_borrow";
     }
     @RequestMapping("borrw")
-    public String borrw(){
+    public String borrw(HttpServletRequest request,HttpSession session){
+        String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        User user=userService.getByface(name);
+        logger.info("用户"+user+"正在操作借款信息");
+        List<Bz> bzList = (List)bzService.listAll();
+        List<Jklx> jklxList = (List)jklxService.listAll();
+        List<Sway> swayList = (List)swayService.listAll();
+        request.setAttribute("bzList",bzList);
+        request.setAttribute("jklxList",jklxList);
+        request.setAttribute("swayList",swayList);
         return "user/borrowapply";
     }
     @RequestMapping("update")

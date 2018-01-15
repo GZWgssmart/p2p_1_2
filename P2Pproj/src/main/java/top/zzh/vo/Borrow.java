@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Borrow {
-    private Long bdid;
+    private Long baid;
     private String bzname;//标种id
     private BigDecimal money;//申请金额
     private String cpname;//产品名称
@@ -14,8 +14,8 @@ public class Borrow {
     public Borrow() {
     }
 
-    public Borrow(Long bdid, String bzname, BigDecimal money, String cpname, Long sid, Byte state) {
-        this.bdid = bdid;
+    public Borrow(Long baid, String bzid, BigDecimal money, String cpname, Long sid, Byte state) {
+        this.baid = baid;
         this.bzname = bzname;
         this.money = money;
         this.cpname = cpname;
@@ -23,12 +23,12 @@ public class Borrow {
         this.state = state;
     }
 
-    public Long getBdid() {
-        return bdid;
+    public Long getBaid() {
+        return baid;
     }
 
-    public void setBdid(Long bdid) {
-        this.bdid = bdid;
+    public void setBaid(Long baid) {
+        this.baid = baid;
     }
 
     public String getBzname() {

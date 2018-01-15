@@ -113,7 +113,7 @@
             s.way,bd.suggest,bd.xmdescrip,bd.guarantee from
             t_borrowapply ba,t_user u,t_borrowdetail bd,t_jklx j,t_sway s,t_bz b
             where ba.uid = u.uid  and bd.baid = ba.baid and ba.baid = bd.baid and
-            j.lxid = ba.lxid  and ba.bzid = b.bzid and bd.sid = s.sid and  ba.uid = #{uid}
+            j.lxid = ba.lxid  and ba.bzid = b.bzid and bd.sid = s.sid and  ba.baid = #{uid}
         ]]>
     </select>
 

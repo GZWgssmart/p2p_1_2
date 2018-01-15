@@ -59,7 +59,7 @@
                                 <c:if test="${d.state==0}">通过</c:if>
                                 <c:if test="${d.state==1}">审核中</c:if>
                                 <c:if test="${d.state==2}">满标</c:if>
-                                <c:if test="${d.state==2}"><a style="text-decoration:none;" href="${request.getContextPath}/borrowapply/update_page/${d.bdid}" onclick="">不通过</a></c:if>
+                                <c:if test="${d.state==3}"><a style="text-decoration:none;" href="${request.getContextPath}/borrowapply/update_page/${d.baid}" >不通过</a></c:if>
                         </li>
                     </c:forEach>
                     <c:if test="${page.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
