@@ -3,7 +3,6 @@
 <%
     String path = request.getContextPath();
     String name= (String) session.getAttribute("uname");
-    name="bbbb";
 %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
