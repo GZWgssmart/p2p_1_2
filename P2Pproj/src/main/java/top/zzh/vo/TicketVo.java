@@ -13,7 +13,33 @@ public class TicketVo {
     private BigDecimal tkmoney;//优惠券金额
     private BigDecimal tkmoney4;//优惠券金额
     private BigDecimal tkmoney5;//优惠券金额
+    private BigDecimal usecondition;//使用条件
+    private BigDecimal usecondition2;//使用条件
+    private Byte status;
 
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public BigDecimal getUsecondition() {
+        return usecondition;
+    }
+
+    public void setUsecondition(BigDecimal usecondition) {
+        this.usecondition = usecondition;
+    }
+
+    public BigDecimal getUsecondition2() {
+        return usecondition2;
+    }
+
+    public void setUsecondition2(BigDecimal usecondition2) {
+        this.usecondition2 = usecondition2;
+    }
 
     public String getTname3() {
         return tname3;
@@ -57,7 +83,6 @@ public class TicketVo {
     }
 
     public BigDecimal getTkmoney4() {
-
         return tkmoney4;
     }
 

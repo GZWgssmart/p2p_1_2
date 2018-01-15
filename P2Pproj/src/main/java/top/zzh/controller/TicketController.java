@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import top.zzh.bean.Ticket;
+import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.TicketService;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.TicketVo;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,6 +69,12 @@ public class TicketController {
         if((ticketvo.getTintro()==null||ticketvo.getTintro().equals(""))&&(ticketvo.getTintro3()!=null && !ticketvo.getTintro3().equals(""))){
             ticketvo.setTintro(ticketvo.getTintro3());
         }
+        if(((ticketvo.getUsecondition2()!=null && !ticketvo.getUsecondition2().equals("")))){
+            ticketvo.setUsecondition(ticketvo.getUsecondition2());
+        }
+        logger.info("ticket.getUsecondition=="+ticketvo.getUsecondition2());
+        logger.info("ticket.getUsecondition=="+ticketvo.getUsecondition2());
+        logger.info("ticket.getUsecondition=="+ticketvo.getUsecondition2());
         ControllerStatusVO statusVO=null;
         try{
             ticketService.update(ticketvo);
@@ -75,5 +83,21 @@ public class TicketController {
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.TICKET_UPDATE_FAIL);
         }
         return statusVO;
+    }
+    @PostMapping("activeAndFreeze")
+    @ResponseBody
+    public ControllerStatusVO activeAndFreeze(Byte status,Long kid){
+        logger.info("进入activeAndFreeze方法==");
+        logger.info("进入activeAndFreeze方法==");
+        logger.info("进入activeAndFreeze方法==");
+        ControllerStatusVO controllerStatusVO=null;
+        try{
+            ticketService.updateStatus(status,kid);
+            controllerStatusVO=ControllerStatusVO.status(ControllerStatusEnum.TICKET_GETBYID_SUCCESS);
+        }catch (RuntimeException run){
+            controllerStatusVO=ControllerStatusVO.status(ControllerStatusEnum.TICKET_UPDATE_FAIL);
+            run.printStackTrace();
+        }
+        return controllerStatusVO;
     }
 }

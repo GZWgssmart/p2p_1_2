@@ -21,7 +21,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>卷</h5>
+            <h5>优惠券</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up"></i>
@@ -149,12 +149,25 @@
                         <input type="text" id="tname" name="tname" class="form-control" required="" aria-required="true">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" style="text-align: right; margin-top:5px">使用条件大于：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="usecondition"value="0" id="usecondition" required="" aria-required="true"
+                               onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=
+                               this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=
+                               this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                        />
+                    </div>
+                </div>
+               
                 <div class="form-group">
                     <label class="col-sm-3 control-label">简介：</label>
                     <div class="col-sm-8">
                         <textarea id="tintro" name="tintro" class="form-control" rows="5" required="" aria-required="true"></textarea>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
@@ -212,7 +225,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">有效截止日期：</label>
+                        <label class="col-sm-3 control-label">有效截止日期大于：</label>
                         <div class="col-sm-8">
                             <input type="date" id="tktime2" name="tktime" class="form-control" required="" aria-required="true"/>
                         </div>
@@ -221,6 +234,16 @@
                         <label class="col-sm-3 control-label">名称：</label>
                         <div class="col-sm-8">
                             <input type="text" id="tname3" name="tname3" class="form-control" required="" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align: right; margin-top:5px">使用条件大于：</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="usecondition" value="0" id="usecondition2" required="" aria-required="true"
+                                   onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=
+                               this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=
+                               this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                            />
                         </div>
                     </div>
                     <div class="form-group">
@@ -252,7 +275,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    内容查看
+                    使用简介查看
                 </h4>
             </div>
             <div style="margin-top: 10px">

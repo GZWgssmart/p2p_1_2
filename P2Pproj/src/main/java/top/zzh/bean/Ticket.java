@@ -16,6 +16,38 @@ public class Ticket {
     private String tname;//优惠卷名称
 
     private String tintro;//优惠卷简介
+
+    private BigDecimal usecondition; //使用条件
+
+    private Byte status;
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public BigDecimal getUsecondition() {
+        return usecondition;
+    }
+
+    public void setUsecondition(BigDecimal usecondition) {
+        this.usecondition = usecondition;
+    }
+
+    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime, String tname, String tintro, BigDecimal usecondition, Byte status) {
+        this.kid = kid;
+        this.type = type;
+        this.tkmoney = tkmoney;
+        this.tktime = tktime;
+        this.tname = tname;
+        this.tintro = tintro;
+        this.usecondition = usecondition;
+        this.status = status;
+    }
+
     public String getTname() {
         return tname;
     }
@@ -29,16 +61,6 @@ public class Ticket {
     }
 
     public void setTintro(String tintro) {
-        this.tintro = tintro;
-    }
-
-
-    public Ticket(Integer kid, Byte type, BigDecimal tkmoney, Date tktime, String tname, String tintro) {
-        this.kid = kid;
-        this.type = type;
-        this.tkmoney = tkmoney;
-        this.tktime = tktime;
-        this.tname = tname;
         this.tintro = tintro;
     }
 

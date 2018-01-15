@@ -12,4 +12,5 @@ public interface TicketDAO extends BaseDAO{
     List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
     @Override
     Long countCriteria(@Param("query") Object obj);
+    void updateStatus(@Param("status") Byte status,@Param("kid") Long kid);
 }
