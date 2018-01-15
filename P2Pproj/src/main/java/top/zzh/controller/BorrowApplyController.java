@@ -1,8 +1,5 @@
 package top.zzh.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.*;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
-import top.zzh.common.PathUtil;
 import top.zzh.common.PathUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.*;
@@ -24,12 +20,13 @@ import top.zzh.vo.ControllerStatusVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author 曾志湖
@@ -91,11 +88,7 @@ public class BorrowApplyController {
         borrowApplyService.save(borrowApply);
         borrowDetail.setCpname("YRB"+borrowApply.getBzid()+borrowApply.getLxid()+borrowApply.getBaid());
         borrowDetail.setBaid(borrowApply.getBaid());
-<<<<<<< HEAD
-        //申请借款时，已投金额默认为0
-=======
         //已投金额默认新增为0
->>>>>>> 309369205f218583fbd0e78f15de813d1f5a11e3
         borrowDetail.setMoney(BigDecimal.valueOf(0));
         borrowDetailService.save(borrowDetail);
         Date time = new Date();

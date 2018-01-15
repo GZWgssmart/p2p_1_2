@@ -107,4 +107,5 @@
             where t.uid = u.uid and ba.baid = t.baid and ba.bzid =b.bzid and  ba.baid = bd.baid and s.sid = bd.sid and ba.uid = um.uid and u.uid = #{uid}
         ]]>
     </select>
+
 </mapper>
