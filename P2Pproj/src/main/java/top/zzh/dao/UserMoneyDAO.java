@@ -32,6 +32,7 @@ public interface UserMoneyDAO extends BaseDAO {
 
     UserMoneyVO getByUid(@Param("uid")Long uid);
 
+    UserMoneyVO listMoney(@Param("uid")Long uid);
 
     void updateZmoney(UserMoneyVO userMoneyVO);
 

@@ -6,38 +6,29 @@ import java.util.Date;
 //还款表
 public class Skb {
     private Long skid;
-
     private Long uid;//用户id
-
     private Long juid;//借款人id
-
     private BigDecimal ybx;//应收本息
-
     private BigDecimal rbx;//已收本息
-
     private BigDecimal ylx;//应收利息
-
     private BigDecimal rlx;//已收利息
-
     private BigDecimal ybj;//应收本金
-
     private BigDecimal rbj;//已收本金
-
     private Integer rnum;//已还期数
-
+    private Integer djq;//还款第几期
+    private Byte state;//收款状态，1未收款，2已收款
     private Integer tnum;//总期数
-
     private Date date;//日期
-
     private Long baid;//借款人id
-
     private BigDecimal fmoney;//好友奖励
-
     private Long int1;
-
     private String str1;
 
-    public Skb(Long skid, Long uid, Long juid, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, Integer rnum, Integer tnum, Date date, Long baid, BigDecimal fmoney, Long int1, String str1) {
+    public Skb(){
+
+    }
+
+    public Skb(Long skid, Long uid, Long juid, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, Integer rnum, Integer djq, Byte state, Integer tnum, Date date, Long baid, BigDecimal fmoney, Long int1, String str1) {
         this.skid = skid;
         this.uid = uid;
         this.juid = juid;
@@ -48,16 +39,14 @@ public class Skb {
         this.ybj = ybj;
         this.rbj = rbj;
         this.rnum = rnum;
+        this.djq = djq;
+        this.state = state;
         this.tnum = tnum;
         this.date = date;
         this.baid = baid;
         this.fmoney = fmoney;
         this.int1 = int1;
         this.str1 = str1;
-    }
-
-    public Skb() {
-        super();
     }
 
     public Long getSkid() {
@@ -140,6 +129,22 @@ public class Skb {
         this.rnum = rnum;
     }
 
+    public Integer getDjq() {
+        return djq;
+    }
+
+    public void setDjq(Integer djq) {
+        this.djq = djq;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
+    }
+
     public Integer getTnum() {
         return tnum;
     }
@@ -185,6 +190,6 @@ public class Skb {
     }
 
     public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+        this.str1 = str1;
     }
 }

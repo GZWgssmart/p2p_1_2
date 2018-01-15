@@ -27,6 +27,7 @@ import top.zzh.query.UserQuery;
 import top.zzh.service.*;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.OptionVo;
+import top.zzh.vo.UserMoneyVO;
 import top.zzh.vo.UserTicketVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -119,9 +120,12 @@ public class LUserController {
 
     @GetMapping("userindex")
     public String userLogin(HttpSession session, HttpServletRequest request) {
+        Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
         String time = loginLogService.getByloginTime(name);
         User user = userService.getByface(name);
+        UserMoneyVO userMoneyVO = (UserMoneyVO)userMoneyService.listMoney(uid);
+        request.setAttribute("userMoneyVO",userMoneyVO);
         request.setAttribute("time", time);
         request.setAttribute("face", user.getFace());
         request.setAttribute("name",name);

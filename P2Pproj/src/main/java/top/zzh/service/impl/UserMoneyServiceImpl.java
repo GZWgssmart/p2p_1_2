@@ -48,6 +48,11 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
     }
 
     @Override
+    public UserMoneyVO listMoney(Long uid) {
+        return userMoneyDAO.listMoney(uid);
+    }
+
+    @Override
     public void updateJlmoney(BigDecimal jlmoney, Long uid) {
         userMoneyDAO.updateJlmoney(jlmoney, uid);
     }

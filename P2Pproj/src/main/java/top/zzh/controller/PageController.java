@@ -88,9 +88,12 @@ public class PageController {
         if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
             return "user/nopower";
         } else {
+            Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
             String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
             String time = loginLogService.getByloginTime(name);
             User user = userService.getByface(name);
+            UserMoneyVO userMoneyVO = (UserMoneyVO)userMoneyService.listMoney(uid);
+            request.setAttribute("userMoneyVO",userMoneyVO);
             request.setAttribute("time", time);
             request.setAttribute("face", user.getFace());
             return "user/userindex";
