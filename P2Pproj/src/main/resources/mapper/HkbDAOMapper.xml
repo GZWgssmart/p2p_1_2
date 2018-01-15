@@ -4,23 +4,21 @@
 
 <mapper namespace="top.zzh.dao.HkbDAO">
 
-
-    <insert id="save" parameterType="hkb">
+    <insert id="save" parameterType="top.zzh.bean.Hkb">
         <![CDATA[
            insert into t_hkb(uid,rname,cpname,tnum,ytime,bzname,ybx,ylx,ybj,state,baid,huid)
-           values(#{uid},#{rname},#{cpname},#{tnum},#{ytime},#{bzname},#{ybx},#{ylx},#{ybj},#{state},#{baid},#{huid})
+          values(#{uid},#{rname},#{cpname},#{tnum},#{ytime},#{bzname},#{ybx},#{ylx},#{ybj},#{state},#{baid},#{huid} )
         ]]>
     </insert>
 
-
     <insert id="saveList" parameterType="list">
         <![CDATA[
-        insert into t_hkb(uid, rname, cpname, bzname,huid,
-          ybx, ylx, ybj, tnum, baid, ytime, state, djq )
-          values
-      ]]>
+          insert into t_hkb(uid, rname, cpname, bzname,huid,
+          ybx, ylx, ybj, tnum, baid, ytime, state, djq
+          ) values
+        ]]>
         <foreach collection="list" item="item" index="index" separator="," >
-              (#{item.uid},#{item.rname},#{item.cpname},#{item.bzname},#{item.huid}
+            (#{item.uid},#{item.rname},#{item.cpname},#{item.bzname},#{item.huid}
             ,#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.baid},#{item.ytime},#{item.state},#{item.djq})
         </foreach>
     </insert>
@@ -43,16 +41,16 @@
         from t_hkb h,t_huser hu,t_user u,t_borrowapply b where b.baid = h.baid
         and  h.uid = u.uid and h.huid = hu.huid
         <include refid="cash_query_criteria"/>
-                limit #{pager.beginIndex}, #{pager.pageSize}
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="countCriteria" resultType="long">
         <![CDATA[
         select count(hkid) from t_hkb h,t_huser hu,t_user u,t_borrowapply b where b.baid = h.baid
               and  h.uid = u.uid and h.huid = hu.huid
-                  ]]>
-    </select>
 
+        ]]>
+    </select>
 
 
 </mapper>

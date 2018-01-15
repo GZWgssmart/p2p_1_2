@@ -1,8 +1,5 @@
 package top.zzh.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.*;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
-import top.zzh.common.PathUtil;
 import top.zzh.common.PathUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.*;
@@ -24,12 +20,13 @@ import top.zzh.vo.ControllerStatusVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author 曾志湖
@@ -129,8 +126,10 @@ public class BorrowApplyController {
 
     @RequestMapping("/update_page")
     public String updatePage(HttpServletRequest request,HttpSession session){
+        ControllerStatusVO statusVO = null;
         String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
         User user=userService.getByface(name);
+        logger.info("用户"+user+"正在操作借款信息");
         BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
@@ -142,8 +141,8 @@ public class BorrowApplyController {
         if(borrowDetailVO==null){
             return "user/borrowapply";
         }
-        //如果不为空则跳转到修改页面进行修改操作
-        if(borrowDetailVO.getUid()!=null){
+        //如果不为空并且审核未通过才能跳转到修改页面进行修改操作
+        if(borrowDetailVO.getUid()!=null && borrowDetailVO.getState() == 3){
             request.setAttribute("borrowDetailVO",borrowDetailVO);
             return "user/update_borrow";
         }
@@ -169,7 +168,7 @@ public class BorrowApplyController {
 
     @RequestMapping("updateState/{id}")
     @ResponseBody
-    public ControllerStatusVO updateState(@PathVariable("id") Long id,BorrowApply borrowApply,HttpSession session){
+    public ControllerStatusVO updateState(@PathVariable("id") Long id, BorrowApply borrowApply,HttpSession session){
         logger.info("后台管理员审核借款人");
         ControllerStatusVO statusVO = null;
         HUser HUser = (HUser)session.getAttribute("HUser");

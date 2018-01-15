@@ -45,6 +45,7 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
         return pager;
     }
 
+
     public ControllerStatusVO saveSkb(Long uid, Long baid){
         ControllerStatusVO statusVO = null;
         //装载保存收款表的list
@@ -59,7 +60,6 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
             if(borrowDetailVO.getMoney().compareTo(borrowDetailVO.getMmoney())==0){
                 //则查询出该用户对该借款投资了几次
                 TzbVO tzbList = tzbDAO.listTzb(uid,baid);
-                //计算出总投资金额
                 //计算出总投资金额
                 BigDecimal money = new BigDecimal(0);
 
@@ -87,7 +87,6 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
 //                    skbList.add(skb);
 //                }
                 skbDAO.saveList(skbList);
-
             }
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_TZ_FAILED);
         }

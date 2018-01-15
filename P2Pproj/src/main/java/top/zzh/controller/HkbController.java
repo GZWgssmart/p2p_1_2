@@ -34,5 +34,4 @@ public class HkbController {
     public String hkbPage(){
         return "manager/hkb";
     }
-
 }

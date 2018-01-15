@@ -70,11 +70,26 @@
         ]]>
     </select>
 
+    <select id="listPagerByUId" resultType="top.zzh.vo.TzbVO">
+        <![CDATA[
+             select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+          from t_tzb t,t_user u,t_borrowapply b
+          where t.uid = u.uid and b.baid = t.baid and u.uid = #{query.uid}
+          limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="getCount" resultType="long">
+        <![CDATA[
+          select count(tzid)  from t_tzb where uid = #{query.uid}
+        ]]>
+    </select>
+
     <select id="listAll" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
-              select b.uid,b.baid,u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
-          from t_tzb t,t_user u,t_borrowapply b
-          where t.uid = u.uid and b.baid = t.baid
+               select b.uid,b.baid,u.uname,bd.money as mmoney,b.rname,t.money,t.time,t.cpname,t.nprofit
+          from t_tzb t,t_user u,t_borrowapply b,t_borrowdetail bd
+          where t.uid = u.uid and b.baid = t.baid and bd.baid = b.baid
         ]]>
     </select>
 
@@ -92,4 +107,5 @@
             where t.uid = u.uid and ba.baid = t.baid and ba.bzid =b.bzid and  ba.baid = bd.baid and s.sid = bd.sid and ba.uid = um.uid and u.uid = #{uid}
         ]]>
     </select>
+
 </mapper>

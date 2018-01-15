@@ -15,7 +15,6 @@ public interface HkbDAO extends BaseDAO{
 
     //批量生成还款计划
     void saveList(List<Hkb> hkbList);
-
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
     @Override

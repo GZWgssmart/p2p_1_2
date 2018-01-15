@@ -1,12 +1,8 @@
 package top.zzh.service;
 
 import top.zzh.bean.UserMoney;
-
 import top.zzh.vo.UserMoneyVO;
-
 import top.zzh.common.Pager;
-
-
 import java.math.BigDecimal;
 
 /**
@@ -23,7 +19,6 @@ public interface UserMoneyService extends BaseService {
     UserMoney findJlmoney(Long uid);
 
     void updateJlmoney(BigDecimal jlmoney,Long uid);
-
 
     void updateZmoney(UserMoneyVO userMoneyVO);
 

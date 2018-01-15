@@ -87,7 +87,7 @@
     <select id="getById" resultType="top.zzh.vo.BorrowDetailVO">
 
         <![CDATA[
-            select ba.baid,u.uid,ba.bzid,ba.lxid,bd.sid,ba.rname,ba.money,ba.term,j.lxname,b.bzname,
+            select ba.baid,u.uid,ba.bzid,ba.lxid,bd.sid,ba.rname,ba.money,ba.term,ba.state,j.lxname,b.bzname,
             bd.fpic,bd.ypic,bd.qpic,bd.tpic,bd.bdid,bd.mpurpose,bd.hksource,bd.nprofit,
             s.way,bd.suggest,bd.xmdescrip,bd.guarantee from
             t_borrowapply ba,t_user u,t_borrowdetail bd,t_jklx j,t_sway s,t_bz b

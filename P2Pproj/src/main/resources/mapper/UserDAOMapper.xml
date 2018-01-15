@@ -19,7 +19,11 @@
         where phone=#{phone}
     </select>
 
-
+    <select id="getByUid" resultType="top.zzh.vo.UserVO">
+        <![CDATA[
+            select u.uid,um.kymoney from t_user u,t_usermoney um where u.uid = um.uid  and u.uid = #{uid}
+        ]]>
+    </select>
 
     <insert id="register" parameterType="user">
 
@@ -31,11 +35,6 @@
         ]]>
     </insert>
 
-    <select id="getByUid" resultType="top.zzh.vo.UserVO">
-        <![CDATA[
-           select u.uid,um.kymoney from t_user u,t_usermoney um where u.uid = um.uid  and u.uid = #{uid}
-        ]]>
-    </select>
 
     <update id="saveHeader" parameterType="string">
         <![CDATA[

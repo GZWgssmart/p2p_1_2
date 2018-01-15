@@ -50,6 +50,7 @@ public enum ControllerStatusEnum {
     CASH_ACTIVE_SUCCESS(112,"ok","激活成功"),
     CASH_ACTIVE_FAIL(113,"error","激活失败，请稍候再试"),
     CHECK_USER_SUCCESS(114,"ok","审核用户成功"),
+    SHENHE_USER_SUCCESS(140,"ok","审核借款成功，不能再修改借款信息"),
     CHECK_USER_FAIL(115,"error","审核用户失败，请稍候再试"),
     BORROW_SAVE_WAIT(116,"ok","我们将在1个工作日之内完成审核"),
     TZM_FIND_FAIL(117,"error","该推荐码不存在"),

@@ -19,16 +19,11 @@
     <script type="text/javascript"  src="<%=path%>/static/js/plugins.js"></script>
     <script type="text/javascript"  src="<%=path%>/static/js/detail.js"></script>
     <link href="<%=path%>/static/plugin/bootstrap/css/style.min.css?v=4.0.0" rel="stylesheet">
-
-
 </head>
 <body>
 <!-- 网站头部-->
 <%@include file="../common/header.jsp"%>
 <!--信息详细-->
-
-
-
 <input type="hidden" id="uid" name="uid" value="${borrow.uid}">
 <input type="hidden" id="userId" name="userId" value="<%=userId%>">
 <input type="hidden" id="maxMoney" name="maxMoney" value="${borrow.money-borrow.mmoney}">
@@ -51,17 +46,30 @@
                     <li><span class="c-888">还款方式：</span>${borrow.way}</li>
                     <li><span class="c-888">最小投标金额：</span> 100.00元 </li>
                     <li><span class="c-888">借款用途：</span>${borrow.mpurpose}</li>
-                    <li class="colspan"> <span class="c-888 fl">投标进度：</span>
+                    <li class="colspan"><span class="c-888 fl">投标进度：</span>
                         <div class="progress-bar fl"> <span style="width:${(borrow.mmoney/borrow.money)*100}%"></span> </div>
                         <span class="c-green">${(borrow.mmoney/borrow.money)*100}%</span>
                     </li>
-                    <li> <span class="c-888">最大投标金额：</span> <span > ${borrow.money-borrow.mmoney}元</span> </li>
-                    <li> <span class="c-888">可投标时间：</span> <span id="account_range"> ${borrow.deadline}</span> </li>
+                    <li><span class="c-888">最大投标金额：</span> <span > ${borrow.money-borrow.mmoney}元</span> </li>
+                    <li><span class="c-888">可投标时间：</span> <span id="account_range"> ${borrow.deadline}</span> </li>
                 </ul>
             </div>
             <div class="mod-right mod-status">
                 <div class="inner">
                     <p class="text">
+                    <div class="subject-s-r-c">
+                        <c:if test="${users==null}">
+                            <p>可用余额：<span >登录后才可查看余额</span></p>
+                        </c:if>
+                        <c:if test="${users!=null}">
+                            <p>可用余额：<span class="f24 c-333">${users.kymoney}</span>元</p>
+                        </c:if>
+                        <p>已投金额：<span class="f24 c-333">${borrow.mmoney}</span>元</p>
+                    </div>
+                    <div class="subject-s-r-c">
+                        <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.mmoney}</span>元</p>
+                    </div>
+                    <div class="input">
                         <div class="subject-s-r-c">
                             <c:if test="${users==null}">
                                 <p>可用余额：<span >登录后才可查看余额</span></p>
@@ -71,7 +79,7 @@
                             </c:if>
                             <p>已投金额：<span class="f24 c-333">${borrow.mmoney}</span>元</p>
                         </div>
-
+                    </div>
                 <div class="subject-s-r-c">
                         <p>剩余可投：<span class="f24 c-333">${borrow.money-borrow.mmoney}</span>元</p>
                     </div>
@@ -81,6 +89,9 @@
                             <input type="text" style="display: none" id="nprofit" value="${borrow.nprofit}">
                             <input type="text" style="display: none" id="term" value="${borrow.term}">
                             <input type="text" style="display: none" id="sid" value="${borrow.sid}">
+                            <input type="text" style="display: none" id="baid" value="${borrow.baid}">
+                            <c:if test="${borrow.mmoney<borrow.money}">
+                                <input class="btn"  type="button" value="投标" onclick="prompt();">
                             <input type="text" style="display: none" id="baid" name="baid" value="${borrow.baid}">
                             <input type="text" style="display: none" id="juid" name="juid" value="${borrow.juid}">
                             <c:if test="${borrow.mmoney<borrow.money}">
@@ -88,7 +99,11 @@
                                 <a href="<%=path%>/page/cal" target="_blank" class="icon icon-cal">收益明细</a>
                             </c:if>
                             <c:if test="${borrow.mmoney==borrow.money}">
+<<<<<<< HEAD
                                 <font size="6" color="red">正在还款中</font>
+=======
+                                <input  class="btn disabled" id="investBtn" type="button" value="还款中">
+>>>>>>> 16af9286d1f5f3bc61e61dfdb273b1c9101ff20d
                             </c:if>
 
                         </form>
@@ -203,7 +218,7 @@
                         <tbody>
                         <tr>
                             <th>投标人</th>
-                            <th>投标金额</th>
+                            <th>已投金额</th>
                             <th>投标利率</th>
                             <th>投标时间</th>
                             <th>投标方式</th>
@@ -213,7 +228,7 @@
                         <c:forEach items="${tzbVOList}" var="d">
                             <tr>
                                 <td>${d.uname}</td>
-                                <td><span class="c-orange">￥${d.money}</span></td>
+                                <td><span class="c-orange">￥${d.mmoney}</span>元</td>
                                 <td>${d.nprofit}</td>
                                 <td>${d.time}</td>
                                 <td>自动</td>
@@ -264,6 +279,7 @@
 
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
+
 </body>
 
 <script src="<%=path%>/static/plugin/bootstrap/js/plugins/layer/layer.js"></script>
@@ -332,4 +348,3 @@
 
 </script>
 </html>
-

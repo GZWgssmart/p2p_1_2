@@ -36,9 +36,6 @@
                             <li><span class="wdhb-yzm">12345678</span><span class="wdhb-con">现金红包50元</span><span class="wdhb-deadline">2015-10-1</span></li>
                         </ul>
                     </div>
-            <!--<div style="float:left; width:760px;height:200px;padding-top:100px; text-align:center;color:#d4d4d4; font-size:16px;">
-                       <img src="/site/themes/default/style/../images/nondata.png" width="60" height="60"><br><br>
-                         暂无兑换记录</div>-->
                 </form>
             </div>
         </div>
@@ -47,8 +44,6 @@
 </div>
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
-</body>
-</html>
 <script src="<%=path%>/static/js/jquery.datetimepicker.js" type="text/javascript"></script>
 <script src="<%=path%>/static/js/datepicker.js" type="text/javascript"></script>
 </body>

@@ -1,5 +1,6 @@
 package top.zzh.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Bz;
 import top.zzh.bean.LogMoney;
+import top.zzh.bean.Tzb;
 import top.zzh.bean.User;
-import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
 import top.zzh.common.Pager;
 import top.zzh.service.*;
@@ -88,7 +89,6 @@ public class PageController {
     @RequestMapping("user")
     public String user(HttpSession session, HttpServletRequest request) {
         if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
-
             return "user/nopower";
         } else {
             String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
@@ -205,39 +205,6 @@ public class PageController {
         return "user/tixian";
     }
 
-   /* @RequestMapping("tixian")
-    public ModelAndView tixian(HttpSession session,String actualMoney) {
-        System.out.println(actualMoney);
-        Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
-        //用户当前可用余额
-        Long bigDecimal = userMoneyService.getMoney(id.toString());
-        Double kymoney = Double.valueOf(bigDecimal);
-        ModelAndView m = new ModelAndView();
-        if (actualMoney!=null){
-            //提现后可用余额
-            try {
-
-                kymoney = kymoney - Double.valueOf(actualMoney);
-                userMoneyService.updateMoney(kymoney.toString(), id.toString());
-                LogMoney logMoney = new LogMoney();
-                logMoney.setUid(id);
-                logMoney.setType((byte) 1);
-                logMoney.setOut(BigDecimal.valueOf(Double.valueOf(actualMoney)));
-                logMoneyService.save(logMoney);
-                m.addObject("message", "请等待审核！");
-            }catch (Exception e){
-                m.addObject("message", "提现失败！");
-            }
-        }
-        m.setViewName("user/tixian");
-        m.addObject("kymoney",kymoney);
-        return m;
-    }*/
-
-    @RequestMapping("touzi")
-    public String touzi() {
-        return "user/touzi";
-    }
 
     @RequestMapping("xitong")
     public String xitong() {
@@ -267,6 +234,26 @@ public class PageController {
         m.addObject("obj",logMoneyList);
         m.addObject("page",obj);
         return m;
+    }
+
+    @RequestMapping("touzi")
+    public ModelAndView touzi(HttpSession session,int pageNo,Tzb tzb) {
+        Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
+        tzb.setUid(uid);
+        if(pageNo==0){
+            pageNo = 1;
+        }
+        Pager obj = (Pager)tzbService.listPagerByUId(pageNo,5,tzb);
+        List<TzbVO> tzbVOList = new ArrayList <>();
+        for(Object o:obj.getRows()){
+            TzbVO tzbVO = (TzbVO)o;
+            tzbVOList.add(tzbVO);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user/touzi");
+        modelAndView.addObject("obj",tzbVOList);
+        modelAndView.addObject("page",obj);
+        return modelAndView;
     }
 
     @RequestMapping("about")

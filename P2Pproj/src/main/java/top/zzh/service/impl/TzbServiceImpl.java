@@ -63,6 +63,19 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         return pager;
     }
 
+    @Override
+    public Pager listPagerByUId(int pageNo, int pageSize, Object obj) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(tzbDAO.listPagerByUId(pager, obj));
+        pager.setTotal(tzbDAO.getCount(obj));
+        return pager;
+    }
+
+    @Override
+    public Long getCount(Object obj) {
+        return tzbDAO.getCount(obj);
+    }
+
     @Transactional
     @Override
     public ControllerStatusVO add(Object obj) {

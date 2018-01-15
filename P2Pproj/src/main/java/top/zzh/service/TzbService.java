@@ -10,5 +10,7 @@ import top.zzh.vo.ControllerStatusVO;
 public interface TzbService extends BaseService {
 
     Pager listPagerById(int pageNo, int pageSize, Long id);
+    Pager listPagerByUId(int pageNo,int pageSize, Object obj);
+    Long getCount(Object obj);
     ControllerStatusVO add(Object obj);
 }
