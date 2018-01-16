@@ -64,6 +64,10 @@ public class PageController {
     @Autowired
     private NoticeService noticeService;
 
+    @Autowired MediaService mediaService;
+
+    @Autowired DynamicService dynamicService;
+
     //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
@@ -366,8 +370,29 @@ public class PageController {
     }
 
     @RequestMapping("report")
-    public String report() {
+    public String report(HttpServletRequest request) {
+        List<Object> mediaList = new ArrayList<>();
+        mediaList = mediaService.listAll();
+        request.setAttribute("mediaList",mediaList);
         return "index/report";
+    }
+
+    @RequestMapping("mediaPage")
+    public String mediaPage(){
+        return "index/mediaPage";
+    }
+
+    @RequestMapping("dynamic")
+    public String dynamic(HttpServletRequest request){
+        List<Object> dynamicList = new ArrayList<>();
+        dynamicList = dynamicService.listAll();
+        request.setAttribute("dynamicList",dynamicList);
+        return "index/dynamic";
+    }
+
+    @RequestMapping("dynamicPage")
+    public String dynamicPage(){
+        return "index/dynamicPage";
     }
 
     @RequestMapping("tuandui")
@@ -384,4 +409,6 @@ public class PageController {
     public String zifei() {
         return "index/zifei";
     }
+
+
 }

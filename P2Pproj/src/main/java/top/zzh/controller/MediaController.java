@@ -38,8 +38,7 @@ public class MediaController {
 
     @RequestMapping("list")
     public ModelAndView mediaList(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("mediaList");
+        ModelAndView modelAndView = new ModelAndView("index/report");
         modelAndView.addObject("mediaList",mediaService.listAll());
         return modelAndView;
     }
