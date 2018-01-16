@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.BorrowApply;
 import top.zzh.common.Pager;
+import top.zzh.vo.BorrowDetailVO;
 
 import java.util.List;
 
@@ -20,6 +21,12 @@ public interface BorrowApplyDAO extends BaseDAO{
     List<Object> listPagerByUId(@Param("pager") Pager pager);
 
     Long getCount( @Param("query") Object obj);
+
+    //首页借款信息显示
+    List<Object> souye1();
+    List<Object> souye2();
+    List<Object> souye3();
+    List<Object> souye4();
 
     @Override
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);

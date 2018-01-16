@@ -9,6 +9,7 @@ import top.zzh.service.AbstractService;
 import top.zzh.service.BorrowApplyService;
 
 import javax.ws.rs.HEAD;
+import java.util.List;
 
 /**
  * Created by 曾志湖 on 2017/12/24.
@@ -62,4 +63,21 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
         return borrowApplyDAO.shCount(uid);
     }
 
+    @Override
+    public List<Object> souye1() {
+        return borrowApplyDAO.souye1();
+    }
+
+    @Override
+    public List<Object> souye2() {
+        return borrowApplyDAO.souye2();
+    }
+    @Override
+    public List<Object> souye3() {
+        return borrowApplyDAO.souye3();
+    }
+    @Override
+    public List<Object> souye4() {
+        return borrowApplyDAO.souye4();
+    }
 }

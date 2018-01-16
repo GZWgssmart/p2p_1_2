@@ -56,7 +56,7 @@
     <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
         select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid order by ba.state = 0
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
@@ -71,6 +71,48 @@
 
         ]]>
     </select>
+
+    <select id="souye1" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and ba.uid = um.uid and ba.state = 0 and b.bzname = '新手标'
+        ]]>
+    </select>
+
+
+    <select id="souye2" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and ba.uid = um.uid and ba.state = 0 and b.bzname = '普金宝'
+        ]]>
+    </select>
+
+    <select id="souye3" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and ba.uid = um.uid and ba.state = 0 and b.bzname = '多金宝'
+        ]]>
+    </select>
+
+    <select id="souye4" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and ba.uid = um.uid and ba.state = 0 and b.bzname = '恒金宝'
+        ]]>
+    </select>
+
 
     <select id="listPagerByUId" resultType="top.zzh.vo.BorrowDetailVO">
       <![CDATA[

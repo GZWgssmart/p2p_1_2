@@ -83,7 +83,6 @@
                             </c:if>
                             <c:if test="${borrow.mmoney==borrow.money}">
                                 <font size="6" color="red">正在还款中</font>
-                                <input  class="btn disabled" id="investBtn" type="button" value="还款中">
                             </c:if>
                         </form>
                     </div>
@@ -315,6 +314,7 @@
             "json"
         );
     }
+
 </script>
 </body>
 </html>
