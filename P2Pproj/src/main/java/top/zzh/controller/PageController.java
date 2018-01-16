@@ -161,6 +161,7 @@ public class PageController {
 
     @RequestMapping("hongbao")
     public ModelAndView hongbao(HttpSession session) {
+        userTicketService.updateEGold();//更新体验券使用状态，本应该在quize定时任务中使用，暂时放在这里看效果
         List<UserTicketVo> unuseList=userTicketService.unuse((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
         List<UserTicketVo> usedList=userTicketService.used((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
         List<UserTicketVo> overList=userTicketService.overed((Long)(session.getAttribute(Constants.USER_ID_SESSION)));
