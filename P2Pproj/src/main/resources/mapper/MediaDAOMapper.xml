@@ -57,11 +57,11 @@
         <include refid="media_query_criteria"/>
     </select>
 
-    <select id="listAll" resultType="media">
+    <select id="listMedia" resultType="media">
         <![CDATA[
-          select * from t_media where 1=1
+          select * from t_media where state = 0
           order by date desc
-          limit 0,5
+          limit #{pageIndex},#{pageSize}
         ]]>
     </select>
 

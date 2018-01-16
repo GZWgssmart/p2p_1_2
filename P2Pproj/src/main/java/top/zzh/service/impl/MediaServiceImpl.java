@@ -6,6 +6,9 @@ import top.zzh.bean.Media;
 import top.zzh.dao.MediaDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.MediaService;
+
+import java.util.List;
+
 /**
  * create by 谭芳芳 on 2017/12/21
  * */
@@ -23,5 +26,10 @@ public class MediaServiceImpl extends AbstractService implements MediaService{
     @Override
     public void updateStatus(Media media) {
         mediaDAO.updateStatus(media);
+    }
+
+    @Override
+    public List<Object> listMedia(int pageIndex, int pageSize) {
+        return mediaDAO.listMedia(pageIndex, pageSize);
     }
 }

@@ -19,6 +19,8 @@ public interface DynamicDAO extends BaseDAO {
     @Override
     Long countCriteria(@Param("query") Object obj);
 
+    List<Object> listDynamic(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
     void updateStatus(Dynamic dynamic);
 
 }

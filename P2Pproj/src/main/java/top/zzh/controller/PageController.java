@@ -375,7 +375,9 @@ public class PageController {
     @RequestMapping("report")
     public String report(HttpServletRequest request) {
         List<Object> mediaList = new ArrayList<>();
-        mediaList = mediaService.listAll();
+        int pageIndex = 0;
+        int pageSize = 5;
+        mediaList = mediaService.listMedia(pageIndex,pageSize);
         request.setAttribute("mediaList",mediaList);
         return "index/report";
     }
@@ -388,7 +390,9 @@ public class PageController {
     @RequestMapping("dynamic")
     public String dynamic(HttpServletRequest request){
         List<Object> dynamicList = new ArrayList<>();
-        dynamicList = dynamicService.listAll();
+        int pageIndex = 0;
+        int pageSize = 5;
+        dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
         request.setAttribute("dynamicList",dynamicList);
         return "index/dynamic";
     }

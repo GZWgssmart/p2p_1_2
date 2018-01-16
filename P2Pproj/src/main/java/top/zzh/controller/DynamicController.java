@@ -35,12 +35,18 @@ public class DynamicController {
     private Logger logger = LoggerFactory.getLogger(MediaController.class);
 
 
-    @RequestMapping("list")
-    public ModelAndView mediaList(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index/dynamic");
-        modelAndView.addObject("dynamicList",dynamicService.listAll());
+    @RequestMapping("initPager/{pageIndex}/{pageSize}")
+    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
+        ModelAndView modelAndView = new ModelAndView("index/dynamic");
+        modelAndView.addObject("dynamicList",dynamicService.listDynamic(pageIndex,pageSize));
         return modelAndView;
+    }
+
+    @RequestMapping("initDynamic/{dyid}")
+    public String initDynamic(@PathVariable("dyid") Long dyid ,HttpServletRequest request) {
+        Dynamic dynamic = (Dynamic) dynamicService.getById(dyid);
+        request.setAttribute("dynamic",dynamic);
+        return "index/dynamicPage";
     }
     @RequestMapping("initAdd")
     public String initAdd(){
