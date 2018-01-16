@@ -67,7 +67,7 @@
                                     <div class="par"><p>${unuse.tname}</p><sub class="sign"></sub><span>${unuse.tkmoney.toString()}</span><sub class="sign">%</sub><p>${unuse.tintro}</p></div>
                                     <div class="copy">
                                     加息券
-                                    <p>${unuse.uttime}<br>${unuse.tktime}</p><a href="<%=path%>/page/list?pageNo=0&kid=${unuse.kid}">立即使用</a>
+                                    <p>自${unuse.uttime}<br>${unuse.tktime}</p><a href="<%=path%>/page/list?pageNo=0&kid=${unuse.kid}">立即使用</a>
                                     </div>
                                     </div>
                                 </c:if>
@@ -98,7 +98,7 @@
                                     <div class="par"><p>${used.tname}</p><sub class="sign">￥</sub><span>${used.tkmoney}</span><p>${used.tintro}</p></div>
                                     <div class="copy">
                                     体验金
-                                    <p>${used.uttime}<br>${used.tktime}</p></div>
+                                    <p>自${used.uttime}<br>起三天内有效</p></div>
                                     <i><font size="16">已使用</font></i>
                                     </div>
                                 </c:if>
@@ -138,7 +138,7 @@
                                     <div class="par"><p>${over.tname}</p><sub class="sign">￥</sub><span>${over.tkmoney}</span><p>${over.tintro}</p></div>
                                     <div class="copy">
                                     体验金
-                                    <p>${over.uttime}<br>${over.tktime}</p></div>
+                                    <p>自${over.uttime}<br>起三天内有效</p></div>
                                     <i><font size="16" color="red">已过期</font></i>
                                     </div>
                                 </c:if>
