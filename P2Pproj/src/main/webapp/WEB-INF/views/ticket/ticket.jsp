@@ -199,7 +199,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">优惠券类别：</label>
                         <div class="col-sm-8">
-                            <select id="type2" name="type" class="form-control" required="" aria-required="true">
+                            <select id="type2" name="type" class="form-control" required="" aria-required="true" disabled aria-disabled="true">
                                 <option value="1">现金券</option>
                                 <option value="2">代金券</option>
                                 <option value="3">体验金</option>
@@ -210,7 +210,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">面值：</label>
                         <div class="col-sm-8 tkmoneychange5">
-                            <input type="text" id="tkmoney2" name="tkmoney" class="form-control" required="" aria-required="true"
+                            <input type="text" id="tkmoney2" name="tkmoney" class="form-control" required="" aria-required="true" readonly=""
                                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=
                                this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=
                                this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
@@ -218,7 +218,7 @@
                         </div>
                         <div class="col-sm-8 input-group tkmoneychange6" style="display: none">
                             <div class="input-group-addon" style="border: none"></div>
-                            <input type="text" class="form-control" id="tkmoney5" name="tkmoney5" required="" aria-required="true"
+                            <input type="text" class="form-control" id="tkmoney5" name="tkmoney5" required="" aria-required="true" readonly=""
                                    onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')"
                             >
                             <div class="input-group-addon" style="border: none">%</div>
@@ -227,13 +227,13 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">有效截止日期大于：</label>
                         <div class="col-sm-8">
-                            <input type="date" id="tktime2" name="tktime" class="form-control" required="" aria-required="true"/>
+                            <input type="date" id="tktime2" name="tktime" class="form-control" required="" aria-required="true" readonly=""/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">名称：</label>
                         <div class="col-sm-8">
-                            <input type="text" id="tname3" name="tname3" class="form-control" required="" aria-required="true">
+                            <input type="text" id="tname3" name="tname3" class="form-control" required="" aria-required="true" readonly="">
                         </div>
                     </div>
                     <div class="form-group">
