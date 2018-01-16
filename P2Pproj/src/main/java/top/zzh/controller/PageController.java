@@ -132,6 +132,7 @@ public class PageController {
         session.setAttribute("deposit",deposit);
         return "user/disanfang";
     }
+
     @RequestMapping("gu")
     public String guod(HttpSession session) {
         Long id =(Long)session.getAttribute(Constants.USER_ID_SESSION);
@@ -334,6 +335,7 @@ public class PageController {
         modelAndView.setViewName("index/info");
         return modelAndView;
     }
+
 
     @RequestMapping("list")
     public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo,Long kid) {

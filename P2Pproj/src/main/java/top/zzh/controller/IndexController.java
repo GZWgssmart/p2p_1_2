@@ -3,11 +3,14 @@ package top.zzh.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Friend;
 import top.zzh.bean.Notice;
 import top.zzh.common.Pager;
+import top.zzh.service.BorrowApplyService;
 import top.zzh.service.FriendService;
 import top.zzh.service.NoticeService;
+import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.NoticeVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,24 +31,32 @@ public class IndexController {
     @Autowired
     private NoticeService noticeService;
 
+    @Autowired
+    private BorrowApplyService borrowApplyService;
 
     @RequestMapping("")
-    public String index() {
-        return "index";
-    }
-
-    @RequestMapping("/index")
-    public String init(HttpServletRequest request){
+    public ModelAndView index(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<BorrowDetailVO> borrow1 = (List)borrowApplyService.souye1();
+        List<BorrowDetailVO> borrow2 = (List)borrowApplyService.souye2();
+        List<BorrowDetailVO> borrow3 = (List)borrowApplyService.souye3();
+        List<BorrowDetailVO> borrow4 = (List)borrowApplyService.souye4();
         List<Friend> friendList = new ArrayList<Friend>();
         friendList = friendService.listFriend();
         List<Object> noticeList = new ArrayList<>();
         int pageIndex = 0;
         int pageSize = 5;
         noticeList = noticeService.listNotice(pageIndex,pageSize);
-
-        request.setAttribute("noticeList",noticeList);
-        request.setAttribute("friendList",friendList);
-        return "index";
+        modelAndView.addObject("borrow1",borrow1);
+        modelAndView.addObject("borrow2",borrow2);
+        modelAndView.addObject("borrow3",borrow3);
+        modelAndView.addObject("borrow4",borrow4);
+        modelAndView.addObject("noticeList",noticeList);
+        modelAndView.addObject("friendList",friendList);
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
+
+
 
 }
