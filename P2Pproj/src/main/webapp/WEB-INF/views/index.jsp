@@ -351,71 +351,41 @@
       </div>
       <div class="mod mod-rank clearfix ui-tab mrt20">
         <div class="hd">
-          <h3>排行榜</h3>
-          <div class="ui-tab-nav"> <i class="icon icon-cur"></i>
-            <ul>
-              <li class="active"><a href="#">收益</a></li>
-              <li><a href="#">投资</a></li>
-            </ul>
-            <a href="#" class="fn-right">更多&gt;</a> </div>
-        </div>
+          <h3>媒体报道</h3>
+          <a href="<%=path%>/page/report" class="fn-right">更多&gt;</a></div>
         <div class="bd">
-          <div class="ui-tab-cont">
-            <div class="ui-tab-item active">
-              <ul class="rank-list">
-                <li><span class="fl"><em class="n1">01</em>gz******</span><span class="fr">￥1,115,461.07</span></li>
-                <li><span class="fl"><em class="n2">02</em>米克******</span><span class="fr">￥1,003,890.04</span></li>
-                <li><span class="fl"><em class="n3">03</em>灵儿******</span><span class="fr">￥895,618.71</span></li>
-                <li><span class="fl"><em class="n4">04</em>li******</span><span class="fr">￥795,154.06</span></li>
-                <li><span class="fl"><em class="n5">05</em>豆芽******</span><span class="fr">￥747,154.44</span></li>
-              </ul>
-            </div>
-            <div class="ui-tab-item">
-              <ul class="rank-list">
-                <li><span class="fl"><em class="n1">01</em>黄世******</span><span class="fr">￥78,714,974.00</span></li>
-                <li><span class="fl"><em class="n2">02</em>一诺******</span><span class="fr">￥58,428,720.00</span></li>
-                <li><span class="fl"><em class="n3">03</em>hj******</span><span class="fr">￥57,844,191.00</span></li>
-                <li><span class="fl"><em class="n4">04</em>老马******</span><span class="fr">￥38,808,064.00</span></li>
-                <li><span class="fl"><em class="n5">05</em>写意******</span><span class="fr">￥31,341,159.00</span></li>
-              </ul>
-            </div>
+          <div class="article-list clearfix">
+            <ul>
+              <c:if test="${requestScope.mediaList!=null}">
+                <c:forEach var="a" items="${mediaList}" >
+                  <li>[${a.url}]&nbsp;&nbsp;<a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
+                </c:forEach>
+              </c:if>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="mod mod-report ui-tab clearfix mrt20">
+      <div class="mod mod-notice mrt20">
         <div class="hd">
-          <div class="ui-tab-nav"> <i class="icon icon-cur"></i>
-            <ul>
-              <li class="active"><a href="javascript:void(0);">媒体报道</a></li>
-              <li class=""><a href="javascript:void(0);">公司动态</a></li>
-            </ul>
-          </div>
-        </div>
+          <h3>公司动态</h3>
+          <a href="<%=path%>/page/dynamic" class="fn-right">更多&gt;</a></div>
         <div class="bd">
-          <div class="ui-tab-cont">
-            <div class="ui-tab-item active">
-                <ul>
-                    <c:forEach var="a" items="${mediaList}" >
-                      <li><a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}">${a.title}</a></li>
-                    </c:forEach>
-                </ul>
-              </div>
-            </div>
-            <div class="ui-tab-item">
-              <div class="article-list">
-                <ul>
-                   <c:forEach var="a" items="${dynamicList}">
-                    <li><a href="<%=path%>/dynamic/initDynamic/${a.dyid}" title="${a.title}">${a.title}</a></li>
-                  </c:forEach>
-                </ul>
-              </div>
-            </div>
+          <div class="article-list clearfix">
+            <ul>
+              <c:if test="${requestScope.dynamicList!=null}">
+                <c:forEach var="b" items="${dynamicList}" >
+                  <li><a href="<%=path%>/dynamic/initDynamic/${b.dyid}" title="${b.title}" target="_blank"> ${b.title}</a><span style="align:right;" class="date">${b.date}</span></li>
+                </c:forEach>
+              </c:if>
+            </ul>
           </div>
         </div>
       </div>
       <!-- 收益计算器-->
       <div class="mrt20 mod"> <a target="_blank" href="<%=path%>/page/cal"><img src="<%=path%>/static/images/pic_home_js.jpg" width="300" height="80" alt="收益计算器" class="pic"></a></div>
+    </div>
   </div>
+</div>
 <script src="<%=path%>/static/js/index.js"></script>
 <div class="partners wrap clearfix mrb30">
   <div class="partners-inner ui-tab">

@@ -37,14 +37,15 @@ public class IndexController {
 
     @Autowired
     private BorrowApplyService borrowApplyService;
+
     @Autowired
     private HomeService homeService;
 
     @Autowired
-    MediaService mediaService;
+    private MediaService mediaService;
 
     @Autowired
-    DynamicService dynamicService;
+    private DynamicService dynamicService;
 
 
     @RequestMapping("")
@@ -81,10 +82,6 @@ public class IndexController {
         modelAndView.addObject("friendList",friendList);
         modelAndView.setViewName("index");
         return modelAndView;
-
-
     }
-
-
 
 }
