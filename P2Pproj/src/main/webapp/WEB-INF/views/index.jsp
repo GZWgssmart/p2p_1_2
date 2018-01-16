@@ -386,8 +386,8 @@
         <div class="hd">
           <div class="ui-tab-nav"> <i class="icon icon-cur"></i>
             <ul>
-              <li class="active"><a href="javascript:;">媒体报道</a></li>
-              <li class=""><a href="javascript:;">公司动态</a></li>
+              <li class="active"><a href="javascript:void(0);">媒体报道</a></li>
+              <li class=""><a href="javascript:void(0);">公司动态</a></li>
             </ul>
           </div>
         </div>
@@ -404,7 +404,7 @@
             <div class="ui-tab-item">
               <div class="article-list">
                 <ul>
-                   <c:forEach var="a" items="${dynamicList}" >
+                   <c:forEach var="a" items="${dynamicList}">
                     <li><a href="<%=path%>/dynamic/initDynamic/${a.dyid}" title="${a.title}">${a.title}</a></li>
                   </c:forEach>
                 </ul>
@@ -415,9 +415,7 @@
       </div>
       <!-- 收益计算器-->
       <div class="mrt20 mod"> <a target="_blank" href="<%=path%>/page/cal"><img src="<%=path%>/static/images/pic_home_js.jpg" width="300" height="80" alt="收益计算器" class="pic"></a></div>
-    </div>
   </div>
-</div>
 <script src="<%=path%>/static/js/index.js"></script>
 <div class="partners wrap clearfix mrb30">
   <div class="partners-inner ui-tab">

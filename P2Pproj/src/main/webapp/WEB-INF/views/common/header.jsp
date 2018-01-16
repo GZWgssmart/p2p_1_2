@@ -42,7 +42,7 @@
                 </a>
             </div>
             <ul class="top-nav fn-clear">
-                <li class="on"> <a href="<%=path%>/">首页</a> </li>
+                <li> <a href="<%=path%>/">首页</a> </li>
                 <li> <a href="<%=path%>/page/list?pageNo=1" class="">投资理财</a> </li>
                 <li> <a href="<%=path%>/page/help">安全保障</a> </li>
                 <li class="top-nav-safe"> <a href="<%=path%>/page/user">我的账户</a> </li>
