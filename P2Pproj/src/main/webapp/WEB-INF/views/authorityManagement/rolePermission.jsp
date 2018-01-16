@@ -112,6 +112,7 @@
                 {roleId:jueSeId,permissionIds:permissionIds},
                 function (data) {
                     if(data.result == "ok"){
+                        getSelected(jueSeId);
                         swal(data.message, "该角色已有权限","success");
                     }else if(data.result == "permissionNull"){
                         swal("保存成功！",data.message,"success");

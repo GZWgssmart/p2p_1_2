@@ -186,6 +186,8 @@
         } else if(responseText.result == 'ok'){ //上传成功
             $("#btn").attr("disabled",false);
             $("#span").html("请选择Excel文件");
+            //刷新表格
+            $('#mytab').bootstrapTable('refresh',{url:"/permission/permissionCriteriaQuery"});
             swal(responseText.message, "导入权限成功！","success");
         } else if(responseText.result == 'error') {  //服务器繁忙
             $("#btn").attr("disabled",false);
