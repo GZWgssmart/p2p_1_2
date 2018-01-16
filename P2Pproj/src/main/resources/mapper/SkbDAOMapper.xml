@@ -32,23 +32,18 @@
 
     <select id="countUid" resultType="long">
         <![CDATA[
-        SELECT count(skid) FROM t_skb WHERE uid=#{uid} and baid = #{baid}
+        select count(skid) FROM t_skb WHERE uid=#{uid} and baid = #{baid}
     ]]>
     </select>
 
+
     <!--批量新增-->
     <insert id="saveList" parameterType="list">
-            <![CDATA[
-          insert into t_skb(uid, juid,
-          ybx, rbx, ylx, rlx,
-          ybj, rbj, rnum, tnum,
-          baid
-          )values
-          ]]>
+        <![CDATA[
+          insert into t_skb(uid,baid,ybx,ylx,ybj,tnum,sktime,juid,tzmoney,djq) values
+        ]]>
         <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.uid},#{item.juid},#{item.ybx},#{item.rbx}
-            ,#{item.ylx},#{item.rlx},#{item.ybj},#{item.rbj}
-            ,#{item.rnum},#{item.tnum},#{item.baid})
+            (#{item.uid},#{item.baid},#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.sktime},#{item.juid},#{item.tzmoney},#{item.djq})
         </foreach>
     </insert>
 </mapper>

@@ -38,7 +38,7 @@ public class DynamicController {
     @RequestMapping("list")
     public ModelAndView mediaList(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dynamicList");
+        modelAndView.setViewName("index/dynamic");
         modelAndView.addObject("dynamicList",dynamicService.listAll());
         return modelAndView;
     }
@@ -62,8 +62,8 @@ public class DynamicController {
                 dir.mkdirs();
             }
             file.transferTo(dir);
-            fileVo.setFilePath("/upload/"+fileName);
-            System.out.println("保存到数据库的图片地址:/upload/"+fileName);
+            fileVo.setFilePath("upload/"+fileName);
+            System.out.println("保存到数据库的图片地址:upload/"+fileName);
             fileVo.setCode(0);
         }catch (Exception e){
             e.printStackTrace();
@@ -82,10 +82,6 @@ public class DynamicController {
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Dynamic dynamic){
-        logger.info("dynamic.getPic=="+dynamic.getPic());
-        logger.info("dynamic.getPic=="+dynamic.getPic());
-        logger.info("dynamic.getPic=="+dynamic.getPic());
-        logger.info("dynamic.getPic=="+dynamic.getPic());
         try{
             dynamic.getContent();
             dynamic.setState((byte) 0);

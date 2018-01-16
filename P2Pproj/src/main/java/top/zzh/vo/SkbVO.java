@@ -23,6 +23,8 @@ public class SkbVO {
     private Integer tnum;//总期数
     private Timestamp date;//日期
     private Long baid;//借款人id
+    private Integer djq;//还款第几期
+    private Byte state;//收款状态，1未收款，2已收款
     private BigDecimal fmoney;//好友奖励
     private String uname;//前台用户名称
     private String rname;//借款人姓名
@@ -30,7 +32,7 @@ public class SkbVO {
     public SkbVO(){
 
     }
-    public SkbVO(Long skid, Long uid, Long juid, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, Integer rnum, Integer tnum, Timestamp date, Long baid, BigDecimal fmoney, String uname, String rname) {
+    public SkbVO(Long skid, Long uid, Long juid, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, Integer rnum, Integer tnum, Timestamp date, Long baid, Integer djq, Byte state, BigDecimal fmoney, String uname, String rname) {
         this.skid = skid;
         this.uid = uid;
         this.juid = juid;
@@ -44,6 +46,8 @@ public class SkbVO {
         this.tnum = tnum;
         this.date = date;
         this.baid = baid;
+        this.djq = djq;
+        this.state = state;
         this.fmoney = fmoney;
         this.uname = uname;
         this.rname = rname;
@@ -151,6 +155,22 @@ public class SkbVO {
 
     public void setBaid(Long baid) {
         this.baid = baid;
+    }
+
+    public Integer getDjq() {
+        return djq;
+    }
+
+    public void setDjq(Integer djq) {
+        this.djq = djq;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 
     public BigDecimal getFmoney() {

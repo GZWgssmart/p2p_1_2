@@ -13,6 +13,8 @@ import top.zzh.service.NoticeService;
 import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @version :1.0
@@ -33,7 +35,15 @@ public class NoticeController {
         return noticeService.listPager(pageIndex,pageSize);
     }
 
-    @RequestMapping("notice")
+    @RequestMapping("initPager/{pageIndex}/{pageSize}")
+    public String initPager(int pageIndex, int pageSize,HttpServletRequest request) {
+        List<Object> noticeList = new ArrayList<>();
+        noticeList = noticeService.listNotice(pageIndex,pageSize);
+        request.setAttribute("noticeList",noticeList);
+        return "index/ad";
+    }
+
+    @RequestMapping("notice/")
     public String init() {
         return "notice/notice";
     }
@@ -41,6 +51,13 @@ public class NoticeController {
     @RequestMapping("add")
     public String add() {
         return "notice/noticeAdd";
+    }
+
+    @RequestMapping("initNotice/{nid}")
+    public String initNotice(@PathVariable("nid") Long nid ,HttpServletRequest request) {
+        Notice notice = (Notice) noticeService.getById(nid);
+        request.setAttribute("notice",notice);
+        return "notice/initNoticce";
     }
 
     @RequestMapping("initUpdate/{nid}")

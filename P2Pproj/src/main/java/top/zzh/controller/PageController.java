@@ -61,6 +61,13 @@ public class PageController {
     @Autowired
     private  UserTicketService userTicketService;
 
+    @Autowired
+    private NoticeService noticeService;
+
+    @Autowired MediaService mediaService;
+
+    @Autowired DynamicService dynamicService;
+
     //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
@@ -88,9 +95,12 @@ public class PageController {
         if (session.getAttribute(Constants.USER_IN_SESSION) == null || session.getAttribute(Constants.USER_IN_SESSION) == "") {
             return "user/nopower";
         } else {
+            Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
             String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
             String time = loginLogService.getByloginTime(name);
             User user = userService.getByface(name);
+            UserMoneyVO userMoneyVO = (UserMoneyVO)userMoneyService.listMoney(uid);
+            request.setAttribute("userMoneyVO",userMoneyVO);
             request.setAttribute("time", time);
             request.setAttribute("face", user.getFace());
             return "user/userindex";
@@ -209,8 +219,9 @@ public class PageController {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         //用户当前可用余额
         Long bigDecimal = userMoneyService.getMoney(id.toString());
-        System.out.println(bigDecimal);
+        String cardno =(String)bankCardService.getDank(id);//银行卡号
         session.setAttribute("kymoney",bigDecimal);
+        session.setAttribute("cardno",cardno);
         return "user/tixian";
     }
 
@@ -271,7 +282,11 @@ public class PageController {
     }
 
     @RequestMapping("ad")
-    public String ad() {
+    public String ad(HttpServletRequest request) {
+        List<Object> noticeList = new ArrayList<>();
+        noticeList = noticeService.listNotice(0,5);
+
+        request.setAttribute("noticeList",noticeList);
         return "index/ad";
     }
 
@@ -355,8 +370,29 @@ public class PageController {
     }
 
     @RequestMapping("report")
-    public String report() {
+    public String report(HttpServletRequest request) {
+        List<Object> mediaList = new ArrayList<>();
+        mediaList = mediaService.listAll();
+        request.setAttribute("mediaList",mediaList);
         return "index/report";
+    }
+
+    @RequestMapping("mediaPage")
+    public String mediaPage(){
+        return "index/mediaPage";
+    }
+
+    @RequestMapping("dynamic")
+    public String dynamic(HttpServletRequest request){
+        List<Object> dynamicList = new ArrayList<>();
+        dynamicList = dynamicService.listAll();
+        request.setAttribute("dynamicList",dynamicList);
+        return "index/dynamic";
+    }
+
+    @RequestMapping("dynamicPage")
+    public String dynamicPage(){
+        return "index/dynamicPage";
     }
 
     @RequestMapping("tuandui")
@@ -373,4 +409,6 @@ public class PageController {
     public String zifei() {
         return "index/zifei";
     }
+
+
 }

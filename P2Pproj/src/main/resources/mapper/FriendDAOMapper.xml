@@ -47,4 +47,10 @@
         select * from t_friend where fid = #{fid}
     ]]>
     </select>
+
+    <select id="listFriend" resultType="top.zzh.bean.Friend" >
+        <![CDATA[
+        select * from t_friend  limit 0,5
+    ]]>
+    </select>
 </mapper>

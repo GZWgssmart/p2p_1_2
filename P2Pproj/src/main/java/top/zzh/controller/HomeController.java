@@ -36,7 +36,7 @@ public class HomeController {
     @RequestMapping("list")
     public ModelAndView mediaList(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("homeList");
+        modelAndView.setViewName("");
         modelAndView.addObject("homeList",homeService.listAll());
         return modelAndView;
     }
