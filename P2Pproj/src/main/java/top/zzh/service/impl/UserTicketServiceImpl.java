@@ -80,4 +80,9 @@ public class UserTicketServiceImpl extends AbstractService implements UserTicket
     public List<UserTicketVo> selectUtkListByName(String tname,Long uid) {
         return userTicketDAO.selectUtkListByName(tname,uid);
     }
+
+    @Override
+    public void updateEGold() {
+        userTicketDAO.updateEGold();
+    }
 }

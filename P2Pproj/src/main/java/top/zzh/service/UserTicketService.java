@@ -15,5 +15,5 @@ public interface UserTicketService extends BaseService{
     Integer overedCount(Long uid);
     void regTktsave(Long uid);
     List<UserTicketVo> selectUtkListByName(String tname,Long uid);
-
+    public void updateEGold();
 }

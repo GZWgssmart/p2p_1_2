@@ -23,4 +23,5 @@ public interface UserTicketDAO extends BaseDAO{
     public Integer overedCount(Long uid);
     public List<Long> selectKidListByName(String tname);
     public List<UserTicketVo> selectUtkListByName(@Param("tname")String tname,@Param("uid") Long uid);
+    public void updateEGold();
 }
