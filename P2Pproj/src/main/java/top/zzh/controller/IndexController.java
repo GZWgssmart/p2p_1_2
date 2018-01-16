@@ -19,27 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * 首页控制器
- */
-@Controller
-@RequestMapping("/")
-public class IndexController {
-
-    @Autowired
-    private FriendService friendService;
-
-    @Autowired
-    private NoticeService noticeService;
-
-import top.zzh.vo.NoticeVo;
-
-import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 首页控制器
  */
@@ -89,7 +68,7 @@ public class IndexController {
         modelAndView.addObject("noticeList",noticeList);
         modelAndView.addObject("friendList",friendList);
         modelAndView.setViewName("index");
-        return modelAndView;
+
         mediaList = mediaService.listMedia(pageIndex,pageSize);
         dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
 
@@ -98,9 +77,6 @@ public class IndexController {
         request.setAttribute("homeList",homeList);
         request.setAttribute("mediaList", mediaList);
         request.setAttribute("dynamicList", dynamicList);
-        return "index";
+        return modelAndView;
     }
-
-
-
 }

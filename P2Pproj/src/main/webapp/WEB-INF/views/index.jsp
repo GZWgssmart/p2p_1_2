@@ -396,7 +396,7 @@
             <div class="ui-tab-item active">
                 <ul>
                     <c:forEach var="a" items="${mediaList}" >
-                      <li><a href="<%=path%>/dynamic/initDynamic/${a.mid}" title="${a.title}">${a.title}</a></li>
+                      <li><a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}">${a.title}</a></li>
                     </c:forEach>
                 </ul>
               </div>
