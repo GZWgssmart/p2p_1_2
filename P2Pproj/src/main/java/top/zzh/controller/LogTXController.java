@@ -2,6 +2,7 @@ package top.zzh.controller;
 
 
 import jdk.internal.instrumentation.Logger;
+import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,9 @@ import top.zzh.bean.User;
 import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
+import top.zzh.enums.BankUtils;
 import top.zzh.enums.ControllerStatusEnum;
-import top.zzh.service.BankCardService;
-import top.zzh.service.LogTxService;
-import top.zzh.service.TxcheckService;
-import top.zzh.service.UserService;
+import top.zzh.service.*;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.LogTxVO;
 
@@ -46,6 +45,9 @@ public class LogTXController {
     @Autowired
     private BankCardService bankCardService;
 
+    @Autowired
+    private BankService bankService;
+
     private ControllerStatusVO statusVO;
 
     private org.slf4j.Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
@@ -65,16 +67,23 @@ public class LogTXController {
 
     @RequestMapping("tixian/{pass}")
     @ResponseBody
-    public ControllerStatusVO tixian(HttpSession session, String actualMoney, @PathVariable("pass")String pass) {
+    public JSONObject tixian(HttpSession session, String actualMoney, @PathVariable("pass")String pass) {
         Long id = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         User user=(User)userService.getById(id);
         String p =user.getZpwd().toString();
         String pa= EncryptUtils.md5(pass);
         if (!p.equals(pa)){//密码错误
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
-            return statusVO;
+            JSONObject.fromObject(statusVO);
+            return JSONObject.fromObject(statusVO);
         }
         try{
+            String cardno =(String)bankCardService.getDank(id);//银行卡号
+            String type1 =bankCardService.getType(id);//所属银行
+            String bank=bankService.getBankName(type1);//银行
+            String params="realName="+user.getRname()+"&bank="+bank+"&bankCardNo="+cardno+"&phone="+user.getPhone()+"&money="+actualMoney;
+            JSONObject jsonObject= BankUtils.jsonObject("http://localhost:8081/bank/mention",params);
+            System.out.println(jsonObject);
             String candno=bankCardService.getDank(id);
             String type =bankCardService.getType(id);
             LogTx logTx=new LogTx();
@@ -92,7 +101,8 @@ public class LogTXController {
         }catch (Exception e){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.CHECK_ERR_FAIL);
         }
-        return statusVO;
+        JSONObject.fromObject(statusVO);
+        return JSONObject.fromObject(statusVO);
     }
 
     @RequestMapping("pager_criteria")

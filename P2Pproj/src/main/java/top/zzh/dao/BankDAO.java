@@ -11,4 +11,5 @@ import top.zzh.bean.BankCard;
 @Repository
 public interface BankDAO extends BaseDAO {
    String getDeposit(@Param("id") String id);
+   String getBankName(@Param("id") String id);
 }

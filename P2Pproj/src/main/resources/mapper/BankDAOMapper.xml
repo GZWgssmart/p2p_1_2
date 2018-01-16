@@ -10,4 +10,11 @@
 		where id = #{id}
 		]]>
     </select>
+
+    <select id="getBankName" resultType="string">
+        <![CDATA[
+		select bankName from t_bank
+		where id = #{id}
+		]]>
+    </select>
 </mapper>

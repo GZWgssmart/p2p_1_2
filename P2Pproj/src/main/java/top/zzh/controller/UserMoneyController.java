@@ -1,6 +1,7 @@
 package top.zzh.controller;
 
 
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,9 @@ import top.zzh.bean.UserMoney;
 import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
+import top.zzh.enums.BankUtils;
 import top.zzh.enums.ControllerStatusEnum;
-import top.zzh.service.BankCardService;
-import top.zzh.service.LogMoneyService;
-import top.zzh.service.UserMoneyService;
-import top.zzh.service.UserService;
+import top.zzh.service.*;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.UserMoneyVO;
 
@@ -44,6 +43,9 @@ public class UserMoneyController {
     private ControllerStatusVO statusVO;
 
     @Autowired
+    private BankService bankService;
+
+    @Autowired
     private UserService userService;
 
     private Logger logger = LoggerFactory.getLogger(LogMoneyController.class);
@@ -63,7 +65,7 @@ public class UserMoneyController {
 
     @PostMapping("chongzhi/{pass}")
     @ResponseBody
-    public ControllerStatusVO chongzhi(HttpSession session, UserMoney userMoney, @PathVariable("pass")String pass){
+    public JSONObject chongzhi(HttpSession session, UserMoney userMoney, @PathVariable("pass")String pass){
         logger.info("充值！");
 
         //获取用户Id
@@ -76,12 +78,20 @@ public class UserMoneyController {
         String c=userMoney.getZmoney().toString();
         if (!p.equals(pa)){//密码错误
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_ERROR);
-            return statusVO;
+            JSONObject.fromObject(statusVO);
+            return JSONObject.fromObject(statusVO);
         }else if(!c.equals(cardao)){//银行卡错误
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_ERROR);
-            return statusVO;
+            JSONObject.fromObject(statusVO);
+            return JSONObject.fromObject(statusVO);
         }
         try {
+            String cardno =(String)bankCardService.getDank(id);//银行卡号
+            String type =bankCardService.getType(id);//所属银行
+            String bank=bankService.getBankName(type);//银行
+            String params="realName="+user.getRname()+"&bank="+bank+"&bankCardNo="+cardno+"&phone="+user.getPhone()+"&money="+userMoney.getKymoney().longValue();
+            JSONObject jsonObject= BankUtils.jsonObject("http://localhost:8081/bank/recharge",params);
+            System.out.println(jsonObject);
             if(userMoneyService.getMoney(id.toString())!=null){
                 //用户当前可用余额
                 Long kymoney=userMoneyService.getMoney(id.toString());
@@ -108,7 +118,8 @@ public class UserMoneyController {
         }catch (Exception e){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.UESR_CHONG_FAIL);
         }
-        return statusVO;
+        JSONObject.fromObject(statusVO);
+        return JSONObject.fromObject(statusVO);
     }
 
     @RequestMapping("pager_criteria")
