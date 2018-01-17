@@ -68,10 +68,10 @@
             <div class="common-problem">
                 <h3>常见问题</h3>
                 <ul>
-                    <li><a href="#">什么是债权贷？</a></li>
-                    <li><a href="#">关于"债权贷"产品的说明</a></li>
-                    <li><a href="#">易贷网P2P理财收费标准</a></li>
-                    <li><a href="#">债权贷和房易贷、车易贷有什么区别？</a></li>
+                    <li><a href="<%=path%>/page/help">什么是债权贷？</a></li>
+                    <li><a href="<%=path%>/page/help">关于"债权贷"产品的说明</a></li>
+                    <li><a href="<%=path%>/page/help">易贷网P2P理财收费标准</a></li>
+                    <li><a href="<%=path%>/page/help">债权贷和信用贷、抵押贷有什么区别？</a></li>
                 </ul>
             </div>
         </div>

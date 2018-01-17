@@ -57,11 +57,13 @@
 <!--banner-->
 <div class="flexslider">
   <ul class="slides">
-    <li style="background-image: url(<%=path%>/static/images/banner.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner1.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner2.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner3.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="# " target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner4.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
+    <c:forEach var="s" items="${homeList}">
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic3}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l3}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+    </c:forEach>
   </ul>
 </div>
 <script src="<%=path%>/static/js/jquery.flexslider-min.js"></script>
@@ -129,7 +131,7 @@
   <div class="new-announcement-title">最新公告</div>
   <div class="new-announcement-content">
     <div id="scrollDiv">
-      <ul style="margin-top: 0px;">
+      <ul style="margin-top:0px;">
         <c:if test="${requestScope.noticeList!=null}">
           <c:forEach var="a" items="${noticeList}" >
             <li><a href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a></li>
