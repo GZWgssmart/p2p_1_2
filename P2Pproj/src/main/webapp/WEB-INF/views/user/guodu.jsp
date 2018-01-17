@@ -256,13 +256,13 @@
             function options() {
                 var bankCardNo = $('#bankCardNo').val();
                 var bankpwd = $('#bankpwd').val();
-                if (bankCardNo==""){
-                    layer.alert('银行卡号不能为空！请输入银行卡号？',{icon: 3});
-                }else if (isNaN(bankCardNo)){
-                    layer.alert('请输入正确的银行卡号？',{icon: 3});
-                }else if (bankpwd==""){
-                    layer.alert('支付密码不能为空！请输入支付密码？',{icon: 3});
-                }else {
+                if (bankCardNo == "") {
+                    layer.alert('银行卡号不能为空！请输入银行卡号？', {icon: 3});
+                } else if (isNaN(bankCardNo)) {
+                    layer.alert('请输入正确的银行卡号？', {icon: 3});
+                } else if (bankpwd == "") {
+                    layer.alert('支付密码不能为空！请输入支付密码？', {icon: 3});
+                } else {
                     layer.confirm('你确定要绑定这张银行卡？', {
                         btn: ['确定', '取消'] //按钮
                     }, function () {
@@ -394,33 +394,32 @@
                                 <div class="pay-bank" id="pay-bank">
                                     <h6>请选择绑定银行</h6>
                                     <ul id="paysSpan" style="height:150px;">
-                                        <li><input type="radio" name="type" value="1" checked><img
-                                                src="<%=path%>/static/images/logo_abc.png">
-                                        </li>
-                                        <li><input type="radio" name="type" value="2" checked><img
-                                                src="<%=path%>/static/images/1.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="3"><img
-                                                src="<%=path%>/static/images/2.jpg">
-                                        </li>
-                                        <li><input type="radio" name="radiobutton" value="4"><img
-                                                src="<%=path%>/static/images/3.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="5"><img
-                                                src="<%=path%>/static/images/4.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="6"><img
-                                                src="<%=path%>/static/images/5.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="7"><img
-                                                src="<%=path%>/static/images/6.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="8"><img
-                                                src="<%=path%>/static/images/7.jpg">
-                                        </li>
-                                        <li><input type="radio" name="type" value="9"><img
-                                                src="<%=path%>/static/images/8.jpg">
-                                        </li>
+                                        <label for="checkall1" width="165" height="75"><input type="radio" name="type" value="1"
+                                                                      id="checkall1"><img
+                                                src="<%=path%>/static/images/logo_abc.png" width="138" height="56">
+                                        </label>
+                                        <label for="checkall2" width="165" height="75"><input type="radio" name="type" value="2" id="checkall2">
+
+                                            <img src="<%=path%>/static/images/1.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall3" width="165" height="75"><input type="radio" name="type" value="3" id="checkall3"  align="center"><img
+                                                src="<%=path%>/static/images/2.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall4" width="165" height="75"  align="center"><input type="radio" name="type" value="4" id="checkall4"><img
+                                                src="<%=path%>/static/images/3.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall5" width="165" height="75"><input type="radio" name="type" value="5" id="checkall5"><img
+                                                src="<%=path%>/static/images/4.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall6" width="165" height="75"><input type="radio" name="type" value="6" id="checkall6"><img
+                                                src="<%=path%>/static/images/5.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall7" width="165" height="75"  align="center"><input type="radio" name="type" value="7" id="checkall7"><img
+                                                src="<%=path%>/static/images/6.jpg" width="138" height="56">
+                                        </label>
+                                        <label for="checkall8" width="165" height="75"  align="center"><input type="radio" name="type" value="8" id="checkall8"><img
+                                                src="<%=path%>/static/images/7.jpg" width="138" height="56">
+                                        </label>
                                     </ul>
                                 </div>
                                 <div class="pay-bank">
@@ -436,10 +435,10 @@
                                                 <div class="accordion-inner">
                                                     <c:if test="${cardno!=null}">
                                                         <ul>
-                                                            <li><img src="<%=path%>/static/images/${deposit}"></br>
-                                                                <span>${cardno}</span>
-                                                            </li>
-                                                            <li><a href="#" onclick="jiebang()">解绑</a></li>
+                                                            <label><img src="<%=path%>/static/images/${deposit}"></br>
+                                                                <p align="center">${cardno}</p>
+                                                            </label>
+                                                            <label><a href="#" onclick="jiebang()">解绑</a></label>
                                                         </ul>
                                                     </c:if>
                                                 </div>
