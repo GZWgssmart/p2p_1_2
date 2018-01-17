@@ -37,25 +37,18 @@ $('#mytab').bootstrapTable({
             field: 'rname',
             align: 'center',
             sortable: true
-        },
-
-        {
-            title: '借款人',
-            field: 'name1',
-            align: 'center',
-            sortable: true
-        }
-        ,
-        {
-            title: '负责人',
-            field: 'username',
-            align: 'center',
-            sortable: true
         }
         ,
         {
             title: '产品名称',
             field: 'cpname',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '标种名称',
+            field: 'bzname',
             align: 'center',
             sortable: true
         }
@@ -70,13 +63,6 @@ $('#mytab').bootstrapTable({
         {
             title: '总期数',
             field: 'tnum',
-            align: 'center',
-            sortable: true
-        }
-        ,
-        {
-            title: '标种名称',
-            field: 'bzname',
             align: 'center',
             sortable: true
         }
@@ -172,52 +158,6 @@ $('#mytab').bootstrapTable({
                 }
             }
         }
-        ,
-        {
-            title: '应还时间',
-            field: 'ytime',
-            align: 'center',
-            sortable: true,
-            formatter: function (value) {
-                var date = new Date(value);
-                var y = date.getFullYear();
-                var m = date.getMonth() + 1;
-                var d = date.getDate();
-                var h = date.getHours();
-                var mi = date.getMinutes();
-                var ss = date.getSeconds();
-                return y + '-' + m + '-' + d ;
-            }
-        }
-        ,
-        {
-            title: '实际还款时间',
-            field: 'rtime',
-            align: 'center',
-            sortable: true,
-            formatter: function (value) {
-                var date = new Date(value);
-                var y = date.getFullYear();
-                var m = date.getMonth() + 1;
-                var d = date.getDate();
-                var h = date.getHours();
-                var mi = date.getMinutes();
-                var ss = date.getSeconds();
-                return y + '-' + m + '-' + d ;
-            }
-        }
-
-        // ,
-        // {
-        //     title: '操作',
-        //     align: 'center',
-        //     field: '',
-        //     formatter: function (value, row, index) {
-        //         var g='';
-        //         g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+','+row.state+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-        //         return g;
-        //     }
-        // }
     ],
     locale: 'zh-CN',//中文支持,
     responseHandler: function (res) {
@@ -233,7 +173,7 @@ $('#mytab').bootstrapTable({
             };
         }
     }
-})
+});
 
 //请求服务数据时所传参数
 function queryParams(params) {

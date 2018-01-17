@@ -212,9 +212,9 @@ public class BorrowApplyController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowApply borrowApply) {
+    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowDetailVO borrowDetailVO) {
         logger.info("借款基本信息分页+条件查询");
-        return borrowApplyService.listPagerCriteria(pageIndex, pageSize, borrowApply);
+        return borrowApplyService.listPagerCriteria(pageIndex, pageSize, borrowDetailVO);
     }
 
     @RequestMapping("pager")

@@ -53,10 +53,10 @@
          ]]>
     </select>
 
-    <select id="listPagerCriteria" resultType="top.zzh.bean.BorrowApply">
-        select ba.baid,ba.bzid,ba.rname,ba.money,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid order by ba.state = 0
+    <select id="listPagerCriteria" resultType="top.zzh.vo.BorrowDetailVO">
+        select ba.baid,ba.bzid,u.uid,ba.rname,ba.money,bd.cpname,ba.reason,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,ba.deadline from
+        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd
+        where ba.baid = bd.baid and ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid and ba.huid = h.huid order by ba.state = 0
         <include refid="cash_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>

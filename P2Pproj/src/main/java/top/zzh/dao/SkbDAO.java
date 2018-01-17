@@ -26,6 +26,10 @@ public interface SkbDAO extends BaseDAO{
 
     long countUid(@Param("uid") Long uid, @Param("baid") Long baid);
 
+    //后台查看收款详情
+    List <Object> find(@Param("pager") Pager pager,@Param("query") Object obj);
+    Long countByUid(@Param("query") Object obj);
+
     void saveList(List <Skb> list);
 
     List<Object> list(@Param("pager") Pager pager, @Param("uid") Long uid, @Param("baid") Long baid);

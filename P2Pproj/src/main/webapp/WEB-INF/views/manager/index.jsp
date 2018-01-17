@@ -105,12 +105,6 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<%=path%>/reward/rewardList">奖励信息</a>
                         </li>
-                        <li><a class="J_menuItem" href="<%=path%>/shborrow/page">用户借款列表</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/sk/manager_page">用户收款管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/hk/hk_page">用户还款管理</a>
-                        </li>
                         <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
                         </li>
                         <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
@@ -119,31 +113,9 @@
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="javascript:void(0);">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span class="nav-label">平台报表</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="">运营数据统计</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">Flot</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">Morris.js</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">Rickshaw</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">Peity</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="">Sparkline</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-star"></i>
                         <span class="nav-label">公司动态</span>
                         <span class="fa arrow"></span>
                     </a>

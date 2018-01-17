@@ -10,4 +10,7 @@ import java.util.*;
 public interface SkbService extends BaseService{
 
     Pager skblist(int pageNo, int pageSize, Long uid, Long baid);
+
+    //后台查看收款表详情
+    Pager find(int pageNo,int pageSize,Object object);
 }

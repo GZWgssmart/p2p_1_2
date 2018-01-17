@@ -2,6 +2,7 @@ package top.zzh.vo;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,6 +29,7 @@ public class SkbVO {
     private BigDecimal fmoney;//好友奖励
     private String uname;//前台用户名称
     private String rname;//借款人姓名
+    private String dateToStr;
 
     public SkbVO(){
 
@@ -52,6 +54,12 @@ public class SkbVO {
         this.uname = uname;
         this.rname = rname;
     }
+
+    public String getDateToStr(){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(date);
+    }
+
 
     public Long getSkid() {
         return skid;

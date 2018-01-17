@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>申请借款列表</title>
+    <title>借款审核列表</title>
     <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body class="gray-bg">
@@ -55,6 +55,9 @@
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
                 <button type="button" onclick="findDetails()" class="btn btn-default" style="display: block; border-radius: 0">
                     <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>借款详情
+                </button>
+                <button type="button" onclick="hk()" class="btn btn-default" style="display: block; border-radius: 0">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>还款详情
                 </button>
             </div>
         </div>

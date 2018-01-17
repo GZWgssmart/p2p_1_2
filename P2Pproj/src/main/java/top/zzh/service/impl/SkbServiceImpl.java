@@ -47,7 +47,13 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
         return pager;
     }
 
-
+    @Override
+    public Pager find(int pageNo, int pageSize, Object object) {
+        Pager pager =new Pager(pageNo,pageSize);
+        pager.setRows(skbDAO.find(pager, object));
+        pager.setTotal(skbDAO.countByUid(object));
+        return pager;
+    }
 
 
     @Autowired

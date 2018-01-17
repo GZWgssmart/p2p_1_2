@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.Hkb;
 import top.zzh.common.Pager;
+import top.zzh.vo.HkbVO;
 
 import java.util.*;
 /**
@@ -21,4 +22,9 @@ public interface HkbDAO extends BaseDAO{
     List <Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
     @Override
     Long countCriteria(@Param("query") Object obj);
+    //后台查看还款详情
+    List <Object> find(@Param("pager") Pager pager,@Param("query") Object obj);
+
+    Long countByUid(@Param("query") Object obj);
+
 }

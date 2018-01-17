@@ -37,7 +37,7 @@
                                     <a href="<%=path%>/page/mediaPage">${s.title}</a>
                                 </h5>
                                 <p class="text">
-                                    ${s.content}
+                                    ${s.title}
                                 </p>
                                 <p class="time">报道时间:${s.date}</p>
                             </div>
