@@ -339,7 +339,7 @@ public class PageController {
 
 
     @RequestMapping("list")
-    public ModelAndView list(HttpServletRequest request,HttpSession session,int pageNo,Long kid) {
+    public ModelAndView list(int pageNo,Long kid) {
         if(pageNo==0){
             pageNo = 1;
         }

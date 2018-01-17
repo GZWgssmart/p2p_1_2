@@ -130,23 +130,26 @@
   <div class="new-announcement-content">
     <div id="scrollDiv">
       <ul style="margin-top: 0px;">
-        <li><a class="black-link" href="<%=page%>/page/ad1" target="_blank"> 2015年9月8日还款公告</a></li>
-        <li><a class="black-link" href="<%=page%>/page/ad1" target="_blank"> 2015年纪念抗日战争胜利放假公告</a></li>
+        <c:if test="${requestScope.noticeList!=null}">
+          <c:forEach var="a" items="${noticeList}" >
+            <li><a href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a></li>
+          </c:forEach>
+        </c:if>
       </ul>
     </div>
   </div>
-  <a class="more" href="#">更多</a> </div>
-<div class="ipubs"><span class="o1">累计投资金额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">已还本息:<strong>400,507,750.81</strong>元</span><span class="o2">余额:<strong>677,679,983.07</strong>元</span><span class="o4">注册人数:<strong>20649</strong>人</span></div>
-<div class="feature"> <a class="fea1" href="#"> <i></i>
+  <a class="more" href="<%=path%>/page/ad">更多</a> </div>
+<div class="ipubs"><span class="o1">交易总额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">月交易总额:<strong>400,507,750.81</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
+<div class="feature"> <a class="fea1" href="<%=path%>/page/help"> <i></i>
   <h3>高收益</h3>
-  <span>年化收益率最高达“20%<br>
-  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="#"> <i></i>
+  <span>年化收益率最高达20%<br>
+  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="<%=path%>/page/help"> <i></i>
   <h3>安全理财</h3>
   <span>100%本息保障<br>
-  实物质押，多重风控审核</span> </a> <a class="fea3" href="#"> <i></i>
+  实物质押，多重风控审核</span> </a> <a class="fea3" href="<%=path%>/page/help"> <i></i>
   <h3>随时赎回</h3>
   <span>两步赎回您的资金<br>
-  最快当日到账</span> </a> <a class="fea4" href="#"> <i></i>
+  最快当日到账</span> </a> <a class="fea4" href="<%=path%>/page/help"> <i></i>
   <h3>随时随地理财</h3>
   <span>下载手机客户端<br>
   随时随地轻松理财</span> </a> </div>
@@ -209,7 +212,7 @@
             <ul>
               <c:forEach items="${borrow2}" var="d">
                 <li>
-                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="普金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-ssbx" title="普金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tbody>
                     <tr>
@@ -297,7 +300,7 @@
             <ul>
               <c:forEach items="${borrow4}" var="d">
                 <li>
-                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="恒金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-ssbx" title="恒金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tbody>
                     <tr>
@@ -336,7 +339,7 @@
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>网站公告</h3>
-          <a href="<%=path%>/" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/ad" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>

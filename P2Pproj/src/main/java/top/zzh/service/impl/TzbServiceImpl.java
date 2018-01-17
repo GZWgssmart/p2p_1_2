@@ -261,7 +261,10 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         return statusVO;
     }
 
-
+    @Override
+    public Long count() {
+        return tzbDAO.count();
+    }
 
 
     @Autowired

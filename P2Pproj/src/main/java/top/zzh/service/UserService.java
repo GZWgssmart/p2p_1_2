@@ -29,4 +29,7 @@ public interface UserService extends BaseService {
     void  updatepwd(Long uid,String zpwd);
 
     UserVO getByUid(Long uid);
+
+    //前台统计用户数
+    Long count();
 }

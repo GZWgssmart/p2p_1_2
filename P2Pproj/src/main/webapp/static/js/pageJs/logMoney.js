@@ -46,7 +46,10 @@ $('#mytab').bootstrapTable({
             title: '头像',
             field: 'face',
             align: 'center',
-            sortable: true
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width:100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
         }
         ,
         {

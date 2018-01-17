@@ -109,6 +109,12 @@
         <include refid="userQuery_pager_common"/>
     </select>
 
+    <select id="count" resultType="long">
+        <![CDATA[
+          select count(uid) from t_user
+        ]]>
+    </select>
+
     <update id="updateState">
         <![CDATA[
           update t_user set state=#{state} where uid=#{uid}

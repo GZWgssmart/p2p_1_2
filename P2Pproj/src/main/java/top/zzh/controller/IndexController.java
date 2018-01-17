@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Friend;
 import top.zzh.bean.Home;
 import top.zzh.bean.Notice;
+import top.zzh.bean.User;
 import top.zzh.common.Pager;
 import top.zzh.service.BorrowApplyService;
 import top.zzh.service.FriendService;
@@ -33,6 +34,9 @@ public class IndexController {
     private FriendService friendService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private NoticeService noticeService;
 
     @Autowired
@@ -47,6 +51,8 @@ public class IndexController {
     @Autowired
     private DynamicService dynamicService;
 
+    @Autowired
+    private TzbService tzbService;
 
     @RequestMapping("")
     public ModelAndView index(HttpServletRequest request) {
@@ -56,6 +62,10 @@ public class IndexController {
         List<BorrowDetailVO> borrow2 = (List)borrowApplyService.souye2();
         List<BorrowDetailVO> borrow3 = (List)borrowApplyService.souye3();
         List<BorrowDetailVO> borrow4 = (List)borrowApplyService.souye4();
+        //首页统计用户人数
+        Long user = (Long)userService.count();
+        //首页统计贷款人数
+        Long tz = (Long)tzbService.count();
         List<Friend> friendList = new ArrayList<Friend>();
         friendList = friendService.listFriend();
         List<Object> homeList = new ArrayList<>();
@@ -69,6 +79,8 @@ public class IndexController {
         noticeList = noticeService.listNotice(pageIndex,pageSize);
         mediaList = mediaService.listMedia(pageIndex,pageSize);
         dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("tz",tz);
         modelAndView.addObject("noticeList",noticeList);
         modelAndView.addObject("friendList",friendList);
         modelAndView.addObject("homeList",homeList);

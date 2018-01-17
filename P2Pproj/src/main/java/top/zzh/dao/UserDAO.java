@@ -39,4 +39,7 @@ public interface UserDAO extends BaseDAO {
     void  updatepwd(@Param("uid")Long uid,@Param("zpwd")String zpwd);
 
     UserVO getByUid(@Param("uid")Long uid);
+
+    @Override
+    Long count();
 }

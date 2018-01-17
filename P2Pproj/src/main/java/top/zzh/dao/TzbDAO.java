@@ -39,4 +39,7 @@ public interface TzbDAO extends BaseDAO {
 
     @Override
     void save(Object obj);
+
+    @Override
+    Long count();
 }

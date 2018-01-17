@@ -14,33 +14,29 @@
     <link href="<%=path%>/static/css/detail.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
-    <%--<jsp:include page="../common/bootstraptablecss.jsp"/>--%>
 </head>
 <body>
 <!-- 网站头部-->
 <%@include file="../common/header.jsp"%>
 <!--列表-->
 <div class="page-filter wrap">
-    <div class="breadcrumbs"><a href="../index.jsp">首页</a>&gt;<span class="cur">散标投资列表</span></div>
+    <div class="breadcrumbs"><a href="<%=path%>/">首页</a>&gt;<span class="cur">投资列表</span></div>
     <div class="invest-filter" data-target="sideMenu">
         <div class="filter-inner clearfix">
             <div class="filter-item">
                 <div class="hd">
                     <h3>筛选投资项目</h3>
-                    <label>
-                        <input id="filterMulti" name="multiple_choice" type="checkbox">
-                        多选</label>
                 </div>
                 <div class="bd">
                     <dl>
-                        <dt>项目类型</dt>
+                        <dt>项目期限</dt>
                         <dd>
                             <ul>
-                                <li class="n1"><a href="javascript:url('post_type','');" id="post_type_" class="active">不限</a></li>
-                                <li class="n2"><a href="javascript:url('post_type','car');" id="post_type_car">1-3个月</a></li>
-                                <li class="n3"><a href="javascript:url('post_type','house');" id="post_type_house">3-6个月</a></li>
-                                <li class="n4"><a href="javascript:url('post_type','bridge');" id="post_type_bridge">6-9个月</a></li>
-                                <li class="n5"><a href="javascript:url('post_type','worth');" id="post_type_worth">大于9个月</a> </li>
+                                <li class ="n1"><a href="<%=path%>/page/list?pageNo=1"  class="active">全部</a></li>
+                                <li class="n2"><a href="" >1-3个月</a></li>
+                                <li class="n3"><a href="" >3-6个月</a></li>
+                                <li class="n4"><a href="" >6-9个月</a></li>
+                                <li class="n5"><a href="" >大于9个月</a> </li>
                             </ul>
                         </dd>
                     </dl>
@@ -48,26 +44,23 @@
                         <dt>年化收益</dt>
                         <dd>
                             <ul>
-                                <li class="n1"><a href="" id="borrow_interestrate_" class="active">不限</a></li>
-                                <li class="n2"><a id="borrow_interestrate_1" href=""><=10%</a> </li>
-                                <li class="n3"><a id="borrow_interestrate_2" href="">10%-15%</a> </li>
-                                <li class="n4"><a id="borrow_interestrate_3" href="">15%-25%</a> </li>
-                                <li class="n5"><a id="borrow_interestrate_4" href="">25%及以上</a> </li>
+                                <li class="n1"><a href="<%=path%>/page/list?pageNo=1" class="active">全部</a></li>
+                                <li class="n2"><a href=""><=10%</a> </li>
+                                <li class="n3"><a href="">10%-15%</a> </li>
+                                <li class="n4"><a href="">15%-25%</a> </li>
                             </ul>
                         </dd>
                     </dl>
                     <dl>
                         <dt>项目类型</dt>
                         <dd>
-                            <%--<c:forEach items="${bzList}" var="d">--%>
-                                <ul >
-                                    <li class="n1"><a href=""  class="active">不限</a> </li>
-                                    <li class="n2"><a id="spread_month_2" href="javascript:url('spread_month','2');">普金宝</a> </li>
-                                    <li class="n3"><a id="spread_month_3" href="javascript:url('spread_month','3');">多金宝</a> </li>
-                                    <li class="n4"><a id="spread_month_4" href="javascript:url('spread_month','4');">恒金宝</a> </li>
-                                    <li class="n5"><a id="spread_month_5" href="javascript:url('spread_month','5');">余额宝</a> </li>
-                                </ul>
-                            <%--</c:forEach>--%>
+                            <ul >
+                                <li class="n1"><a href="<%=path%>/page/list?pageNo=1"  class="active">全部</a> </li>
+                                <li class="n2"><a  href="">多金宝</a> </li>
+                                <li class="n3"><a  href="">普金宝</a> </li>
+                                <li class="n4"><a  href="">恒金宝</a> </li>
+                                <li class="n5"><a  href="">新手标</a> </li>
+                            </ul>
                         </dd>
                     </dl>
                 </div>
@@ -142,7 +135,7 @@
                 <div class="pagination clearfix mrt30">
                     <span class="page">
                         <a href="javascript:void(0);">页码${page.pageNo}/${page.pages} </a>
-                        <a href="javascript:void(0);" onclick="page(1)">首页</a>
+                        <a class="active" href="javascript:void(0);" onclick="page(1)">首页</a>
                          <c:choose>
                              <c:when test="${page.pageNo - 1 > 0}">
                                  <a  href="javascript:void(0);" onclick="page('${page.pageNo - 1}')">上一页</a>
