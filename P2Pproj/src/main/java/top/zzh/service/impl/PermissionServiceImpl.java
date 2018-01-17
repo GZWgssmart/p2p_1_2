@@ -8,6 +8,8 @@ import top.zzh.dao.PermissionDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.PermissionService;
 
+import java.util.List;
+
 /**
  * Created by XIE Shanlin on 2018.01.02.
  */
@@ -43,5 +45,10 @@ public class PermissionServiceImpl extends AbstractService implements Permission
     @Override
     public void updateStatus(int permissionId,int status) {
         permissionDAO.updateStatus(permissionId,status);
+    }
+
+    @Override
+    public List<Permission> listByAccount(String phone) {
+        return permissionDAO.listByAccount(phone);
     }
 }

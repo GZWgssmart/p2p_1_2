@@ -19,4 +19,6 @@ public interface PermissionDAO extends BaseDAO {
     void updatePermission(Permission permission);
     void updateStatus(@Param("permissionId") int permissionId,@Param("status") int status);
 
+    //通过账号查询用户的权限集合
+    List<Permission> listByAccount(String phone);
 }

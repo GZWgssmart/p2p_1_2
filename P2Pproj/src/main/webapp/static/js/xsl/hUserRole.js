@@ -35,7 +35,13 @@ $('#mytab').bootstrapTable({
             title: '真实姓名',
             field: 'rname',
             align: 'center',
-            sortable: true
+            formatter:function (value, row, index) {
+                if(value == null ||value == undefined || value == ''){
+                    return "暂未填写姓名";
+                }else {
+                    return value;
+                }
+            }
         },
         {
             title: '手机号',
@@ -101,7 +107,7 @@ function doSearchContent() {
 
 //修改角色
 function modifyRole(rname,value) {
-    //把hUserId设置到模态框中(修改角色需要HuserId)
+    //把hUserId设置到模态框中(保存修改角色需要HuserId)
     $("#hUserId").attr("value",value);
     $("#hUserName").html(rname);
     //查询未被冻结的角色
@@ -116,23 +122,24 @@ function modifyRole(rname,value) {
                 checkbox += "</div>";
             }
             $("#role").html(checkbox);
+            //勾选该用户拥有的角色选中
+            $.post(
+                "/hUserRole/hRoleByHuserId",
+                {hUserId:value},
+                function (data) {
+                    for(var i=0;i<data.length;i++){
+                        $(function(){
+                            $(":checkbox[value='"+data[i].rid+"']").prop("checked",true);
+                        });
+                    }
+                    //打开模态框
+                    $('#myModal').modal('toggle');
+                }
+            );
         },
         "json"
     );
-    //勾选该用户拥有的角色选中
-    $.post(
-        "/hUserRole/hRoleByHuserId",
-        {hUserId:value},
-        function (data) {
-            for(var i=0;i<data.length;i++){
-                $(function(){
-                    $(":checkbox[value='"+data[i].rid+"']").prop("checked",true);
-                });
-            }
-            //打开模态框
-            $('#myModal').modal('toggle');
-        }
-    );
+
 
 }
 
@@ -149,8 +156,8 @@ $(".modifyRole").click(function () {
     if(modifyRoleList != ''){
         //修改角色
         $.post(
-            "/hUserRole/saveOrUpdate",
-            {roleList:modifyRoleList,hHuserId:hHuserId,flag:"modify"},
+            "/hUserRole/updateRoles",
+            {roleList:modifyRoleList,hHuserId:hHuserId},
             function (data) {
                 if(data.result == "ok"){
                     swal(data.message,"该用户角色已被修改！","success");

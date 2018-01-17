@@ -32,12 +32,6 @@ $('#mytab').bootstrapTable({
             valign: 'middle'
         },
         {
-            title: '角色Id',
-            field: 'rid',
-            align: 'center',
-            sortable: true
-        },
-        {
             title: '角色名称',
             field: 'rname',
             align: 'center',

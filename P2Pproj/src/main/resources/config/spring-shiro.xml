@@ -15,7 +15,6 @@
         <property name="realm" ref="shiroRealm"/>
         <!-- 缓存管理器 -->
         <property name="cacheManager" ref="cacheManager"/>
-
     </bean>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

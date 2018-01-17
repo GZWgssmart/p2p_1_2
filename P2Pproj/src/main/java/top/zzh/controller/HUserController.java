@@ -1,5 +1,8 @@
 package top.zzh.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.HUser;
-import top.zzh.bean.User;
-import top.zzh.bean.UserRole;
+import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.HuserService;
-import top.zzh.service.RoleService;
-import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +42,12 @@ public class HUserController {
     @ResponseBody
     public ControllerStatusVO page(String pwd, String phone,HttpSession session){
         ControllerStatusVO statusVO = null;
-        HUser hUser=huserService.getByNamePwd(phone, EncryptUtils.md5(pwd));
-        if(hUser!=null && hUser.getState()==1){
+        HUser hUser = huserService.getByNamePwd(phone, EncryptUtils.md5(pwd));
+        Subject subject = SecurityUtils.getSubject();
+        if(hUser != null && hUser.getState()==1){
+            //标记为后台用户登陆
+            session.setAttribute(Constants.ADMIN_LOGIN_SESSION,"后台用户登录");
+            subject.login(new UsernamePasswordToken(phone,pwd));
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.USER_LOGIN_SUCCESS);
             session.setAttribute("HUser",hUser);
         }else{

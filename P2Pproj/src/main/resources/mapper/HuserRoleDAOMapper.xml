@@ -60,5 +60,14 @@
         ]]>
     </delete>
 
+    <insert id="saveHuser" parameterType="top.zzh.bean.HUser">
+        <selectKey keyColumn="huid" keyProperty="huid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <![CDATA[
+           insert into t_huser(phone,hpwd,state) values(#{phone},#{hpwd},#{state})
+        ]]>
+    </insert>
+
 </mapper>
 

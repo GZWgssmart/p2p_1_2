@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.zzh.bean.HUser;
 import top.zzh.bean.Role;
+import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
 import top.zzh.dao.HuserRoleDAO;
 import top.zzh.service.AbstractService;
@@ -45,6 +46,16 @@ public class HuserRoleServiceImpl extends AbstractService implements HuserRoleSe
     @Override
     public List<Role> hRoleByHuserIdList(Integer hUserId) {
         return huserRoleDAO.hRoleByHuserIdList(hUserId);
+    }
+
+    @Override
+    public void saveHuser(String phone, String roleList) {
+        HUser user = new HUser();
+        user.setPhone(phone);
+        user.setHpwd(EncryptUtils.md5("666666"));
+        user.setState(1L);
+        huserRoleDAO.saveHuser(user);
+        huserRoleDAO.saveHuserRole(Integer.valueOf(user.getHuid().toString()),roleList(roleList));
     }
 
 

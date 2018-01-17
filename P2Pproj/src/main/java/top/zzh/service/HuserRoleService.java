@@ -19,5 +19,8 @@ public interface HuserRoleService extends BaseService{
     //通过Id查询该用户的所有角色
     List<Role> hRoleByHuserIdList(@Param("hUserId") Integer hUserId);
 
+    //保存用户
+    void saveHuser(String phone, String roleList);
+
 
 }

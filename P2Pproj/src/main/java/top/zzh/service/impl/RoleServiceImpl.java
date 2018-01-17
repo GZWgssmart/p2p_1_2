@@ -39,6 +39,11 @@ public class RoleServiceImpl implements RoleService {
         roleDAO.updateStatus(roleId,status);
     }
 
+    @Override
+    public List<Role> listByAccount(String phone) {
+        return roleDAO.listByAccount(phone);
+    }
+
 
     @Override
     public void save(Object obj) {

@@ -4,6 +4,8 @@
 
 <mapper namespace="top.zzh.dao.PermissionDAO">
 
+    <resultMap id="permissionMap" type="permission"></resultMap>
+
     <!--条件查询【权限描述】-->
     <sql id="cash_query_criteria">
         <if test="query != null and query.desZh != null and query.desZh != ''">
@@ -48,5 +50,15 @@
             update t_permission set status = #{status} where id = #{permissionId}
         ]]>
     </update>
+
+    <select id="listByAccount" parameterType="string" resultMap="permissionMap">
+        <![CDATA[
+            select p.* from t_permission p where p.id in (
+                select rp.permission_id from t_role_permission rp where rp.role_id in (
+                    select hr.role_id from t_huser h,t_huser_role hr where h.huid = hr.huser_id and h.phone = #{phone}
+                )
+            )
+        ]]>
+    </select>
 
 </mapper>

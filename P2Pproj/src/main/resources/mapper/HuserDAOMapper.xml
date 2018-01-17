@@ -12,6 +12,7 @@
         select huid,huname,state from t_huser
         where phone=#{phone}
         and hpwd =#{pwd}
+        and state = 1
     </select>
 
     <select id="getByPhone" resultMap="huserMap">

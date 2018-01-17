@@ -134,7 +134,7 @@ public enum ControllerStatusEnum {
     UERS_KEREN_ERROR(1146,"error","资料不足无法绑定银行卡，请完善个人资料！"),
     UERS_JCDIN_SUCCESS(1200,"ok","银行卡解绑成功！"),
     UERS_JCDIN_ERROR(1201,"error","银行卡解绑失败！"),
-    HUSER_ROLE_MODIFY_SUCCESS(81,"ok","修改成功！"),
+    SAVE_HUSERANDROLES_SUCCESS(81,"ok","初始密码为：666666！"),
     HUSER_ROLE_SAVE_SUCCESS(82,"ok","保存成功！"),
     NOTICE_SAVE_SUCCESS(325,"ok","添加成功"),
     NOTICE_SAVE_FAIL(326,"error","添加失败"),

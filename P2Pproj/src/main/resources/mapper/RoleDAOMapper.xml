@@ -5,7 +5,6 @@
 <mapper namespace="top.zzh.dao.RoleDAO">
     
     <resultMap id="roleMap" type="role">
-
     </resultMap>
 
     <select id="listRoles" resultType="list" resultMap="roleMap">
@@ -58,6 +57,14 @@
             update t_role set status = #{status} where rid = #{roleId}
         ]]>
     </update>
+
+    <select id="listByAccount" parameterType="string" resultMap="roleMap">
+        <![CDATA[
+            select r.* from t_role r where r.rid in (
+                select hr.role_id from t_huser h,t_huser_role hr where h.huid = hr.huser_id and h.phone = #{phone}
+            )
+        ]]>
+    </select>
 
 </mapper>
 

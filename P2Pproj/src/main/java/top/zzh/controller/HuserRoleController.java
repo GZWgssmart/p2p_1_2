@@ -29,7 +29,6 @@ public class HuserRoleController {
 
     @RequestMapping("hUserRolePage")
     public String hUserRolePage(Model model){
-        model.addAttribute("hUserList",huserRoleService.hUserList());
         return "authorityManagement/hUserRole";
     }
 
@@ -39,15 +38,19 @@ public class HuserRoleController {
         return huserRoleService.hRoleList();
     }
 
-    @RequestMapping("saveOrUpdate")
+
+    @RequestMapping("saveHuserAndRole")
     @ResponseBody
-    public ControllerStatusVO saveOrUpdate(String hHuserId, String roleList,String flag){
+    public ControllerStatusVO saveHuserAndRole(String phone, String roleList){
+        huserRoleService.saveHuser(phone,roleList);
+        return ControllerStatusVO.status(ControllerStatusEnum.SAVE_HUSERANDROLES_SUCCESS);
+    }
+
+    @RequestMapping("updateRoles")
+    @ResponseBody
+    public ControllerStatusVO saveOrUpdate(String hHuserId, String roleList){
         huserRoleService.save(hHuserId,roleList);
-        if("save".equals(flag)){
-            return ControllerStatusVO.status(ControllerStatusEnum.HUSER_ROLE_SAVE_SUCCESS);
-        }else {
-            return ControllerStatusVO.status(ControllerStatusEnum.HUSER_ROLE_MODIFY_SUCCESS);
-        }
+        return ControllerStatusVO.status(ControllerStatusEnum.HUSER_ROLE_SAVE_SUCCESS);
     }
 
     //查询已经分配角色的用户
