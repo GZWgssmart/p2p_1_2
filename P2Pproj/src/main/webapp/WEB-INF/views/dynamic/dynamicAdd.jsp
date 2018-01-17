@@ -17,23 +17,9 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>公司动态</h5>
+            <h5>新增公司动态</h5>
             <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">选项1</a>
-                    </li>
-                    <li><a href="#">选项2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
+               <h5><a  style="color: blue" href="<%=path%>/dynamic/page">返回列表&nbsp;&nbsp;&nbsp;&nbsp;</a></h5>
             </div>
         </div>
         <div class="ibox-content">
@@ -41,7 +27,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-10">
-                        <input type="text" id="title" style="height: 50px" name="title" placeholder="请输入标题" class="form-control">
+                        <input type="text" id="title" name="title" placeholder="请输入标题" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

@@ -33,18 +33,6 @@ public class HomeController {
     private ControllerStatusVO statusVO;
     private Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @RequestMapping("list")
-    public ModelAndView mediaList(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        modelAndView.addObject("homeList",homeService.listAll());
-        return modelAndView;
-    }
-    @RequestMapping("initAdd")
-    public String initAdd(){
-        return "home/homeAdd";
-    }
-
     @RequestMapping("upload")
     @ResponseBody
     public FileVo fileUp(MultipartFile file, HttpServletRequest request){
@@ -70,6 +58,12 @@ public class HomeController {
         fileVo.setMsg("上传成功!");
         return  fileVo;
     }
+
+    @RequestMapping("initAdd")
+    public String initAdd(){
+        return "home/homeAdd";
+    }
+
       //新增首页信息
     @RequestMapping("save")
     @ResponseBody

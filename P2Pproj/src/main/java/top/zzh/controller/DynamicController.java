@@ -34,25 +34,6 @@ public class DynamicController {
     private ControllerStatusVO statusVO;
     private Logger logger = LoggerFactory.getLogger(MediaController.class);
 
-
-    @RequestMapping("initPager/{pageIndex}/{pageSize}")
-    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
-        ModelAndView modelAndView = new ModelAndView("index/dynamic");
-        modelAndView.addObject("dynamicList",dynamicService.listDynamic(pageIndex,pageSize));
-        return modelAndView;
-    }
-
-    @RequestMapping("initDynamic/{dyid}")
-    public String initDynamic(@PathVariable("dyid") Long dyid ,HttpServletRequest request) {
-        Dynamic dynamic = (Dynamic) dynamicService.getById(dyid);
-        request.setAttribute("dynamic",dynamic);
-        return "index/dynamicPage";
-    }
-    @RequestMapping("initAdd")
-    public String initAdd(){
-        return "dynamic/dynamicAdd";
-    }
-
     @RequestMapping("upload")
     @ResponseBody
     public FileVo fileUp(MultipartFile file, HttpServletRequest request){
@@ -85,6 +66,24 @@ public class DynamicController {
         return System.nanoTime() + ext;
     }
 
+    @RequestMapping("initPager/{pageIndex}/{pageSize}")
+    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
+        ModelAndView modelAndView = new ModelAndView("index/dynamic");
+        modelAndView.addObject("dynamicList",dynamicService.listDynamic(pageIndex,pageSize));
+        return modelAndView;
+    }
+
+    @RequestMapping("initDynamic/{dyid}")
+    public String initDynamic(@PathVariable("dyid") Long dyid ,HttpServletRequest request) {
+        Dynamic dynamic = (Dynamic) dynamicService.getById(dyid);
+        request.setAttribute("dynamic",dynamic);
+        return "index/dynamicPage";
+    }
+    @RequestMapping("initAdd")
+    public String initAdd(){
+        return "dynamic/dynamicAdd";
+    }
+
     @RequestMapping("save")
     @ResponseBody
     public ControllerStatusVO save(Dynamic dynamic){
@@ -106,6 +105,14 @@ public class DynamicController {
         Dynamic dynamic = new Dynamic();
         dynamic = (Dynamic) dynamicService.getById(dyid);
         return dynamic;
+    }
+
+    @RequestMapping("initUpdate/{dyid}")
+    public String initUpdate(@PathVariable("dyid") Long dyid  ,HttpServletRequest request){
+        Dynamic dynamic = new Dynamic();
+        dynamic = (Dynamic) dynamicService.getById(dyid);
+        request.setAttribute("dynamic",dynamic);
+        return "dynamic/dynamicUpdate";
     }
 
     @RequestMapping("update")

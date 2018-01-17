@@ -20,67 +20,52 @@
         <div class="ibox-title">
             <h5>公司动态</h5>
             <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">选项1</a>
-                    </li>
-                    <li><a href="#">选项2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
+                <div class="ibox-tools">
+                    <h5><a  style="color: blue" href="<%=path%>/dynamic/page">返回列表&nbsp;&nbsp;&nbsp;&nbsp;</a></h5>
+                </div>
             </div>
         </div>
         <div class="ibox-content">
-            <form method="post" id="media-update" class="form-horizontal">
+            <form class="form-horizontal"  action="<%=path%>/dynamic/update"id="updateForm">
+                <input type="hidden" name="dyid" id="dyid" value="${dynamic.dyid}"/>
+                <input type="hidden" name="state" id="state" value="${dynamix.state}"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-10">
-                        <input type="text" value="${dynamic.title}" id="title" name="title" placeholder="" class="form-control">
+                        <input type="text" name ="title" value="${dynamic.title}" placeholder="" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">内容</label>
                     <div class="col-sm-10">
-                        <textarea id="content"  name="content" style="height: 250px;width: 825px"autofocus>${dynamic.content}</textarea>
+                        <textarea id="editor" name="content" value="${dynamic.content}" style="height: 250px;width: 700px"autofocus>${dynamic.content}</textarea>
                     </div>
                 </div>
+                <input type="hidden" id="pic" name="pic" value="${dynamic.pic}"/>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">封面图片</label>
-                    <div class=" col-sm-10" style="margin-left: 160px">
-                        <div id="pic" name="pic"  value="${dynamic.pic}" class="page-container">
-                            <div id="uploader" class="wu-example">
-                                <div class="queueList">
-                                    <div id="dndArea" class="placeholder">
-                                        <div id="filePicker"></div>
-                                        <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，或将照片拖到这里，单次最多可选300张</p>
-                                    </div>
-                                </div>
+                    <label  class="col-sm-2 control-label">封面图片</label>
+                    <div class="col-sm-10">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn" id="picx">上传图片</button>
+                            <div class="layui-upload-list">
+                                <img style="width: 150px;height: 150px" id="demo1">
+                                <p id="demoText"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-sm-2 control-label">报道日期</label>
                     <div class="col-sm-10">
-                        <input id="date" name="date" value="${dynamic.date}" type="date" placeholder="" class="form-control">
+                        <input name="date" type="date" value="${dynamic.date}" placeholder="" class="form-control">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-sm-12 col-sm-offset-9">
-                        <button class="btn btn-lg btn-primary " type="submit" onclick="return dynamic_update();"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
-                        <button class="btn btn-lg btn-default " type="button"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
+                        <button class="btn btn-lg btn-primary " type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
+                        <button class="btn btn-lg btn-default " type="reset"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

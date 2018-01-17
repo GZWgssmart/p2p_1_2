@@ -34,7 +34,7 @@
                             </a>
                             <div class="record">
                                 <h5>
-                                    <a href="<%=path%>/page/dynamicPage">${s.title}</a>
+                                    <a href="<%=path%>/dynamic/initDynamic/${s.dyid}">${s.title}</a>
                                 </h5>
                                 <p class="text">
                                     ${s.content}
