@@ -398,7 +398,7 @@
                                                                       id="checkall1"><img
                                                 src="<%=path%>/static/images/logo_abc.png" width="138" height="56">
                                         </label>
-                                        <label for="checkall2" width="165" height="75"><input type="radio" name="type" value="2" id="checkall2">
+                                        <label for="checkall2" width="165" height="75"><input type="radio" name="type" value="2" id="checkall2" checked>
 
                                             <img src="<%=path%>/static/images/1.jpg" width="138" height="56">
                                         </label>
