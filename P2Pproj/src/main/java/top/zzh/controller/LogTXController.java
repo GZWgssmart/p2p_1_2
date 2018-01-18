@@ -96,8 +96,12 @@ public class LogTXController {
             txCheck.setHuid(id);
             txCheck.setTxid(logTx.getId());
             txCheck.setIsok((byte)2);
-            txcheckService.save(txCheck);
-            statusVO=ControllerStatusVO.status(ControllerStatusEnum.BORROW_SAVE_WAIT);
+            if(jsonObject.getString("code").equals("4000")) {
+                txcheckService.save(txCheck);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.BORROW_SAVE_WAIT);
+            }else {
+                return jsonObject;
+            }
         }catch (Exception e){
             statusVO=ControllerStatusVO.status(ControllerStatusEnum.CHECK_ERR_FAIL);
         }

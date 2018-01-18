@@ -2,6 +2,7 @@ package top.zzh.common;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,9 +19,12 @@ public class HttpUtils {
             conn.setDoInput(true);
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
-            PrintWriter printWriter = new PrintWriter(conn.getOutputStream());
-            printWriter.write(params);
-            printWriter.flush();
+            conn.setRequestProperty("Accept-Charset", "utf-8");
+            conn.setRequestProperty("contentType", "utf-8");
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "utf-8");
+          //  PrintWriter printWriter = new PrintWriter(conn.getOutputStream());
+            out.write(params);
+            out.flush();
             InputStream inputStream = conn.getInputStream();
             byte[] bytes = new byte[1024];
             int len = -1;

@@ -93,19 +93,27 @@ public class UserMoneyController {
             JSONObject jsonObject= BankUtils.jsonObject("http://localhost:8081/bank/recharge",params);
             System.out.println(jsonObject);
             if(userMoneyService.getMoney(id.toString())!=null){
-                //用户当前可用余额
-                Long kymoney=userMoneyService.getMoney(id.toString());
-                kymoney=userMoney.getKymoney().longValue()+kymoney;
-                //用户总资产
-                Long zmoney=userMoneyService.getZmoney(id.toString());
-                zmoney=userMoney.getKymoney().longValue()+zmoney;
-                System.out.println(kymoney.toString());
-                userMoneyService.updateMoney(kymoney.toString(),zmoney.toString(),id.toString());//充值
+                if(jsonObject.getString("code").equals("3000")) {
+                    //用户当前可用余额
+                    Long kymoney = userMoneyService.getMoney(id.toString());
+                    kymoney = userMoney.getKymoney().longValue() + kymoney;
+                    //用户总资产
+                    Long zmoney = userMoneyService.getZmoney(id.toString());
+                    zmoney = userMoney.getKymoney().longValue() + zmoney;
+                    System.out.println(kymoney.toString());
+                    userMoneyService.updateMoney(kymoney.toString(), zmoney.toString(), id.toString());//充值
+                }else {
+                    return jsonObject;
+                }
             }else {
-                //用户总资产
-                Long zmoney=userMoneyService.getZmoney(id.toString());
-                zmoney=userMoney.getKymoney().longValue()+zmoney;
-                userMoneyService.updateMoney(userMoney.getKymoney().toString(),zmoney.toString(),id.toString());//充值
+                if(jsonObject.getString("code").equals("3000")) {
+                    //用户总资产
+                    Long zmoney = userMoneyService.getZmoney(id.toString());
+                    zmoney = userMoney.getKymoney().longValue() + zmoney;
+                    userMoneyService.updateMoney(userMoney.getKymoney().toString(), zmoney.toString(), id.toString());//充值
+                }else {
+                    return jsonObject;
+                }
             }
 
             //用户资金流向
