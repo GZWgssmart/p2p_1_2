@@ -63,21 +63,20 @@
 
     <select id="listAll" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-          select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
-        t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
-        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
-				and ba.uid = um.uid and ba.state = 0
-
+            select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+            t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+            where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+            and bd.sid = s.sid and ba.baid = bd.baid
+            and ba.uid = um.uid and ba.state = 0
         ]]>
     </select>
 
     <select id="souye1" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
         where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and bd.sid = s.sid and ba.baid = bd.baid
 				and ba.uid = um.uid and ba.state = 0 and b.bzname = '新手标'
         ]]>
     </select>
@@ -85,85 +84,51 @@
 
     <select id="souye2" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
         where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and bd.sid = s.sid and ba.baid = bd.baid
 				and ba.uid = um.uid and ba.state = 0 and b.bzname = '普金宝'
         ]]>
     </select>
 
     <select id="souye3" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+            select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
         where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and bd.sid = s.sid and ba.baid = bd.baid
 				and ba.uid = um.uid and ba.state = 0 and b.bzname = '多金宝'
         ]]>
     </select>
 
     <select id="souye4" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-              select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
+             select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
         t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
         where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-				and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+				and bd.sid = s.sid and ba.baid = bd.baid
 				and ba.uid = um.uid and ba.state = 0 and b.bzname = '恒金宝'
         ]]>
     </select>
 
-    <sql id="Search">
-        <if test="query != null and query.tt == 1 and query.tt != ''">
-            and ba.term BETWEEN 1 and 3
-        </if>
-        <if test="query != null and query.tt == 2 and query.tt != ''">
-            and ba.term BETWEEN 3 and 6
-        </if>
-        <if test="query != null and query.tt == 3 and query.tt != ''">
-            and ba.term BETWEEN 6 and 9
-        </if>
-        <if test="query != null and query.tt == 4 and query.tt != ''">
-            and ba.term &gt; 9
-        </if>
-        <if test="query != null and query.yy == 1 and query.yy != ''">
-            and bd.nprofit &lt;= 10
-        </if>
-        <if test="query != null and query.yy == 2 and query.yy != ''">
-            and bd.nprofit BETWEEN 10 and 15
-        </if>
-        <if test="query != null and query.yy == 3 and query.yy != ''">
-            and bd.nprofit BETWEEN 15 and 25
-        </if>
-        <if test="query != null and query.xx == 3 and query.xx != ''">
-            and b.bzname ='多金宝'
-        </if>
-        <if test="query != null and query.xx == 4 and query.xx != ''">
-            and b.bzname ='普金宝'
-        </if>
-        <if test="query != null and query.xx == 5 and query.xx != ''">
-            and b.bzname ='恒金宝'
-        </if>
-        <if test="query != null and query.xx == 6 and query.xx != ''">
-            and b.bzname ='新手标'
-        </if>
-    </sql>
 
     <!-- 显示投资列表+分页-->
     <select id="listPagerByUId" resultType="top.zzh.vo.BorrowDetailVO">
-            select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname from
-            t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        <![CDATA[
+          select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname
+             from t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
             where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-            and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+            and bd.sid = s.sid and ba.baid = bd.baid
             and ba.uid = um.uid and ba.state = 0
-             limit #{pager.beginIndex}, #{pager.pageSize}
+         limit #{pager.beginIndex}, #{pager.pageSize}
+         ]]>
     </select>
 
     <select id="getCount" resultType="long">
-          select count(ba.baid)  from
-            t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+          select count(ba.baid)  from t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
             where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-            and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+            and bd.sid = s.sid and ba.baid = bd.baid
             and ba.uid = um.uid and ba.state = 0
     </select>
 

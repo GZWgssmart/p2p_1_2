@@ -215,12 +215,18 @@
                         </tbody>
                         <tfoot>
                         <tr class="page-outer">
-                            <td colspan="4" align="center"><div class="pagination clearfix"><span class="page" id="repayment_content_pager"><a class="disabled"> 上一页 </a><a class="curr">1</a><a href="javascript:void(0)">2</a><a href="javascript:void(0)" next="2">下一页</a><em>共2页</em>
-                    <dl class="page-select">
-                      <dt><span>1</span><i class="icon icon-down"></i></dt>
-                      <dd style="display: none;"><a href="javascript:;" total="23" spaninterval="2" content="repayment_content">1</a><a href="javascript:;" total="23" spaninterval="2" content="repayment_content">2</a></dd>
-                    </dl>
-                    </span></div></td>
+                            <td colspan="4" align="center">
+                                <div class="pagination clearfix mrt30">
+                                    <span class="page">
+                                        <a href="javascript:void(0);">页码</a>
+                                        <a class="active" href="javascript:void(0);" onclick="">首页</a>
+                                        <a  href="javascript:void(0);" onclick="">上一页</a>
+                                        <a  href="javascript:void(0);" onclick="">下一页</a>
+                                        <a  href="javascript:void(0);" onclick="">尾页</a>
+                                        <a href="javascript:void(0);">共条</a>
+                                    </span>
+                                </div>
+                            </td>
                         </tr>
                         </tfoot>
                     </table>
