@@ -58,11 +58,13 @@
 <!--banner-->
 <div class="flexslider">
   <ul class="slides">
-    <li style="background-image: url(<%=path%>/static/images/banner.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner1.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner2.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner3.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="# " target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner4.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
+    <c:forEach var="s" items="${homeList}">
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic3}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l3}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+    </c:forEach>
   </ul>
 </div>
 <script src="<%=path%>/static/js/jquery.flexslider-min.js"></script>
@@ -133,24 +135,24 @@
       <ul style="margin-top: 0px;">
         <c:if test="${requestScope.noticeList!=null}">
           <c:forEach var="a" items="${noticeList}" >
-            <li><a  class="black-link" href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a><span class="date"><fmt:formatDate value="${a.date}" pattern="yyyy-MM-dd"/></span></li>
+            <li><a  class="black-link" href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a></li>
           </c:forEach>
         </c:if>
-       </ul>
+      </ul>
     </div>
   </div>
   <a class="more" href="<%=path%>/page/ad/1">更多</a> </div>
-<div class="ipubs"><span class="o1">累计投资金额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">已还本息:<strong>400,507,750.81</strong>元</span><span class="o2">余额:<strong>677,679,983.07</strong>元</span><span class="o4">注册人数:<strong>20649</strong>人</span></div>
+<div class="ipubs"><span class="o1">交易总额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">月交易总额:<strong>400,507,750.81</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
 <div class="feature"> <a class="fea1" href="#"> <i></i>
   <h3>高收益</h3>
-  <span>年化收益率最高达“20%<br>
-  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="#"> <i></i>
+  <span>年化收益率最高达20%<br>
+  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="<%=path%>/page/help"> <i></i>
   <h3>安全理财</h3>
   <span>100%本息保障<br>
-  实物质押，多重风控审核</span> </a> <a class="fea3" href="#"> <i></i>
+  实物质押，多重风控审核</span> </a> <a class="fea3" href="<%=path%>/page/help"> <i></i>
   <h3>随时赎回</h3>
   <span>两步赎回您的资金<br>
-  最快当日到账</span> </a> <a class="fea4" href="#"> <i></i>
+  最快当日到账</span> </a> <a class="fea4" href="<%=path%>/page/help"> <i></i>
   <h3>随时随地理财</h3>
   <span>下载手机客户端<br>
   随时随地轻松理财</span> </a> </div>
