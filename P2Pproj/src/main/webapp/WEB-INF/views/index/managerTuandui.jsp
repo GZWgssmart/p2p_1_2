@@ -35,13 +35,13 @@
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
                             <span style="font-size:18px;color:#0aaae1;">曾志湖</span>
-                            <span style="color:#0aaae1;"> 董事会主席</span>
+                            <span style="color:#0aaae1;">CEO</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
+                            2017年与合伙人共同创建互联网金融服务平台——亿人宝
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             感言：风控的宗旨在于对风险的预知和防范
@@ -55,7 +55,7 @@
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
                             <span style="font-size:18px;color:#0aaae1;">赖勇建</span>
-                            <span style="color:#0aaae1;"> 高级软件工程师</span>
+                            <span style="color:#0aaae1;"> 副总裁兼任高级软件工程师</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             拥有3年的国内大型项目工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
@@ -72,13 +72,13 @@
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
                             <span style="font-size:18px;color:#0aaae1;">赖国荣</span>
-                            <span style="color:#0aaae1;"> 经济顾问</span>
+                            <span style="color:#0aaae1;">CTO</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
+                            2017年与合伙人共同创建互联网金融服务平台——亿人宝
                         </p>
                     </div>
                 </div>

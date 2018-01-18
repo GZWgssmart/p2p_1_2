@@ -107,7 +107,7 @@
                         <dd>
                             <div class="text">
                                 <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 产品名称：${borrow.cpname}</p>
-                                <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 募集资金：${borrow.zmoney}</p>
+                                <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 募集资金：${borrow.money}</p>
                                 <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 预期年化收益：<a style="color: red;size: 4px">${borrow.nprofit}%</a></p>
                                 <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 起息时间：满标起息</p>
                                 <p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;"> 资金用途：${borrow.mpurpose}</p>
@@ -173,7 +173,7 @@
                                     <div class="album-show">
                                         <div class="loading" style="display: none;"></div>
                                         <img src="<%=path%>/static/uploads/${borrow.ypic}"> </div>
-                                    <div class="album-thumb"> <a href="javascript:;" class="btn btn-prev"></a> <a href="javascript:;" class="btn btn-next"></a>
+                                    <div class="album-thumb"> <a href="javascript:void(0);" class="btn btn-prev"></a> <a href="javascript:;" class="btn btn-next"></a>
                                         <div style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 1070px;" class="container" id="albumThumb">
                                             <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 1926px; left: 0px;">
                                                 <li style="overflow: hidden; float: left; width: 164px; height: 108px;"><a class="small_img" alt="法人身份证" title="法人身份证" id="<%=path%>/static/uploads/${borrow.fpic}"><img src="<%=path%>/static/uploads/${borrow.fpic}"></a></li>
@@ -197,6 +197,7 @@
                         <tr>
                             <th>投标人</th>
                             <th>已投金额</th>
+                            <th>投资产品</th>
                             <th>投标利率</th>
                             <th>投标时间</th>
                             <th>投标方式</th>
@@ -207,6 +208,7 @@
                             <tr>
                                 <td>${d.uname}</td>
                                 <td><span class="c-orange">￥${d.mmoney}</span>元</td>
+                                <td>${d.cpname}</td>
                                 <td>${d.nprofit}</td>
                                 <td>${d.dateToStr}</td>
                                 <td>自动</td>
