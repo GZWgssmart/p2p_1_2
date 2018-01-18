@@ -69,6 +69,8 @@ $('#mytab').bootstrapTable({
                 }else if(value==3){
                     //表示激活状态
                     return '<span style="color:green">公司奖励</span>';
+                }else if(value=4){
+                    return '<span style="color:green">投资金额</span>';
                 }
             }
         }

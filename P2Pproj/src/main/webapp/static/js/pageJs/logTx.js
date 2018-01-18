@@ -55,7 +55,25 @@ $('#mytab').bootstrapTable({
             field: 'banktype',
             align: 'center',
             formatter: function (value, row, index) {
-                return '<span style="color:green" >'+value+'</span>';
+                if(value==1){
+                    return '<span style="color:green" >中国农业银行</span>';
+                }else if(value==2){
+                    return '<span style="color:green" >中信银行</span>';
+                }else if(value==3){
+                    return '<span style="color:green" >中国银行</span>';
+                }else if(value==4){
+                    return '<span style="color:green" >兴业银行</span>';
+                }else if(value==5){
+                    return '<span style="color:green" >邮政储蓄</span>';
+                }else if(value==6){
+                    return '<span style="color:green" >交通银行</span>';
+                }else if(value==7){
+                    return '<span style="color:green" >华夏银行</span>';
+                }else if(value==8){
+                    return '<span style="color:green" >大连银行</span>';
+                }else{
+                    return '<span style="color:green" >'+value+'</span>';
+                }
             }
         }
         ,
@@ -75,6 +93,8 @@ $('#mytab').bootstrapTable({
                     return '<span style="color:green" >成功</span>';
                 }else if(value==1){
                     return '<span style="color:crimson" >失败</span>';
+                }else {
+                    return '<span style="color:chartreuse" >未审核</span>';
                 }
             }
         }
