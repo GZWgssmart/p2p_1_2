@@ -14,6 +14,9 @@
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
     <script src="<%=path%>/static/js/user.js" type="text/javascript"></script>
     <jsp:include page="../common/bootstraptablecss.jsp"/>
+
+    <link href="<%=path%>/static/plugin/bootstrap/css/style.min.css?v=4.0.0" rel="stylesheet">
+
 </head>
 <body>
 <!-- 网站头部-->
@@ -32,6 +35,9 @@
                         <span class="pmain-title3 fb">投资产品</span>
                         <span class="pmain-title4 fb">投资利率</span>
                         <span class="pmain-title5 fb">投资时间</span>
+                        <span class="pmain-title6 fb">操作</span>
+
+
                     </div>
                     <ul style="float:left;">
                         <c:forEach items="${obj}" var="d">
@@ -41,6 +47,9 @@
                                 <span class="pmain-title3 pmain-height">${d.cpname}</span>
                                 <span class="pmain-title4 pmain-height">${d.nprofit}</span>
                                 <span class="pmain-title5 pmain-height">${d.dateToStr}</span>
+
+                                <span class="pmain-title6 pmain-height"><a style="text-decoration:none;" href="/sk/skDetail/${d.uid}/${d.juid}/${d.baid}/${d.money}" onclick="">收款详情</a></span>
+
                             </li>
                         </c:forEach>
                         <c:if test="${page.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
@@ -92,6 +101,9 @@
 <%@include file="../common/footer.jsp" %>
 </body>
 <jsp:include page="../common/bootstraptablejs.jsp"/>
+
+<script src="<%=path%>/static/plugin/bootstrap/js/plugins/layer/layer.js"></script>
+
 <script src="<%=path%>/static/js/pageJs/touzi.js"></script>
 <script>
     function page(str){
@@ -109,5 +121,27 @@
                 window.location.href="/page/touzi?pageNo="+str;
             });
     }
+
+
+    function find(uid,juid,baid,money) {
+
+        $.post(
+            "/sk/skDetail/"+uid+"/"+juid+"/"+baid+"/"+money,
+            function (data) {
+                if (data.result == "ok") {
+
+                    layer.msg(data.message, {icon: 1, time: 2000});
+
+                }else if(data.result == "login"){
+                    window.location.href ="/page/login";
+                }else {
+                    layer.msg(data.message, {icon: 2, time: 2000});
+
+                }
+            }, "json"
+        );
+    }
+
+
 </script>
 </html>

@@ -53,4 +53,47 @@
     </select>
 
 
+    <select id="listPager" resultType="top.zzh.query.HkbQuery">
+         select hkid,uid,baid,cpname,rnum,ytime,bzname,ybx,rbx,rbx,ylx,rlx,ybj,rbj,yfx,rfx,yucount,djq,state  from t_hkb
+        where uid =#{uid}
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+
+        select count(uid)  from t_hkb where uid =#{uid}
+      ]]>
+    </select>
+
+
+    <!--还款-->
+    <update id="updateHmoney" parameterType="top.zzh.query.HkbQuery">
+        <![CDATA[
+          update t_hkb
+        ]]>
+        <set>
+            rtime=CURRENT_TIMESTAMP,
+
+            <if test="rnum!=null and rnum!=''">
+                rnum =#{rnum},
+            </if>
+
+            <if test="rbx!=null and rbx!=''">
+                rbx=#{rbx},
+            </if>
+            <if test="rlx!=null and rlx!=''">
+                rlx=#{rlx},
+            </if>
+            <if test="rbj!=null and rbj!=''">
+                rbj=#{rbj},
+            </if>
+            <if test="state!=null and state!=''">
+                state=#{state},
+            </if>
+        </set>
+        where hkid=#{hkid}
+    </update>
+
+
 </mapper>

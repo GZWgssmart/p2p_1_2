@@ -1,43 +1,45 @@
 package top.zzh.vo;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- * Created by 曾志湖 on 2018/1/3.
- * 收款表vo
- */
-public class SkbVO {
-
+//还款表
+public class SkbUpdate {
     private Long skid;
+
     private Long uid;//用户id
+
     private Long juid;//借款人id
+
     private BigDecimal ybx;//应收本息
+
     private BigDecimal rbx;//已收本息
+
     private BigDecimal ylx;//应收利息
+
     private BigDecimal rlx;//已收利息
+
     private BigDecimal ybj;//应收本金
+
     private BigDecimal rbj;//已收本金
+
     private Integer rnum;//已还期数
+
     private Integer tnum;//总期数
-    private Timestamp date;//日期
+
+    private String date;//日期
+
     private Long baid;//借款人id
+
     private BigDecimal fmoney;//好友奖励
-    private String uname;//前台用户名称
-    private String rname;//借款人姓名
+
+    private Long int1;
+
+    private String str1;
+
     private Integer djq;//第几期
+
     private Integer state;//状态
-
-    private Integer hrnum;
-
-    public Integer getHrnum() {
-        return hrnum;
-    }
-
-    public void setHrnum(Integer hrnum) {
-        this.hrnum = hrnum;
-    }
 
     public Long getSkid() {
         return skid;
@@ -127,11 +129,11 @@ public class SkbVO {
         this.tnum = tnum;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -151,20 +153,20 @@ public class SkbVO {
         this.fmoney = fmoney;
     }
 
-    public String getUname() {
-        return uname;
+    public Long getInt1() {
+        return int1;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setInt1(Long int1) {
+        this.int1 = int1;
     }
 
-    public String getRname() {
-        return rname;
+    public String getStr1() {
+        return str1;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname;
+    public void setStr1(String str1) {
+        this.str1 = str1;
     }
 
     public Integer getDjq() {

@@ -27,5 +27,6 @@ public interface UserMoneyService extends BaseService {
     Pager listPagerUid(int pageNo,int pageSize, Object obj);
 
     Long getCount(Object obj);
+    UserMoneyVO getByUid(Long uid);
 
 }

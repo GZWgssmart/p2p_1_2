@@ -36,4 +36,6 @@ public interface BorrowDetailDAO extends BaseDAO{
 
     @Override
     void save(Object obj);
+
+    BorrowDetailVO findWay(@Param("uid")Long uid,@Param("juid")Long juid,@Param("baid") Long baid);
 }

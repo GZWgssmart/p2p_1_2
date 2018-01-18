@@ -13,4 +13,6 @@ public interface BorrowDetailService extends BaseService {
     void updateBybaid(Object obj);
     BorrowDetailVO findDetails(Long baid);
     BorrowDetailVO find(Long baid);
+
+    BorrowDetailVO findWay(Long uid,Long juid,Long baid);
 }

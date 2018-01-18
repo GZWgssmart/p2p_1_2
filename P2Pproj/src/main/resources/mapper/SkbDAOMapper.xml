@@ -36,19 +36,95 @@
     ]]>
     </select>
 
-    <!--批量新增-->
-    <insert id="saveList" parameterType="list">
-            <![CDATA[
-          insert into t_skb(uid, juid,
-          ybx, rbx, ylx, rlx,
-          ybj, rbj, rnum, tnum,
-          baid
-          )values
-          ]]>
+    <!--&lt;!&ndash;批量新增&ndash;&gt;-->
+    <!--<insert id="saveList" parameterType="list">-->
+            <!--<![CDATA[-->
+          <!--insert into t_skb(uid, juid,-->
+          <!--ybx, rbx, ylx, rlx,-->
+          <!--ybj, rbj, rnum, tnum,-->
+          <!--baid-->
+          <!--)values-->
+          <!--]]>-->
+        <!--<foreach collection="list" item="item" index="index" separator="," >-->
+            <!--(#{item.uid},#{item.juid},#{item.ybx},#{item.rbx}-->
+            <!--,#{item.ylx},#{item.rlx},#{item.ybj},#{item.rbj}-->
+            <!--,#{item.rnum},#{item.tnum},#{item.baid})-->
+        <!--</foreach>-->
+    <!--</insert>-->
+
+
+    <insert id="save" parameterType="top.zzh.bean.Skb">
+        <![CDATA[
+          insert into t_skb(uid,juid,ybx,ylx,ybj,tnum,baid,djq,state)
+          values(#{uid},#{juid},#{ybx},#{ylx},#{ybj},#{tnum},#{baid},#{djq},#{state})
+        ]]>
+    </insert>
+
+
+    <insert id="saveSkb" parameterType="list">
+        <![CDATA[
+          insert into t_skb(uid,juid,ybx,ylx,ybj,tnum,baid,djq,state) values
+        ]]>
         <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.uid},#{item.juid},#{item.ybx},#{item.rbx}
-            ,#{item.ylx},#{item.rlx},#{item.ybj},#{item.rbj}
-            ,#{item.rnum},#{item.tnum},#{item.baid})
+            (#{item.uid},#{item.juid},#{item.ybx},#{item.ylx},#{item.ybj}
+            ,#{item.tnum},#{item.baid},#{item.djq},#{item.state})
         </foreach>
     </insert>
+
+
+    <select id="findSkb" resultType="skb">
+        <![CDATA[
+       select uid,juid from t_skb where uid=#{uid} and juid=#{juid} LIMIT 0,1
+        ]]>
+    </select>
+
+    <select id="listPager" resultType="top.zzh.vo.SkbVO">
+        select skid,juid,ybx,rbx,ylx,baid,rlx,ybj,rbj,rnum,tnum,date,djq,state  from t_skb s
+        where juid =#{juid}
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+        select count(s.skid)  from t_skb s,t_hkb h where  h.uid=s.juid and s.baid=h.baid and juid =#{juid}
+
+      ]]>
+    </select>
+
+    <!--收款-->
+    <update id="updateSk" parameterType="top.zzh.vo.SkbUpdate">
+        <![CDATA[
+          update t_skb
+        ]]>
+        <set>
+            <if test="rbx!=null and rbx!=''">
+                rbx =#{rbx},
+            </if>
+            <if test="rlx!=null and rlx!=''">
+                rlx=#{rlx},
+            </if>
+            <if test="rbj!=null and rbj!=''">
+                rbj=#{rbj},
+            </if>
+            <if test="rnum!=null and rnum!=''">
+                rnum=#{rnum},
+            </if>
+            <if test="date!=null and date!=''">
+                date=#{date},
+            </if>
+            <if test="state!=null and state!=''">
+                state=#{state},
+            </if>
+        </set>
+        where juid=#{juid} and djq=#{djq} and baid=#{baid}
+    </update>
+
+    <!--收款人-->
+    <select id="findUid" resultType="long">
+        <![CDATA[
+           select uid from t_skb where  juid=#{juid} and djq=#{djq}
+        ]]>
+    </select>
+
+
 </mapper>

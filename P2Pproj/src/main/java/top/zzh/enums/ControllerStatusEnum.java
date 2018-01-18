@@ -34,7 +34,9 @@ public enum ControllerStatusEnum {
     USER_LOGIN_ERROR_ALREADY_EXIST(005, "error", "用户名已存在！"),
     TZ_LOGIN_FAIL(902,"login","请登录！"),
     TZ_SAVE_maxMoney_FAIL(903,"error","投资金额不能超过最大投标金额！"),
-
+    SK_Money_SUCCESS(904,"ok","恭喜您，收款成功！"),
+    SK_Money_FAIL(905,"error","您已成功收款，无需在收款！"),
+    SK_State_FAIL(905,"error","还没有到期，不能收款！"),
 
 
     CASH_SAVE_SUCCESS(103, "ok", "添加成功"),

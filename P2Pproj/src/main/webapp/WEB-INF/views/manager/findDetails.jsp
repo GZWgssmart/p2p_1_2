@@ -17,7 +17,7 @@
 
 
                     <div class="ibox-title">
-                        <h5>信息详情</h5>
+                        <a href="/rzvip/rzvipList"><h5>返回认证审核</h5></a>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>

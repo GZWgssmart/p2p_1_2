@@ -151,6 +151,9 @@
             <if test="kymoney!=null and kymoney!=''">
                 kymoney=#{kymoney},
             </if>
+            <if test="symoney!=null and symoney!=''">
+                symoney=#{symoney},
+            </if>
         </set>
         where uid=#{uid}
     </update>

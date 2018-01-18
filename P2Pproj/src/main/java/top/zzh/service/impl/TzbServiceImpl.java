@@ -177,8 +177,13 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
                 hkb.setUid(borrow.getUid());
                 hkb.setState((byte) HkStateEnum.UNREPAY.getCode());
                 hkb.setYbj(borrow.getMoney());
-                hkb.setYlx(syMoney.multiply(BigDecimal.valueOf(term)));
-                hkb.setYbx(borrow.getMoney().add(syMoney.multiply(BigDecimal.valueOf(term))));
+                hkb.setDjq(1);
+
+                syMoney = borrow.getMoney().multiply(BigDecimal.valueOf(monthNpro / 100)).multiply(new BigDecimal(term)).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+
+                hkb.setYlx(syMoney);
+                hkb.setYbx(syMoney.add(borrow.getMoney()));
                 hkb.setTnum(1);
                 calendar.add(Calendar.MONTH, term);
                 hkb.setYtime(calendar.getTime());

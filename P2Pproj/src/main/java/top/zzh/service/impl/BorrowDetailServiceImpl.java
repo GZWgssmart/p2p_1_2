@@ -41,4 +41,10 @@ public class BorrowDetailServiceImpl extends AbstractService implements BorrowDe
     public BorrowDetailVO find(Long baid) {
         return borrowDetailDAO.find(baid);
     }
+
+    @Override
+    public BorrowDetailVO findWay(Long uid, Long juid,Long baid) {
+
+        return borrowDetailDAO.findWay(uid, juid,baid);
+    }
 }

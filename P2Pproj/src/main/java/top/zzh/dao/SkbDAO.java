@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.Skb;
 import top.zzh.common.Pager;
+import top.zzh.vo.SkbUpdate;
 
 import java.util.List;
 
@@ -28,5 +29,20 @@ public interface SkbDAO extends BaseDAO{
     int saveList(List <Skb> list);
 
     List<Object> list(@Param("pager") Pager pager, @Param("uid") Long uid, @Param("baid") Long baid);
+
+    //批量生成收款计划
+    void saveSkb(List<Skb> skbList);
+
+    Skb findSkb(@Param("uid")Long uid,@Param("juid") Long juid);
+
+
+    List <Object> listPager(@Param("pager") Pager pager,@Param("juid")Long juid);
+
+
+    Long count(@Param("juid") Long juid);
+
+    void updateSk(SkbUpdate skbUpdate);
+
+    Long findUid(@Param("juid")Long juid, @Param("djq")Integer djq);
 
 }

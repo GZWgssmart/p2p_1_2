@@ -75,6 +75,10 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
         return userMoneyDAO.getCount(obj);
     }
 
+    @Override
+    public UserMoneyVO getByUid(Long uid) {
+        return userMoneyDAO.getByUid(uid);
+    }
 
 
 }

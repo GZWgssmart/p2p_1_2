@@ -14,6 +14,7 @@ import top.zzh.service.AbstractService;
 import top.zzh.service.SkbService;
 import top.zzh.vo.BorrowDetailVO;
 import top.zzh.vo.ControllerStatusVO;
+import top.zzh.vo.SkbUpdate;
 import top.zzh.vo.TzbVO;
 
 import java.math.BigDecimal;
@@ -45,51 +46,43 @@ public class SkbServiceImpl extends AbstractService implements SkbService{
         return pager;
     }
 
+    @Override
+    public void saveSkb(List<Skb> skbList) {
+        skbDAO.saveSkb(skbList);
+    }
+
+    @Override
+    public Skb findSkb(Long uid, Long juid) {
+        return skbDAO.findSkb(uid, juid);
+    }
+
+    @Override
+    public Pager listPager(int pageNo, int pageSize, Long juid) {
+
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(skbDAO.listPager(pager, juid));
+        pager.setTotal(skbDAO.count(juid));
+        return pager;
+    }
+
+    @Override
+    public void updateSk(SkbUpdate skbUpdate) {
+        skbDAO.updateSk(skbUpdate);
+    }
+
+    @Override
+    public Long findUid(Long juid, Integer djq) {
+        return findUid(juid, djq);
+    }
+
 
     public ControllerStatusVO saveSkb(Long uid, Long baid){
         ControllerStatusVO statusVO = null;
-        //装载保存收款表的list
-        List<Skb> skbList = new ArrayList<>();
-        //根据用户id 和借款id查出所有的金额
-        BorrowDetailVO borrowDetailVO = (BorrowDetailVO)borrowDetailDAO.getById(baid);
-        //根据用户id和收款表的id去查询有没有记录
-        Long count = skbDAO.countUid(uid,baid);
-        //如果没有收款记录则生成
-        if(count==0){
-            //如果当前借款的目标金额和已筹金额相等
-            if(borrowDetailVO.getMoney().compareTo(borrowDetailVO.getMmoney())==0){
-                //则查询出该用户对该借款投资了几次
-                TzbVO tzbList = tzbDAO.listTzb(uid,baid);
-                //计算出总投资金额
-                BigDecimal money = new BigDecimal(0);
 
-                money = money.add(tzbList.getMoney());
 
-//                if(tzb.getInt2() == 1) {
-//                    ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
-//                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-//                }else if(tzb.getInt2() == 2){
-//                    ACMLoanCalculator calculator = new ACMLoanCalculator();
-//                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getInt1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-//                }
-//                for (LoanByMonth loanByMonth : loan.getAllLoans()) {
-//                    Skb skb = new Skb();
-//                    skb.setUid(uid);
-//                    skb.setJuid(tzb.getJuid());
-//                    skb.setBaid(baid);
-//                    skb.setYbx(loanByMonth.getRepayment());
-//                    skb.setRbx(new BigDecimal(0));
-//                    skb.setYlx(loanByMonth.getInterest());
-//                    skb.setRlx(new BigDecimal(0));
-//                    skb.setYbj(loanByMonth.getPayPrincipal());
-//                    skb.setRbj(new BigDecimal(0));
-//                    skb.setTnum(tzb.getInt1());
-//                    skbList.add(skb);
-//                }
-                skbDAO.saveList(skbList);
-            }
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_TZ_FAILED);
-        }
+
+        statusVO = ControllerStatusVO.status(ControllerStatusEnum.CHECK_TZ_FAILED);
+
         return statusVO;
     }
 

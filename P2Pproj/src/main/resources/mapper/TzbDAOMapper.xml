@@ -72,7 +72,7 @@
 
     <select id="listPagerByUId" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
-             select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+             select t.uid,t.juid,t.baid,u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
           from t_tzb t,t_user u,t_borrowapply b
           where t.uid = u.uid and b.baid = t.baid and u.uid = #{query.uid}
           limit #{pager.beginIndex}, #{pager.pageSize}

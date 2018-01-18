@@ -89,7 +89,6 @@
 
     <select id="findDetails" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
-          select ba.baid,ba.uid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
           select ba.huid,ba.baid,ba.uid,bd.bdid,bd.sid,ba.rname,b.bzname,ba.term,ba.deadline,bd.fpic,bd.ypic,
             bd.qpic,bd.tpic,bd.mpurpose,bd.hksource,bd.suggest,bd.xmdescrip,bd.guarantee,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,bd.nprofit,s.way,bd.cpname
             from t_borrowdetail bd,t_borrowapply ba,t_bz b,t_sway s,t_usermoney um
@@ -111,6 +110,15 @@
            select b.uid,b.baid,b.money,bd.money as mmoney from t_borrowapply as b,t_borrowdetail as bd
             where b.baid = bd.baid and b.baid = #{baid}
         ]]>
+    </select>
+
+
+    <select id="findWay" resultType="top.zzh.vo.BorrowDetailVO">
+        <![CDATA[
+
+        select s.way,bw.term,b.nprofit,b.money,bw.money as mmoney  from t_tzb t,t_borrowdetail b,t_sway s,t_borrowapply bw where
+         t.baid=b.baid and b.sid=s.sid and bw.baid=b.baid and t.uid=#{uid} and t.juid=#{juid} and t.baid=#{baid};
+         ]]>
     </select>
 
 

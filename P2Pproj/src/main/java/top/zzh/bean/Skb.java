@@ -37,28 +37,9 @@ public class Skb {
 
     private String str1;
 
-    public Skb(Long skid, Long uid, Long juid, BigDecimal ybx, BigDecimal rbx, BigDecimal ylx, BigDecimal rlx, BigDecimal ybj, BigDecimal rbj, Integer rnum, Integer tnum, Date date, Long baid, BigDecimal fmoney, Long int1, String str1) {
-        this.skid = skid;
-        this.uid = uid;
-        this.juid = juid;
-        this.ybx = ybx;
-        this.rbx = rbx;
-        this.ylx = ylx;
-        this.rlx = rlx;
-        this.ybj = ybj;
-        this.rbj = rbj;
-        this.rnum = rnum;
-        this.tnum = tnum;
-        this.date = date;
-        this.baid = baid;
-        this.fmoney = fmoney;
-        this.int1 = int1;
-        this.str1 = str1;
-    }
+    private Integer djq;//第几期
 
-    public Skb() {
-        super();
-    }
+    private Integer state;//状态
 
     public Long getSkid() {
         return skid;
@@ -185,6 +166,22 @@ public class Skb {
     }
 
     public void setStr1(String str1) {
-        this.str1 = str1 == null ? null : str1.trim();
+        this.str1 = str1;
+    }
+
+    public Integer getDjq() {
+        return djq;
+    }
+
+    public void setDjq(Integer djq) {
+        this.djq = djq;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

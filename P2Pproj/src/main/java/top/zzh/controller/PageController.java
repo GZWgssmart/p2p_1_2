@@ -171,7 +171,9 @@ public class PageController {
     }
 
     @RequestMapping("huikuan")
-    public String huikuan() {
+    public String huikuan(HttpSession session,HttpServletRequest request) {
+        Long uid=(Long)session.getAttribute(Constants.USER_ID_SESSION);
+        request.setAttribute("uid",uid);
         return "user/huikuan";
     }
 

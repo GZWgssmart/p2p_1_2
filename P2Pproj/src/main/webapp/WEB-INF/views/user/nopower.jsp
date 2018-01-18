@@ -37,9 +37,6 @@
             <div class="registerTitle">用户登录</div>
             <div class="registerCont">
                 <ul>
-                    <li class="error">
-                        <span id="prrintInfo" data-info=""><span>请输入正确用户名</span></span>
-                    </li>
                     <li>
                         <span class="dis">用户名：</span><input class="input" type="text" name="name" id="name" maxlength="24" tabindex="1" autocomplete="off">
                         <a id="sssdfasdfas" href="<%=path%>/page/register" class="blue">注册用户</a>

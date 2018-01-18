@@ -46,7 +46,11 @@
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">状态：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="state" id="state"/>
+                        <select class="form-control" name="state" id="state">
+                            <option value="1">激活</option>
+                            <option value="2">冻结</option>
+                        </select>
+
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
                         <button class="btn btn-primary" onclick="doSearch();">查询</button>
@@ -78,18 +82,10 @@
     function doSearch () {
         var uname=$('#uname').val();
         var st=$('#state').val();
-        var state=null;
-
-        if(st=="激活"){
-            state=1;
-        }
-        if(st=="冻结"){
-            state=2;
-        }
 
         var options=$('#mytab').bootstrapTable('refresh', {
             url: '/luser/pager',
-            query:{uname:uname,state:state}
+            query:{uname:uname,state:st}
         });
     }
 </script>
