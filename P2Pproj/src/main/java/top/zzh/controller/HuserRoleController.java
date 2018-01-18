@@ -6,13 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.HUser;
 import top.zzh.bean.Role;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.HuserRoleService;
 import top.zzh.vo.ControllerStatusVO;
-
 
 import java.util.List;
 
@@ -65,5 +63,17 @@ public class HuserRoleController {
     @ResponseBody
     List<Role> hRoleByHuserIdList(String hUserId){
         return huserRoleService.hRoleByHuserIdList(Integer.parseInt(hUserId));
+    }
+
+    @RequestMapping("checkPhone")
+    @ResponseBody
+    public ControllerStatusVO checkPhone(String phone){
+        int count = huserRoleService.checkPhone(phone);
+        if(count == 0){
+            return ControllerStatusVO.status(ControllerStatusEnum.PHONE_NOT_EXIST);
+        }else {
+            return ControllerStatusVO.status(ControllerStatusEnum.PHONE_EXIST);
+        }
+
     }
 }

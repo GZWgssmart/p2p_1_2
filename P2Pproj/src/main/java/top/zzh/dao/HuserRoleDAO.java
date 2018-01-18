@@ -31,5 +31,7 @@ public interface HuserRoleDAO extends BaseDAO{
     //保存用户,返回用户的Id
     void saveHuser(HUser hUser);
 
+    int checkPhone(String phone);
+
 
 }

@@ -97,19 +97,38 @@
             queryRoleList();
             $('#webAdd').modal('toggle');
         });
+
+
         //保存用户和角色
         $(".saveRole").click(function () {
+            var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
             var phone = $("#phone").val();
             if(phone != ''){
-                if($('.role').is(':checked')) {
-                    //保存用户角色
-                    saveHuserRole(phone);
-                }else{
-                    swal("请选择角色!","您未选择任何角色","warning");
+                //检查是否为11位手机号,手机号是否重复
+                if(reg.test(phone)){
+                    $.post(
+                        "/hUserRole/checkPhone",
+                        {phone:phone},
+                        function (data) {
+                            if(data.result == "ok"){
+                                if($('.role').is(':checked')) {
+                                    //保存用户角色
+                                    saveHuserRole(phone);
+                                }else{
+                                    swal("请选择角色!","您未选择任何角色","warning");
+                                }
+                            }else{
+                                $("#phone").focus();
+                                swal("手机号已存在!","请更换手机号","warning");
+                            }
+                        }
+                    );
+                }else {
+                    swal("输入的手机号有错误!","请检查手机号","warning");
                 }
             }else {
                 swal("请填写手机号!","您未填写手机号","warning");
-                $("#hUser").focus();
+                $("#phone").focus();
             }
         });
 
@@ -149,7 +168,7 @@
                 function (data) {
                     if(data.result == "ok"){
                         //清空数据
-                        $("#hUser").val('');
+                        $("#phone").val('');
                         //刷新表格
                         $('#mytab').bootstrapTable('refresh',{url:"/hUserRole/hasRoleHuser"});
                         swal(data.message,"新增用户成功！","success");

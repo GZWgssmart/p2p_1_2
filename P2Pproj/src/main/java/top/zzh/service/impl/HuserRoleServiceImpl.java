@@ -58,6 +58,11 @@ public class HuserRoleServiceImpl extends AbstractService implements HuserRoleSe
         huserRoleDAO.saveHuserRole(Integer.valueOf(user.getHuid().toString()),roleList(roleList));
     }
 
+    @Override
+    public int checkPhone(String phone) {
+        return huserRoleDAO.checkPhone(phone);
+    }
+
 
     @Override
     public Pager listPager(int pageNo, int pageSize){

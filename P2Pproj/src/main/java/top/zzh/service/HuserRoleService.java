@@ -3,7 +3,6 @@ package top.zzh.service;
 import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.HUser;
 import top.zzh.bean.Role;
-import top.zzh.vo.Select2;
 
 import java.util.List;
 
@@ -21,6 +20,8 @@ public interface HuserRoleService extends BaseService{
 
     //保存用户
     void saveHuser(String phone, String roleList);
+
+    int checkPhone(String phone);
 
 
 }

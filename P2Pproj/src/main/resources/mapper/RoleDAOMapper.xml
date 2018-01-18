@@ -60,7 +60,7 @@
 
     <select id="listByAccount" parameterType="string" resultMap="roleMap">
         <![CDATA[
-            select r.* from t_role r where r.rid in (
+            select r.* from t_role r where r.`status` = 1 and r.rid in (
                 select hr.role_id from t_huser h,t_huser_role hr where h.huid = hr.huser_id and h.phone = #{phone}
             )
         ]]>

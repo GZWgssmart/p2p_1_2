@@ -49,7 +49,7 @@
     <select id="hRoleByHuserIdList" resultMap="roleMap">
         <![CDATA[
             select r.rid,r.rname from
-            t_role r, t_huser_role hr where r.rid = hr.role_id and
+            t_role r, t_huser_role hr where r.status = 1 and r.rid = hr.role_id and
             hr.huser_id = #{hUserId}
         ]]>
     </select>
@@ -68,6 +68,12 @@
            insert into t_huser(phone,hpwd,state) values(#{phone},#{hpwd},#{state})
         ]]>
     </insert>
+
+    <select id="checkPhone" parameterType="string" resultType="int">
+        <![CDATA[
+          select count(huid) from t_huser where phone = #{phone}
+        ]]>
+    </select>
 
 </mapper>
 

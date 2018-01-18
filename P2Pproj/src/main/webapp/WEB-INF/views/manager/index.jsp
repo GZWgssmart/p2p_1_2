@@ -1,5 +1,6 @@
 <%@ page import="top.zzh.bean.HUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
     String path = request.getContextPath();
     HUser hUser=(HUser)session.getAttribute("HUser");
@@ -30,7 +31,7 @@
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=hUser.getHuname()%></strong>
-                             </span> <span class="text-muted text-xs block">超级管理员 <b class="caret"></b></span> </span>
+                             </span> <span class="text-muted text-xs block"><b class="caret"></b></span> </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li>
@@ -47,122 +48,142 @@
                     <div class="logo-element">宝
                     </div>
                 </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-th-large"></i>
-                        <span class="nav-label">用户管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/luser/userList">用户信息</a>
+                <shiro:hasRole name="超级管理员">
+                    <shiro:hasRole name="普通管理员">
+                        <shiro:hasRole name="普通员工">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="glyphicon glyphicon-link"></i>
+                                <span class="nav-label">权限分配</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a class="J_menuItem" href="<%=path %>/permission/permissionPage">权限管理</a></li>
+                                <li><a a class="J_menuItem" href="<%=path %>/role/rolePage">角色管理</a></li>
+                                <li><a a class="J_menuItem" href="<%=path %>/rolePermission/rolePermissionPage">角色权限管理</a></li>
+                                <li><a a class="J_menuItem" href="<%=path %>/hUserRole/hUserRolePage">后台用户角色管理</a></li>
+                            </ul>
                         </li>
-                        <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
-                        </li>
-						<li><a class="J_menuItem" href="<%=path%>/option/page">用户反馈</a>
-                        </li>
-                        <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa fa-globe"></i>
-                        <span class="nav-label">审核管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/page/users">借款审核</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/rzvip/rzvipList">认证审核</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="glyphicon glyphicon-link"></i>
-                        <span class="nav-label">权限分配</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path %>/permission/permissionPage">权限管理</a></li>
-                        <li><a a class="J_menuItem" href="<%=path %>/role/rolePage">角色管理</a></li>
-                        <li><a a class="J_menuItem" href="<%=path %>/rolePermission/rolePermissionPage">角色权限管理</a></li>
-                        <li><a a class="J_menuItem" href="<%=path %>/hUserRole/hUserRolePage">后台用户角色管理</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-edit"></i>
-                        <span class="nav-label">金额管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<%=path%>/reward/rewardList">奖励信息</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/ticket/page">优惠券管理</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-bar-chart-o"></i>
-                        <span class="nav-label">公司动态</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态列表</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-star"></i>
-                        <span class="nav-label">类型管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="<%=path%>/sway/sway">还款方式类型管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/bz/bz">标种类型管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/friend/friend">合作伙伴管理</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告列表</a>
-                        </li>
+                        </shiro:hasRole>
+                    </shiro:hasRole>
+                </shiro:hasRole>
 
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-desktop"></i>
-                        <span class="nav-label">媒体报道</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息列表</a>
-                        </li>
-                        <li><a a class="J_menuItem" href="<%=path%>/home/initAdd">新增首页信息</a>
-                        </li>
-                    </ul>
-                </li>
+                <shiro:hasRole name="普通管理员">
+                    <shiro:hasRole name="普通员工">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-th-large"></i>
+                            <span class="nav-label">用户管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="<%=path%>/luser/userList">用户信息</a></li>
+                            <li><a class="J_menuItem" href="<%=path%>/recommend/page">推荐管理</a>
+                            </li>
+                            <li><a class="J_menuItem" href="<%=path%>/logMoney/list">资金流向管理</a>
+                            </li>
+                            <li><a class="J_menuItem" href="<%=path%>/logTx/init">用户提现记录</a>
+                            </li>
+                            <li><a class="J_menuItem" href="<%=path%>/option/page">用户反馈</a>
+                            </li>
+                            <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa fa-globe"></i>
+                            <span class="nav-label">审核管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="<%=path%>/page/users">借款审核</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/rzvip/rzvipList">认证审核</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/txCheck/init">提现审核</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-edit"></i>
+                            <span class="nav-label">金额管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="<%=path%>/reward/rewardList">奖励信息</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/tz/page">用户投资列表</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/userMoney/init">用户资金管理</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/ticket/page">优惠券管理</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-star"></i>
+                            <span class="nav-label">类型管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a a class="J_menuItem" href="<%=path%>/sway/sway">还款方式类型管理</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/bz/bz">标种类型管理</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/jklx/jklx">借款类型管理</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/friend/friend">合作伙伴管理</a>
+                            </li>
+                            <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告列表</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    </shiro:hasRole><!--普通员工-->
+                </shiro:hasRole><!--普通管理员-->
+                <shiro:hasRole name="普通员工">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-desktop"></i>
+                            <span class="nav-label">媒体报道</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <shiro:hasPermission name="媒体报道:媒体报道列表">
+                                <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道列表</a></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="媒体报道:新增媒体报道">
+                                <li><a a class="J_menuItem" href="<%=path%>/media/initAdd">新增媒体报道</a></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="媒体报道:首页信息列表">
+                                <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息列表</a></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="媒体报道:新增首页信息">
+                                <li><a a class="J_menuItem" href="<%=path%>/home/initAdd">新增首页信息</a></li>
+                            </shiro:hasPermission>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-bar-chart-o"></i>
+                            <span class="nav-label">公司动态</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <shiro:hasPermission name="公司动态:公司动态列表">
+                                <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态列表</a></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="公司动态:新增公司动态">
+                                <li><a a class="J_menuItem" href="<%=path%>/dynamic/initAdd">新增公司动态</a>
+                            </shiro:hasPermission>
+                            </li>
+                        </ul>
+                    </li>
+                </shiro:hasRole><!--普通员工-->
             </ul>
         </div>
     </nav>

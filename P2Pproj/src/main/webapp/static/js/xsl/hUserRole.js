@@ -122,7 +122,7 @@ function modifyRole(rname,value) {
                 checkbox += "</div>";
             }
             $("#role").html(checkbox);
-            //勾选该用户拥有的角色选中
+            //勾选该用户拥有的角色
             $.post(
                 "/hUserRole/hRoleByHuserId",
                 {hUserId:value},
