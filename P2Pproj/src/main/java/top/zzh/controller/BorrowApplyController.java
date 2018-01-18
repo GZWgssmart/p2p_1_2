@@ -57,22 +57,25 @@ public class BorrowApplyController {
     private UserService userService;
 
     @RequestMapping("borrow_page")
-    public String borrowpage(HttpSession session, HttpServletRequest request){
+    public ModelAndView borrowpage(HttpSession session, HttpServletRequest request){
         logger.info("获取标种表和借款类型表的数据");
+        ModelAndView modelAndView = new ModelAndView();
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
         List<Sway> swayList = (List)swayService.listAll();
-        request.setAttribute("bzList",bzList);
-        request.setAttribute("jklxList",jklxList);
-        request.setAttribute("swayList",swayList);
-        return "user/borrowapply";
+        modelAndView.addObject("bzList",bzList);
+        modelAndView.addObject("jklxList",jklxList);
+        modelAndView.addObject("swayList",swayList);
+        modelAndView.setViewName("user/borrowapply");
+        return modelAndView;
     }
 
     @RequestMapping("save")
     @ResponseBody
-    public String save(@RequestParam("file") MultipartFile[] picture,
+    public ModelAndView save(@RequestParam("file") MultipartFile[] picture,
                        HttpSession session, HttpServletRequest request, ShBorrow shBorrow,BorrowApply borrowApply, BorrowDetail borrowDetail) throws Exception{
         logger.info("新增借款信息");
+        ModelAndView modelAndView = new ModelAndView();
         String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
         Long userid = (Long)session.getAttribute(Constants.USER_ID_SESSION);
         borrowApply.setRname(name);
@@ -120,20 +123,22 @@ public class BorrowApplyController {
         borrowDetail.setTpic(tpic);
         borrowDetail.setQpic(qpic);
         borrowDetailService.updateTupian(borrowDetail);
-        request.setAttribute("borrowApply",borrowApply);
-        request.setAttribute("borrowDetail",borrowDetail);
-        request.setAttribute("exist","恭喜你，申请成功，我们将在一个工作日内进行审核！");
-        return "user/userindex";
+        modelAndView.addObject("borrowApply",borrowApply);
+        modelAndView.addObject("borrowDetail",borrowDetail);
+        modelAndView.addObject("exist","恭喜你，申请成功，我们将在一个工作日内进行审核！");
+        modelAndView.setViewName("user/userindex");
+        return modelAndView;
     }
 
 
-    @RequestMapping("/update_page")
-    public String updatePage(HttpServletRequest request,HttpSession session){
+    @RequestMapping("/update_page/{baid}")
+    public ModelAndView updatePage(HttpServletRequest request,HttpSession session,@PathVariable("baid")Long baid){
         ControllerStatusVO statusVO = null;
+        ModelAndView modelAndView = new ModelAndView();
         String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
         User user=userService.getByface(name);
         logger.info("用户"+user+"正在操作借款信息");
-        BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(user.getUid());
+        BorrowDetailVO borrowDetailVO = (BorrowDetailVO) borrowApplyService.getById(baid);
         List<Bz> bzList = (List)bzService.listAll();
         List<Jklx> jklxList = (List)jklxService.listAll();
         List<Sway> swayList = (List)swayService.listAll();
@@ -142,22 +147,34 @@ public class BorrowApplyController {
         request.setAttribute("swayList",swayList);
         //如果为空则跳转到申请借款页面
         if(borrowDetailVO==null){
-            return "user/borrowapply";
+            modelAndView.setViewName("user/borrowapply");
         }
         //如果不为空并且审核未通过才能跳转到修改页面进行修改操作
         if(borrowDetailVO.getUid()!=null && borrowDetailVO.getState() == 3){
             request.setAttribute("borrowDetailVO",borrowDetailVO);
-            return "user/update_borrow";
+            modelAndView.setViewName("user/update_borrow");
         }
-        return "user/update_borrow";
+        return modelAndView;
     }
+
     @RequestMapping("borrw")
-    public String borrw(){
+    public String borrw(HttpServletRequest request,HttpSession session){
+        String name=(String)session.getAttribute(Constants.USER_IN_SESSION);
+        User user=userService.getByface(name);
+        logger.info("用户"+user+"正在操作借款信息");
+        List<Bz> bzList = (List)bzService.listAll();
+        List<Jklx> jklxList = (List)jklxService.listAll();
+        List<Sway> swayList = (List)swayService.listAll();
+        request.setAttribute("bzList",bzList);
+        request.setAttribute("jklxList",jklxList);
+        request.setAttribute("swayList",swayList);
         return "user/borrowapply";
     }
+
     @RequestMapping("update")
-    public String update(HttpServletRequest request,HttpSession session,BorrowDetailVO borrowDetailVO, BorrowApply borrowApply,BorrowDetail borrowDetail){
+    public ModelAndView update(HttpServletRequest request,HttpSession session,BorrowDetailVO borrowDetailVO, BorrowApply borrowApply,BorrowDetail borrowDetail){
         logger.info("修改申请借款资料");
+        ModelAndView modelAndView = new ModelAndView();
         Calendar cal = Calendar.getInstance();
         Date date = new Timestamp(cal.getTime().getTime());
         cal.setTime(date);
@@ -169,7 +186,8 @@ public class BorrowApplyController {
         borrowApply.setState((byte)1);
         borrowApplyService.update(borrowApply);
         borrowDetailService.update(borrowDetail);
-        return "user/userindex";
+        modelAndView.setViewName("user/userindex");
+        return modelAndView;
     }
 
     @RequestMapping("updateState/{id}")
@@ -194,9 +212,9 @@ public class BorrowApplyController {
 
     @RequestMapping("pager_criteria")
     @ResponseBody
-    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowApply borrowApply) {
+    public Pager pagerCriteria(int pageIndex, int pageSize, BorrowDetailVO borrowDetailVO) {
         logger.info("借款基本信息分页+条件查询");
-        return borrowApplyService.listPagerCriteria(pageIndex, pageSize, borrowApply);
+        return borrowApplyService.listPagerCriteria(pageIndex, pageSize, borrowDetailVO);
     }
 
     @RequestMapping("pager")

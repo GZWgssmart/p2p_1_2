@@ -18,16 +18,16 @@
         </if>
     </sql>
     <select id="listPager" parameterType="top.zzh.common.Pager" resultType="ticket">
-        select kid,type,tkmoney,tktime,tname,tintro from t_ticket order by tktime desc limit #{beginIndex}, #{pageSize}
+        select kid,type,tkmoney,tktime,tname,tintro,usecondition,status from t_ticket order by tktime desc limit #{beginIndex}, #{pageSize}
     </select>
     <select id="count" parameterType="top.zzh.common.Pager" resultType="long">
         select count(kid) from t_ticket
     </select>
     <select id="getById" parameterType="long" resultType="top.zzh.vo.TicketVo">
-        select kid,type,tkmoney,tktime,tname,tintro from t_ticket where kid=#{kid}
+        select kid,type,tkmoney,tktime,tname,tintro,usecondition,status from t_ticket where kid=#{kid}
     </select>
     <select id="listPagerCriteria" resultType="ticket">
-        select kid,type,tkmoney,tktime,tname,tintro from t_ticket where 1=1
+        select kid,type,tkmoney,tktime,tname,tintro,usecondition,status from t_ticket where 1=1
         <include refid="query_common_sql"></include>
         order by tktime desc limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
@@ -38,7 +38,7 @@
 
     <insert id="save" parameterType="top.zzh.vo.TicketVo">
         <![CDATA[
-			insert into t_ticket(type,tkmoney,tktime,tname,tintro) values(#{type},#{tkmoney},#{tktime},#{tname},#{tintro} )
+			insert into t_ticket(type,tkmoney,tktime,tname,tintro,usecondition,status) values(#{type},#{tkmoney},#{tktime},#{tname},#{tintro},#{usecondition},1 )
 		]]>
     </insert>
 
@@ -62,8 +62,16 @@
             <if test="tintro!= null and tintro.trim()!=''">
                 tintro = #{tintro},
             </if>
+            <if test="usecondition!= null">
+                usecondition = #{usecondition},
+            </if>
         </set>
         where kid = #{kid}
+    </update>
+    <update id="updateStatus">
+        <![CDATA[
+			update t_ticket set status=#{status} where kid = #{kid}
+		]]>
     </update>
 
 </mapper>

@@ -113,6 +113,7 @@
     </select>
 
 
+
     <select id="findWay" resultType="top.zzh.vo.BorrowDetailVO">
         <![CDATA[
 
@@ -120,6 +121,8 @@
          t.baid=b.baid and b.sid=s.sid and bw.baid=b.baid and t.uid=#{uid} and t.juid=#{juid} and t.baid=#{baid};
          ]]>
     </select>
+
+
 
 
 </mapper>

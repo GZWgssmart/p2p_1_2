@@ -10,6 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.zzh.bean.*;
 import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.Hkb;
+import top.zzh.bean.Tzb;
+import top.zzh.common.Constants;
+
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.query.HkbQuery;
@@ -28,6 +37,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import top.zzh.vo.TzbVO;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 曾志湖 on 2018/1/3.
@@ -62,9 +77,31 @@ public class HkbController {
     }
 
 
+
     @RequestMapping("hk_page")
-    public String hkbPage(){
+    public String hkbPage() {
         return "manager/hkb";
+    }
+
+    @RequestMapping("hkDetail/{uid}")
+    public ModelAndView touzi(HttpSession session, Integer pageNo, Hkb hkb,@PathVariable("uid") Long uid) {
+        logger.info("后台管理员查看用户还款详情");
+        hkb.setUid(uid);
+        if(pageNo==0){
+            pageNo = 1;
+        }
+        Pager obj = hkbService.find(pageNo,5,hkb);
+        List<HkbVO> hkbVOList = new ArrayList<>();
+        for(Object o:obj.getRows()){
+            HkbVO hkbVO = (HkbVO) o;
+            hkbVOList.add(hkbVO);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("manager/hkdetail");
+        modelAndView.addObject("obj",hkbVOList);
+        modelAndView.addObject("page",obj);
+        return modelAndView;
+
     }
 
 

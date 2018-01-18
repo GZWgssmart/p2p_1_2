@@ -156,7 +156,22 @@ function deleteMany() {
 
 }
 
+function findDetails() {
+    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        return row.nid;
+    });
+    if (row == "") {
+        layer.msg('查看详情失败，请勾选数据!', {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }else {
 
+        window.location.href = "/notice/findNotice/"+row;
+    }
+
+}
 
 
 

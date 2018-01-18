@@ -13,6 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.zzh.bean.*;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.*;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.*;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.*;
 import top.zzh.common.*;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.message.GetPhoneMessage;
@@ -21,6 +27,8 @@ import top.zzh.query.UserQuery;
 import top.zzh.service.*;
 import top.zzh.vo.ControllerStatusVO;
 import top.zzh.vo.OptionVo;
+import top.zzh.vo.UserMoneyVO;
+import top.zzh.vo.UserTicketVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,6 +66,8 @@ public class LUserController {
 
     private LoginLogQuery loginLogQuery;
 
+    @Autowired
+    private UserTicketService userTicketService;
 
     @GetMapping("login_page")
     public String showLogin() {
@@ -110,9 +120,12 @@ public class LUserController {
 
     @GetMapping("userindex")
     public String userLogin(HttpSession session, HttpServletRequest request) {
+        Long uid = (Long) session.getAttribute(Constants.USER_ID_SESSION);
         String name = (String) session.getAttribute(Constants.USER_IN_SESSION);
         String time = loginLogService.getByloginTime(name);
         User user = userService.getByface(name);
+        UserMoneyVO userMoneyVO = (UserMoneyVO)userMoneyService.listMoney(uid);
+        request.setAttribute("userMoneyVO",userMoneyVO);
         request.setAttribute("time", time);
         request.setAttribute("face", user.getFace());
         request.setAttribute("name",name);
@@ -264,15 +277,21 @@ public class LUserController {
             recommend.setRname(user.getUname());
             recommendService.save(recommend);
         }
+        userTicketService.regTktsave(user.getUid());
         session.setAttribute("uname",user.getUname());
+        session.setAttribute("uid",user.getUid());
         return statusVO;
     }
 
 
     @GetMapping("registerSuccess")
-    public String registerSuccess() {
-
-        return "/user/registerSuccess";
+    public ModelAndView registerSuccess(HttpSession session) {
+        List<UserTicketVo> utvList=userTicketService.selectUtkListByName("注册",(Long)session.getAttribute("uid"));
+//        List<UserTicketVo> utvList=userTicketService.selectUtkListByName("注册",(long)65);
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("utvList",utvList);
+        mv.setViewName("/user/registerSuccess");
+        return mv;
     }
 
 

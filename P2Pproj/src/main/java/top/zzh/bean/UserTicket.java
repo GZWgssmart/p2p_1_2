@@ -6,18 +6,37 @@ import java.util.Date;
 public class UserTicket {
     private Long ukid;
 
+    public UserTicket(Long uid, Long kid, Date tktime, Byte usestatus) {
+        this.uid = uid;
+        this.kid = kid;
+        this.tktime = tktime;
+        this.usestatus = usestatus;
+    }
+
+    public UserTicket(Long ukid, Long uid, Long kid, Date tktime, Byte usestatus) {
+        this.ukid = ukid;
+        this.uid = uid;
+
+        this.kid = kid;
+        this.tktime = tktime;
+        this.usestatus = usestatus;
+    }
+
     private Long uid;//用户id
 
     private Long kid;//劵id
 
     private Date tktime;//领劵时间
 
-    public UserTicket(Long ukid, Long uid, Long kid, Date tktime) {
-        this.ukid = ukid;
-        this.uid = uid;
-        this.kid = kid;
-        this.tktime = tktime;
+    public Byte getUsestatus() {
+        return usestatus;
     }
+
+    public void setUsestatus(Byte usestatus) {
+        this.usestatus = usestatus;
+    }
+
+    private Byte usestatus;
 
     public UserTicket() {
         super();

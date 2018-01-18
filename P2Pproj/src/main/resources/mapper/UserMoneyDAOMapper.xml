@@ -173,5 +173,10 @@
           limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
-
+    <select id="listMoney" resultType="top.zzh.vo.UserMoneyVO">
+        <![CDATA[
+            select um.umid,u.uid,u.rname,um.zmoney,um.kymoney,um.symoney,um.tzmoney,um.djmoney,um.dsmoney,um.jlmoney
+            from t_usermoney um,t_user u where um.uid = u.uid and u.uid =#{uid}
+        ]]>
+    </select>
 </mapper>

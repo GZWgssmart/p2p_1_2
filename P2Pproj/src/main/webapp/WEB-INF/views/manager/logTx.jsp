@@ -44,11 +44,11 @@
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">开始时间：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="date"/>
+                        <input type="date" class="form-control" id="date"/>
                     </div>
                     <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">终止时间：</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="dateTime"/>
+                        <input type="date" class="form-control" id="dateTime"/>
                     </div>
                     <div class="col-sm-1 col-sm-offset-4">
                         <button class="btn btn-primary" id="search_btn">查询</button>

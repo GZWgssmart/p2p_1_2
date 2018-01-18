@@ -78,7 +78,21 @@ $('#mytab').bootstrapTable({
             }
         },
         {
-            title: '简介',
+            title: '使用条件',
+            field: 'usecondition',
+            align: 'center',
+            sortable: true,
+            formatter: function (value) {
+               if(value==null||value==0){
+                   return "用于提现";
+               }else{
+                   return value;
+               }
+
+            }
+        },
+        {
+            title: '使用简介',
             field: 'tintro',
             align: 'center',
             sortable: true
@@ -93,9 +107,6 @@ $('#mytab').bootstrapTable({
                 var y = date.getFullYear();
                 var m = date.getMonth() + 1;
                 var d = date.getDate();
-                var h = date.getHours();
-                var mi = date.getMinutes();
-                var ss = date.getSeconds();
                 return y + '-' + m + '-' + d;
             }
         },
@@ -104,10 +115,24 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var d=  '<a title="点击查看内容" href="javascript:void(0);"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#seeContentModel" onclick="seeContent(\'' + row.tintro + '\')"><i class="glyphicon glyphicon-zoom-in" style="color:green"></i></a> ';
+                var tktime=new Date(row.tktime).toLocaleDateString();
+                var currDate = new Date().toLocaleDateString();//获取系统当前时间
+                if(currDate < tktime){
+                    var c;
+                    if(row.status==0){
+                        c= '<a title="激活" href="javascript:void(0);"  onclick="active(\'' + row.status + '\',\''+ row.kid + '\')"><i class="glyphicon glyphicon-ok" style="color:green"></i></a> ';
+                    }else{
+                        c= '<a title="冻结" href="javascript:void(0);"  onclick="freeze(\'' + row.status + '\',\''+ row.kid + '\')"><i class="glyphicon glyphicon-remove" style="color:green"></i></a> ';
+                    }
 
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#myModal" onclick="return edit(\'' + row.kid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
-                return d+e;
+                    var d=  '<a title="点击查看使用简介" href="javascript:void(0);"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#seeContentModel" onclick="seeContent(\'' + row.tintro + '\')"><i class="glyphicon glyphicon-zoom-in" style="color:green"></i></a> ';
+                    var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#myModal" onclick="return edit(\'' + row.kid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                    return c+d+e;
+                }else{
+                    var d=  '<a title="点击查看使用简介" href="javascript:void(0);"  data-toggle="modal" data-id="\'' + row.kid + '\'" data-target="#seeContentModel" onclick="seeContent(\'' + row.tintro + '\')"><i class="glyphicon glyphicon-zoom-in" style="color:green"></i></a> ';
+                    d=d+"(已过期)";
+                    return d;
+                }
             }
         }
     ],
@@ -157,13 +182,15 @@ function edit(kid) {
                 $(".tkmoneychange5").show();
                 $(".tkmoneychange6").hide();
             }
+            if(data.usecondition==null){
+                $("#usecondition2").val(0);
+            }
             $("#tname3").val(data.tname);
             $("#tintro3").val(data.tintro);
         },
         "json"
     );
 }
-
 
 //查询按钮事件
 $('#search_btn').click(function () {
@@ -191,7 +218,7 @@ $('#updateForm').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-        bzname: {
+        way: {
             message: '验证失败',
             validators: {
                 notEmpty: {
@@ -308,6 +335,38 @@ $("#type2").change(function () {
 
 function seeContent(content) {
     $("#contentSpan").html(content);
+}
+function active(status,kid) {
+    $.post(
+        "/ticket/activeAndFreeze",
+        {"status":status,
+            "kid":kid
+        },
+        function (data) {
+            if (data.result == "ok") {
+                layer.msg("已激活", {icon: 1, time: 1000});
+            } else {
+                layer.msg("发生错误", {icon: 1, time: 1000});
+            }
+            refush();
+        }, "json"
+    );
+}
+function freeze(status,kid) {
+    $.post(
+        "/ticket/activeAndFreeze",
+        {"status":status,
+            "kid":kid
+        },
+        function (data) {
+            if (data.result == "ok") {
+                layer.msg("已冻结", {icon: 1, time: 1000});
+            } else {
+                layer.msg("发生错误", {icon: 1, time: 1000});
+            }
+            refush();
+        }, "json"
+    );
 }
 
 

@@ -32,12 +32,6 @@ $('#mytab').bootstrapTable({
             valign: 'middle'
         },
         {
-            title: '权限Id',
-            field: 'id',
-            align: 'center',
-            sortable: true
-        },
-        {
             title: '权限url',
             field: 'url',
             align: 'center',

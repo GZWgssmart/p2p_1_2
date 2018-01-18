@@ -16,23 +16,6 @@
     <div class="ibox float-e-margins">
         <div class="ibox-title">
             <h5>公司动态列表</h5>
-            <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">选项1</a>
-                    </li>
-                    <li><a href="#">选项2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
-            </div>
         </div>
         <div class="ibox-content">
             <div class="panel panel-default">
@@ -58,7 +41,7 @@
                 <button id="btn_add" type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span><a a class="J_menuItem" style="color: white" href="<%=path%>/dynamic/initAdd">新增动态</a>
                 </button>
-                <button id="btn_update" type="button" onclick="update();" class="btn btn-default" style="display: block; border-radius: 0" data-toggle="modal" data-target="#mediaUpdate">
+                <button id="btn_update" type="button" onclick="update();" class="btn btn-default" style="display: block; border-radius: 0">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>更改动态
                 </button>
                 <button id="btn_deleteMany" onclick="deleteMany();" type="button" class="btn btn-default" style="display: block;">
@@ -68,64 +51,6 @@
         </div>
     </div>
 </div>
-<%--网站信息的修改--%>
-<div class="modal inmodal fade" id="dynamicUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    报道的更改
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal"  id="updateForm">
-                    <input type="hidden" name="dyid" id="dyid"/>
-                    <input type="hidden" name="state" id="state"/>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">标题</label>
-                        <div class="col-sm-10">
-                            <input type="text" name ="title" placeholder="" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">内容</label>
-                        <div class="col-sm-10">
-                            <textarea id="editor" name="content" style="height: 250px;width: 700px"autofocus>${dynamic.content}</textarea>
-                        </div>
-                    </div>
-                    <input type="hidden" id="pic" name="pic"/>
-                    <div class="form-group">
-                        <label  class="col-sm-2 control-label">封面图片</label>
-                        <div class="col-sm-10">
-                            <div class="layui-upload">
-                                <button type="button" class="layui-btn" id="picx">上传图片</button>
-                                <div class="layui-upload-list">
-                                    <img style="width: 150px;height: 150px" id="demo1">
-                                    <p id="demoText"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">报道日期</label>
-                        <div class="col-sm-10">
-                            <input name="date" type="date" placeholder="" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-lg btn-primary" id="update" type="submit"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">提交</span></button>
-                        <button class="btn btn-lg btn-default" data-dismiss="modal" type="button"><i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">取消</span></button>
-                    </div>
-                </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
 </div>
 <%--网站信息的修改--%>
 <jsp:include page="../common/bootstraptablejs.jsp"/>

@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
     <div class="header-top min-width">
-        <div class="container fn-clear"> <strong class="fn-left">咨询热线：400-668-6698<span class="s-time">服务时间：9:00 - 18:00</span></strong>
+        <div class="container fn-clear">
+            <c:forEach var="s" items="${homeList}">
+                <strong class="fn-left">咨询热线：${s.phone}<span class="s-time">服务时间：9:00 - 18:00</span></strong>
+            </c:forEach>
             <ul class="header_contact">
                 <li class="c_1"> <a class="ico_head_weixin" id="wx"></a>
                     <div class="ceng" id="weixin_xlgz" style="display: none;">
@@ -31,7 +34,6 @@
                         <a href="<%=path%>/page/user"  title="用户名">${user}</a>
                     </c:if>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -43,8 +45,8 @@
                 </a>
             </div>
             <ul class="top-nav fn-clear">
-                <li class="on"> <a href="<%=path%>/">首页</a> </li>
-                <li> <a href="<%=path%>/page/list" class="">投资理财</a> </li>
+                <li> <a href="<%=path%>/">首页</a> </li>
+                <li> <a href="<%=path%>/page/list?pageNo=1" class="">投资理财</a> </li>
                 <li> <a href="<%=path%>/page/help">安全保障</a> </li>
                 <li class="top-nav-safe"> <a href="<%=path%>/page/user">我的账户</a> </li>
                 <li> <a href="<%=path%>/page/about">关于我们</a> </li>

@@ -4,7 +4,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.zzh.bean.Skb;
 import top.zzh.common.Pager;
+
 import top.zzh.vo.SkbUpdate;
+
+
 
 import java.util.List;
 
@@ -26,7 +29,11 @@ public interface SkbDAO extends BaseDAO{
 
     long countUid(@Param("uid") Long uid, @Param("baid") Long baid);
 
-    int saveList(List <Skb> list);
+    //后台查看收款详情
+    List <Object> find(@Param("pager") Pager pager,@Param("query") Object obj);
+    Long countByUid(@Param("query") Object obj);
+
+    void saveList(List <Skb> list);
 
     List<Object> list(@Param("pager") Pager pager, @Param("uid") Long uid, @Param("baid") Long baid);
 

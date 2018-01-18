@@ -13,4 +13,6 @@ public interface TzbService extends BaseService {
     Pager listPagerByUId(int pageNo,int pageSize, Object obj);
     Long getCount(Object obj);
     ControllerStatusVO add(Object obj);
+
+    Long count();
 }

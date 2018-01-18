@@ -36,12 +36,18 @@ public class MediaController {
      * @return
      * */
 
-    @RequestMapping("list")
-    public ModelAndView mediaList(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("mediaList");
-        modelAndView.addObject("mediaList",mediaService.listAll());
+    @RequestMapping("initPager/{pageIndex}/{pageSize}")
+    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
+        ModelAndView modelAndView = new ModelAndView("index/report");
+        modelAndView.addObject("mediaList",mediaService.listMedia(pageIndex,pageSize));
         return modelAndView;
+    }
+
+    @RequestMapping("initMedia/{mid}")
+    public String initNotice(@PathVariable("mid") Long mid ,HttpServletRequest request) {
+        Media media = (Media) mediaService.getById(mid);
+        request.setAttribute("media",media);
+        return "index/mediaPage";
     }
     @RequestMapping("initAdd")
     public String initAdd(){

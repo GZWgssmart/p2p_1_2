@@ -1,4 +1,6 @@
+<%@ page import="java.awt.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
     String path = request.getContextPath();
 %>
@@ -24,44 +26,78 @@
 
         <div class="text-box">
             <div class="text-content" id="text-content">
-                <h1 class="title">网站公告</h1>
-                <ul class="clearfix mt20 new-list">
-                    <li class="clearfix list-item">
-                        <a href="ad1.jsp">9月14日最新理财产品预告</a>
-                        <span>2015-09-12</span>
-                    </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">豆兑换规则</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月12日最新理财产品介绍</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月11日最新理财产品介绍</a>
-                    <span>2015-09-11</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月10日最新理财产品预告</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月9日最新理财产品介绍</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月8日最新理财产品预告</a>
-                    <span>2015-09-07</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月7日最新理财产品预告</a>
-                    <span>2015-09-06</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月6日最新理财产品预告</a>
-                    <span>2015-09-05</span>
-                </li>				</ul>
-                <div class="page">
-                    <span class="all">共有163条信息</span><span class="count"></span><div class="fr pages"><span data-page="1" class="currents">1</span><a data-page="2" href="#">2</a><a data-page="3" href="#">3</a><a data-page="4" href="#">4</a><a data-page="5" href="#">5</a><a data-page="6" href="#">6</a><span>...</span><a data-page="16" href="#">16 </a><a data-page="17" href="#">17 </a><a data-page="2" class="next" href="#">下一页</a><a data-page="17" class="last" href="#">尾页</a></div>
-                </div>
+                <ul class="r-list">
+                    <c:forEach items="${mediaList}" var="s">
+                        <li class="clearfix">
+                            <a href="">
+                                <img src="<%=path%>/${s.pic}" width="300" height="171">
+                            </a>
+                            <div class="record">
+                                <h5>
+                                    <a href="<%=path%>/media/initMedia/${s.mid}">${s.title}</a>
+                                </h5>
+                                <p class="text">
+                                        ${s.title}
+                                </p>
+                                <p class="time">报道时间:${s.date}</p>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <%--分页条开始--%>
+                <c:if test="${page.total==0}">
+                    <div align="center"><h5>没有找到匹配的记录</h5></div>
+                </c:if>
+                <c:if test="${page.total>0}">
+                    <div class="pagination clearfix mrt30">
+                        <span class="page" style="font-size: 19px;">
+                            <a href="javascript:void(0);" onclick="">首页</a>
+                            <a href="javascript:void(0);" style="margin-left: 10px" onclick="">上一页</a>&nbsp;
+                            <a class="curr" style="margin-left: 10px" href="javascript:void(0);">1</a>
+                            <a href="#"style="margin-left: 10px">2</a>
+                            <a href="#" style="margin-left: 10px">3</a>
+                            <a href="#" style="margin-left: 10px">4</a>
+                            <a href="#" style="margin-left: 10px">5</a>
+                            <a href="javascript:void(0);" style="margin-left: 10px">下一页</a>
+                            <a href="javascript:void(0);" style="margin-left: 10px">尾页</a>&nbsp;
+                            <em style="margin-left: 10px">共2297页&nbsp;</em></span>
+                        <dl class="page-select">
+                            <dt><span>1</span><i class="icon icon-down"></i></dt>
+                            <dd style="display: none;">
+                                <ul name="nump" id="jsnump">
+                                    <li><a href="##" onclick="">1</a></li>
+                                    <li><a href="##" onclick="">2</a></li>
+                                    <li><a href="##" onclick="">3</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </c:if>
+                <%--分页条结束--%>
             </div>
         </div>
     </div>
 </div>
 <!-- 网站底部-->
 <%@include file="../common/footer.jsp" %>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
+<script>
+    var path = "http://"+window.location.host+"/upload";
+    function page(str){
+        if(str==${page.pageNo}&&str==1){
+            layer.msg("当前已经是第一页了！", {icon: 2, time: 1000});
+            return false;
+        }
+        if(str==${page.pageNo}&&str==${page.pages}){
+            layer.msg("当前已经是最后一页了！", {icon: 2, time: 1000});
+            return false;
+        }
+        $.post("<%=path%>/media/list", {
+                pageNo: str},
+            function(data){
+                window.location.href="<%=path%>/media/list?pageNo="+str;
+            });
+    }
+</script>
 </body>
 </html>

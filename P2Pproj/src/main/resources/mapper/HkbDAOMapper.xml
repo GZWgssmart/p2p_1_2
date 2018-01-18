@@ -48,7 +48,15 @@
         <![CDATA[
         select count(hkid) from t_hkb h,t_huser hu,t_user u,t_borrowapply b where b.baid = h.baid
               and  h.uid = u.uid and h.huid = hu.huid
+        ]]>
+    </select>
 
+    <select id="find" resultType="top.zzh.vo.HkbVO">
+        <![CDATA[
+            select h.hkid,ba.baid,u.uid,h.rname,h.bzname,h.cpname,h.ybx,h.rbx,h.ylx,h.rlx,h.ybj,h.rbj,h.yfx,h.rfx,h.yucount,h.djq,h.tnum,h.rnum,h.state
+            from t_hkb h,t_user u,t_borrowapply ba
+            where h.uid = u.uid and h.baid = ba.baid and u.uid = #{query.uid}
+            limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
@@ -95,5 +103,13 @@
         where hkid=#{hkid}
     </update>
 
+
+
+    <select id="countByUid" resultType="long">
+        <![CDATA[
+          select count(u.uid) from t_hkb h,t_user u,t_borrowapply ba
+            where h.uid = u.uid and h.baid = ba.baid and u.uid = #{query.uid}
+        ]]>
+    </select>
 
 </mapper>

@@ -1,5 +1,8 @@
 package top.zzh.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.sun.deploy.net.HttpUtils;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,10 @@ import top.zzh.bean.User;
 import top.zzh.common.Constants;
 import top.zzh.common.EncryptUtils;
 import top.zzh.common.Pager;
+import top.zzh.enums.BankUtils;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BankCardService;
+import top.zzh.service.BankService;
 import top.zzh.service.UserService;
 import top.zzh.vo.ControllerStatusVO;
 
@@ -34,6 +39,9 @@ public class BankCardController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BankService bankService;
+
     @RequestMapping("pager_criteria")
     @ResponseBody
     public Pager pagerCriteria(int page, int rows, BankCard bankCard) {
@@ -43,50 +51,72 @@ public class BankCardController {
 
     @RequestMapping("save")
     @ResponseBody
-    public ControllerStatusVO save(BankCard bankCard, String pwd, HttpSession session){
+    public JSONObject save(BankCard bankCard, String pwd, HttpSession session){
         logger.info("绑定银行卡");
         Long uid=(Long) session.getAttribute(Constants.USER_ID_SESSION);
+        User user =(User)session.getAttribute("users");
+        String bank=bankService.getBankName(bankCard.getType());//银行
+        String params="realName="+user.getRname()+"&bank="+bank+"&bankCardNo="+bankCard.getCardno()+"&phone="+user.getPhone();
+        JSONObject jsonObject=BankUtils.jsonObject("http://localhost:8081/bank/bind",params);
         ControllerStatusVO statusVO = null;
         Long lo=(Long)bankCardService.countDank(uid);
         if (lo==1){//已经绑定银行卡
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_FAIL);
-            return  statusVO;
+            JSONObject.fromObject(statusVO);
+            return JSONObject.fromObject(statusVO);
         }
 
-        User user =(User)session.getAttribute("users");
 
         if(user.getRname()==null || user.getIdno()==null){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_KEREN_ERROR);
-            return  statusVO;
+            JSONObject.fromObject(statusVO);
+            return JSONObject.fromObject(statusVO);
         }
         bankCard.setUid(uid);
         bankCard.setRname(user.getRname());
         bankCard.setIdno(user.getIdno());
         bankCard.setState((byte)0);
         try{
-            bankCardService.save(bankCard);
-            System.out.println(pwd);
-            userService.updatepwd(uid,EncryptUtils.md5(pwd));//支付密码
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_SUCCESS);
+            if(jsonObject.getString("code").equals("1000")) {
+                bankCardService.save(bankCard);
+                System.out.println(pwd);
+                userService.updatepwd(uid, EncryptUtils.md5(pwd));//支付密码
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_BANK_SUCCESS);
+            }else {
+                return jsonObject;
+            }
         }catch (RuntimeException e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_ERROR_FAIL);
         }
-        return statusVO;
+        JSONObject.fromObject(statusVO);
+        return JSONObject.fromObject(statusVO);
     }
 
     @RequestMapping("remove")
     @ResponseBody
-    public ControllerStatusVO remove(HttpSession session){
+    public JSONObject remove(HttpSession session){
         logger.info("删除绑定的银行卡");
-        Long uid=(Long) session.getAttribute(Constants.USER_ID_SESSION);
         ControllerStatusVO statusVO = null;
+        Long uid=(Long) session.getAttribute(Constants.USER_ID_SESSION);
+        User user =(User)session.getAttribute("users");
+        String cardno =(String)bankCardService.getDank(uid);//银行卡号
+        String type =bankCardService.getType(uid);//所属银行
+        String bank=bankService.getBankName(type);//银行
+        String params="realName="+user.getRname()+"&bank="+bank+"&bankCardNo="+cardno+"&phone="+user.getPhone();
+        JSONObject jsonObject=BankUtils.jsonObject("http://localhost:8081/bank/unbind",params);
+        System.out.println(jsonObject);
         try{
-            bankCardService.removeById(uid);
-            statusVO = ControllerStatusVO.status(ControllerStatusEnum. UERS_JCDIN_SUCCESS);
+            if(jsonObject.getString("code").equals("2000")) {
+                bankCardService.removeById(uid);
+                statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_JCDIN_SUCCESS);
+            }else {
+                return jsonObject;
+            }
         }catch (RuntimeException e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.UERS_JCDIN_ERROR);
         }
-        return statusVO;
+        JSONObject.fromObject(statusVO);
+        return JSONObject.fromObject(statusVO);
     }
 
     @RequestMapping("update")

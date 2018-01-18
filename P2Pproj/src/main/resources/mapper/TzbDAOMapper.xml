@@ -30,14 +30,15 @@
 
     <select id="listPager" resultType="top.zzh.vo.TzbVO">
         <![CDATA[
-            select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
+            select u.uid,u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
           where t.uid = u.uid and b.baid = t.baid
              limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
     <select id="listPagerCriteria" resultType="top.zzh.vo.TzbVO">
-        select u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit from t_tzb t,t_user u,t_borrowapply b
+        select t.juid,u.uid,u.uname,b.rname,t.money,t.time,t.cpname,t.nprofit
+        from t_tzb t,t_user u,t_borrowapply b
         where t.uid = u.uid and b.baid = t.baid
         <include refid="cash_query_criteria"/>
           limit #{pager.beginIndex}, #{pager.pageSize}

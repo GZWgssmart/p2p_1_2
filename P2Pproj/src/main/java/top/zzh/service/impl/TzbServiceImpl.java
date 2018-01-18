@@ -71,6 +71,8 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         return pager;
     }
 
+
+
     @Override
     public Long getCount(Object obj) {
         return tzbDAO.getCount(obj);
@@ -266,7 +268,10 @@ public class TzbServiceImpl extends AbstractService implements TzbService {
         return statusVO;
     }
 
-
+    @Override
+    public Long count() {
+        return tzbDAO.count();
+    }
 
 
     @Autowired

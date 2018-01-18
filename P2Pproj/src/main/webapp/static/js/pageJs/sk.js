@@ -172,25 +172,7 @@ function queryParams(params) {
     }
 }
 
-//
-// function shenhe(id,state) {
-//     $("#shenhe").click(function () {
-//         $.post(
-//             "/borrowapply/updateState/"+id+"/"+state,
-//             $("#shenheform").serialize(),
-//             function (data) {
-//                 if (data.result == "ok") {
-//                     layer.msg(data.message, {icon: 1, time: 1000});
-//                     refush();
-//                 } else {
-//                     layer.msg(data.message, {icon: 2, time: 1000});
-//                     refush();
-//                 }
-//             }, "json"
-//         );
-//     });
-// }
-//
+
 
 //查询按钮事件
 $('#search_btn').click(function () {

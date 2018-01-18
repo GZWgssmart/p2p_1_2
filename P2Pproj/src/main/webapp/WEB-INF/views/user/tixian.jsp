@@ -129,7 +129,41 @@
                     5、提现手续费为提现金额的0.1%，最低每笔2元，100元封顶，手续费由第三方托管账户收取，用户自行承担。<br>
                 </div>
             </div>
+            <c:if test="${cardno==null}">
+            <div class="alert-450 alert-h220" id="alert-notOpenAccount" style="display: block;">
+                <div class="alert-title"><h4>提示</h4></div>
+                <div class="alert-main">
+                    <form id="notOpenAccountForm">
+                        <p class="msg6" align="center">
+                            用户在充值或提现前，需开通第三方账户。<br>
+                            此页面将在10秒后自动跳转到开通第三方账户页面<br>
+                            <em id="show-number">3</em>
+                        </p>
+                        <a href="<%=path%>/page/disanfang" id="openAccountAId" class="btn-ok txt-center">马上开通第三方账户</a>
+                    </form>
+                </div>
+            </div>
         </div>
+        </c:if>
+        </div>
+    <c:if test="${cardno==null}">
+        <script type="text/javascript">
+
+            var typeValue=$("#typeValue").html().trim();
+            var url=""
+            if(typeValue==1)
+            {
+                url="/page/disanfang"
+            }
+            else
+            {
+                url="/page/disanfang"
+            }
+            $("#openAccountAId").attr("href",url);
+            showSpan('alert-notOpenAccount');
+            countDown('show-number',10,url);
+        </script>
+    </c:if>
         <script type="text/javascript">
             $("#form\\:actualMoney").focus(
                 function () {

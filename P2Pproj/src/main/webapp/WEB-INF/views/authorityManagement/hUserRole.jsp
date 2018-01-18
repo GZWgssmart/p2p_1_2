@@ -15,24 +15,24 @@
     <script type="text/javascript" src="<%=path%>/static/js/lyj/sweetalert-dev.js"></script>
 </head>
 <body class="gray-bg">
-<!--分配后台用户角色 模态框开始-->
+<!--新增用户并分配角色 模态框开始-->
 <div class="modal fade" id="webAdd" tabindex="-1" role="dialog" aria-labelledby="webAddLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="webAddTitle">分配后台用户角色</h4>
+                <h4 class="modal-title" id="webAddTitle">新增用户并分配角色</h4>
             </div>
             <form method="post" id="formadd" class="form-horizontal" >
                 <div class="row">
-                    <div class="h4 col-md-4 col-md-offset-4">
-                        <select id="hUser"  name="hUser" class="form-control select2">
-                            <c:forEach items="${hUserList}" var="d">
-                                <option value="${d.huid}">${d.rname}</option>
-                            </c:forEach>
-                        </select>
+                    <div class="h5 col-md-4 col-md-offset-2">
+                        用户手机号：<input type="number" name="phone" id="phone" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">
+                    </div>
+                    <div class="h5 col-md-4">
+                        初始密码：<input type="text" value="666666" disabled="disabled">
                     </div>
                 </div>
+                <br/>
                 <div class="row">
                     <span id="roleList"></span>
                 </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<!--分配后台用户角色 模态框结束-->
+<!--新增用户并分配角色 模态框结束-->
 
 <!--修改角色 模态框开始-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -92,28 +92,48 @@
 <script src="<%=path%>/static/js/xsl/hUserRole.js"></script>
 <script>
     $(function () {
-
-        //判断下拉框有无选项
+        //弹出新增用户并分配角色模态框
         $(".popping").click(function () {
-            if($('select').children('option').length == 0){
-                swal("已无任何用户需要分配角色！","没有需要分配角色的用户哦","warning");
-            }else{
-                queryRoleList();
-                $('#webAdd').modal('toggle');
-            }
+            queryRoleList();
+            $('#webAdd').modal('toggle');
         });
 
+
+        //保存用户和角色
         $(".saveRole").click(function () {
-            if($('.role').is(':checked')) {
-                //保存用户角色
-                saveHuserRole();
-            }else{
-                swal("请选择角色!","您未选择任何角色","warning");
+            var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+            var phone = $("#phone").val();
+            if(phone != ''){
+                //检查是否为11位手机号,手机号是否重复
+                if(reg.test(phone)){
+                    $.post(
+                        "/hUserRole/checkPhone",
+                        {phone:phone},
+                        function (data) {
+                            if(data.result == "ok"){
+                                if($('.role').is(':checked')) {
+                                    //保存用户角色
+                                    saveHuserRole(phone);
+                                }else{
+                                    swal("请选择角色!","您未选择任何角色","warning");
+                                }
+                            }else{
+                                $("#phone").focus();
+                                swal("手机号已存在!","请更换手机号","warning");
+                            }
+                        }
+                    );
+                }else {
+                    swal("输入的手机号有错误!","请检查手机号","warning");
+                }
+            }else {
+                swal("请填写手机号!","您未填写手机号","warning");
+                $("#phone").focus();
             }
         });
 
         function queryRoleList() {
-            //查询所有角色
+            //查询未被冻结的所有角色
             $.post(
                 "/hUserRole/hRoleList",
                 function (data){
@@ -130,10 +150,10 @@
         }
         
         
-        function saveHuserRole() {
+        function saveHuserRole(phone) {
             //关闭模态框
             $('#webAdd').modal('toggle');
-            var hHuserId = $("#hUser option:selected").val();
+
             var roleList = '';
             $("input[name='id']:checkbox").each(function(){
                 if($(this).is(':checked') == true){
@@ -142,16 +162,16 @@
                     $(this).attr("checked", false);
                 }
             });
-            //删除下拉框中的用户
-            $("#hUser option[value='"+hHuserId+"']").remove();
             $.post(
-                "/hUserRole/saveOrUpdate",
-                {roleList:roleList,hHuserId:hHuserId,flag:"save"},
+                "/hUserRole/saveHuserAndRole",
+                {roleList:roleList,phone:phone},
                 function (data) {
                     if(data.result == "ok"){
+                        //清空数据
+                        $("#phone").val('');
                         //刷新表格
                         $('#mytab').bootstrapTable('refresh',{url:"/hUserRole/hasRoleHuser"});
-                        swal(data.message,"该用户已拥有角色！","success");
+                        swal(data.message,"新增用户成功！","success");
                     }
                 },
                 "json"

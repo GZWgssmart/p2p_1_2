@@ -47,4 +47,10 @@
         select * from t_notice where nid = #{nid}
     ]]>
     </select>
+
+    <select id="listNotice" resultType="top.zzh.vo.NoticeVo" >
+    <![CDATA[
+        select nid,title,content,date from t_notice  limit #{pageIndex},#{pageSize}
+    ]]>
+    </select>
 </mapper>

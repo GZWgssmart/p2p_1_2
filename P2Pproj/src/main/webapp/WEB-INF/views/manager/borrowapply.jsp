@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>申请借款列表</title>
+    <title>借款审核列表</title>
     <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body class="gray-bg">
@@ -38,11 +38,11 @@
                     查询条件
                 </div>
                 <div class="panel-body form-group" style="margin-bottom:0px;">
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请人姓名：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请人：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="rname" id="rname"/>
                     </div>
-                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">申请金额：</label>
+                    <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">金额：</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control" name="money" id="money1"/>
                     </div>
@@ -55,6 +55,9 @@
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
                 <button type="button" onclick="findDetails()" class="btn btn-default" style="display: block; border-radius: 0">
                     <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>借款详情
+                </button>
+                <button type="button" onclick="hk()" class="btn btn-default" style="display: block; border-radius: 0">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>还款详情
                 </button>
             </div>
         </div>

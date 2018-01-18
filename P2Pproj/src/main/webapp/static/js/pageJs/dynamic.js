@@ -91,7 +91,7 @@ $('#mytab').bootstrapTable({
             align: 'center',
             field: '',
             formatter: function (value, row, index) {
-                var e = '<a title="编辑" href="javascript:void(0);" id="leave"  data-toggle="modal" data-id="\'' + row.dyid + '\'" data-target="#dynamicUpdate" onclick="return edit(\'' + row.dyid + '\')"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
+                var e = '<a title="编辑" href="initUpdate/'+ row.dyid+'"><i class="glyphicon glyphicon-pencil" alt="修改" style="color:green"></i></a> ';
                 var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.dyid + ',' + row.state + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
                 var f = '';
                 if (row.state == 0) {
@@ -181,21 +181,6 @@ function edit(dyid) {
             "json"
         );
 }
-$("#update").click(function () {
-    $.post(
-        "/dynamic/update",
-        $("#updateForm").serialize(),
-        function (data) {
-            if (data.result == "ok") {
-                layer.msg(data.message, {icon: 1, time: 3000});
-            } else {
-                layer.msg(data.message, {icon: 2, time: 3000});
-            }
-            refush();
-            $("#dynamicUpdate").modal('hide');
-        }, "json"
-    );
-});
 function update() {
     var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
         return row.dyid;
@@ -208,7 +193,7 @@ function update() {
         return ;
 
     }else {
-        $.post("/dynamic/findDynamic/" + $("#dyid").val(),
+        $.post("/dynamic/initUpadate/" + $("#dyid").val(),
             function (data) {
                 if (data.result == "ok") {
                     $("#updateForm").autofill(data);
@@ -265,6 +250,14 @@ $('#dynamicAdd').bootstrapValidator({
                 }
             }
         },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
+                }
+            }
+        },
         date: {
              message: '时间验证失败',
              validators: {
@@ -282,6 +275,7 @@ $('#dynamicAdd').bootstrapValidator({
 }).on('success.form.bv', function(e) {//点击提交之后
     e.preventDefault();
     var $form = $(e.target);
+    alert($("#pic").val());
     var bv = $form.data('bootstrapValidator');
      $.post(
         "/dynamic/save",
@@ -294,10 +288,11 @@ $('#dynamicAdd').bootstrapValidator({
             }
             $("#dynamicAdd").data('bootstrapValidator').resetForm();
             $("#title").val("");
-            $("#pic").val("");
             $("#date").val("");
+            $("#demo2").html('');
             $("#demo1").attr("src",'');
-            $("#demo").html('');
+            $("#demoText").val("");
+            $("#pic").val("");
             ue.setContent('');
              refush();
         },
@@ -323,6 +318,14 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 20,
                     message: '标题长度必须在1到20之间'
+                }
+            }
+        },
+        pic: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '封面图片不能为空'
                 }
             }
         },

@@ -1,5 +1,6 @@
 package top.zzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import top.zzh.bean.UserMoney;
 import top.zzh.vo.UserMoneyVO;
 import top.zzh.common.Pager;
@@ -17,6 +18,9 @@ public interface UserMoneyService extends BaseService {
     void updateMoney( String money, String zmoney,String uid);
 
     UserMoney findJlmoney(Long uid);
+
+    //前台用户中心显示余额
+    UserMoneyVO listMoney(Long uid);
 
     void updateJlmoney(BigDecimal jlmoney,Long uid);
 

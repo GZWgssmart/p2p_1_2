@@ -3,6 +3,8 @@ package top.zzh.enums;
 
 public enum ControllerStatusEnum {
 
+    PHONE_EXIST(81,"error","数据库存在该手机号"),
+    PHONE_NOT_EXIST(82,"ok","数据库不存在该手机号"),
     ROLE_UPDATE_STATUS_FAIL(83,"error","修改角色状态失败"),
     ROLE_UPDATE_STATUS_SUCCESS(84,"ok","修改角色状态成功"),
     PERMISSION_UPDATE_STATUS_SUCCESS(85,"ok","修改权限状态成功"),
@@ -136,7 +138,7 @@ public enum ControllerStatusEnum {
     UERS_KEREN_ERROR(1146,"error","资料不足无法绑定银行卡，请完善个人资料！"),
     UERS_JCDIN_SUCCESS(1200,"ok","银行卡解绑成功！"),
     UERS_JCDIN_ERROR(1201,"error","银行卡解绑失败！"),
-    HUSER_ROLE_MODIFY_SUCCESS(81,"ok","修改成功！"),
+    SAVE_HUSERANDROLES_SUCCESS(81,"ok","初始密码为：666666"),
     HUSER_ROLE_SAVE_SUCCESS(82,"ok","保存成功！"),
     NOTICE_SAVE_SUCCESS(325,"ok","添加成功"),
     NOTICE_SAVE_FAIL(326,"error","添加失败"),

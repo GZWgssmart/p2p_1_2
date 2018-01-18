@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
   String path = request.getContextPath();
 %>
@@ -48,7 +50,6 @@
                   myar = setInterval('AutoScroll("#scrollDiv")', 3000)
               }); //当鼠标放上去的时候，滚动停止，鼠标离开的时候滚动开始
       });
-
   </script>
 </head>
 <body>
@@ -57,11 +58,13 @@
 <!--banner-->
 <div class="flexslider">
   <ul class="slides">
-    <li style="background-image: url(<%=path%>/static/images/banner.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner1.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner2.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner3.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="# " target="_blank"></a></li>
-    <li style="background-image: url(<%=path%>/static/images/banner4.jpg); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="#" target="_blank"></a></li>
+    <c:forEach var="s" items="${homeList}">
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic3}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l3}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic1}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l1}" target="_blank"></a></li>
+      <li style="background-image: url(<%=path%>/${s.pic2}); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; background-position: 50% 0px; background-repeat: no-repeat no-repeat;" class=""><a href="${s.l2}" target="_blank"></a></li>
+    </c:forEach>
   </ul>
 </div>
 <script src="<%=path%>/static/js/jquery.flexslider-min.js"></script>
@@ -124,30 +127,32 @@
         $(".login_float").animate({top: '-=2px',opacity:1},100);
         $(".login_float").animate({top: gaintop,opacity:1},100);
     });
-
 </script>
 <div class="new-announcement">
   <div class="new-announcement-title">最新公告</div>
   <div class="new-announcement-content">
     <div id="scrollDiv">
       <ul style="margin-top: 0px;">
-        <li><a class="black-link" href="<%=page%>/page/ad1" target="_blank"> 2015年9月8日还款公告</a></li>
-        <li><a class="black-link" href="<%=page%>/page/ad1" target="_blank"> 2015年纪念抗日战争胜利放假公告</a></li>
+        <c:if test="${requestScope.noticeList!=null}">
+          <c:forEach var="a" items="${noticeList}" >
+            <li><a  class="black-link" href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a></li>
+          </c:forEach>
+        </c:if>
       </ul>
     </div>
   </div>
-  <a class="more" href="#">更多</a> </div>
-<div class="ipubs"><span class="o1">累计投资金额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">已还本息:<strong>400,507,750.81</strong>元</span><span class="o2">余额:<strong>677,679,983.07</strong>元</span><span class="o4">注册人数:<strong>20649</strong>人</span></div>
+  <a class="more" href="<%=path%>/page/ad/1">更多</a> </div>
+<div class="ipubs"><span class="o1">交易总额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">月交易总额:<strong>400,507,750.81</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
 <div class="feature"> <a class="fea1" href="#"> <i></i>
   <h3>高收益</h3>
-  <span>年化收益率最高达“20%<br>
-  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="#"> <i></i>
+  <span>年化收益率最高达20%<br>
+  50元起投，助您轻松获收益</span> </a> <a class="fea2" href="<%=path%>/page/help"> <i></i>
   <h3>安全理财</h3>
   <span>100%本息保障<br>
-  实物质押，多重风控审核</span> </a> <a class="fea3" href="#"> <i></i>
+  实物质押，多重风控审核</span> </a> <a class="fea3" href="<%=path%>/page/help"> <i></i>
   <h3>随时赎回</h3>
   <span>两步赎回您的资金<br>
-  最快当日到账</span> </a> <a class="fea4" href="#"> <i></i>
+  最快当日到账</span> </a> <a class="fea4" href="<%=path%>/page/help"> <i></i>
   <h3>随时随地理财</h3>
   <span>下载手机客户端<br>
   随时随地轻松理财</span> </a> </div>
@@ -157,288 +162,228 @@
     <div class="page-left fn-left">
       <div class="mod-borrow">
         <div class="hd">
-          <h2 class="pngbg"><i class="icon icon-ttyx"></i>推荐项目</h2>
+          <h2 class="pngbg"><i class="icon icon-ttyx"></i>新手标</h2>
           <div class="fn-right f14 c-888">常规发标时间每天<span class="c-555">10:00，13:00和20:00</span>，其余时间根据需要随机发</div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fn-left">期限1-29天，期限短，收益见效快</span><a href="<%=page%>/page/list" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fn-left">期限1-29天，期限短，收益见效快</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
           <div class="borrow-list">
             <ul>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-zhai" title="债权贷"></i></a><a href="<%=path%>/page/info" class="f18" title="金女士债权质押借款1万元" target="_blank">金女士债权质押借款1万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">10000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-333">10.70% </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-orange">4</span>天</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic progress-bfb5">
-                          <div class="show-bar"> 56.3% </div>
+              <c:forEach items="${borrow1}" var="d">
+                <li>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="新手标"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                      <td width="260">借款金额<span class="f24 c-333">${d.money}</span>元</td>
+                      <td width="165">年利率<span class="f24 c-333">${d.nprofit}% </span></td>
+                      <td width="180" align="center">期限<span class="f24 c-orange">${d.term}</span>月</td>
+                      <td>
+                        <div class="circle">
+                          <div class="left progress-bar">
+                            <div class="progress-bgPic progress-bfb10">
+                              <div class="show-bar">${(d.mmoney/d.money)*100}% </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-zhai" title="债权贷"></i></a><a href="<%=path%>/page/info" class="f18" title="周先生债权质押借款0.1万元" target="_blank">周先生债权质押借款0.1万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">1000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-333">10.85% </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-orange">7</span>天</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic progress-bfb1">
-                          <div class="show-bar"> 10.07% </div>
-                        </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
+                      </td>
+                      <td align="right">
+                        <c:if test="${d.mmoney==d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">还款中</a>
+                        </c:if>
+                        <c:if test="${d.mmoney<d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a>
+                        </c:if>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </div>
       </div>
       <div class="mod-borrow mrt20">
         <div class="hd">
-          <h2 class="pngbg"><i class="icon icon-yyyz"></i>政信贷</h2>
+          <h2 class="pngbg"><i class="icon icon-yyyz"></i>普金宝</h2>
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">61.37万次</span>&nbsp;&nbsp;&nbsp;平均满标时间：<span class="c-555">1小时24分11秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fn-left">期限1-12月，收益更高</span><a href="<%=page%>/page/list" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fn-left">期限1-12月，收益更高</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
           <div class="borrow-list">
             <ul>
-              <li>
-                <div class="title"><a href="#" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="<%=path%>/page/info" class="f18" title="毕先生宝马320汽车质押贷款10万元" target="_blank">毕先生宝马320汽车质押贷款10万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">100000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-orange relative">12.00%
-                      <!--公益标 20150724 lj-->
-                      <!--公益标 20150724 lj-->
-                        </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-333">1</span>个月</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic progress-bfb10">
-                          <div class="show-bar"> 100% </div>
+              <c:forEach items="${borrow2}" var="d">
+                <li>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="普金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                      <td width="260">借款金额<span class="f24 c-333">${d.money}</span>元</td>
+                      <td width="165">年利率<span class="f24 c-333">${d.nprofit}% </span></td>
+                      <td width="180" align="center">期限<span class="f24 c-orange">${d.term}</span>月</td>
+                      <td>
+                        <div class="circle">
+                          <div class="left progress-bar">
+                            <div class="progress-bgPic progress-bfb10">
+                              <div class="show-bar">${(d.mmoney/d.money)*100}% </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="#" class="f18" title="王先生克莱斯勒300C汽车质押贷款15万元" target="_blank">王先生克莱斯勒300C汽车质押贷款15万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">150000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-orange relative">12.00%
-                      <!--公益标 20150724 lj-->
-                      <!--公益标 20150724 lj-->
-                        </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-333">1</span>个月</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic progress-bfb10">
-                          <div class="show-bar"> 100% </div>
-                        </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
+                      </td>
+                      <td align="right">
+                        <c:if test="${d.mmoney==d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">还款中</a>
+                        </c:if>
+                        <c:if test="${d.mmoney<d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a>
+                        </c:if>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </div>
       </div>
       <div class="mod-borrow mrt20">
         <div class="hd">
-          <h2 class="pngbg"><i class="icon icon-nnyy"></i>实时变现</h2>
+          <h2 class="pngbg"><i class="icon icon-nnyy"></i>多金宝</h2>
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">8.35万次</span>&nbsp;&nbsp;&nbsp;平均满标时间：<span class="c-555">1小时41分19秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"> <span class="fn-left">期限12-60月，打理更加容易</span><a href="<%=page%>/page/list" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"> <span class="fn-left">期限12-60月，打理更加容易</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
           <div class="borrow-list">
             <ul>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="<%=path%>/page/info" class="f18" title="朱先生比亚迪S6汽车抵押贷款4.5万元" target="_blank">朱先生比亚迪S6汽车抵押贷款4.5万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">45000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-orange relative">13.80%
-                      <!--公益标 20150724 lj-->
-                      <!--公益标 20150724 lj-->
-                        </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-333">18</span>个月</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic" style="background-position: -610px -40px;">
-                          <div class="show-bar"> 100% </div>
+              <c:forEach items="${borrow3}" var="d">
+                <li>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="多金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                      <td width="260">借款金额<span class="f24 c-333">${d.money}</span>元</td>
+                      <td width="165">年利率<span class="f24 c-333">${d.nprofit}% </span></td>
+                      <td width="180" align="center">期限<span class="f24 c-orange">${d.term}</span>月</td>
+                      <td>
+                        <div class="circle">
+                          <div class="left progress-bar">
+                            <div class="progress-bgPic progress-bfb10">
+                              <div class="show-bar">${(d.mmoney/d.money)*100}% </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-che" title="车易贷"></i></a><a href="<%=path%>/page/info" class="f18" title="朱先生别克英朗汽车抵押贷款5万元" target="_blank">朱先生别克英朗汽车抵押贷款5万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260">借款金额<span class="f24 c-333">50000.00</span>元</td>
-                    <td width="165">年利率<span class="f24 c-orange relative">13.80%
-                      <!--公益标 20150724 lj-->
-                      <!--公益标 20150724 lj-->
-                        </span></td>
-                    <td width="180" align="center">期限<span class="f24 c-333">18</span>个月</td>
-                    <td><div class="circle">
-                      <div class="left progress-bar">
-                        <div class="progress-bgPic progress-bfb10">
-                          <div class="show-bar"> 100% </div>
-                        </div>
-                      </div>
-                    </div></td>
-                    <td align="right"><a class="ui-btn btn-gray" href="#">还款中</a> </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
+                      </td>
+                      <td align="right">
+                        <c:if test="${d.mmoney==d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">还款中</a>
+                        </c:if>
+                        <c:if test="${d.mmoney<d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a>
+                        </c:if>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </div>
       </div>
       <div class="mod-borrow mrt20">
         <div class="hd">
-          <h2 class="pngbg"><i class="icon icon-ssbx"></i>债权转让</h2>
+          <h2 class="pngbg"><i class="icon icon-ssbx"></i>恒金宝</h2>
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">8.06万次</span> &nbsp;&nbsp;&nbsp;平均转让用时：<span class="c-555">03小时06分22秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fl">其他投资人折价转让，转让项目会随时更新，惊喜不断</span><a href="<%=page%>/page/list" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fl">其他投资人折价转让，转让项目会随时更新，惊喜不断</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
           <div class="borrow-list">
             <ul>
-              <li>
-                <div class="title"><a href="<%=path%>/page/info" target="_blank"><i class="icon icon-zhuan" title="债权转让"></i></a><a href="<%=path%>/page/info" title="汪女士债权质押借款1万元" class="f18" target="_blank">汪女士债权质押借款1万元</a></div>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                  <tr>
-                    <td width="260" height="60">剩余期限<span class="f24 c-333"> 2月8天 </span></td>
-                    <td width="200">预期收益率<span class="f24"><a href="javascript:;" class="tx-line c-orange" onClick="showCalculator(this,12.42,84890,10068.17)" title="点击查看纯收益率">12.42%</a></span></td>
-                    <td width="280" align="center">转让价格<span class="f24 c-333">10,068.17</span>元</td>
-                    <td width="88" align="right" class="time"><a href="#" class="ui-btn btn-gray" target="_blank">已转让</a>
-                      <p class="f12"> 用时：48秒 </p></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </li>
+              <c:forEach items="${borrow4}" var="d">
+                <li>
+                  <div class="title"><a href="<%=path%>/page/info/${d.baid}" target="_blank"><i class="icon icon-zhai" title="恒金宝"></i></a><a href="<%=path%>/page/info/${d.baid}" style="size: 5px" class="f18" title="${d.rname}借款${d.money}元" target="_blank">${d.rname}借款${d.money}元</a></div>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                      <td width="260">借款金额<span class="f24 c-333">${d.money}</span>元</td>
+                      <td width="165">年利率<span class="f24 c-333">${d.nprofit}% </span></td>
+                      <td width="180" align="center">期限<span class="f24 c-orange">${d.term}</span>月</td>
+                      <td>
+                        <div class="circle">
+                          <div class="left progress-bar">
+                            <div class="progress-bgPic progress-bfb10">
+                              <div class="show-bar">${(d.mmoney/d.money)*100}% </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td align="right">
+                        <c:if test="${d.mmoney==d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">还款中</a>
+                        </c:if>
+                        <c:if test="${d.mmoney<d.money}">
+                          <a class="ui-btn btn-gray" href="<%=path%>/page/info/${d.baid}">立即投标</a>
+                        </c:if>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </c:forEach>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="page-right fn-right" style="top: 0px;">
-      <div class="mod-risk-tip"><i class="icon icon-tip"></i><a href="http://localhost:8080" class="c-orange">收益与风险并存，请理性选择平台</a></div>
+      <div class="mod-risk-tip"><i class="icon icon-tip"></i><a href="<%=path%>/" class="c-orange">收益与风险并存，请理性选择平台</a></div>
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>网站公告</h3>
-          <a href="http://localhost:8080" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/ad/1" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <li><a href="#" title="关于“金融产品”产品的说明">关于“金融产品”产品的说明</a><span class="date">06-19</span></li>
-              <li><a href="#" title="2015年9月10日发标预告">2015年9月10日发标预告</a><span class="date">09-10</span></li>
-              <li><a href="#" title="关于平台“纪念抗战胜利70周年”9月3日***">关于平台“纪念抗战胜利70周年***</a><span class="date">09-02</span></li>
-              <li><a href="#" title="关于P2P理财平台新系统升级的公告">关于P2P理财平台新系统***</a><span class="date">09-02</span></li>
-              <li><a href="#" title="关于债权贷新规调整实施的公告">关于债权贷新规调整实施的公告</a><span class="date">08-25</span></li>
+              <c:if test="${requestScope.noticeList!=null}">
+                <c:forEach var="a" items="${noticeList}" >
+                  <li><a href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a><span class="date"><fmt:formatDate value="${a.date}" pattern="yyyy-MM-dd"/></span></li>
+                </c:forEach>
+              </c:if>
             </ul>
           </div>
         </div>
       </div>
       <div class="mod mod-rank clearfix ui-tab mrt20">
         <div class="hd">
-          <h3>排行榜</h3>
-          <div class="ui-tab-nav"> <i class="icon icon-cur"></i>
-            <ul>
-              <li class="active"><a href="#">收益</a></li>
-              <li><a href="#">投资</a></li>
-            </ul>
-            <a href="#" class="fn-right">更多&gt;</a> </div>
-        </div>
+          <h3>媒体报道</h3>
+          <a href="<%=path%>/page/report" class="fn-right">更多&gt;</a></div>
         <div class="bd">
-          <div class="ui-tab-cont">
-            <div class="ui-tab-item active">
-              <ul class="rank-list">
-                <li><span class="fl"><em class="n1">01</em>gz******</span><span class="fr">￥1,115,461.07</span></li>
-                <li><span class="fl"><em class="n2">02</em>米克******</span><span class="fr">￥1,003,890.04</span></li>
-                <li><span class="fl"><em class="n3">03</em>灵儿******</span><span class="fr">￥895,618.71</span></li>
-                <li><span class="fl"><em class="n4">04</em>li******</span><span class="fr">￥795,154.06</span></li>
-                <li><span class="fl"><em class="n5">05</em>豆芽******</span><span class="fr">￥747,154.44</span></li>
-              </ul>
-            </div>
-            <div class="ui-tab-item">
-              <ul class="rank-list">
-                <li><span class="fl"><em class="n1">01</em>黄世******</span><span class="fr">￥78,714,974.00</span></li>
-                <li><span class="fl"><em class="n2">02</em>一诺******</span><span class="fr">￥58,428,720.00</span></li>
-                <li><span class="fl"><em class="n3">03</em>hj******</span><span class="fr">￥57,844,191.00</span></li>
-                <li><span class="fl"><em class="n4">04</em>老马******</span><span class="fr">￥38,808,064.00</span></li>
-                <li><span class="fl"><em class="n5">05</em>写意******</span><span class="fr">￥31,341,159.00</span></li>
-              </ul>
-            </div>
+          <div class="article-list clearfix">
+            <ul>
+              <c:if test="${requestScope.mediaList!=null}">
+                <c:forEach var="a" items="${mediaList}" >
+                  <li>[${a.url}]&nbsp;&nbsp;<a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
+                </c:forEach>
+              </c:if>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="mod mod-report ui-tab clearfix mrt20">
+      <div class="mod mod-notice mrt20">
         <div class="hd">
-          <div class="ui-tab-nav"> <i class="icon icon-cur"></i>
-            <ul>
-              <li class="active"><a href="javascript:;">媒体报道</a></li>
-              <li class=""><a href="javascript:;">理财知识</a></li>
-            </ul>
-          </div>
-        </div>
+          <h3>公司动态</h3>
+          <a href="<%=path%>/page/dynamic" class="fn-right">更多&gt;</a></div>
         <div class="bd">
-          <div class="ui-tab-cont">
-            <div class="ui-tab-item active">
-              <div class="headlines"> <img src="<%=path%>/static/images/news.jpg"> <a title="平台遭遇P2P滑稽抄袭" target="_blank" href="#">平台遭遇P2P滑稽抄袭</a><br>
-                <span class="des">抄袭者居然把被抄袭者的名字一起抄下来，这样的乌龙抄袭你见过没...</span> </div>
-              <div class="article-list">
-                <ul>
-                  <li>[凤凰网]<a href="#" title="平台携手哈工大关爱毕节留守儿童" target="_blank">平台携手哈工大关爱毕节留守儿童</a></li>
-                  <li>[21CN财经]<a href="#" title="接受网贷之家专访" target="_blank">接受网贷之家专访</a></li>
-                  <li>[和讯网]<a href="#" title="受邀参加中国财经峰会 斩获行业最具品牌影响力等两项大奖" target="_blank">受邀参加中国财经峰会 斩获行业最具品牌影响力等两项大奖</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="ui-tab-item">
-              <div class="article-list">
-                <ul>
-                  <li>[<a href="#">P2P网贷</a>]<a href="#" title="随着互联网金融的快速发展，越来越多的人开始加入到p2p网贷投资行列，作为一种相对来说还比较新兴的理财产品" target="_blank"> 合肥p2p网贷哪家好，投资新人该如何选择p2p网贷平台</a></li>
-                  <li>[<a href="#">外汇</a>]<a href="#" title="投资者应知道，外汇交易市场是一个保证金交易市场，投资者可以利用外汇保证金交易进行更有收益空间的交易" target="_blank"> 什么是外汇保证金交易有哪些方式</a></li>
-                  <li>[<a href="#">外汇</a>]<a href="#" title="很多的投资者都听说过外汇保证金交易，他们都知道该交易方式可以让投资者有机会进行更有收益空间的交易" target="_blank"> 外汇保证金交易开户有什么样的具体优势呢？</a></li>
-                  <li>[<a href="#">保险理财</a>]<a href="#" title="保险理财因为其特殊性而对人员专业知识、道德标准以及人生阅历提出了较高要求。但是我国的保险业人才还存在很多问题" target="_blank"> 保险公司存在的人才需求问题</a></li>
-                  <li>[<a href="#">保险理财</a>]<a href="#" title="保险理财的专业人士缺乏已经成为我国保险公司个人理财业务发展的一大瓶颈，保险公司的员工要能够成为一个好的客户经理" target="_blank"> 保险理财产品销售人员需要具备的基本素质</a></li>
-                  <li>[<a href="#">外汇</a>]<a href="#" title="外货期货也叫货币期货，所谓期货自然与现货有着明显的区别，外汇期货除了价格表现形式上与现货有所差异之外，外汇期货交易是用一种货币按照汇率兑换成另一种货币的期货合约" target="_blank"> 什么是外汇期货及其套利形式介绍</a></li>
-                </ul>
-              </div>
-            </div>
+          <div class="article-list clearfix">
+            <ul>
+              <c:if test="${requestScope.dynamicList!=null}">
+                <c:forEach var="b" items="${dynamicList}" >
+                  <li><a href="<%=path%>/dynamic/initDynamic/${b.dyid}" title="${b.title}" target="_blank"> ${b.title}</a><span style="align:right;" class="date">${b.date}</span></li>
+                </c:forEach>
+              </c:if>
+            </ul>
           </div>
         </div>
       </div>
@@ -464,19 +409,18 @@
           <div class="img-scroll">
             <div class="container">
               <ul>
-                <li><img src="<%=path%>/static/images/logo_sbcvc.png" width="152" height="52" alt="软银"></li>
-                <li><img src="<%=path%>/static/images/logo_abc.png" width="152" height="52" alt="农业银行"></li>
-                <li><img src="<%=path%>/static/images/logo_wdzj.png" width="152" height="52" alt="网贷之家"></li>
-                <li><img src="<%=path%>/static/images/logo_baidu.png" width="152" height="52" alt="百度"></li>
-                <li><img src="<%=path%>/static/images/logo_aqb.png" width="152" height="52" alt="安全宝"></li>
-                <li><img src="<%=path%>/static/images/logo_gds.png" width="152" height="52" alt="万国数据"></li>
+                <c:if test="${requestScope.friendList!=null}">
+                  <c:forEach var="s" items="${friendList}" >
+                    <li><a href="${s.furl}"><img src="<%=path%>${s.fpic}" width="152" height="52" alt="软银"></a></li>
+                  </c:forEach>
+                </c:if>
               </ul>
             </div>
           </div>
         </div>
         <div class="ui-tab-item">
           <div class="links">
-            <a target="_blank" href="http://localhost:8080">网贷互联</a>
+            <a target="_blank" href="<%=path%>/">网贷互联</a>
             <a target="_blank" href="http://www.bjzq.com.cn">北京证券网</a>
             <a target="_blank" href="http://v.yidai.com/">易贷微理财</a>
             <a target="_blank" href="http://www.wangdaicaifu.com">P2P</a>
@@ -496,5 +440,3 @@
 
 </body>
 </html>
-
-

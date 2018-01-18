@@ -6,6 +6,9 @@ import top.zzh.bean.Dynamic;
 import top.zzh.dao.DynamicDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.DynamicService;
+
+import java.util.List;
+
 /**
  * create by 谭芳芳 on 2017/12/21
  * */
@@ -23,5 +26,10 @@ public class DynamicServiceImpl extends AbstractService implements DynamicServic
     @Override
     public void updateStatus(Dynamic dynamic) {
         dynamicDAO.updateStatus(dynamic);
+    }
+
+    @Override
+    public List<Object> listDynamic(int pageIndex, int pageSize) {
+        return dynamicDAO.listDynamic(pageIndex,pageSize);
     }
 }

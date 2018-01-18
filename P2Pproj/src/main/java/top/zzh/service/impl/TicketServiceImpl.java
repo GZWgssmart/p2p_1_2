@@ -20,4 +20,14 @@ public class TicketServiceImpl extends AbstractService implements TicketService 
         super.setBaseDAO(tickekDao);
         this.tickekDao = tickekDao;
     }
+
+    @Override
+    public void updateStatus(Byte status, Long kid) {
+        if(status!=null && status==0){
+            status=1;
+        }else if(status!=null && status==1){
+            status=0;
+        }
+        tickekDao.updateStatus(status,kid);
+    }
 }

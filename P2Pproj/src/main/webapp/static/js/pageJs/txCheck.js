@@ -67,6 +67,10 @@ $('#mytab').bootstrapTable({
                     return '<span style="color:green" >邮政储蓄</span>';
                 }else if(value==6){
                     return '<span style="color:green" >交通银行</span>';
+                }else if(value==7){
+                    return '<span style="color:green" >华夏银行</span>';
+                }else if(value==8){
+                    return '<span style="color:green" >大连银行</span>';
                 }
             }
         }

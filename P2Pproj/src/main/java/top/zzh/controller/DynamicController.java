@@ -34,19 +34,6 @@ public class DynamicController {
     private ControllerStatusVO statusVO;
     private Logger logger = LoggerFactory.getLogger(MediaController.class);
 
-
-    @RequestMapping("list")
-    public ModelAndView mediaList(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dynamicList");
-        modelAndView.addObject("dynamicList",dynamicService.listAll());
-        return modelAndView;
-    }
-    @RequestMapping("initAdd")
-    public String initAdd(){
-        return "dynamic/dynamicAdd";
-    }
-
     @RequestMapping("upload")
     @ResponseBody
     public FileVo fileUp(MultipartFile file, HttpServletRequest request){
@@ -62,8 +49,8 @@ public class DynamicController {
                 dir.mkdirs();
             }
             file.transferTo(dir);
-            fileVo.setFilePath("/upload/"+fileName);
-            System.out.println("保存到数据库的图片地址:/upload/"+fileName);
+            fileVo.setFilePath("upload/"+fileName);
+            System.out.println("保存到数据库的图片地址:upload/"+fileName);
             fileVo.setCode(0);
         }catch (Exception e){
             e.printStackTrace();
@@ -77,6 +64,24 @@ public class DynamicController {
         int position = filename.lastIndexOf(".");
         String ext = filename.substring(position);
         return System.nanoTime() + ext;
+    }
+
+    @RequestMapping("initPager/{pageIndex}/{pageSize}")
+    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
+        ModelAndView modelAndView = new ModelAndView("index/dynamic");
+        modelAndView.addObject("dynamicList",dynamicService.listDynamic(pageIndex,pageSize));
+        return modelAndView;
+    }
+
+    @RequestMapping("initDynamic/{dyid}")
+    public String initDynamic(@PathVariable("dyid") Long dyid ,HttpServletRequest request) {
+        Dynamic dynamic = (Dynamic) dynamicService.getById(dyid);
+        request.setAttribute("dynamic",dynamic);
+        return "index/dynamicPage";
+    }
+    @RequestMapping("initAdd")
+    public String initAdd(){
+        return "dynamic/dynamicAdd";
     }
 
     @RequestMapping("save")
@@ -100,6 +105,14 @@ public class DynamicController {
         Dynamic dynamic = new Dynamic();
         dynamic = (Dynamic) dynamicService.getById(dyid);
         return dynamic;
+    }
+
+    @RequestMapping("initUpdate/{dyid}")
+    public String initUpdate(@PathVariable("dyid") Long dyid  ,HttpServletRequest request){
+        Dynamic dynamic = new Dynamic();
+        dynamic = (Dynamic) dynamicService.getById(dyid);
+        request.setAttribute("dynamic",dynamic);
+        return "dynamic/dynamicUpdate";
     }
 
     @RequestMapping("update")

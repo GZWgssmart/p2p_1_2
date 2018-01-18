@@ -2,6 +2,7 @@ package top.zzh.service;
 
 import top.zzh.vo.UserTicketVo;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface UserTicketService extends BaseService{
@@ -12,6 +13,7 @@ public interface UserTicketService extends BaseService{
     Integer unuseCount(Long uid);
     Integer usedCount(Long uid);
     Integer overedCount(Long uid);
-
-
+    void regTktsave(Long uid);
+    List<UserTicketVo> selectUtkListByName(String tname,Long uid);
+    public void updateEGold();
 }

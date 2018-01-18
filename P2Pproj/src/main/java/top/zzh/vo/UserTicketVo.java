@@ -15,6 +15,8 @@ public class UserTicketVo {
     private String tktime;//有效时间
     private String tname;//优惠卷名称
     private String tintro;//优惠卷简介
+  
+
     public Long getUkid() {
         return ukid;
     }

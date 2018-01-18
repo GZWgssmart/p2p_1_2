@@ -6,4 +6,5 @@ package top.zzh.service;
 public interface BankService extends BaseService{
 
     String getDeposit(String id);
+    String getBankName( String id);
 }

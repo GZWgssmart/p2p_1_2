@@ -37,11 +37,18 @@ $('#mytab').bootstrapTable({
             field: 'rname',
             align: 'center',
             sortable: true
-        },
-
+        }
+        ,
         {
             title: '申请金额',
             field: 'money',
+            align: 'center',
+            sortable: true
+        }
+        ,
+        {
+            title: '产品名称',
+            field: 'cpname',
             align: 'center',
             sortable: true
         }
@@ -126,7 +133,10 @@ $('#mytab').bootstrapTable({
                 } else if(value===1){
                     //表示激活状态
                     return '<span style="color:blue">未审核</span>';
-                }else if(value===3){
+                }else if(value===2){
+                    //表示激活状态
+                    return '<span style="color:cyan">已满标</span>';
+                } else if(value===3){
                     //表示激活状态
                     return '<span style="color:red">审核不通过</span>';
                 }
@@ -139,7 +149,11 @@ $('#mytab').bootstrapTable({
             field: '',
             formatter: function (value, row, index) {
                 var g='';
-                g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                if(row.state == 1 ){
+                    g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                }else if(row.state==3){
+                    g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
+                }
                 return g;
             }
         }
@@ -158,7 +172,7 @@ $('#mytab').bootstrapTable({
             };
         }
     }
-})
+});
 
 //请求服务数据时所传参数
 function queryParams(params) {
@@ -180,7 +194,7 @@ function findDetails() {
         return row.baid;
     });
     if (row == "") {
-        layer.msg('查看详情失败，请勾选数据!', {
+        layer.msg('查看借款详情失败，请勾选数据!', {
             icon: 2,
             time: 2000
         });
@@ -190,6 +204,22 @@ function findDetails() {
         window.location.href = "/borrowdetail/detailView?row="+row;
     }
 
+}
+
+
+function hk() {
+    var uid = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        return row.uid;
+    });
+    if (uid == "") {
+        layer.msg('查看还款详情失败，请勾选数据!', {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }else {
+        window.location.href ="/hk/hkDetail/"+uid+"?pageNo=1";
+    }
 }
 
 

@@ -25,6 +25,7 @@ public interface TzbDAO extends BaseDAO {
     @Override
     Long countCriteria(@Param("query") Object obj);
 
+
     List<Object> listPagerById(@Param("pager") Pager pager,@Param("id") Long id);
 
     List<Object> listPagerByUId(@Param("pager") Pager pager,@Param("query") Object obj);
@@ -39,4 +40,7 @@ public interface TzbDAO extends BaseDAO {
 
     @Override
     void save(Object obj);
+
+    @Override
+    Long count();
 }

@@ -25,5 +25,8 @@ public interface RoleDAO  extends BaseDAO {
     Long count();
     void updateStatus(@Param("roleId") Long roleId,@Param("status") Integer status);
 
+    //通过账号查询用户的角色集合
+    List<Role> listByAccount(String phone);
+
 
 }

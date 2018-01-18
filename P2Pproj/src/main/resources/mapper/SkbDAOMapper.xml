@@ -32,25 +32,10 @@
 
     <select id="countUid" resultType="long">
         <![CDATA[
-        SELECT count(skid) FROM t_skb WHERE uid=#{uid} and baid = #{baid}
+        select count(skid) FROM t_skb WHERE uid=#{uid} and baid = #{baid}
     ]]>
     </select>
 
-    <!--&lt;!&ndash;批量新增&ndash;&gt;-->
-    <!--<insert id="saveList" parameterType="list">-->
-            <!--<![CDATA[-->
-          <!--insert into t_skb(uid, juid,-->
-          <!--ybx, rbx, ylx, rlx,-->
-          <!--ybj, rbj, rnum, tnum,-->
-          <!--baid-->
-          <!--)values-->
-          <!--]]>-->
-        <!--<foreach collection="list" item="item" index="index" separator="," >-->
-            <!--(#{item.uid},#{item.juid},#{item.ybx},#{item.rbx}-->
-            <!--,#{item.ylx},#{item.rlx},#{item.ybj},#{item.rbj}-->
-            <!--,#{item.rnum},#{item.tnum},#{item.baid})-->
-        <!--</foreach>-->
-    <!--</insert>-->
 
 
     <insert id="save" parameterType="top.zzh.bean.Skb">
@@ -68,6 +53,16 @@
         <foreach collection="list" item="item" index="index" separator="," >
             (#{item.uid},#{item.juid},#{item.ybx},#{item.ylx},#{item.ybj}
             ,#{item.tnum},#{item.baid},#{item.djq},#{item.state})
+        </foreach>
+    </insert>
+
+    <!--批量新增-->
+    <insert id="saveList" parameterType="list">
+        <![CDATA[
+          insert into t_skb(uid,baid,ybx,ylx,ybj,tnum,sktime,juid,tzmoney,djq) values
+        ]]>
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uid},#{item.baid},#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.sktime},#{item.juid},#{item.tzmoney},#{item.djq})
         </foreach>
     </insert>
 
@@ -126,5 +121,23 @@
         ]]>
     </select>
 
+
+
+    <select id="countByUid" resultType="long">
+        <![CDATA[
+
+          select count(s.juid)  from t_skb s,t_user u,t_tzb t,t_borrowapply b
+            where b.baid = s.baid and t.baid = b.baid and  s.uid = u.uid and t.uid = u.uid and t.uid = s.uid  and s.juid = t.juid and s.juid =#{query.juid}
+        ]]>
+    </select>
+
+    <select id="find" resultType="top.zzh.vo.SkbVO">
+        <![CDATA[
+             select u.uid,s.juid,s.ybx,s.rbx,s.ylx,s.rlx,s.ybj,s.rbj,s.rnum,s.tnum,s.date,s.fmoney,s.djq,s.state
+            from t_skb s,t_user u,t_tzb t,t_borrowapply b
+            where b.baid = s.baid and t.baid = b.baid and  s.uid = u.uid and t.uid = u.uid and t.uid = s.uid  and s.juid = t.juid  and s.juid =#{query.juid}
+            limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
 
 </mapper>

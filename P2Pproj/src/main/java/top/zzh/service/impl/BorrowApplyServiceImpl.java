@@ -8,6 +8,9 @@ import top.zzh.dao.BorrowApplyDAO;
 import top.zzh.service.AbstractService;
 import top.zzh.service.BorrowApplyService;
 
+import javax.ws.rs.HEAD;
+import java.util.List;
+
 /**
  * Created by 曾志湖 on 2017/12/24.
  */
@@ -36,6 +39,13 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
     }
 
     @Override
+    public Pager listPagerByUId(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(borrowApplyDAO.listPagerByUId(pager));
+        pager.setTotal(borrowApplyDAO.getCount(pager));
+        return pager;
+    }
+
     public Pager shResult(int pageNo, int pageSize, Long uid) {
         Pager pager = new Pager(pageNo,pageSize);
         pager.setRows(borrowApplyDAO.shResult(pager,uid));
@@ -44,8 +54,30 @@ public class BorrowApplyServiceImpl extends AbstractService implements BorrowApp
     }
 
     @Override
+    public Long getCount(Object obj) {
+        return borrowApplyDAO.getCount(obj);
+    }
+
+
     public Long shCount(Long uid) {
         return borrowApplyDAO.shCount(uid);
     }
 
+    @Override
+    public List<Object> souye1() {
+        return borrowApplyDAO.souye1();
+    }
+
+    @Override
+    public List<Object> souye2() {
+        return borrowApplyDAO.souye2();
+    }
+    @Override
+    public List<Object> souye3() {
+        return borrowApplyDAO.souye3();
+    }
+    @Override
+    public List<Object> souye4() {
+        return borrowApplyDAO.souye4();
+    }
 }

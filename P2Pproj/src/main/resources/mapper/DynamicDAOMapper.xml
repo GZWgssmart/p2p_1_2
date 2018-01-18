@@ -54,11 +54,11 @@
         <include refid="dynamic_query_criteria"/>
     </select>
 
-    <select id="listAll" resultType="dynamic">
+    <select id="listDynamic" resultType="dynamic">
         <![CDATA[
-          select * from t_dynamic where 1=1
+          select * from t_dynamic where state = 0
           order by date desc
-          limit #{pager.beginIndex},#{pager.pageSize}
+          limit #{pageIndex},#{pageSize}
         ]]>
     </select>
 

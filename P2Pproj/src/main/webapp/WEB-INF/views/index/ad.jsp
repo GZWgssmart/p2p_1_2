@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
 %>
@@ -12,6 +13,7 @@
     <link href="<%=path%>/static/css/about.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
+    <jsp:include page="../common/bootstraptablecss.jsp"/>
 </head>
 <body>
 <!-- 网站头部-->
@@ -26,37 +28,56 @@
             <div class="text-content" id="text-content">
                 <h1 class="title">网站公告</h1>
                 <ul class="clearfix mt20 new-list">
-                    <li class="clearfix list-item">
-                        <a href="ad1.jsp">9月14日最新理财产品预告</a>
-                        <span>2015-09-12</span>
-                    </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">豆兑换规则</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月12日最新理财产品介绍</a>
-                    <span>2015-09-12</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月11日最新理财产品介绍</a>
-                    <span>2015-09-11</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月10日最新理财产品预告</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月9日最新理财产品介绍</a>
-                    <span>2015-09-09</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月8日最新理财产品预告</a>
-                    <span>2015-09-07</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月7日最新理财产品预告</a>
-                    <span>2015-09-06</span>
-                </li><li class="clearfix list-item">
-                    <a href="ad1.jsp">9月6日最新理财产品预告</a>
-                    <span>2015-09-05</span>
-                </li>				</ul>
+
+                    <c:if test="${requestScope.noticeList!=null}">
+                        <c:forEach var="a" items="${noticeList}" >
+                            <li class="clearfix list-item"><a href="<%=path%>/notice/initNotice/${a.nid}" title="${a.title}">${a.title}</a><span class="date"><fmt:formatDate value="${a.date}" pattern="yyyy-MM-dd"/></span></li>
+                        </c:forEach>
+                    </c:if>
+                  	</ul>
+
                 <div class="page">
-                    <span class="all">共有163条信息</span><span class="count"></span><div class="fr pages"><span data-page="1" class="currents">1</span><a data-page="2" href="#">2</a><a data-page="3" href="#">3</a><a data-page="4" href="#">4</a><a data-page="5" href="#">5</a><a data-page="6" href="#">6</a><span>...</span><a data-page="16" href="#">16 </a><a data-page="17" href="#">17 </a><a data-page="2" class="next" href="#">下一页</a><a data-page="17" class="last" href="#">尾页</a></div>
-                </div>
+                    <c:if test="${noticePager.total==0}"><li><div align="center">没有找到匹配的记录</div></li></c:if>
+                    <c:if test="${noticePager.total>0}">
+
+                            <div align="center">
+                                <font size="5">页码${noticePager.pageNo}/${noticePager.pages} </font>
+                                <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page(1)">首页</a>
+                                <c:choose>
+                                    <c:when test="${noticePager.pageNo - 1 > 0}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pageNo - 1}')">上一页</a>
+                                    </c:when>
+                                    <c:when test="${noticePager.pageNo - 1 <= 0}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page(1)">上一页</a>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${noticePager.pages==0}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pageNo}')">下一页</a>
+                                    </c:when>
+                                    <c:when test="${noticePager.pageNo + 1 < noticePager.pages}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pageNo + 1}')">下一页</a>
+                                    </c:when>
+                                    <c:when test="${noticePager.pageNo + 1 >= noticePager.pages}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pages}')">下一页</a>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${noticePager.pages==0}">
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pageNo}')">尾页</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a style="font-size:25px;text-decoration:none;" href="javascript:void(0);" onclick="page('${noticePager.pages}')">尾页</a>
+                                    </c:otherwise>
+                                </c:choose>
+                                <font size="5">共${noticePager.total}条</font>
+                            </div>
+
+                    </c:if>
+
+
+
+        </div>
             </div>
         </div>
     </div>
@@ -65,4 +86,22 @@
 <%@include file="../common/footer.jsp" %>
 </div>
 </body>
+<jsp:include page="../common/bootstraptablejs.jsp"/>
+<script>
+
+    function page(str){
+        if(str==${noticePager.pageNo}&&str==1){
+            layer.msg("当前已经是第一页了哦！", {icon: 2, time: 1000});
+            return false;
+        }
+        if(str==${noticePager.pageNo}&&str==${noticePager.pages}){
+            layer.msg("当前已经是最后一页了哦！", {icon: 2, time: 1000});
+            return false;
+        }
+        $.post("/page/ad/"+str,
+            function(data){
+                window.location.href="/page/ad/"+str;
+            });
+    }
+</script>
 </html>

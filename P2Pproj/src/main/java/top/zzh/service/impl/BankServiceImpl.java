@@ -29,4 +29,9 @@ public class BankServiceImpl extends AbstractService implements BankService {
         return bankDAO.getDeposit(id);
     }
 
+    @Override
+    public String getBankName(String id) {
+        return bankDAO.getBankName(id);
+    }
+
 }

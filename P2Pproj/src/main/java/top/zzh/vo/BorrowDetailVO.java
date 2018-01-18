@@ -14,6 +14,7 @@ public class BorrowDetailVO {
     private BigDecimal money;//申请金额
     private Long uid;//借款人id
     private Long bzid;//标种id
+    private String reason;//审核理由
     private Timestamp time;//审核时间
     private Integer state;//审核状态（0表示为审核，1表示已审核）
     private Integer type;//借款类型为标种的主键字段
@@ -48,9 +49,10 @@ public class BorrowDetailVO {
     public BorrowDetailVO() {
     }
 
-    public BorrowDetailVO(Long juid,Long huid,BigDecimal ytmoney,BigDecimal mmoney,BigDecimal zmoney,BigDecimal kymoney,BigDecimal tzmoney,Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
+    public BorrowDetailVO(String reason,Long juid,Long huid,BigDecimal ytmoney,BigDecimal mmoney,BigDecimal zmoney,BigDecimal kymoney,BigDecimal tzmoney,Long sid,Long lxid,String lxname,Long baid, String rname, BigDecimal money, Long uid, Long bzid, Timestamp time, Integer state, Integer type, Integer term, Timestamp deadline, Long bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdescrip, String guarantee, Float nprofit, String way, String cpname,String bzname,String uname) {
         this.baid = baid;
         this.mmoney = mmoney;
+        this.reason = reason;
         this.huid = huid;
         this.zmoney = zmoney;
         this.kymoney = kymoney;
@@ -84,6 +86,14 @@ public class BorrowDetailVO {
         this.cpname = cpname;
         this.bzname = bzname;
         this.uname = uname;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getReason() {
+        return reason;
     }
 
     public void setJuid(Long juid) {

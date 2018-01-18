@@ -30,18 +30,18 @@
                 </p>
                 <div style="padding:20px 0;border-bottom:1px dashed #dbdbdb" class="clearfix">
                     <div class="img fl" style="width:130px;">
-                        <img src="<%=path%>/static/images/lxw.jpg" alt="">
+                        <img src="<%=path%>/static/images/13.jpg" alt="">
                     </div>
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
-                            <span style="font-size:18px;color:#0aaae1;">王二虎</span>
-                            <span style="color:#0aaae1;"> 联合创始人</span>
+                            <span style="font-size:18px;color:#0aaae1;">曾志湖</span>
+                            <span style="color:#0aaae1;">CEO</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
+                            2017年与合伙人共同创建互联网金融服务平台——亿人宝
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             感言：风控的宗旨在于对风险的预知和防范
@@ -50,61 +50,35 @@
                 </div>
                 <div style="padding:20px 0;border-bottom:1px dashed #dbdbdb" class="clearfix">
                     <div class="img fl" style="width:130px;">
-                        <img src="<%=path%>/static/images/lxw.jpg" alt="">
+                        <img src="<%=path%>/static/images/11.jpg" alt="">
                     </div>
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
-                            <span style="font-size:18px;color:#0aaae1;">王二虎</span>
-                            <span style="color:#0aaae1;"> 联合创始人</span>
+                            <span style="font-size:18px;color:#0aaae1;">赖勇建</span>
+                            <span style="color:#0aaae1;"> 副总裁兼任高级软件工程师</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
+                            拥有3年的国内大型项目工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
-                        </p>
-                        <p style="font-size:16px;line-height:32px;color:#595757">
-                            感言：风控的宗旨在于对风险的预知和防范
+                            曾主打开发过金融理财管理系统和视频教学软件
                         </p>
                     </div>
                 </div>
                 <div style="padding:20px 0;border-bottom:1px dashed #dbdbdb" class="clearfix">
                     <div class="img fl" style="width:130px;">
-                        <img src="<%=path%>/static/images/lxw.jpg" alt="">
+                        <img src="<%=path%>/static/images/23.jpg" alt="">
                     </div>
                     <div class="fl" style="width:790px;margin-left:20px;">
                         <p>
-                            <span style="font-size:18px;color:#0aaae1;">王二虎</span>
-                            <span style="color:#0aaae1;"> 联合创始人</span>
+                            <span style="font-size:18px;color:#0aaae1;">赖国荣</span>
+                            <span style="color:#0aaae1;">CTO</span>
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
                             曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
                         </p>
                         <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
-                        </p>
-                        <p style="font-size:16px;line-height:32px;color:#595757">
-                            感言：风控的宗旨在于对风险的预知和防范
-                        </p>
-                    </div>
-                </div>
-                <div style="padding:20px 0;border-bottom:1px dashed #dbdbdb" class="clearfix">
-                    <div class="img fl" style="width:130px;">
-                        <img src="<%=path%>/static/images/lxw.jpg" alt="">
-                    </div>
-                    <div class="fl" style="width:790px;margin-left:20px;">
-                        <p>
-                            <span style="font-size:18px;color:#0aaae1;">王二虎</span>
-                            <span style="color:#0aaae1;"> 联合创始人</span>
-                        </p>
-                        <p style="font-size:16px;line-height:32px;color:#595757">
-                            曾先后在中国农业银行、招商银行、兴业银行担任高管职务，拥有16年的国内大型银行工作经历，对客户信用风险评估、产品定价机制和市场风险管理策略具有深入的研究，风险管理经验十分丰富。
-                        </p>
-                        <p style="font-size:16px;line-height:32px;color:#595757">
-                            2015年与合伙人共同创建互联网金融服务平台——亿人宝
-                        </p>
-                        <p style="font-size:16px;line-height:32px;color:#595757">
-                            感言：风控的宗旨在于对风险的预知和防范
+                            2017年与合伙人共同创建互联网金融服务平台——亿人宝
                         </p>
                     </div>
                 </div>

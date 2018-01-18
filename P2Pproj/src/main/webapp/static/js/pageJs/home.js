@@ -318,6 +318,38 @@ $('#homeAdd').bootstrapValidator({
                 }
             }
         },
+        pic1: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请上传图片'
+                }
+            }
+        },
+        pic2: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请上传图片'
+                }
+            }
+        },
+        pic3: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请上传图片'
+                }
+            }
+        },
+        ewm: {
+            message: '图片验证失败',
+            validators: {
+                notEmpty: {
+                    message: '请上传图片'
+                }
+            }
+        },
         l1: {
             message: '链接验证失败',
             validators: {

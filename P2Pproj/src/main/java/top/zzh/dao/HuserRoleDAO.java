@@ -28,5 +28,10 @@ public interface HuserRoleDAO extends BaseDAO{
     Long count();
     //修改前先删除所有角色
     void deleteRoleById(Integer hUserId);
+    //保存用户,返回用户的Id
+    void saveHuser(HUser hUser);
+
+    int checkPhone(String phone);
+
 
 }

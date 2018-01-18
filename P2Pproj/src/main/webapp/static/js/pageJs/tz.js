@@ -26,10 +26,7 @@ $('#mytab').bootstrapTable({
     exportDataType: 'all',
     columns: [
         {
-            title: '全选',
-            field: 'select',
-            //复选框
-            checkbox: true,
+            radio: true,
             width: 25,
             align: 'center',
             valign: 'middle'
@@ -86,18 +83,6 @@ $('#mytab').bootstrapTable({
                 return y + '-' + m + '-' + d ;
             }
         }
-
-        // ,
-        // {
-        //     title: '操作',
-        //     align: 'center',
-        //     field: '',
-        //     formatter: function (value, row, index) {
-        //         var g='';
-        //         g = '<a title="审核" id="checker" id="cashAccounts"  data-toggle="modal" data-id="\'' + row.baid + '\'" data-target="#shenheModal" onclick="return shenhe('+row.baid+','+row.state+')"><i class="glyphicon glyphicon-import" alt="审核" style="color:green"></i></a>';
-        //         return g;
-        //     }
-        // }
     ],
     locale: 'zh-CN',//中文支持,
     responseHandler: function (res) {
@@ -130,30 +115,27 @@ function queryParams(params) {
     }
 }
 
-//
-// function shenhe(id,state) {
-//     $("#shenhe").click(function () {
-//         $.post(
-//             "/borrowapply/updateState/"+id+"/"+state,
-//             $("#shenheform").serialize(),
-//             function (data) {
-//                 if (data.result == "ok") {
-//                     layer.msg(data.message, {icon: 1, time: 1000});
-//                     refush();
-//                 } else {
-//                     layer.msg(data.message, {icon: 2, time: 1000});
-//                     refush();
-//                 }
-//             }, "json"
-//         );
-//     });
-// }
-//
+
+function findDetails() {
+    var juid = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
+        return row.juid;
+    });
+    if (juid == "") {
+        layer.msg('查看收款详情失败，请勾选数据!', {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }else {
+        window.location.href ="/sk/skDetail/"+juid+"?pageNo=1";
+    }
+}
 
 //查询按钮事件
 $('#search_btn').click(function () {
     $('#mytab').bootstrapTable('refresh', {url: '/tz/pager_criteria'});
-})
+});
+
 function refush() {
     $('#mytab').bootstrapTable('refresh', {url: '/tz/pager_criteria'});
 }

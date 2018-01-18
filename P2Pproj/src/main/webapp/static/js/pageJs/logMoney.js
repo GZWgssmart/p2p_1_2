@@ -46,7 +46,10 @@ $('#mytab').bootstrapTable({
             title: '头像',
             field: 'face',
             align: 'center',
-            sortable: true
+            sortable: true,
+            formatter: function (value) {
+                return  "<img style='width:100px;height:50px' src='http://localhost:8080/"+value+"'>";
+            }
         }
         ,
         {
@@ -66,6 +69,8 @@ $('#mytab').bootstrapTable({
                 }else if(value==3){
                     //表示激活状态
                     return '<span style="color:green">公司奖励</span>';
+                }else if(value=4){
+                    return '<span style="color:green">投资金额</span>';
                 }
             }
         }

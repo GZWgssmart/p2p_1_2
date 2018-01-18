@@ -14,6 +14,10 @@ import top.zzh.calculator.ACPIMLoanCalculator;
 import top.zzh.calculator.LoanByMonth;
 import top.zzh.calculator.LoanUtil;
 import top.zzh.common.Constants;
+import org.springframework.web.servlet.ModelAndView;
+import top.zzh.bean.BorrowApply;
+import top.zzh.bean.Hkb;
+import top.zzh.bean.Skb;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
 import top.zzh.service.BorrowDetailService;
@@ -29,6 +33,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import top.zzh.vo.HkbVO;
+import top.zzh.vo.SkbVO;
+
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,11 +71,7 @@ public class SkbController {
         return skbService.listPagerCriteria(pageIndex, pageSize, skbVO);
     }
 
-    @RequestMapping("manager_page")
-    public String page(){
-        logger.info("后台用户收款页面");
-        return "manager/sk";
-    }
+
 
 
     @RequestMapping("skDetail/{uid}/{juid}/{baid}/{money}")
@@ -235,6 +243,27 @@ public class SkbController {
     public  String refurbish(HttpServletRequest request,@PathVariable("juid") Long juid){
         request.setAttribute("juid",juid);
         return "user/shoukuanDetail";
+    }
+
+
+    @RequestMapping("skDetail/{juid}")
+    public ModelAndView soukuan(HttpSession session, Integer pageNo, SkbVO skb, @PathVariable("juid") Long juid) {
+        logger.info("后台管理员查看收款详情");
+        skb.setJuid(juid);
+        if(pageNo==0){
+            pageNo = 1;
+        }
+        Pager obj = skbService.find(pageNo,15,skb);
+        List<SkbVO> skbVOList = new ArrayList<>();
+        for(Object o:obj.getRows()){
+            SkbVO skbVO = (SkbVO) o;
+            skbVOList.add(skbVO);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("manager/skdetail");
+        modelAndView.addObject("obj",skbVOList);
+        modelAndView.addObject("page",obj);
+        return modelAndView;
     }
 
 }

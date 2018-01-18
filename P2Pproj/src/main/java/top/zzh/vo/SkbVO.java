@@ -2,7 +2,6 @@ package top.zzh.vo;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by 曾志湖 on 2018/1/3.
@@ -26,18 +25,14 @@ public class SkbVO {
     private BigDecimal fmoney;//好友奖励
     private String uname;//前台用户名称
     private String rname;//借款人姓名
+
     private Integer djq;//第几期
     private Integer state;//状态
 
+    private String dateToStr;
+
+
     private Integer hrnum;
-
-    public Integer getHrnum() {
-        return hrnum;
-    }
-
-    public void setHrnum(Integer hrnum) {
-        this.hrnum = hrnum;
-    }
 
     public Long getSkid() {
         return skid;
@@ -181,5 +176,21 @@ public class SkbVO {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getDateToStr() {
+        return dateToStr;
+    }
+
+    public void setDateToStr(String dateToStr) {
+        this.dateToStr = dateToStr;
+    }
+
+    public Integer getHrnum() {
+        return hrnum;
+    }
+
+    public void setHrnum(Integer hrnum) {
+        this.hrnum = hrnum;
     }
 }

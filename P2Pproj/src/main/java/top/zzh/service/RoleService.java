@@ -16,4 +16,7 @@ public interface RoleService extends BaseService {
     void updateRole(Role role);
     void updateStatus(Long roleId,Integer status);
 
+    //通过账号查询用户的角色集合
+    List<Role> listByAccount(String phone);
+
 }
