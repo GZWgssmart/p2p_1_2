@@ -2,7 +2,7 @@
 <div class="text-nav">
     <ul class="clearfix">
         <li> <a class="text-link" href="${request.getContextPath}/page/rundata">运营数据</a> </li>
-        <li> <a class="text-link" href="${request.getContextPath}/page/ad">网站公告</a> </li>
+        <li> <a class="text-link" href="${request.getContextPath}/page/ad/1">网站公告</a> </li>
         <li> <a class="text-link" href="${request.getContextPath}/page/report">媒体报道</a> </li>
         <li> <a class="text-link" href="${request.getContextPath}/page/dynamic">公司动态</a> </li>
         <li> <a class="text-link" href="${request.getContextPath}/page/about">公司简介</a> </li>

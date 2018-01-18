@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.zzh.bean.Friend;
 import top.zzh.bean.Notice;
 import top.zzh.common.Pager;
 import top.zzh.enums.ControllerStatusEnum;
@@ -35,15 +34,18 @@ public class NoticeController {
         return noticeService.listPager(pageIndex,pageSize);
     }
 
-    @RequestMapping("initPager/{pageIndex}/{pageSize}")
-    public String initPager(int pageIndex, int pageSize,HttpServletRequest request) {
+    @RequestMapping("initPager/{pageIndex}")
+    public String initPager(int pageIndex,HttpServletRequest request) {
         List<Object> noticeList = new ArrayList<>();
-        noticeList = noticeService.listNotice(pageIndex,pageSize);
+        if (pageIndex==0){
+            pageIndex=1;
+        }
+        noticeList = noticeService.listNotice(pageIndex,5);
         request.setAttribute("noticeList",noticeList);
         return "index/ad";
     }
 
-    @RequestMapping("notice/")
+    @RequestMapping("notice")
     public String init() {
         return "notice/notice";
     }
@@ -58,6 +60,13 @@ public class NoticeController {
         Notice notice = (Notice) noticeService.getById(nid);
         request.setAttribute("notice",notice);
         return "notice/initNoticce";
+    }
+
+    @RequestMapping("findNotice/{nid}")
+    public String findNotice(@PathVariable("nid") Long nid ,HttpServletRequest request) {
+        Notice notice = (Notice) noticeService.getById(nid);
+        request.setAttribute("notice",notice);
+        return "notice/findNotice";
     }
 
     @RequestMapping("initUpdate/{nid}")

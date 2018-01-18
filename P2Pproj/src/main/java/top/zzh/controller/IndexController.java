@@ -5,19 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import top.zzh.bean.Friend;
-import top.zzh.bean.Home;
 import top.zzh.bean.Notice;
-import top.zzh.bean.User;
 import top.zzh.common.Pager;
-import top.zzh.service.BorrowApplyService;
-import top.zzh.service.FriendService;
-import top.zzh.service.NoticeService;
 import top.zzh.service.*;
 import top.zzh.vo.BorrowDetailVO;
-import top.zzh.vo.NoticeVo;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +69,12 @@ public class IndexController {
         int pageIndex = 0;
         int pageSize = 5;
         //首页显示网站公告信息
-        noticeList = noticeService.listNotice(pageIndex,pageSize);
+        Pager noticePager = noticeService.listPager(1,5);
+        for(Object o:noticePager.getRows()){
+            Notice notice =(Notice)o;
+            noticeList.add(notice);
+        }
+
         mediaList = mediaService.listMedia(pageIndex,pageSize);
         dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
         modelAndView.addObject("user",user);
@@ -91,6 +89,7 @@ public class IndexController {
         modelAndView.addObject("borrow3",borrow3);
         modelAndView.addObject("borrow4",borrow4);
         modelAndView.addObject("noticeList",noticeList);
+
         modelAndView.addObject("friendList",friendList);
         modelAndView.setViewName("index");
         return modelAndView;

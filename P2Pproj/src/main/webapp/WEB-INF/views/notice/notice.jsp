@@ -40,6 +40,9 @@
 
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+                <button type="button" onclick="findDetails()" class="btn btn-default" style="display: block; border-radius: 0">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true" ></span>公告详情
+                </button>
                 <a href="<%=path%>/notice/add" type="button" class="btn btn-default" style="display: block; border-radius: 0" >
                     <span class="glyphicon glyphicon-import" aria-hidden="true" ></span>新增
                 </a>
