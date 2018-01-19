@@ -54,12 +54,16 @@
         <include refid="dynamic_query_criteria"/>
     </select>
 
-    <select id="listDynamic" resultType="dynamic">
+    <select id="listPager" resultType="dynamic">
         <![CDATA[
           select * from t_dynamic where state = 0
           order by date desc
-          limit #{pageIndex},#{pageSize}
+          limit #{pager.beginIndex},#{pager.pageSize}
         ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        select count(*) from t_dynamic
     </select>
 
     <select id="getById" parameterType="long" resultType="dynamic">

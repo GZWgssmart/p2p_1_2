@@ -382,34 +382,24 @@ public class PageController {
         return "index/notice";
     }
 
-    @RequestMapping("report")
-    public String report(HttpServletRequest request) {
-        List<Object> mediaList = new ArrayList<>();
-        int pageIndex = 0;
-        int pageSize = 5;
-        mediaList = mediaService.listMedia(pageIndex,pageSize);
-        request.setAttribute("mediaList",mediaList);
+    @RequestMapping("report/{pageNo}")
+    public String report(HttpServletRequest request,@PathVariable("pageNo")int pageNo) {
+        if(pageNo == 1){
+           pageNo = 1;
+        }
+        Pager mediaPager = mediaService.listPager(pageNo,5);
+        request.setAttribute("mediaPager",mediaPager);
         return "index/report";
     }
 
-    @RequestMapping("mediaPage")
-    public String mediaPage(){
-        return "index/mediaPage";
-    }
-
-    @RequestMapping("dynamic")
-    public String dynamic(HttpServletRequest request){
-        List<Object> dynamicList = new ArrayList<>();
-        int pageIndex = 0;
-        int pageSize = 5;
-        dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
-        request.setAttribute("dynamicList",dynamicList);
+    @RequestMapping("dynamic/{pageNo}")
+    public String dynamic(HttpServletRequest request,@PathVariable("pageNo")int pageNo){
+        if(pageNo == 0){
+            pageNo = 1;
+        }
+        Pager dynamicPager = dynamicService.listPager(pageNo,5);
+        request.setAttribute("dynamicPager",dynamicPager);
         return "index/dynamic";
-    }
-
-    @RequestMapping("dynamicPage")
-    public String dynamicPage(){
-        return "index/dynamicPage";
     }
 
     @RequestMapping("tuandui")
@@ -426,6 +416,4 @@ public class PageController {
     public String zifei() {
         return "index/zifei";
     }
-
-
 }

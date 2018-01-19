@@ -35,12 +35,7 @@
         <div class="ft-wap clearfix">
             <dl>
                 <dt>手机APP下载二维码</dt>
-                <dd>
-                    <span class="icon-ft-erweima">
-                    <c:forEach var="s" items="${homeList}">
-                        <img src="<%=path%>/${s.ewm}" style="display: inline;">
-                    </c:forEach>
-                    </span></dd>
+                <dd><span class="icon-ft-erweima"><img src="<%=path%>/static/images/code.png" style="display: inline;"></span></dd>
             </dl>
         </div>
     </div>

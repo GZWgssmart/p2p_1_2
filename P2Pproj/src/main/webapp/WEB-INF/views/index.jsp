@@ -358,13 +358,13 @@
       <div class="mod mod-rank clearfix ui-tab mrt20">
         <div class="hd">
           <h3>媒体报道</h3>
-          <a href="<%=path%>/page/report" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/report/1" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <c:if test="${requestScope.mediaList!=null}">
-                <c:forEach var="a" items="${mediaList}" >
-                  <li>[${a.url}]&nbsp;&nbsp;<a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
+              <c:if test="${requestScope.mediaPager!=null}">
+                <c:forEach var="a" items="${mediaPager.rows}" >
+                  <li><a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
                 </c:forEach>
               </c:if>
             </ul>
@@ -374,12 +374,12 @@
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>公司动态</h3>
-          <a href="<%=path%>/page/dynamic" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/dynamic/1" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <c:if test="${requestScope.dynamicList!=null}">
-                <c:forEach var="b" items="${dynamicList}" >
+              <c:if test="${requestScope.dynamicPager!=null}">
+                <c:forEach var="b" items="${dynamicPager.rows}" >
                   <li><a href="<%=path%>/dynamic/initDynamic/${b.dyid}" title="${b.title}" target="_blank"> ${b.title}</a><span style="align:right;" class="date">${b.date}</span></li>
                 </c:forEach>
               </c:if>

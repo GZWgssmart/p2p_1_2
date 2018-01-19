@@ -57,12 +57,16 @@
         <include refid="media_query_criteria"/>
     </select>
 
-    <select id="listMedia" resultType="media">
+    <select id="listPager" resultType="media">
         <![CDATA[
           select * from t_media where state = 0
           order by date desc
-          limit #{pageIndex},#{pageSize}
+          limit #{pager.beginIndex},#{pager.pageSize}
         ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        select count(*) from t_media
     </select>
 
     <select id="getById" parameterType="long" resultType="media">

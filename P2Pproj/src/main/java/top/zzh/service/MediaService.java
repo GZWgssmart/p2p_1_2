@@ -9,6 +9,4 @@ import java.util.List;
  * */
 public interface MediaService extends BaseService {
     void updateStatus(Media media);
-    List<Object> listMedia(int pageIndex, int pageSize);
-
 }

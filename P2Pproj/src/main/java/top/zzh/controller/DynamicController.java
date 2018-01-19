@@ -65,14 +65,6 @@ public class DynamicController {
         String ext = filename.substring(position);
         return System.nanoTime() + ext;
     }
-
-    @RequestMapping("initPager/{pageIndex}/{pageSize}")
-    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
-        ModelAndView modelAndView = new ModelAndView("index/dynamic");
-        modelAndView.addObject("dynamicList",dynamicService.listDynamic(pageIndex,pageSize));
-        return modelAndView;
-    }
-
     @RequestMapping("initDynamic/{dyid}")
     public String initDynamic(@PathVariable("dyid") Long dyid ,HttpServletRequest request) {
         Dynamic dynamic = (Dynamic) dynamicService.getById(dyid);

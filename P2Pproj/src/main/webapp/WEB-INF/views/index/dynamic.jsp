@@ -27,7 +27,7 @@
         <div class="text-box">
             <div class="text-content" id="text-content">
                 <ul class="r-list">
-                    <c:forEach items="${dynamicList}" var="s">
+                    <c:forEach items="${dynamicPager.rows}" var="s">
                         <li class="clearfix">
                             <a href="">
                                 <img src="<%=path%>/${s.pic}" width="300" height="171">
@@ -45,54 +45,59 @@
                     </c:forEach>
                 </ul>
                 <%--分页条开始--%>
+                <c:if test="${dynamicPager.total==0}">
+                    <div align="center"><h5>没有找到匹配的记录</h5></div>
+                </c:if>
+                <c:if test="${dynamicPager.total>0}">
                 <div class="pagination clearfix mrt30">
                 <span class="page" style="font-size: 19px;">
-                     <font size="4" style="margin-left: 10px">页码${page.pageNo}/${page.pages}</font>
+                     <font size="4" style="margin-left: 10px">页码${dynamicPager.pageNo}/${dynamicPager.pages}&nbsp;&nbsp;&nbsp;&nbsp;</font>
                      <a href="javascript:void(0);" onclick="page(1)">首页</a>
                      <c:choose>
-                         <c:when test="${page.pageNo - 1 >0}">
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pageNo -1}')">上一页</a>&nbsp;
+                         <c:when test="${dynamicPager.pageNo - 1 >0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pageNo -1}')">上一页</a>&nbsp;
                          </c:when>
-                         <c:when test="${page.pageNo -1 <=0}">
+                         <c:when test="${dynamicPager.pageNo -1 <=0}">
                              <a href="javascript:void(0);" style="margin-left: 10px" onclick="page(1)">上一页</a>&nbsp;
                          </c:when>
                      </c:choose>
-                     <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(1)">1</a>
-                     <a href="#"style="margin-left: 10px" onclick="page(2)">2</a>
-                     <a href="#" style="margin-left: 10px" onclick="page(3)">3</a>
-                     <a href="#" style="margin-left: 10px" onclick="page(4)">4</a>
-                     <a href="#" style="margin-left: 10px" onclick="page(5)">5</a>
+                      <c:if test="${dynamicPager.pages > 0}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(1)">1</a>
+                      </c:if>
+                      <c:if test="${dynamicPager.pages > 1}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(2)">2</a>
+                      </c:if>
+                      <c:if test="${dynamicPager.pages > 2}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(3)">3</a>
+                      </c:if>
+                      <c:if test="${dynamicPager.pages > 3}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(4)">4</a>
+                      </c:if>
+                      <c:if test="${dynamicPager.pages > 4}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(5)">5</a>
+                      </c:if>
                      <c:choose>
-                         <c:when test="${page.pages == 0}">
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pageNo}')">下一页</a>
+                         <c:when test="${dynamicPager.pages == 0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pageNo}')">下一页</a>
                          </c:when>
-                         <c:when test="${page.pageNo + 1 < page.pages}">
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pageNo + 1}')">下一页</a>
+                         <c:when test="${dynamicPager.pageNo + 1 < dynamicPager.pages}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pageNo + 1}')">下一页</a>
                          </c:when>
-                         <c:when test="${page.pageNo + 1 >= page.pages}">
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pages}')">下一页</a>
+                         <c:when test="${dynamicPager.pageNo + 1 >= dynamicPager.pages}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pages}')">下一页</a>
                          </c:when>
                      </c:choose>
                      <c:choose>
-                         <c:when test="${page.pages == 0}">
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pageNo}')">尾页</a>&nbsp;
+                         <c:when test="${dynamicPager.pages == 0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pageNo}')">尾页</a>&nbsp;
                          </c:when>
                          <c:otherwise>
-                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${page.pages}')">尾页</a>&nbsp;
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${dynamicPager.pages}')">尾页</a>&nbsp;
                          </c:otherwise>
                          </c:choose>
-                         <em style="margin-left: 10px">共${page.total}页&nbsp;</em></span>
-                        <dl class="page-select">
-                            <dt><span>1</span><i class="icon icon-down"></i></dt>
-                            <dd style="display: none;">
-                                <ul name="nump" id="jsnump">
-                                    <li><a href="##" onclick="">1</a></li>
-                                    <li><a href="##" onclick="">2</a></li>
-                                    <li><a href="##" onclick="">3</a></li>
-                                </ul>
-                            </dd>
-                        </dl>
+                         <em style="margin-left: 10px">共${dynamicPager.total}条&nbsp;</em></span>
                 </div>
+                </c:if>
                 <%--分页条结束--%>
             </div>
         </div>
@@ -102,19 +107,19 @@
 <%@include file="../common/footer.jsp" %>
 <jsp:include page="../common/bootstraptablejs.jsp"/>
 <script>
+
     function page(str){
-        if(str==${page.pageNo}&&str==1){
-            layer.msg("当前已经是第一页了！", {icon: 2, time: 1000});
+        if(str==${dynamicPager.pageNo}&&str==1){
+            layer.msg("当前已经是第一页了哦！", {icon: 2, time: 1000});
             return false;
         }
-        if(str==${page.pageNo}&&str==${page.pages}){
-            layer.msg("当前已经是最后一页了！", {icon: 2, time: 1000});
+        if(str==${dynamicPager.pageNo}&&str==${dynamicPager.pages}){
+            layer.msg("当前已经是最后一页了哦！", {icon: 2, time: 1000});
             return false;
         }
-        $.post("<%=path%>/dynamic/list", {
-                pageNo: str},
+        $.post("/page/dynamic/"+str,
             function(data){
-                window.location.href="<%=path%>/dynamic/list?pageNo="+str;
+                window.location.href="/page/dynamic/"+str;
             });
     }
 </script>

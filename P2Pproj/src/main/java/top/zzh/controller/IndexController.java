@@ -64,8 +64,6 @@ public class IndexController {
         List<Object> homeList = new ArrayList<>();
         homeList = homeService.listAll();
         List<Object> noticeList = new ArrayList<>();
-        List<Object> mediaList = new ArrayList<>();
-        List<Object> dynamicList = new ArrayList<>();
         int pageIndex = 0;
         int pageSize = 5;
         //首页显示网站公告信息
@@ -75,15 +73,15 @@ public class IndexController {
             noticeList.add(notice);
         }
 
-        mediaList = mediaService.listMedia(pageIndex,pageSize);
-        dynamicList = dynamicService.listDynamic(pageIndex,pageSize);
+        Pager mediaPager = mediaService.listPager(1,5);
+        Pager dynamicPager = dynamicService.listPager(1,5);
         modelAndView.addObject("user",user);
         modelAndView.addObject("tz",tz);
         modelAndView.addObject("noticeList",noticeList);
         modelAndView.addObject("friendList",friendList);
         modelAndView.addObject("homeList",homeList);
-        modelAndView.addObject("mediaList", mediaList);
-        modelAndView.addObject("dynamicList", dynamicList);
+        modelAndView.addObject("mediaPager",mediaPager);
+        modelAndView.addObject("dynamicPager",dynamicPager);
         modelAndView.addObject("borrow1",borrow1);
         modelAndView.addObject("borrow2",borrow2);
         modelAndView.addObject("borrow3",borrow3);

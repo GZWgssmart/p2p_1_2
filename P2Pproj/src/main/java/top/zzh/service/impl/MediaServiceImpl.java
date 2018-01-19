@@ -28,8 +28,4 @@ public class MediaServiceImpl extends AbstractService implements MediaService{
         mediaDAO.updateStatus(media);
     }
 
-    @Override
-    public List<Object> listMedia(int pageIndex, int pageSize) {
-        return mediaDAO.listMedia(pageIndex, pageSize);
-    }
 }

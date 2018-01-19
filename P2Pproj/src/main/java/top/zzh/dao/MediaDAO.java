@@ -19,7 +19,6 @@ public interface MediaDAO extends BaseDAO{
     @Override
     Long countCriteria(@Param("query") Object obj);
 
-    List<Object> listMedia(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
-
+    List<Object> listPager(@Param("pager")Pager pager);
     void updateStatus(Media media);
 }
