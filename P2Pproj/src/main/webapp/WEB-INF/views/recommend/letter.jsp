@@ -79,13 +79,13 @@
             <table id="mytab" name="mytab" class="table table-hover"></table>
             <input type="hidden" value="" id="deleteId"/>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-                <button id="btn_delete" onclick="delMany('/letter/delMany');" type="button" class="btn btn-primary"
-                        style="margin-left:5px">
-                    <i class="glyphicon glyphicon-remove"></i>批量删除
-                </button>
                 <button type="button" style="margin-left:5px" class="btn btn-primary"
                         onClick="sendMessage();"><i
                         class="glyphicon glyphicon-envelope"></i>消息发送
+                </button>
+                <button id="btn_delete" onclick="delMany('/letter/delMany');" type="button" class="btn btn-primary"
+                        style="margin-left:5px">
+                    <i class="glyphicon glyphicon-remove"></i>删除
                 </button>
                 <button type="button" style="margin-left:5px" class="btn btn-primary"
                         onClick="updateLetterState(0);"><i

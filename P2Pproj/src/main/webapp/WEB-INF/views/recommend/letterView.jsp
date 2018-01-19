@@ -61,7 +61,7 @@
                             </c:otherwise>
                         </c:choose>
                         <li><a href="javascript:void(0);" onclick="empty();"
-                               style="background:#FF5722;color:white;padding:5px 22px;display:block;" title="清空">清空</a>
+                               style="background:#FF5722;color:white;padding:5px 22px;display:block;" title="清空已读">清空已读</a>
                         </li>
                     </ul>
                 </div>
@@ -132,7 +132,7 @@
                                                onclick="page('${page.pages}',3)">尾页</a>
                                         </c:otherwise>
                                     </c:choose>
-                                    <font size="2">共${page.total}个好友 </font>
+                                    <font size="2">共${page.total}条消息 </font>
                                 </div>
                             </li>
                         </c:if>

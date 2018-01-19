@@ -84,16 +84,6 @@ $('#mytab').bootstrapTable({
                 return y + '-' + m + '-' + d;
             }
         }
-        ,
-        {
-            title: '操作',
-            align: 'center',
-            field: '',
-            formatter: function (value, row, index) {
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.lid + ',\'' + '/letter/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
-                return d;
-            }
-        }
     ],
     locale: 'zh-CN',//中文支持,
     responseHandler: function (res) {
