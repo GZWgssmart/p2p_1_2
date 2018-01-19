@@ -112,24 +112,63 @@
         ]]>
     </select>
 
+    <!--前台投资列表搜索,项目期限，年化收益，标种名称 -->
+    <sql id="search">
+        <if test="query != null and query.term ==1 and query.term!=''">
+            and ba.term BETWEEN 1 and 3
+        </if>
+        <if test="query != null and query.term ==2 and query.term!=''">
+            and ba.term BETWEEN 3 and 6
+        </if>
+        <if test="query != null and query.term ==3 and query.term!=''">
+            and ba.term BETWEEN 6 and 9
+        </if>
+        <if test="query != null and query.term ==4 and query.term!=''">
+            and ba.term  &gt; 9
+        </if>
+        <if test="query != null and query.nprofit ==1 and query.nprofit!=''">
+            and bd.nprofit  &lt;= 10
+        </if>
+        <if test="query != null and query.nprofit ==2 and query.nprofit!=''">
+            and bd.nprofit BETWEEN 10 and 15
+        </if>
+        <if test="query != null and query.nprofit ==3 and query.nprofit!=''">
+            and bd.nprofit BETWEEN 15 and 25
+        </if>
+        <if test="query != null and query.nprofit ==4 and query.nprofit!=''">
+            and bd.nprofit &gt; 25
+        </if>
+        <if test="query != null and query.bzname == 3 and query.bzname!=''">
+            and b.bzname ='多金宝'
+        </if>
+        <if test="query != null and query.bzname == 4 and query.bzname!=''">
+            and b.bzname ='普金宝'
+        </if>
+        <if test="query != null and query.bzname == 5 and query.bzname!=''">
+            and b.bzname ='恒金宝'
+        </if>
+        <if test="query != null and query.bzname == 6 and query.bzname!=''">
+            and b.bzname ='新手标'
+        </if>
+    </sql>
 
     <!-- 显示投资列表+分页-->
     <select id="listPagerByUId" resultType="top.zzh.vo.BorrowDetailVO">
-        <![CDATA[
-          select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname
-             from t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
-            where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-            and bd.sid = s.sid and ba.baid = bd.baid
-            and ba.uid = um.uid and ba.state = 0
-         limit #{pager.beginIndex}, #{pager.pageSize}
-         ]]>
+        select ba.baid,ba.bzid,ba.rname,bd.money as mmoney,ba.money,um.zmoney,um.kymoney,um.tzmoney,u.uname,ba.time,ba.state,b.bzname,ba.term,j.lxname,s.way,ba.deadline,bd.nprofit,bd.cpname
+         from t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
+        where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
+        and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
+        and ba.uid = um.uid and ba.state = 0
+        <include refid="search"/>
+     limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="getCount" resultType="long">
           select count(ba.baid)  from t_borrowapply ba,t_user u,t_bz b,t_jklx j,t_huser h,t_borrowdetail bd,t_sway s,t_usermoney um
             where ba.uid = u.uid and ba.bzid = b.bzid and j.lxid = ba.lxid
-            and bd.sid = s.sid and ba.baid = bd.baid
+            and bd.sid = s.sid and ba.baid = bd.baid and ba.huid = h.huid
             and ba.uid = um.uid and ba.state = 0
+        <include refid="search"/>
     </select>
 
     <select id="countCriteria" resultType="long">

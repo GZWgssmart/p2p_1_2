@@ -342,13 +342,16 @@ public class PageController {
         return modelAndView;
     }
 
-
     @RequestMapping("list")
-    public ModelAndView list(int pageNo,Long kid) {
+    public ModelAndView list(Integer term,String cpname,Float nprofit,Integer pageNo,Long kid) {
+        BorrowDetailVO borrow =new BorrowDetailVO();
+        borrow.setTerm(term);
+        borrow.setCpname(cpname);
+        borrow.setNprofit(nprofit);
         if(pageNo==0){
             pageNo = 1;
         }
-        Pager obj = (Pager)borrowApplyService.listPagerByUId(pageNo,5);
+        Pager obj = borrowApplyService.listPagerByUId(pageNo,5,borrow);
         List<BorrowDetailVO> borrowDetailVOList = new ArrayList <>();
         List<Bz> bzList = (List)bzService.listAll();
         for(Object o:obj.getRows()){
@@ -360,12 +363,14 @@ public class PageController {
         modelAndView.addObject("obj",borrowDetailVOList);
         modelAndView.addObject("page",obj);
         modelAndView.addObject("bzList",bzList);
+        modelAndView.addObject("term",term);
+        modelAndView.addObject("cpname",cpname);
+        modelAndView.addObject("nprofit",nprofit);
         if(kid!=null){
             modelAndView.addObject("kid",kid);
         }
         return modelAndView;
     }
-
 
     @RequestMapping("managerTuandui")
     public String managerTuandui() {

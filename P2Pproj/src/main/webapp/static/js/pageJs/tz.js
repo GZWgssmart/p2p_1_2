@@ -98,7 +98,7 @@ $('#mytab').bootstrapTable({
             };
         }
     }
-})
+});
 
 //请求服务数据时所传参数
 function queryParams(params) {
