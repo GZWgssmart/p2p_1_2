@@ -62,7 +62,7 @@
                 </div>
             </div>
             <table id="mytab" name="mytab" class="table table-hover"></table>
-            <input type="hidden" value=""  id="deleteId"/>
+            <input type="hidden" value="" id="deleteId"/>
             <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
                 <button id="btn_delete" onclick="delMany('/recommend/delMany');" type="button" class="btn btn-primary"
                         style="margin-left:5px">
@@ -109,6 +109,7 @@
             query: {tname: tname, rname: rname, startTime: startTime, endTime: endTime}
         });
     }
+
     function doSearchAll() {
         $("#tname").val("");
         $("#rname").val("");

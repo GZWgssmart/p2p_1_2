@@ -34,7 +34,12 @@ $('#mytab').bootstrapTable({
             align: 'center',
             valign: 'middle'
         },
-
+        {
+            title: '编号',
+            field: 'lid',
+            align: 'center',
+            visible:false
+        },
         {
             title: '标题',
             field: 'title',
