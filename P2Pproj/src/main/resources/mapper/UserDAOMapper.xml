@@ -121,4 +121,11 @@
         ]]>
     </update>
 
+    <update id="resettingUpwd">
+        <![CDATA[
+           update t_user set upwd=#{upwd}  where phone=#{phone}
+        ]]>
+    </update>
+
+
 </mapper>

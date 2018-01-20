@@ -42,4 +42,6 @@ public interface UserDAO extends BaseDAO {
 
     @Override
     Long count();
+
+    void resettingUpwd(@Param("phone")String  phone,@Param("upwd") String upwd);
 }
