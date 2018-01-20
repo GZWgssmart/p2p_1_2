@@ -85,4 +85,14 @@ public class UserTicketServiceImpl extends AbstractService implements UserTicket
     public void updateEGold() {
         userTicketDAO.updateEGold();
     }
+
+    @Override
+    public UserTicketVo list(Long uid) {
+        return userTicketDAO.list(uid);
+    }
+
+    @Override
+    public void updateState(Object object) {
+         userTicketDAO.updateState(object);
+    }
 }
