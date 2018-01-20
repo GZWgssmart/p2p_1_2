@@ -31,7 +31,7 @@
                                 <div class="gg_newstitle"><p>${dynamic.title}</p><b> 创建时间: ${dynamic.date}</b></div>
                                 <div><p>${dynamic.content}</p></div>
                                 <div class="fanhui">
-                                    <b><span style="margin-left: 330px;font-size:16px;"><a href="<%=path%>/page/dynamic">返回上一页</a></span></b>
+                                    <b><span style="margin-left: 330px;font-size:16px;"><a href="javascript:;" onclick="javascript:history.back(-1)">返回上一页</a></span></b>
                                     <b><span style="margin-left: 50px;font-size:16px;"><a href="<%=path%>/">返回首页</a></span></b>
                                 </div>
                             </div>

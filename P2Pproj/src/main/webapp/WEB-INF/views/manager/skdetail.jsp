@@ -43,8 +43,7 @@
                 <th>总期数</th>
                 <th>奖励金额</th>
                 <th>第几期</th>
-                <th>收款时间</th>
-                <th>还款状态</th>
+                <th>收款状态</th>
             </tr>
             </thead>
             <c:forEach items="${obj}" var="d">
@@ -61,10 +60,10 @@
                     <td>${d.djq}</td>
                     <td>${d.fmoney}</td>
                     <td>${d.djq}</td>
-                    <td>${d.date}</td>
                     <td>
                         <c:if test="${d.state==1}"><a style="color: red;">未收款</a></c:if>
                         <c:if test="${d.state==2}"><a style="color: green;">已收款</a></c:if>
+                        <c:if test="${d.state==3}"><a style="color: cyan;">确认收款</a></c:if>
                     </td>
                 </tr>
                 </tbody>

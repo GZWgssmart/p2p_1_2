@@ -27,9 +27,4 @@ public class DynamicServiceImpl extends AbstractService implements DynamicServic
     public void updateStatus(Dynamic dynamic) {
         dynamicDAO.updateStatus(dynamic);
     }
-
-    @Override
-    public List<Object> listDynamic(int pageIndex, int pageSize) {
-        return dynamicDAO.listDynamic(pageIndex,pageSize);
-    }
 }

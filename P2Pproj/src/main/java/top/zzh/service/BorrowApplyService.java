@@ -14,7 +14,7 @@ public interface BorrowApplyService extends BaseService{
     //修改审核状态
     void updateState(BorrowApply borrowApply);
     Pager listPagerById(int pageNo, int pageSize, Long id);
-    Pager listPagerByUId(int pageNo,int pageSize);
+    Pager listPagerByUId(int pageNo,int pageSize,Object obj);
     Long getCount(Object obj);
     Pager shResult(int pageNo, int pageSize,Long uid);
     Long shCount(Long uid);

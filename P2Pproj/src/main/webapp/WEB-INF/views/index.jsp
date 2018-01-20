@@ -143,7 +143,7 @@
   </div>
   <a class="more" href="<%=path%>/page/ad/1">更多</a> </div>
 <div class="ipubs"><span class="o1">交易总额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">月交易总额:<strong>400,507,750.81</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
-<div class="feature"> <a class="fea1" href="#"> <i></i>
+<div class="feature"> <a class="fea1" href="<%=path%>/page/help"> <i></i>
   <h3>高收益</h3>
   <span>年化收益率最高达20%<br>
   50元起投，助您轻松获收益</span> </a> <a class="fea2" href="<%=path%>/page/help"> <i></i>
@@ -166,7 +166,7 @@
           <div class="fn-right f14 c-888">常规发标时间每天<span class="c-555">10:00，13:00和20:00</span>，其余时间根据需要随机发</div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fn-left">期限1-29天，期限短，收益见效快</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fn-left">期限1-29天，期限短，收益见效快</span><a href="<%=path%>/page/list?pageNo=1" class="fn-right">查看更多</a></div>
           <div class="borrow-list">
             <ul>
               <c:forEach items="${borrow1}" var="d">
@@ -210,7 +210,7 @@
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">61.37万次</span>&nbsp;&nbsp;&nbsp;平均满标时间：<span class="c-555">1小时24分11秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fn-left">期限1-12月，收益更高</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fn-left">期限1-12月，收益更高</span><a href="<%=path%>/page/list?pageNo=1" class="fn-right">查看更多</a></div>
           <div class="borrow-list">
             <ul>
               <c:forEach items="${borrow2}" var="d">
@@ -254,7 +254,7 @@
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">8.35万次</span>&nbsp;&nbsp;&nbsp;平均满标时间：<span class="c-555">1小时41分19秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"> <span class="fn-left">期限12-60月，打理更加容易</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"> <span class="fn-left">期限12-60月，打理更加容易</span><a href="<%=path%>/page/list?pageNo=1" class="fn-right">查看更多</a></div>
           <div class="borrow-list">
             <ul>
               <c:forEach items="${borrow3}" var="d">
@@ -298,7 +298,7 @@
           <div class="fn-right f14 c-888">参与人次：<span class="c-555">8.06万次</span> &nbsp;&nbsp;&nbsp;平均转让用时：<span class="c-555">03小时06分22秒</span> </div>
         </div>
         <div class="bd">
-          <div class="des"><span class="fl">其他投资人折价转让，转让项目会随时更新，惊喜不断</span><a href="#" class="fn-right">查看更多&gt;&gt;</a></div>
+          <div class="des"><span class="fl">其他投资人折价转让，转让项目会随时更新，惊喜不断</span><a href="<%=path%>/page/list?pageNo=1" class="fn-right">查看更多</a></div>
           <div class="borrow-list">
             <ul>
               <c:forEach items="${borrow4}" var="d">
@@ -358,13 +358,13 @@
       <div class="mod mod-rank clearfix ui-tab mrt20">
         <div class="hd">
           <h3>媒体报道</h3>
-          <a href="<%=path%>/page/report" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/report/1" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <c:if test="${requestScope.mediaList!=null}">
-                <c:forEach var="a" items="${mediaList}" >
-                  <li>[${a.url}]&nbsp;&nbsp;<a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
+              <c:if test="${requestScope.mediaPager!=null}">
+                <c:forEach var="a" items="${mediaPager.rows}" >
+                  <li><a href="<%=path%>/media/initMedia/${a.mid}" title="${a.title}" target="_blank">${a.title}</a></li>
                 </c:forEach>
               </c:if>
             </ul>
@@ -374,12 +374,12 @@
       <div class="mod mod-notice mrt20">
         <div class="hd">
           <h3>公司动态</h3>
-          <a href="<%=path%>/page/dynamic" class="fn-right">更多&gt;</a></div>
+          <a href="<%=path%>/page/dynamic/1" class="fn-right">更多&gt;</a></div>
         <div class="bd">
           <div class="article-list clearfix">
             <ul>
-              <c:if test="${requestScope.dynamicList!=null}">
-                <c:forEach var="b" items="${dynamicList}" >
+              <c:if test="${requestScope.dynamicPager!=null}">
+                <c:forEach var="b" items="${dynamicPager.rows}" >
                   <li><a href="<%=path%>/dynamic/initDynamic/${b.dyid}" title="${b.title}" target="_blank"> ${b.title}</a><span style="align:right;" class="date">${b.date}</span></li>
                 </c:forEach>
               </c:if>

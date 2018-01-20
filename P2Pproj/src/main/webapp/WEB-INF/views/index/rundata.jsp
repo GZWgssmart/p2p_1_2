@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>关于我们-亿人宝</title>
+    <title>运营数据-亿人宝</title>
     <link rel="stylesheet" href="<%=path%>/static/css/infoshow/about.css">
 
     <link href="<%=path%>/static/css/common.css" rel="stylesheet" />

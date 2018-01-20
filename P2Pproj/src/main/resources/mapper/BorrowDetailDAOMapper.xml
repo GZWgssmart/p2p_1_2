@@ -9,8 +9,8 @@
             SELECT LAST_INSERT_ID();
         </selectKey>
         <![CDATA[
-          insert into t_borrowdetail(mpurpose,hksource,suggest,
-          xmdescrip,guarantee,money,nprofit,sid,cpname,baid) values(#{mpurpose},
+          insert into t_borrowdetail(mpurpose,hksource,suggest,xmdescrip,guarantee,money,nprofit,sid,cpname,baid)
+          values(#{mpurpose},
             #{hksource},#{suggest},#{xmdescrip},#{guarantee},#{money},#{nprofit},#{sid},#{cpname},#{baid})
         ]]>
     </insert>

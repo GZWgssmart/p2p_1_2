@@ -7,7 +7,16 @@ public class RecommendVO {
     private String date;
     private String startTime;
     private String endTime;
+    private String tzm;
     private long ci;
+
+    public String getTzm() {
+        return tzm;
+    }
+
+    public void setTzm(String tzm) {
+        this.tzm = tzm;
+    }
 
     public long getCi() {
         return ci;

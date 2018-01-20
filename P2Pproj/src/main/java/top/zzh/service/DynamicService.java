@@ -9,5 +9,4 @@ import java.util.List;
  * */
 public interface DynamicService extends BaseService{
     void updateStatus(Dynamic dynamic);
-    List<Object> listDynamic(int pageIndex, int pageSize);
 }

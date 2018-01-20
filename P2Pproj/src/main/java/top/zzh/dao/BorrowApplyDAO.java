@@ -2,6 +2,7 @@ package top.zzh.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 import top.zzh.bean.BorrowApply;
 import top.zzh.common.Pager;
 import top.zzh.vo.BorrowDetailVO;
@@ -18,7 +19,7 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     List<Object> listPager(@Param("pager") Pager pager);
 
-    List<Object> listPagerByUId(@Param("pager") Pager pager);
+    List<Object> listPagerByUId(@Param("pager") Pager pager, @Param("query") Object obj);
 
     Long getCount( @Param("query") Object obj);
 
@@ -37,7 +38,7 @@ public interface BorrowApplyDAO extends BaseDAO{
     @Override
     Long count();
 
-    List<Object> listPagerById(@Param("pager") Pager pager,@Param("id") Long id);
+    List<Object> listPagerById(@Param("pager") Pager pager, @Param("id") Long id);
 
     Long countById(@Param("id") Long id);
 

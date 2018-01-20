@@ -34,28 +34,24 @@ $('#mytab').bootstrapTable({
             align: 'center',
             valign: 'middle'
         },
-
         {
-            title: '推荐人编号',
-            field: 'tid',
+            title: '编号',
+            field: 'id',
+            align: 'center',
+            visible:false
+        },
+        {
+            title: '推荐码',
+            field: 'tzm',
             align: 'center',
             sortable: true
         },
-
         {
             title: '推荐人姓名',
             field: 'tname',
             align: 'center',
             sortable: true
-        }
-        ,
-        {
-            title: '被推荐人编号',
-            field: 'uid',
-            align: 'center',
-            sortable: true
-        }
-        ,
+        },
         {
             title: '被推荐人姓名',
             field: 'rname',
@@ -77,16 +73,6 @@ $('#mytab').bootstrapTable({
                 var mi = date.getMinutes();
                 var ss = date.getSeconds();
                 return y + '-' + m + '-' + d;
-            }
-        }
-        ,
-        {
-            title: '操作',
-            align: 'center',
-            field: '',
-            formatter: function (value, row, index) {
-                var d = '<a title="删除" href="javascript:void(0);" onclick="del(' + row.id + ',\'' + '/recommend/remove\'' + ')"><i class="glyphicon glyphicon-trash" alt="删除" style="color:red"></i></a> ';
-                return d;
             }
         }
     ],
@@ -159,12 +145,11 @@ function delMany(url) {
         return;
     }
 
-    $("#deleteId").val(row);
-    layer.confirm('确认要执行批量删除请假员工数据吗？', function (index) {
+    layer.confirm('确认要删除这' + row.length + '记录吗？', function (index) {
         $.post(
             url,
             {
-                "ids": $("#deleteId").val()
+                ids: row
             },
             function (data) {
                 if (data.message == "删除成功") {

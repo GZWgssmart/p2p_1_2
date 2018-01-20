@@ -35,14 +35,6 @@ public class MediaController {
      * 跳转页面
      * @return
      * */
-
-    @RequestMapping("initPager/{pageIndex}/{pageSize}")
-    public ModelAndView mediaList(HttpServletRequest request,int pageIndex,int pageSize){
-        ModelAndView modelAndView = new ModelAndView("index/report");
-        modelAndView.addObject("mediaList",mediaService.listMedia(pageIndex,pageSize));
-        return modelAndView;
-    }
-
     @RequestMapping("initMedia/{mid}")
     public String initNotice(@PathVariable("mid") Long mid ,HttpServletRequest request) {
         Media media = (Media) mediaService.getById(mid);

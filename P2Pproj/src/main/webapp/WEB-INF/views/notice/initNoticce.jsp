@@ -77,7 +77,7 @@
                                 <div class="gg_newstitle"><p>${notice.title}</p><b> &nbsp;&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${notice.date}" pattern="yyyy-MM-dd"/></b></div>
                                 <div><p> ${notice.content}</p></div>
                                 <div class="fanhui">
-                                    <b><span style="margin-left: 330px;font-size:16px;"><a href="<%=path%>/page/report">返回上一页</a></span></b>
+                                    <b><span style="margin-left: 330px;font-size:16px;"><a href="<%=path%>/page/ad/1">返回上一页</a></span></b>
                                     <b><span style="margin-left: 50px;font-size:16px;"><a href="<%=path%>/">返回首页</a></span></b>
                                 </div>
                             </div>

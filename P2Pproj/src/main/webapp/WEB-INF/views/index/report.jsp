@@ -27,7 +27,7 @@
         <div class="text-box">
             <div class="text-content" id="text-content">
                 <ul class="r-list">
-                    <c:forEach items="${mediaList}" var="s">
+                    <c:forEach items="${mediaPager.rows}" var="s">
                         <li class="clearfix">
                             <a href="">
                                 <img src="<%=path%>/${s.pic}" width="300" height="171">
@@ -45,32 +45,57 @@
                     </c:forEach>
                 </ul>
                 <%--分页条开始--%>
-                <c:if test="${page.total==0}">
+                <c:if test="${mediaPager.total==0}">
                     <div align="center"><h5>没有找到匹配的记录</h5></div>
                 </c:if>
-                <c:if test="${page.total>0}">
-                    <div class="pagination clearfix mrt30">
-                        <span class="page" style="font-size: 19px;">
-                            <a href="javascript:void(0);" onclick="">首页</a>
-                            <a href="javascript:void(0);" style="margin-left: 10px" onclick="">上一页</a>&nbsp;
-                            <a class="curr" style="margin-left: 10px" href="javascript:void(0);">1</a>
-                            <a href="#"style="margin-left: 10px">2</a>
-                            <a href="#" style="margin-left: 10px">3</a>
-                            <a href="#" style="margin-left: 10px">4</a>
-                            <a href="#" style="margin-left: 10px">5</a>
-                            <a href="javascript:void(0);" style="margin-left: 10px">下一页</a>
-                            <a href="javascript:void(0);" style="margin-left: 10px">尾页</a>&nbsp;
-                            <em style="margin-left: 10px">共2297页&nbsp;</em></span>
-                        <dl class="page-select">
-                            <dt><span>1</span><i class="icon icon-down"></i></dt>
-                            <dd style="display: none;">
-                                <ul name="nump" id="jsnump">
-                                    <li><a href="##" onclick="">1</a></li>
-                                    <li><a href="##" onclick="">2</a></li>
-                                    <li><a href="##" onclick="">3</a></li>
-                                </ul>
-                            </dd>
-                        </dl>
+                <c:if test="${mediaPager.total>0}">
+                <div class="pagination clearfix mrt30">
+                   <span class="page" style="font-size: 19px;">
+                     <font size="4" style="margin-left: 10px">页码${mediaPager.pageNo}/${mediaPager.pages}&nbsp;&nbsp;&nbsp;&nbsp;</font>
+                     <a href="javascript:void(0);" onclick="page(1)">首页</a>
+                     <c:choose>
+                         <c:when test="${mediaPager.pageNo - 1 >0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pageNo -1}')">上一页</a>&nbsp;
+                         </c:when>
+                         <c:when test="${mediaPager.pageNo -1 <=0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page(1)">上一页</a>&nbsp;
+                         </c:when>
+                     </c:choose>
+                      <c:if test="${mediaPager.pages > 0}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(1)">1</a>
+                      </c:if>
+                      <c:if test="${mediaPager.pages > 1}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(2)">2</a>
+                      </c:if>
+                      <c:if test="${mediaPager.pages > 2}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(3)">3</a>
+                      </c:if>
+                      <c:if test="${mediaPager.pages > 3}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(4)">4</a>
+                      </c:if>
+                      <c:if test="${mediaPager.pages > 4}">
+                          <a class="curr" style="margin-left: 10px" href="javascript:void(0);" onclick="page(5)">5</a>
+                      </c:if>
+                       <c:choose>
+                         <c:when test="${mediaPager.pages == 0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pageNo}')">下一页</a>
+                         </c:when>
+                         <c:when test="${mediaPager.pageNo + 1 < mediaPager.pages}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pageNo + 1}')">下一页</a>
+                         </c:when>
+                         <c:when test="${mediaPager.pageNo + 1 >= mediaPager.pages}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pages}')">下一页</a>
+                         </c:when>
+                     </c:choose>
+                     <c:choose>
+                         <c:when test="${mediaPager.pages == 0}">
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pageNo}')">尾页</a>&nbsp;
+                         </c:when>
+                         <c:otherwise>
+                             <a href="javascript:void(0);" style="margin-left: 10px" onclick="page('${mediaPager.pages}')">尾页</a>&nbsp;
+                         </c:otherwise>
+                     </c:choose>
+                         <em style="margin-left: 10px">共${mediaPager.total}条&nbsp;</em></span>
                     </div>
                 </c:if>
                 <%--分页条结束--%>
@@ -82,20 +107,19 @@
 <%@include file="../common/footer.jsp" %>
 <jsp:include page="../common/bootstraptablejs.jsp"/>
 <script>
-    var path = "http://"+window.location.host+"/upload";
+
     function page(str){
-        if(str==${page.pageNo}&&str==1){
-            layer.msg("当前已经是第一页了！", {icon: 2, time: 1000});
+        if(str==${mediaPager.pageNo}&&str==1){
+            layer.msg("当前已经是第一页了哦！", {icon: 2, time: 1000});
             return false;
         }
-        if(str==${page.pageNo}&&str==${page.pages}){
-            layer.msg("当前已经是最后一页了！", {icon: 2, time: 1000});
+        if(str==${mediaPager.pageNo}&&str==${mediaPager.pages}){
+            layer.msg("当前已经是最后一页了哦！", {icon: 2, time: 1000});
             return false;
         }
-        $.post("<%=path%>/media/list", {
-                pageNo: str},
+        $.post("/page/report/"+str,
             function(data){
-                window.location.href="<%=path%>/media/list?pageNo="+str;
+                window.location.href="/page/report/"+str;
             });
     }
 </script>

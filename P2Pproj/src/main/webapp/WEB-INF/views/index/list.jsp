@@ -14,6 +14,8 @@
     <link href="<%=path%>/static/css/detail.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<%=path%>/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/static/js/common.js"></script>
+
+    <link href="<%=path%>/static/plugin/bootstrap/css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
 <body>
 <!-- 网站头部-->
@@ -28,49 +30,53 @@
                     <h3>筛选投资项目</h3>
                 </div>
                 <div class="bd">
-                    <dl>
-                        <dt>项目期限</dt>
-                        <dd>
-                            <ul>
-                                <li class ="n1"><a href="<%=path%>/page/list?pageNo=1"  class="active">全部</a></li>
-                                <li class="n2"><a href="" >1-3个月</a></li>
-                                <li class="n3"><a href="" >3-6个月</a></li>
-                                <li class="n4"><a href="" >6-9个月</a></li>
-                                <li class="n5"><a href="" >大于9个月</a> </li>
-                            </ul>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>年化收益</dt>
-                        <dd>
-                            <ul>
-                                <li class="n1"><a href="<%=path%>/page/list?pageNo=1" class="active">全部</a></li>
-                                <li class="n2"><a href=""><=10%</a> </li>
-                                <li class="n3"><a href="">10%-15%</a> </li>
-                                <li class="n4"><a href="">15%-25%</a> </li>
-                            </ul>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>项目类型</dt>
-                        <dd>
-                            <ul >
-                                <li class="n1"><a href="<%=path%>/page/list?pageNo=1"  class="active">全部</a> </li>
-                                <li class="n2"><a  href="">多金宝</a> </li>
-                                <li class="n3"><a  href="">普金宝</a> </li>
-                                <li class="n4"><a  href="">恒金宝</a> </li>
-                                <li class="n5"><a  href="">新手标</a> </li>
-                            </ul>
-                        </dd>
-                    </dl>
+                    <div class="panel panel-default">
+                        <form method="post" action="<%=path%>/page/list">
+                        <input type="hidden" id="term1" value="${term}">
+                        <input type="hidden" id="nprofit1" value="${cpname}">
+                        <input type="hidden" id="bzname1" value="${nprofit}">
+                            <input type="hidden" name="pageNo" value="1">
+                        <div class="panel-body form-group" style="margin-bottom:0px;">
+                            <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">项目期限：</label>
+                            <div class="col-sm-1">
+                                <select class="form-control"  name="term" id="term">
+                                    <option value="1">1-3个月</option>
+                                    <option value="2">3-6个月</option>
+                                    <option value="3">6-9个月</option>
+                                    <option value="4">大于9个月</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label" style="text-align: right; margin-top:5px">年化收益：</label>
+                            <div class="col-sm-2">
+                                <select class="form-control"  name="nprofit" id="nprofit">
+                                    <option value="1"><=10%</option>
+                                    <option value="2">10%-15%</option>
+                                    <option value="3">15%-25%</option>
+                                    <option value="4">大于25%</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-3 control-label" style="text-align: right; margin-top:5px">标种名称：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control"  name="bzname" id="bzname">
+                                    <option value="3">多金宝</option>
+                                    <option value="4">普金宝</option>
+                                    <option value="5">恒金宝</option>
+                                    <option value="6">新手标</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1 col-sm-offset-4">
+                                <button class="btn btn-primary" >搜索</button>
+                                <a class="btn btn-primary" href="<%=path%>/page/list?pageNo=1">返回</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="common-problem">
                 <h3>常见问题</h3>
                 <ul>
                     <li><a href="<%=path%>/page/help">什么是债权贷？</a></li>
-                    <li><a href="<%=path%>/page/help">关于"债权贷"产品的说明</a></li>
-                    <li><a href="<%=path%>/page/help">易贷网P2P理财收费标准</a></li>
                     <li><a href="<%=path%>/page/help">债权贷和信用贷、抵押贷有什么区别？</a></li>
                 </ul>
             </div>
@@ -175,6 +181,9 @@
 <jsp:include page="../common/bootstraptablejs.jsp"/>
 <script>
     function page(str){
+        var  term1 = $("#term1").val();
+        var  nprofit1 = $("#nprofit1").val();
+        var  bzname1 = $("#bzname1").val();
         if(str==${page.pageNo}&&str==1){
             layer.msg("当前已经是第一页了哦！", {icon: 2, time: 1000});
             return false;
@@ -183,12 +192,16 @@
             layer.msg("当前已经是最后一页了哦！", {icon: 2, time: 1000});
             return false;
         }
-        $.post("/page/list", {
-                pageNo: str},
-            function(data){
-                window.location.href="/page/list?pageNo="+str;
-            });
+        if(term1!=null){
+            str=str+"&term="+term1;
+        }else if(nprofit1!=null){
+            str=str+"&nprofit="+nprofit1;
+        }else if(bzname1!=null){
+            str=str+"&bzname="+bzname1;
+        }
+        window.location.href="/page/list?pageNo="+str;
     }
+
 </script>
 </body>
 </html>
