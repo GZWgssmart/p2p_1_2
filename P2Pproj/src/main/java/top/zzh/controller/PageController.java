@@ -64,6 +64,9 @@ public class PageController {
 
     @Autowired DynamicService dynamicService;
 
+    @Autowired
+    private YdateService ydateService;
+
     //前台投资理财计算器
     @RequestMapping("cal")
     public String cal() {
@@ -205,8 +208,14 @@ public class PageController {
 
     //前台关于我们里的运营数据页面
     @RequestMapping("rundata")
-    public String rundata(){
-        return "index/rundata";
+    public ModelAndView rundata(){
+        List<YdateVo> ydateList=ydateService.selectIdAndDate();
+        YdateVo nowYdate=ydateService.getByMaxDate();
+        ModelAndView mv=new ModelAndView();
+        mv.addObject("nowYdate",nowYdate);
+        mv.addObject("ydateList",ydateList);
+        mv.setViewName("index/rundata");
+        return mv;
     }
     @RequestMapping("huikuan")
     public String huikuan(HttpSession session,HttpServletRequest request) {
