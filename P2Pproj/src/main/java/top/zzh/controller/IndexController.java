@@ -9,7 +9,6 @@ import top.zzh.bean.Notice;
 import top.zzh.common.Pager;
 import top.zzh.service.*;
 import top.zzh.vo.BorrowDetailVO;
-import top.zzh.vo.YdateVo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -48,9 +47,6 @@ public class IndexController {
     @Autowired
     private TzbService tzbService;
 
-    @Autowired
-    private YdateService ydateService;
-
     @RequestMapping("")
     public ModelAndView index(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -63,8 +59,6 @@ public class IndexController {
         Long user = (Long)userService.count();
         //首页统计贷款人数
         Long tz = (Long)tzbService.count();
-        //首页统计投资总额和月投资总额
-        YdateVo list1 = ydateService.getByMaxDate();
         List<Friend> friendList = new ArrayList<Friend>();
         friendList = friendService.listFriend();
         List<Object> homeList = new ArrayList<>();
@@ -83,7 +77,6 @@ public class IndexController {
         Pager dynamicPager = dynamicService.listPager(1,5);
         modelAndView.addObject("user",user);
         modelAndView.addObject("tz",tz);
-        modelAndView.addObject("list1",list1);
         modelAndView.addObject("noticeList",noticeList);
         modelAndView.addObject("friendList",friendList);
         modelAndView.addObject("homeList",homeList);

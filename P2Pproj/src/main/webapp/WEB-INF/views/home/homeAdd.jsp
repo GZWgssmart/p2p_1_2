@@ -19,21 +19,7 @@
         <div class="ibox-title">
             <h5>首页信息</h5>
             <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">选项1</a>
-                    </li>
-                    <li><a href="#">选项2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
+                <h5><a  style="color: blue" href="<%=path%>/home/page">返回列表&nbsp;&nbsp;&nbsp;&nbsp;</a></h5>
             </div>
         </div>
         <div class="ibox-content">
@@ -84,7 +70,6 @@
                             <div class="layui-upload-list">
                                 <p id="image3">
                                     <input type="text" id="pic3"  class="form-control" name="pic3" style="height:0px;border:0px;margin:0px;padding:0px;"/>
-
                                 <p id="demoText3"></p>
                             </div>
                         </div>

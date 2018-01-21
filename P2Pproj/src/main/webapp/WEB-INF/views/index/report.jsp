@@ -37,7 +37,7 @@
                                     <a href="<%=path%>/media/initMedia/${s.mid}">${s.title}</a>
                                 </h5>
                                 <p class="text">
-                                        ${s.title}
+                                    ${s.contentToSub}
                                 </p>
                                 <p class="time">报道时间:${s.date}</p>
                             </div>
