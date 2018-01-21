@@ -20,9 +20,10 @@
     <select id="list" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
         <include refid="usertick_query_common"></include>
         <![CDATA[
-        and CURRENT_DATE <= t.tktime and ut.usestatus=0
+        and CURRENT_DATE <= t.tktime and ut.usestatus=0 and t.tintro = '请直接转到余额里面哦'
         ]]>
     </select>
+
     <select id="unuse" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
         <include refid="usertick_query_common"></include>
         <![CDATA[

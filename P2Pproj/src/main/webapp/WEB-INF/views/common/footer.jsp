@@ -43,10 +43,10 @@
             <dl>
                 <dt>手机APP下载二维码</dt>
                 <dd>
-                        <span class="icon-ft-erweima">
-                    <c:forEach var="s" items="${homeList}">
-                        <img src="<%=path%>/${s.ewm}" style="display: inline;">
-                    </c:forEach>
+                    <span class="icon-ft-erweima">
+                        <c:forEach var="s" items="${homeList}">
+                            <img src="<%=path%>/${s.ewm}" style="display: inline;">
+                        </c:forEach>
                     </span>
                 </dd>
             </dl>
@@ -57,7 +57,7 @@
                 class="icon-approve approve-1 fadeIn-2s" target="_blank" href="#"></a><a
                 class="icon-approve approve-2 fadeIn-2s" target="_blank" href="#"></a><a
                 class="icon-approve approve-3 fadeIn-2s" target="_blank" href="#"></a></div>
-        <div class="ft-identity">©2017 亿人宝 All rights reserved&nbsp;&nbsp;&nbsp;<span class="color-e6">|</span>&nbsp;&nbsp;&nbsp;江西省亿人宝投资管理有限公司&nbsp;&nbsp;&nbsp;<span
+        <div class="ft-identity">©2018 亿人宝 All rights reserved&nbsp;&nbsp;&nbsp;<span class="color-e6">|</span>&nbsp;&nbsp;&nbsp;江西省亿人宝投资管理有限公司&nbsp;&nbsp;&nbsp;<span
                 class="color-e6">|</span>&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://www.miitbeian.gov.cn/">赣ICP备12345678号-1</a>
         </div>
     </div>
