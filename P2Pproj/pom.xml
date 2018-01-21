@@ -68,7 +68,7 @@
     <poi-version>3.17</poi-version>
     <taglibs-version>1.1.2</taglibs-version>
     <quartz-version>2.3.0</quartz-version>
-    <jasperreport-version>6.0.0</jasperreport-version>
+    <jasperreport-version>5.6.0</jasperreport-version>
     <jfreechart-version>1.0.12</jfreechart-version>
     <itextpdf-version>5.5.12</itextpdf-version>
     <itextasian-version>5.2.0</itextasian-version>
@@ -275,5 +275,7 @@
       <artifactId>groovy-all</artifactId>
       <version>${groovy-version}</version>
     </dependency>
+
+
   </dependencies>
 </project>

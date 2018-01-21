@@ -85,8 +85,5 @@ public class UserMoneyServiceImpl extends AbstractService implements UserMoneySe
         return userMoneyDAO.getByUid(uid);
     }
 
-    @Override
-    public void updateKymoney(Object object) {
-        userMoneyDAO.updateKymoney(object);
-    }
+
 }

@@ -48,7 +48,7 @@
     </select>
 
 
-    <update id="updateZpwd" parameterType="string">
+    <update id="updatezpwd" parameterType="string">
         <![CDATA[
            update t_user set zpwd=#{zpwd} where uname=#{uname}
         ]]>
@@ -120,12 +120,5 @@
           update t_user set state=#{state} where uid=#{uid}
         ]]>
     </update>
-
-    <update id="resettingUpwd">
-        <![CDATA[
-           update t_user set upwd=#{upwd}  where phone=#{phone}
-        ]]>
-    </update>
-
 
 </mapper>

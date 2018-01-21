@@ -16,14 +16,6 @@
         from t_userticket ut inner join t_ticket t where ut.kid=t.kid  and ut.uid=#{uid}
          ]]>
     </sql>
-
-    <select id="list" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
-        <include refid="usertick_query_common"></include>
-        <![CDATA[
-        and CURRENT_DATE <= t.tktime and ut.usestatus=0 and t.tintro = '请直接转到余额里面哦'
-        ]]>
-    </select>
-
     <select id="unuse" parameterType="long" resultType="top.zzh.vo.UserTicketVo">
         <include refid="usertick_query_common"></include>
         <![CDATA[
@@ -82,12 +74,6 @@
     <update id="updateEGold">
         <![CDATA[
         update t_userticket set usestatus=2 where kid in (select kid from t_ticket where type=3) and datediff(CURRENT_DATE,tktime)>3 ;
-        ]]>
-    </update>
-
-    <update id="updateState" parameterType="top.zzh.vo.UserTicketVo">
-        <![CDATA[
-          update t_userticket set usestatus = 1 where uid = #{uid} and kid = #{kid}
         ]]>
     </update>
 </mapper>
