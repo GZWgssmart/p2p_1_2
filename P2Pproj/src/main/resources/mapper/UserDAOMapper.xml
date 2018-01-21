@@ -48,7 +48,7 @@
     </select>
 
 
-    <update id="updatezpwd" parameterType="string">
+    <update id="updateZpwd" parameterType="string">
         <![CDATA[
            update t_user set zpwd=#{zpwd} where uname=#{uname}
         ]]>
