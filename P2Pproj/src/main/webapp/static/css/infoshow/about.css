@@ -1029,3 +1029,8 @@
 	border-radius: 10px;
 	text-align: center;
 }
+.ydataBg a{
+	padding-top:80px;padding-left: 50px;margin:20px;
+	background: url(/static/images/infoshow/1.jpg) no-repeat;
+	width:200px;height:260px;
+}
