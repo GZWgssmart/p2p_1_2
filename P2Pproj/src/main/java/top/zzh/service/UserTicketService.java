@@ -16,4 +16,8 @@ public interface UserTicketService extends BaseService{
     void regTktsave(Long uid);
     List<UserTicketVo> selectUtkListByName(String tname,Long uid);
     public void updateEGold();
+
+    //将余额充值进余额，修改状态
+    UserTicketVo list(Long uid);
+    void updateState(Object object);
 }

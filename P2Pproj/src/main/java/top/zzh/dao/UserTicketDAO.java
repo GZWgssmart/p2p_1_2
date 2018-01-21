@@ -24,4 +24,8 @@ public interface UserTicketDAO extends BaseDAO{
     public List<Long> selectKidListByName(String tname);
     public List<UserTicketVo> selectUtkListByName(@Param("tname")String tname,@Param("uid") Long uid);
     public void updateEGold();
+
+    //将余额充值进余额，修改状态
+    UserTicketVo list(@Param("uid") Long uid);
+    void updateState(Object object);
 }
