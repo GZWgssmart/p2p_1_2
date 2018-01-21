@@ -86,6 +86,8 @@
                             </li>
                             <li><a class="J_menuItem" href="<%=path%>/option/page">用户反馈</a>
                             </li>
+                            <li><a class="J_menuItem" href="<%=path%>/letter/page">站内信管理</a>
+                            </li>
                             <li><a class="J_menuItem" href="<%=path%>/luser/loginlog">登录日志</a>
                             </li>
                         </ul>
