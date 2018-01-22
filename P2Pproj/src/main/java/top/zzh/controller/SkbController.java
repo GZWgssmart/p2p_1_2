@@ -246,7 +246,7 @@ public class SkbController {
     }
 
 
-    @RequestMapping("skDetail/{juid}")
+    @RequestMapping("skDetail/{uid}")
     public ModelAndView soukuan(HttpSession session, Integer pageNo, SkbVO skb, @PathVariable("juid") Long juid) {
         logger.info("后台管理员查看收款详情");
         skb.setJuid(juid);

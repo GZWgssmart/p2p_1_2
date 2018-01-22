@@ -141,7 +141,6 @@
                             </li>
                             <li><a a class="J_menuItem" href="<%=path%>/notice/notice">最新公告列表</a>
                             </li>
-
                         </ul>
                     </li>
                 </shiro:hasRole><!--普通管理员-->
