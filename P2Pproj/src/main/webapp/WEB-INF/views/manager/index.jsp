@@ -153,12 +153,15 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
+
                             <shiro:hasPermission name="宣传管理:媒体报道列表">
                                 <li><a a class="J_menuItem" href="<%=path%>/media/page">媒体报道</a></li>
                             </shiro:hasPermission>
+
                             <shiro:hasPermission name="宣传管理:公司动态列表">
                                 <li><a a class="J_menuItem" href="<%=path%>/dynamic/page">公司动态</a></li>
                             </shiro:hasPermission>
+
                             <shiro:hasPermission name="宣传管理:首页信息列表">
                                 <li><a a class="J_menuItem" href="<%=path%>/home/page">首页信息</a></li>
                             </shiro:hasPermission>
