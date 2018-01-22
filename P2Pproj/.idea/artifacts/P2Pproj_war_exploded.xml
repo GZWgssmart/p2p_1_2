@@ -101,8 +101,8 @@
           <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.12" />
           <element id="library" level="project" name="Maven: com.itextpdf:itext-asian:5.2.0" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.4" />
-          <element id="library" level="project" name="editor" />
-          <element id="library" level="project" name="commons-beanutils-1.8.0 (2)" />
+          <element id="library" level="project" name="beanutils" />
+          <element id="library" level="project" name="ueditor" />
         </element>
       </element>
       <element id="directory" name="META-INF">

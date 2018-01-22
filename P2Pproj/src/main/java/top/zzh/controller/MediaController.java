@@ -148,21 +148,6 @@ public class MediaController {
         return statusVO;
     }
 
-    //批量删除
-    @RequestMapping("deleteMany/{mid}")
-    @ResponseBody
-    public String deleteMany(@PathVariable("mid")String id){
-            Media media = new Media();
-            String idString[] = id.split(".");
-            for(int i=0;i<idString.length;i++){
-                media.setMid(Long.parseLong(idString[i].toString()));
-                mediaService.remove(id);
-            }
-            if (media != null){
-                return "mediaList";
-            }
-        return "ok";
-    }
     @RequestMapping("page")
     public String page(){
         return "media/mediaList";

@@ -18,15 +18,6 @@ public class Media {
 
     private Byte state;//状态
 
-    private String contentToSub;
-
-    public String getContentToSub() {
-        if(content.length()>=200) {
-            return content.substring(0, 200);
-        }else{
-            return content;
-        }
-    }
 
     public Media(Long mid, String title, String content, String pic, String date, String url, Byte state) {
         this.mid = mid;
@@ -97,4 +88,5 @@ public class Media {
     public void setState(Byte state) {
         this.state = state;
     }
+
 }

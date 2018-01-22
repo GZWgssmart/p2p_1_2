@@ -327,7 +327,7 @@ $('#updateForm').bootstrapValidator({
             }
         },
         url: {
-            message: '报道标题验证失败',
+            message: '报道地址验证失败',
             validators: {
                 notEmpty: {
                     message: '请输入报道地址'
@@ -342,27 +342,6 @@ $('#updateForm').bootstrapValidator({
                     message: '请输入有效的网址'
                 }
             }
-        },
-        pic: {
-            message: '图片验证失败',
-            validators: {
-                notEmpty: {
-                    message: '封面图片不能为空'
-                }
-            }
-        },
-        date: {
-            message: '报道时间验证失败',
-            validators: {
-                notEmpty: {
-                    message: '请选择报道时间'
-                },
-                date:{
-                    format : 'YYYY/MM/DD',
-                    message : '日期格式不正确'
-                }
-
-            }
         }
     }
 }).on('success.form.bv', function(e) {//点击提交之后
@@ -372,63 +351,10 @@ $('#updateForm').bootstrapValidator({
     $.post(
         "/media/update",
         $('#updateForm').serialize(),
-        function (data) {
-            alert("进来了");
-            if (data.result == "ok") {
-                layer.msg(data.message, {icon: 1, time: 3000});
-            } else {
-                layer.msg(data.message, {icon: 2, time: 3000});
-            }
-            refush();
-            $("#title").val("");
-            $("#pic").val("");
-            $("#date").val("");
-            $("#url").val("");
-            $("#demo1").attr("src",'');
-            ue.setContent('');
+        function () {
+            console.log("test");
+            window.location.href="/media/page";
         },
-        "json"
+        "html"
     );
 });
-function deleteMany() {
-    var isactivity = "";
-    var row = $.map($("#mytab").bootstrapTable('getSelections'), function (row) {
-        if (row.state == 0) {
-            isactivity += row.state;
-        }
-        return row.id;
-    });
-    if (row == "") {
-        layer.msg('删除失败，请勾选数据!', {
-            icon: 2,
-            time: 3000
-        });
-        return;
-    }
-    if (isactivity != "") {
-        layer.msg('删除失败，已经激活的不允许删除!', {
-            icon: 2,
-            time: 3000
-        });
-        return;
-
-    }
-    $("#deleteId").val(row);
-    layer.confirm('确认要执行批量删除媒体报道数据吗？', function (index) {
-        $.post(
-            "/media/deleteMany",
-            {
-                "manyId": $("#deleteId").val()
-            },
-            function (data) {
-                if (data.result == "ok") {
-                    layer.msg("批量删除成功", {icon: 1, time: 3000});
-                    refush();
-                } else {
-                    layer.msg("批量删除失败", {icon: 2, time: 3000});
-                }
-                refush();
-            }, "json"
-        );
-    });
-}
