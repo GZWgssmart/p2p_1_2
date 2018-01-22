@@ -373,14 +373,12 @@ $('#updateForm').bootstrapValidator({
         "/media/update",
         $('#updateForm').serialize(),
         function (data) {
+            alert("进来了");
             if (data.result == "ok") {
-                alert("修改成功");
                 layer.msg(data.message, {icon: 1, time: 3000});
             } else {
-                alert("进来了");
                 layer.msg(data.message, {icon: 2, time: 3000});
             }
-            alert("-----------");
             refush();
             $("#title").val("");
             $("#pic").val("");

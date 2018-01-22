@@ -30,8 +30,8 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test1">上传图片</button>
                             <div class="layui-upload-list">
-                                <p id="image1">
-                                    <input type="text" id="pic1"  class="form-control" name="pic1" style="height:0px;border:0px;margin:0px;padding:0px;"/>
+                                <p id="image1"></p>
+                                    <input type="text" id="pic1"  class="form-control" name="pic1" style="height:0px;border:0px;margin:0px;padding:0px;/>
                                 <p id="demoText1"></p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test2">上传图片</button>
                             <div class="layui-upload-list">
-                                <p id="image2">
+                                <p id="image2"></p>
                                     <input type="text" id="pic2"  class="form-control" name="pic2" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText2"></p>
                             </div>
@@ -68,7 +68,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test3">上传图片</button>
                             <div class="layui-upload-list">
-                                <p id="image3">
+                                <p id="image3"></p>
                                     <input type="text" id="pic3"  class="form-control" name="pic3" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText3"></p>
                             </div>
@@ -87,7 +87,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="test4">上传图片</button>
                             <div class="layui-upload-list">
-                                <p id="image4">
+                                <p id="image4"></p>
                                 <input type="text" id="ewm"  class="form-control" name="ewm" style="height:0px;border:0px;margin:0px;padding:0px;"/>
                                 <p id="demoText4"></p>
                             </div>
