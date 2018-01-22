@@ -142,7 +142,7 @@
     </div>
   </div>
   <a class="more" href="<%=path%>/page/ad/1">更多</a> </div>
-<div class="ipubs"><span class="o1">交易总额:<strong>1,047,288,128.79</strong>元</span> <span class="o2">月交易总额:<strong>400,507,750.81</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
+<div class="ipubs"><span class="o1">投资总额:<strong>${list1.tmoney}</strong>元</span> <span class="o2">月投资总额:<strong>${list1.mmoney}</strong>元</span><span class="o4">总贷款人数:<strong>${tz}</strong>人</span><span class="o4">总用户:<strong>${user}</strong>人</span></div>
 <div class="feature"> <a class="fea1" href="<%=path%>/page/help"> <i></i>
   <h3>高收益</h3>
   <span>年化收益率最高达20%<br>
