@@ -69,14 +69,19 @@ public class RecommendController {
         double sumMoney;
         for (Object o : obj.getRows()) {
             RecommendData recommend2 = (RecommendData) o;
-            sumMoney = recommendService.tzByUid(recommend2.getUid()).doubleValue();
-            if (sumMoney > 10000) {
-                recommend2.setMoney(50);
-                count++;
-            } else {
+            BigDecimal big = recommendService.tzByUid(recommend2.getUid());
+            if (big != null) {
+                sumMoney = big.doubleValue();
+                if (sumMoney > 10000) {
+                    recommend2.setMoney(50);
+                    count++;
+                } else {
+                    recommend2.setMoney(0);
+                }
+                recommendList.add(recommend2);
+            }else {
                 recommend2.setMoney(0);
             }
-            recommendList.add(recommend2);
         }
         if (count > recommendService.countTicketByUid(uid, 27)) {
             recommendService.userTicketSave(uid, 27);
