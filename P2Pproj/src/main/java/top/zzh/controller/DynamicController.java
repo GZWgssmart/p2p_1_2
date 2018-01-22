@@ -92,11 +92,11 @@ public class DynamicController {
 
     //通过id查找媒体报道
     @RequestMapping("findDynamic/{dyid}")
-    @ResponseBody
-    public Dynamic findMedia(@PathVariable("dyid")Long dyid){
+    public String findMedia(@PathVariable("dyid")Long dyid,HttpServletRequest request){
         Dynamic dynamic = new Dynamic();
         dynamic = (Dynamic) dynamicService.getById(dyid);
-        return dynamic;
+        request.setAttribute("dynamic",dynamic);
+        return "dynamic/dynamicDetail";
     }
 
     @RequestMapping("initUpdate/{dyid}")
@@ -108,15 +108,16 @@ public class DynamicController {
     }
 
     @RequestMapping("update")
-    @ResponseBody
-    public ControllerStatusVO update(Dynamic dynamic){
+    public String update(Dynamic dynamic,HttpServletRequest request){
         try {
             dynamicService.update(dynamic);
         }catch (Exception e){
             statusVO = ControllerStatusVO.status(ControllerStatusEnum.DYNAMIC_UPDATE_FAIL);
+            request.setAttribute("statusVO",statusVO);
         }
         statusVO = ControllerStatusVO.status(ControllerStatusEnum.DYNAMIC_UPDATE_SUCCESS);
-        return statusVO;
+        request.setAttribute("statusVO",statusVO);
+        return "dynamic/dynamicList";
     }
 
     //修改状态

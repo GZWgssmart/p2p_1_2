@@ -360,6 +360,10 @@ $('#homeAdd').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -373,6 +377,10 @@ $('#homeAdd').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -386,6 +394,10 @@ $('#homeAdd').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -399,6 +411,10 @@ $('#homeAdd').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -484,6 +500,10 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -497,6 +517,10 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -510,6 +534,10 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
@@ -523,6 +551,10 @@ $('#updateForm').bootstrapValidator({
                     min: 1,
                     max: 50,
                     message: '链接长度必须在1到50之间'
+                },
+                regexp: {
+                    regexp: /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/,
+                    message: '请输入有效的网址'
                 }
             }
         },
