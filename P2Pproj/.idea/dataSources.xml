@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="p2p_2@192.168.3.105" uuid="9d220b6a-a58a-4617-9298-287132b2b7e9">
+    <data-source source="LOCAL" name="p2p_2@192.168.3.105" uuid="2b72d9b4-1ba2-4b97-bc87-152ef9e88a66">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
