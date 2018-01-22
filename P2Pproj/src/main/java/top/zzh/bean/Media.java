@@ -1,7 +1,5 @@
 package top.zzh.bean;
 
-import java.util.Date;
-
 //媒体报道表
 public class Media {
     private Long mid;
@@ -39,7 +37,7 @@ public class Media {
     }
 
     public Media() {
-        super();
+
     }
 
     public Long getMid() {
@@ -55,7 +53,7 @@ public class Media {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getContent() {
@@ -63,7 +61,7 @@ public class Media {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
     }
 
     public String getPic() {
@@ -71,7 +69,7 @@ public class Media {
     }
 
     public void setPic(String pic) {
-        this.pic = pic == null ? null : pic.trim();
+        this.pic = pic;
     }
 
     public String getDate() {
@@ -87,7 +85,7 @@ public class Media {
     }
 
     public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+        this.url = url;
     }
 
     public Byte getState() {
@@ -97,4 +95,10 @@ public class Media {
     public void setState(Byte state) {
         this.state = state;
     }
+
+
+    public void setContentToSub(String contentToSub) {
+        this.contentToSub = contentToSub;
+    }
+
 }
