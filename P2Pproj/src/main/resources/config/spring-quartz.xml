@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="top.zzh.quartz" />
+
+    <bean id="createRundataJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="name" value="createRundataJobDetail" />
+        <property name="group" value="group1" />
+        <property name="targetObject" ref="createRundata" />
+        <property name="targetMethod" value="run" />
+    </bean>
+
+    <bean id="createRundataJobTrigger1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="name" value="createRundataJobTrigger1" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="createRundataJobDetail" />
+        <property name="cronExpression" value="59 59 23 L * ?" />
+    </bean>
+
+    <bean id="updateEGoldJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="name" value="updateEGoldJobDetail" />
+        <property name="group" value="group1" />
+        <property name="targetObject" ref="updateEGold" />
+        <property name="targetMethod" value="run" />
+    </bean>
+
+    <bean id="updateEGoldJobTrigger1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="name" value="updateEGoldJobTrigger1" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="updateEGoldJobDetail" />
+        <property name="cronExpression" value="1 0 0 * * ?" />
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="createRundataJobDetail" />
+                <ref bean="updateEGoldJobDetail" />
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="createRundataJobTrigger1" />
+                <ref bean="updateEGoldJobTrigger1" />
+            </list>
+        </property>
+    </bean>
+</beans>
