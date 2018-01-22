@@ -149,22 +149,6 @@ public class DynamicController {
         return statusVO;
     }
 
-    //批量删除
-    @RequestMapping("deleteMany/{dyid}")
-    @ResponseBody
-    public String deleteMany(@PathVariable("dyid")String id){
-        Dynamic dynamic = new Dynamic();
-        String idString[] = id.split(".");
-        for(int i=0;i<idString.length;i++){
-            dynamic.setDyid(Long.parseLong(idString[i].toString()));
-            dynamicService.remove(id);
-        }
-        if (dynamic != null){
-            return "dynamicList";
-        }
-        return "ok";
-    }
-
     @RequestMapping("page")
     public String page(){
         return "dynamic/dynamicList";

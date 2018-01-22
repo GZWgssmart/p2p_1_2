@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>媒体报道列表</title>
     <jsp:include page="../common/bootstraptablecss.jsp"/>
- </head>
+</head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
@@ -53,6 +53,5 @@
 </div>
 <jsp:include page="../common/bootstraptablejs.jsp"/>
 <script src="<%=path%>/static/js/pageJs/media.js"></script>
-
 </body>
 </html>
