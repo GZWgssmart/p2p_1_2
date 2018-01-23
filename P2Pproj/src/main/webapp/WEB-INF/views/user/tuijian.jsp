@@ -93,6 +93,7 @@
         var ele = document.getElementById("text");
         ele.select();
         document.execCommand("Copy");
+        alert("复制成功！");
     }
 
     //全局变量，动态的文章ID
