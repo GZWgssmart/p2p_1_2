@@ -49,27 +49,23 @@
                     </div>
                 </li>
                 <shiro:hasRole name="超级管理员">
-                    <shiro:hasRole name="普通管理员">
-                        <shiro:hasRole name="普通员工">
-                        <li>
-                            <a href="javascript:void(0);">
-                                <i class="glyphicon glyphicon-link"></i>
-                                <span class="nav-label">权限分配</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li><a class="J_menuItem" href="<%=path %>/permission/permissionPage">权限管理</a></li>
-                                <li><a a class="J_menuItem" href="<%=path %>/role/rolePage">角色管理</a></li>
-                                <li><a a class="J_menuItem" href="<%=path %>/rolePermission/rolePermissionPage">角色权限管理</a></li>
-                                <li><a a class="J_menuItem" href="<%=path %>/hUserRole/hUserRolePage">后台用户角色管理</a></li>
-                            </ul>
-                        </li>
-                        </shiro:hasRole>
-                    </shiro:hasRole>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="glyphicon glyphicon-link"></i>
+                            <span class="nav-label">权限分配</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="<%=path %>/permission/permissionPage">权限管理</a></li>
+                            <li><a a class="J_menuItem" href="<%=path %>/role/rolePage">角色管理</a></li>
+                            <li><a a class="J_menuItem" href="<%=path %>/rolePermission/rolePermissionPage">角色权限管理</a></li>
+                            <li><a a class="J_menuItem" href="<%=path %>/hUserRole/hUserRolePage">后台用户角色管理</a></li>
+                        </ul>
+                    </li>
                 </shiro:hasRole>
 
                 <shiro:hasRole name="普通管理员">
-                        <li>
+                    <li>
                         <a href="javascript:void(0);">
                             <i class="fa fa-th-large"></i>
                             <span class="nav-label">用户管理</span>
